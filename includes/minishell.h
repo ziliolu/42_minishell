@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/05/30 11:03:14 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/02 14:39:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@
 typedef struct s_env
 {
     char *name;
-    char *total_info;
+	char *info;
+    char *full_info;
     struct s_env *next;
-    struct s_env *prev;
-}               t_env;
+}	t_env;
 
-typedef struct s_info
-{
-    t_env *env;
-    
-}               t_info;
 
-void ft_env(char **env);
-void ft_getenv(t_env *env);
 // ==== utils ====
 int ft_strcmp(char *s1, char *s2);
-t_env	*ft_newnode(char *name, char *total_info);
-void	ft_addback_lst(t_env **lst, t_env *new);
-t_env *ft_create_env(char **env);
 void ft_run_command(char *command, char **env);
+void	ft_env(char **env);
+
+
+//-----> ft_env functions <-----//
+t_env	*new_node(char *str);
+t_env	*find_last(t_env *list);
+void	add_node(t_env **header, char *str);
+char	*get_env_name(char *set);
+char	*get_env_info(char *set);
+void	print_list(t_env *list);
 
 #endif
