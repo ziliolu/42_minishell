@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/02 17:56:56 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:41:35 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef struct s_env
     struct s_env *next;
 }               t_env;
 
-t_env **g_env;
 
+extern t_env **g_env;
 
 // ==== utils ====
 int 	ft_strcmp(char *s1, char *s2);
@@ -45,4 +45,6 @@ char	*ft_get_env_name(char *set);
 char	*ft_get_env_info(char *set);
 void	ft_print_list(t_env *list);
 
+
+char    *ft_search_env(char *str);
 #endif

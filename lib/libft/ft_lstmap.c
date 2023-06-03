@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:29:13 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/24 13:38:10 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/03 17:23:35 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstclear(&lst2, (*del));
 			return (NULL);
 		}	
-		ft_lstadd_back(&lst2, new);
+		//ft_lstadd_back(&lst2, new);
 		aux = aux->next;
 	}
 	return (lst2);
