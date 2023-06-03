@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:48:34 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/02 15:59:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:24:54 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
-//# include "../libft/libft.h" 
+# include "../libft/libft.h" 
 
 int		ft_printf(const char *format, ...);
 int		ft_filter_format(char c, va_list ap);
