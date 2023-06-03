@@ -9,6 +9,7 @@ LIBDIR = ./lib/
 SRC =	./src/*.c			\
 		./src/builtins/*.c	\
 		./src/utils/*.c		\
+		./src/builtins/env/*.c 	\
 
 all: $(NAME) 
 
