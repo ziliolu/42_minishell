@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/03 17:41:35 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:37:41 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include <stdio.h>
+#include <unistd.h>
 # include "../lib/libft/libft.h"
 
 
@@ -46,5 +47,5 @@ char	*ft_get_env_info(char *set);
 void	ft_print_list(t_env *list);
 
 
-char    *ft_search_env(char *str);
+char    *ftgetenv(char *name);
 #endif
