@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   init_ms.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 11:07:11 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/05 16:41:51 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/06/05 12:37:27 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/06/05 16:37:55 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-int ft_strcmp(char *s1, char *s2)
+void ft_init_ms(t_ms *ms, char **system_env, char *read_content)
 {
     int i;
 
-    i = 0;
-    while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		  i++;
-	return (s1[i] - s2[i]);
+    i = -1;
+    ms->paths = ft_split(ft_getenv("PATH"), ':');
+    while(ms->paths[++i])
+    {
+        ms->paths[i] = ft_strjoin(ms->paths[i], "/");
+    }
+    //ms->input = ft_strtrim(read_content, " ");
+    ms->ms_argv = ft_split(read_content, ' ');
+    ms->system_env = system_env;
 }
