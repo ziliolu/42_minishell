@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/05 18:54:32 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:53:14 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int main(int argc, char **argv, char **system_env)
 			continue ;
 		else if(read_content[0] != '\0')
 		{
+			int i = 0;
 			ft_init_ms(&ms, system_env, read_content);
-			ft_is_variable(&ms);
-			ft_is_executable(&ms);
+			ft_parser(&ms, read_content);
+			// ft_is_variable(&ms);
+			// ft_is_executable(&ms);
 		}
 	}
 	return (0);
@@ -46,25 +48,90 @@ int main(int argc, char **argv, char **system_env)
 
 bool ft_is_variable(t_ms *ms)
 {
-	int i;
+	int j;
 	int pos;
 
-	i = 0;
+	j = 0;
 	pos = 0;
+	printf("is a variable! \n");
+	while(ft_is_normal_character(ms->ms_argv[0][j]))
+		j++;
+	if(ms->ms_argv[0][j] == '=')
+		pos = j;	 		
+	if(pos == 0)
+		return (false);
+	printf("valid info:: %d\n", ft_is_valid_info(ms, pos + 1));
+	return(true);
+}
 
-	while(ms->ms_argv[i] != ' ')
+bool ft_is_valid_info(t_ms *ms, int j)
+{
+	char *var_info;
+	char *str;
+
+	var_info = malloc(ft_strlen(ms->ms_argv[0]));
+	while(ms->ms_argv[0][j])
 	{
-		if(ms->ms_argv[i] == '=' && ms->ms_argv[i + 1] != ' ')
+		if(ms->ms_argv[0][j] == '\"')
 		{
-			pos = i;	
-			break ; 		
+			str = ft_search_for_end(ms->ms_argv[0], '\"', j);
+			if(str != NULL)
+				var_info = ft_strjoin(var_info, str);
+			while (ms->ms_argv[0][j] != '\"')
+				j++;
 		}
+		else if(ms->ms_argv[0][j] == '\'')
+		{
+			str = ft_search_for_end(ms->ms_argv[0], '\'', j);
+			if(str != NULL)
+				var_info = ft_strjoin(var_info, str);
+			while (ms->ms_argv[0][j] != '\'')
+				j++;
+		}
+	}
+	if(str == NULL)
+	{
+		printf("erro!");
+		return(false);
+	}
+	return(true);
+}
+
+char *ft_search_for_end(char *str, char c, int pos)
+{
+	int i;
+	char *info;
+
+	i = 1;
+	while(str[pos + 1] != c)
+	{
+		info = ft_charjoin(info, str[i]);
 		i++;
 	}
-	if(pos == 0)
-		return (false);	
-	if
-\\
+	if(str[i] == c)
+		return (info);
+	return (NULL);
+}
+
+char *ft_charjoin(char *str, char c)
+{
+	int i;
+	char *new_str;
+
+	new_str = malloc(sizeof(str) + 2);
+	i = -1;
+	while(str[++i])
+		new_str[i] = str[i];
+	new_str[++i] = c;
+	new_str[++i] = '\0';
+	return (new_str);	
+}
+
+bool ft_is_normal_character(char c)
+{
+	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (true);
+	return (false);		
 }
 
 /* 

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/05 18:09:13 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:55:10 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,38 @@ typedef struct s_env
     struct s_env *next;
 }               t_env;
 
-
 extern t_env **ms_env;
+
+enum e_token
+{
+	WORD = -1,
+	WHITE_SPACE = ' ',
+	NEW_LINE = '\n',
+	QOUTE = '\'',
+	DOUBLE_QUOTE = '\"',
+	ESCAPE = '\\',
+	ENV = '$',
+	PIPE_LINE = '|',
+	REDIR_IN = '<',
+	REDIR_OUT = '>',
+	HERE_DOC,
+	DREDIR_OUT,
+};
+
+enum e_state
+{
+	IN_DQUOTE,
+	IN_SQUOTE,
+	GENERAL,
+};
+typedef struct s_elem
+{
+    char *data;
+    int len;
+    //enum e_token type;
+    //enum e_status status;
+    struct s_elem *next;
+}               t_elem;
 
 typedef struct s_ms
 {
@@ -66,4 +96,16 @@ bool ft_is_absolute_path(char *input);
 bool        ft_is_arg_valid(t_ms *ms, char *read_content);
 bool        ft_is_quote_valid(char *read_content);
 char        ft_choose_quotes(int s_quote, int d_quote);
+bool        ft_is_normal_character(char c);
+
+char        *ft_search_for_end(char *str, char c, int pos); 
+bool ft_is_variable(t_ms *ms);
+bool ft_is_valid_info(t_ms *ms, int j);
+char *ft_charjoin(char *str, char c);
+
+t_elem	*ft_new_elem(char *str);
+void	ft_add_new_elem(t_elem **head, char *str);
+t_elem	*ft_find_last_elem(t_elem *list);
+void ft_parser(t_ms *ms, char *read_content);
+
 #endif
