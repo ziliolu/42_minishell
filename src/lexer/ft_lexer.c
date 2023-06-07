@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/07 10:47:45 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:31:28 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ void ft_lexer(t_ms *ms, char *str)
 {
     enum e_status status;
     t_elem **elem_head;
-    //t_elem *list;
     int i;
     
     (void) ms;
-    status = GENERAL;
+    status = GENERAL; //default
     elem_head = (t_elem **)malloc(sizeof(t_elem *));
     i = 0;
 
@@ -29,13 +28,27 @@ void ft_lexer(t_ms *ms, char *str)
     {
         if(str[i] == ' ')
             ft_add_new_elem(elem_head, ft_new_elem(" ", 1, WHITE_SPACE, status));
-        else if(str[i] == "\'")
+        else if(str[i] == '\'')
             ft_add_new_elem(elem_head, ft_new_elem("\'", 1, SINGLE_QUOTE, status));
-        else if(str[i] == "\"")
-            ft_add_new_elem(elem_head, ft_new_elem("\"", 1, SINGLE_QUOTE, status));
+        else if(str[i] == '\"')
+            ft_add_new_elem(elem_head, ft_new_elem("\"", 1, DOUBLE_QUOTE, status));
         else
-            ft_add_new_elem(elem_head, ft_new_elem("0", 1, WORD, status));
+        {
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
+            i = ft_count_char(str + i);
+        }
+        i++;
     }
+    ft_print_tokens(*elem_head);
+}
+
+int ft_count_char(char *str)
+{ 
+    int i;
+    i = 0;
+    while(str[i] != WHITE_SPACE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE)
+        i++;
+    return (i);
 }
 
 

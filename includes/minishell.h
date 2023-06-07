@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/07 10:49:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:25:05 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_ms
 int 	ft_strcmp(char *s1, char *s2);
 void 	ft_run_command(char *command, char **env);
 void ft_env(char **env);
+char *ft_strndup(char *str, int n);
 
 
 //-----> ft_env functions <-----//
@@ -108,5 +109,7 @@ t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status);
 void	ft_add_new_elem(t_elem **head, t_elem *new_elem);
 t_elem	*ft_find_last_elem(t_elem *list);
 void ft_lexer(t_ms *ms, char *read_content);
-
+int	ft_size_list(t_elem **header);
+void	ft_print_tokens(t_elem *list);
+int ft_count_char(char *str);
 #endif
