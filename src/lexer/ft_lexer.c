@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/06 17:01:55 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:47:45 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 
-void ft_parser(t_ms *ms, char *read_content)
+void ft_lexer(t_ms *ms, char *str)
 {
-    enum e_token type;
+    enum e_status status;
     t_elem **elem_head;
     //t_elem *list;
     int i;
-
-    (void) read_content;
+    
     (void) ms;
-    type = WORD;
+    status = GENERAL;
     elem_head = (t_elem **)malloc(sizeof(t_elem *));
     i = 0;
 
-    while(read_content[i])
+    while(str[i])
     {
-        if(read_content[i] == ' ')
-            ft_add_new_elem(elem_head, )
-        else if()    
+        if(str[i] == ' ')
+            ft_add_new_elem(elem_head, ft_new_elem(" ", 1, WHITE_SPACE, status));
+        else if(str[i] == "\'")
+            ft_add_new_elem(elem_head, ft_new_elem("\'", 1, SINGLE_QUOTE, status));
+        else if(str[i] == "\"")
+            ft_add_new_elem(elem_head, ft_new_elem("\"", 1, SINGLE_QUOTE, status));
+        else
+            ft_add_new_elem(elem_head, ft_new_elem("0", 1, WORD, status));
     }
-    
-    printf("%d\n", type);
 }
 
 

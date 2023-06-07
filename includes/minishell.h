@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/06 16:55:10 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:49:09 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ enum e_token
 	WORD = -1,
 	WHITE_SPACE = ' ',
 	NEW_LINE = '\n',
-	QOUTE = '\'',
+	SINGLE_QUOTE = '\'',
 	DOUBLE_QUOTE = '\"',
 	ESCAPE = '\\',
 	ENV = '$',
@@ -50,18 +50,19 @@ enum e_token
 	DREDIR_OUT,
 };
 
-enum e_state
+enum e_status
 {
 	IN_DQUOTE,
 	IN_SQUOTE,
 	GENERAL,
 };
+
 typedef struct s_elem
 {
     char *data;
     int len;
-    //enum e_token type;
-    //enum e_status status;
+    enum e_token type;
+    enum e_status status;
     struct s_elem *next;
 }               t_elem;
 
@@ -103,9 +104,9 @@ bool ft_is_variable(t_ms *ms);
 bool ft_is_valid_info(t_ms *ms, int j);
 char *ft_charjoin(char *str, char c);
 
-t_elem	*ft_new_elem(char *str);
-void	ft_add_new_elem(t_elem **head, char *str);
+t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status);
+void	ft_add_new_elem(t_elem **head, t_elem *new_elem);
 t_elem	*ft_find_last_elem(t_elem *list);
-void ft_parser(t_ms *ms, char *read_content);
+void ft_lexer(t_ms *ms, char *read_content);
 
 #endif
