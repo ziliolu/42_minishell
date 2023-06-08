@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 12:44:04 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/08 16:16:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,60 @@ void ft_lexer(t_ms *ms, char *str)
 {
     enum e_status status;
     t_elem **elem_head;
+    int squote_flag;
+    int dquote_flag;
     int i;
     
     (void) ms;
     status = GENERAL; //default
+    squote_flag = 0;
+    dquote_flag = 0;
     elem_head = (t_elem **)malloc(sizeof(t_elem *));
     i = 0;
+
+// 'ivo "ola" $home'
+// "ivo 'ola' $home"
 
     while(str[i])
     {
         if(str[i] == WHITE_SPACE)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
         else if(str[i] == SINGLE_QUOTE)
-            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+        {
+            if(squote_flag == 0 && dquote_flag == 0) //PRIMEIRA PLICA
+            {
+                squote_flag = 1;
+                status = GENERAL;
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+                status = IN_SQUOTE;
+            } 
+            else if(squote_flag == 1 && dquote_flag == 0) //ULTIMA plica
+            {
+                squote_flag = 0;
+                status = GENERAL;
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+            }
+            else
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+        }
         else if(str[i] == DOUBLE_QUOTE)
-            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
+        {
+            if(dquote_flag == 0 && squote_flag == 0)
+            {
+                dquote_flag = 1;
+                status = GENERAL;
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
+                status = IN_DQUOTE;
+            }
+            else if(dquote_flag == 1 && squote_flag == 0)
+            {
+                dquote_flag = 0;
+                status = GENERAL;
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+            }
+            else
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
+        }
         else if(str[i] == PIPE_LINE)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, PIPE_LINE, status));
         else if(str[i] == REDIR_IN)
@@ -39,7 +78,7 @@ void ft_lexer(t_ms *ms, char *str)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_OUT, status));
         else
         {
-            if(str[i] == '$' && ft_is_normal_character(str[i +1]))
+            if(str[i] == '$' && ft_is_normal_character(str[i +1]) && squote_flag == 0)
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), ENV, status));
             else
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));

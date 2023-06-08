@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 13:00:57 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:34:39 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,51 @@
 
 void	ft_print_tokens(t_elem *list)
 {
-    printf("-----------------------------------------------------------------\n");
-    printf("|     data     |     lenght     |     status     |     type     |\n");
-     printf("-----------------------------------------------------------------\n");
+    printf("-----------------------------------------------------------------------------------------\n");
+    printf("|\tdata\t\t|\tlen\t|\tstatus  \t|\ttype    \t|\t\n");
+    printf("-----------------------------------------------------------------------------------------\n");
 	while (list != NULL)
 	{
-		printf("|     '%s'          %d          %s          %s     ", \
+		printf("|\t'%s'\t\t|\t%d\t|\t%s  \t|\t%s    \t|\t", \
         list->data, list->len, ft_token_status(list->status), ft_token_type(list->type));
 		list = list->next;
 		printf("\n");
 	}
+	printf("-----------------------------------------------------------------------------------------\n");
 }
 
 char *ft_token_status(enum e_status status)
 {
     if(status == GENERAL)
-        return ("GENERAL");
+        return ("general");
     else if(status == IN_DQUOTE)
-        return ("IN_DQUOTE");
+        return ("in_dquote");
     else
-        return ("IN_SQUOTE");
+        return ("in_squote");
 }
 
 char *ft_token_type(enum e_token type)
 {
-    if(type == WORD)
-        return("WORD");
+    if (type == WORD)
+        return("word");
     else if(type == WHITE_SPACE)
-        return("WHITE_SPACE");
-    else
-        return ("OTHER");
-        
+        return("w_space");
+	else if(type == NEW_LINE)
+		return("new_line");
+	else if(type == SINGLE_QUOTE)
+		return("s_quote");
+	else if(type == DOUBLE_QUOTE)
+		return("d_quote");
+	else if(type == ESCAPE)
+		return("escape");
+    else if (type == ENV)
+        return("env");
+    else if (type == PIPE_LINE)
+        return("pipeline");
+    else if (type == REDIR_IN)
+        return ("redir_in");
+    else if (type == REDIR_OUT)
+        return ("redir_out");
+	else
+		return (NULL);
 }
