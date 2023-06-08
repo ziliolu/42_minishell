@@ -1,7 +1,8 @@
 {
-	"files.associations": {
-		"libft.h": "c",
-		"ft_printf.h": "c"
-	},
-	"C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
+    "files.associations": {
+        "libft.h": "c",
+        "ft_printf.h": "c"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "c-cpp-compile-run.run-in-external-terminal": true
 }

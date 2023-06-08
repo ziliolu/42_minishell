@@ -6,13 +6,11 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 11:37:29 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:44:04 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <stdio.h>
-#include <readline/readline.h>
 
 void ft_lexer(t_ms *ms, char *str)
 {
@@ -27,16 +25,24 @@ void ft_lexer(t_ms *ms, char *str)
 
     while(str[i])
     {
-
-        if(str[i] == ' ')
-            ft_add_new_elem(elem_head, ft_new_elem(" ", 1, WHITE_SPACE, status));
-        else if(str[i] == '\'')
-            ft_add_new_elem(elem_head, ft_new_elem("\'", 1, SINGLE_QUOTE, status));
-        else if(str[i] == '\"')
-            ft_add_new_elem(elem_head, ft_new_elem("\"", 1, DOUBLE_QUOTE, status));
+        if(str[i] == WHITE_SPACE)
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
+        else if(str[i] == SINGLE_QUOTE)
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+        else if(str[i] == DOUBLE_QUOTE)
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
+        else if(str[i] == PIPE_LINE)
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, PIPE_LINE, status));
+        else if(str[i] == REDIR_IN)
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_IN, status));
+        else if(str[i] == REDIR_OUT)
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_OUT, status));
         else
         {
-            ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
+            if(str[i] == '$' && ft_is_normal_character(str[i +1]))
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), ENV, status));
+            else
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
             i = i + ft_count_char(str + i) - 1;
         }
         if(!str[i + 1])
@@ -51,7 +57,7 @@ int ft_count_char(char *str)
 { 
     int i;
     i = 0;
-    while(str[i] != WHITE_SPACE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE)
+    while(str[i] != WHITE_SPACE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE && str[i] != '\0')
         i++;
     return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 11:36:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:53:40 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <readline/readline.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <sys/types.h>
+# include <sys/types.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -37,7 +37,7 @@ extern t_env **ms_env;
 
 enum e_token
 {
-	WORD = -1,
+	WORD = 'w',
 	WHITE_SPACE = ' ',
 	NEW_LINE = '\n',
 	SINGLE_QUOTE = '\'',
@@ -113,4 +113,6 @@ void ft_lexer(t_ms *ms, char *read_content);
 int	ft_size_list(t_elem **header);
 void	ft_print_tokens(t_elem *list);
 int ft_count_char(char *str);
+char *ft_token_status(enum e_status status);
+char *ft_token_type(enum e_token type);
 #endif
