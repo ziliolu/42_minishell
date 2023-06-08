@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 17:34:39 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:36:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ char *ft_token_status(enum e_status status)
 char *ft_token_type(enum e_token type)
 {
     if (type == WORD)
-        return("word");
-    else if(type == WHITE_SPACE)
-        return("w_space");
-	else if(type == NEW_LINE)
-		return("new_line");
-	else if(type == SINGLE_QUOTE)
-		return("s_quote");
-	else if(type == DOUBLE_QUOTE)
-		return("d_quote");
-	else if(type == ESCAPE)
-		return("escape");
+        return ("word");
+    else if (type == WHITE_SPACE)
+        return ("w_space");
+	else if (type == NEW_LINE)
+		return ("new_line");
+	else if (type == SINGLE_QUOTE)
+		return ("s_quote");
+	else if (type == DOUBLE_QUOTE)
+		return ("d_quote");
+	else if (type == ESCAPE)
+		return ("escape");
     else if (type == ENV)
-        return("env");
+        return ("env");
     else if (type == PIPE_LINE)
-        return("pipeline");
+        return ("pipeline");
     else if (type == REDIR_IN)
         return ("redir_in");
     else if (type == REDIR_OUT)
