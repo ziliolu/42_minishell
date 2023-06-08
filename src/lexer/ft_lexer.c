@@ -6,12 +6,13 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/07 15:31:28 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:37:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
+#include <stdio.h>
+#include <readline/readline.h>
 
 void ft_lexer(t_ms *ms, char *str)
 {
@@ -26,6 +27,7 @@ void ft_lexer(t_ms *ms, char *str)
 
     while(str[i])
     {
+
         if(str[i] == ' ')
             ft_add_new_elem(elem_head, ft_new_elem(" ", 1, WHITE_SPACE, status));
         else if(str[i] == '\'')
@@ -35,9 +37,12 @@ void ft_lexer(t_ms *ms, char *str)
         else
         {
             ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
-            i = ft_count_char(str + i);
+            i = i + ft_count_char(str + i) - 1;
         }
+        if(!str[i + 1])
+            break;
         i++;
+        //i++;
     }
     ft_print_tokens(*elem_head);
 }

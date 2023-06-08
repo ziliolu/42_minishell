@@ -6,13 +6,14 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/07 15:25:05 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:36:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
+# include <readline/readline.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 #include <sys/types.h>
