@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 17:39:33 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:27:52 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,25 @@ void ft_lexer(t_ms *ms, char *str)
         else if(str[i] == PIPE_LINE)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, PIPE_LINE, status));
         else if(str[i] == REDIR_IN)
-            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_IN, status));
+        {
+            if (str[i + 1] == REDIR_IN)
+            {
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 2, HERE_DOC, status));
+                i++;
+            }
+            else  
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_IN, status));
+        }
         else if(str[i] == REDIR_OUT)
-            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_OUT, status));
+        {
+            if(str[i + 1] == REDIR_OUT)
+            {
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 2, D_REDIR_OUT, status));
+                i++;
+            }
+            else    
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_OUT, status));
+        }
         else
         {
             if(str[i] == '$' && ft_is_normal_character(str[i +1]) && squote_flag == 0)

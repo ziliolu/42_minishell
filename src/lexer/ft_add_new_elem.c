@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:38:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/07 15:32:28 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:36:57 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status status)
 	if (node)
 	{
         node->data = ft_strndup(str, len);
-        node->len = ft_strlen(str);
+        node->len = ft_strlen(node->data);
         node->next = NULL;
 		node->status = status;
 		node->type = type;

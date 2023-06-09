@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 17:36:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:38:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,17 @@ char *ft_token_type(enum e_token type)
 	else if (type == ESCAPE)
 		return ("escape");
     else if (type == ENV)
-        return ("env");
+        return ("env\t");
     else if (type == PIPE_LINE)
         return ("pipeline");
     else if (type == REDIR_IN)
         return ("redir_in");
     else if (type == REDIR_OUT)
         return ("redir_out");
+    else if (type == D_REDIR_OUT)
+        return ("d_redir_out");
+    else if (type == HERE_DOC)
+        return ("here_doc");
 	else
 		return (NULL);
 }

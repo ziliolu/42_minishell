@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/08 12:53:40 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:46:21 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ enum e_token
 	REDIR_IN = '<',
 	REDIR_OUT = '>',
 	HERE_DOC,
-	DREDIR_OUT,
+	D_REDIR_OUT,
 };
 
 enum e_status
