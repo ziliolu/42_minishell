@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/10 20:03:57 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/10 22:07:55 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,22 @@ int ft_count_pipes(t_elem *list)
 
 void ft_parser(t_ms *ms, t_elem *list)
 {
-	//t_command	*node;
    	int			i;
 	int			j;
-	char *str;
+	char		*str;
+	int			counter;
+	char** test;
 
 	i = 0;
 	j = 0;
+	counter = ft_count_tokens(list);
+	//Temos de inicializar a variavel str com valor null para o ft_strjoin aceitar
+	str = malloc(sizeof(char) * 1);
+	str[0] = '\0';
+	
+	//Temos de alocar espaço para a variavel ms->cmds->args
+	test = (char **)malloc(sizeof(char *) * counter);
+	(void)test;
 	ft_initialize_pipes(ms, ft_count_pipes(list));
 	ms->cmds = malloc(sizeof(t_command) * (ft_count_pipes(list) + 1));
 	while (list != NULL)
