@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/09 10:46:21 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:46:09 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,25 @@ typedef struct s_elem
     struct s_elem *next;
 }               t_elem;
 
+typedef struct s_pipe
+{
+	struct s_elem *right_command;
+	struct s_elem *left_command;
+}				t_pipe;
+
+typedef struct s_command
+{
+	char **args;
+}				t_command;
+
 typedef struct s_ms
 {
     //char *input;
     char **paths;
     char **system_env;
     char **ms_argv;
+	t_command *cmds;
+	t_pipe *pipes;
 }           t_ms;
 
 // ==== utils ====
@@ -115,4 +128,10 @@ void	ft_print_tokens(t_elem *list);
 int ft_count_char(char *str);
 char *ft_token_status(enum e_status status);
 char *ft_token_type(enum e_token type);
+int ft_count_pipes(t_elem *list);
+void ft_parser(t_ms *ms, t_elem *list);
+void ft_initialize_pipes(t_ms *ms, int nbr_of_pipes);
+bool ft_is_not_redir(enum e_token type);
+void ft_print_command_nodes(t_ms *ms);
+
 #endif

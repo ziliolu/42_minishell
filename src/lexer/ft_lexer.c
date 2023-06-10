@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/09 11:27:52 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:09:41 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void ft_lexer(t_ms *ms, char *str)
     dquote_flag = 0;
     elem_head = (t_elem **)malloc(sizeof(t_elem *));
     i = 0;
-
-// 'ivo "ola" $home'
-// "ivo 'ola' $home"
 
     while(str[i])
     {
@@ -106,6 +103,7 @@ void ft_lexer(t_ms *ms, char *str)
         //i++;
     }
     ft_print_tokens(*elem_head);
+    //ft_parser(ms, *elem_head);
 }
 
 int ft_count_char(char *str)

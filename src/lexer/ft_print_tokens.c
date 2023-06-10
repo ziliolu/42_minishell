@@ -6,18 +6,18 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/09 11:38:19 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/10 19:10:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-#include <unistd.h>
 
 void	ft_print_tokens(t_elem *list)
 {
     printf("-----------------------------------------------------------------------------------------\n");
     printf("|\tdata\t\t|\tlen\t|\tstatus  \t|\ttype    \t|\t\n");
     printf("-----------------------------------------------------------------------------------------\n");
+    printf("--> number of pipes: %d\n", ft_count_pipes(list));
 	while (list != NULL)
 	{
 		printf("|\t'%s'\t\t|\t%d\t|\t%s  \t|\t%s    \t|\t", \
