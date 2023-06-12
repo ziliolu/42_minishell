@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 12:52:36 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:59:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ void ft_parser(t_ms *ms, t_elem *list)
 		j = 0;
 		while (list != NULL && list->type != PIPE_LINE)
 		{
-			ms->cmds[i].args[j] = ft_strdup(list->data);
+			//falta a verificacao se ha plicas e aspas antes e depois para nao expandir
+			if(list->type == ENV)
+				ms->cmds[i].args[j] = ft_expand(*ms_env, list->data);
+			else
+				ms->cmds[i].args[j] = ft_strdup(list->data);
 			list = list->next;
 			j++;
 		}
