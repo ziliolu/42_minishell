@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 17:39:37 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:48:22 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv, char **system_env)
 	{
 		read_content = readline(prompt);
 		add_history(read_content);
-		ms->read_size = read_content;
+		ms.read_size = ft_strlen(read_content);
 		if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
 			break ;
 		else if(!ft_is_arg_valid(&ms, read_content))

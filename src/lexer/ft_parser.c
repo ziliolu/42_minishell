@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 17:41:22 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:50:16 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 
 	ft_initialize_pipes(ms, ms->n_pipes);
 	ms->cmds = malloc(sizeof(t_command) * (ms->n_pipes + 1));
-	str = malloc(sizeof(char) *ms->read_size);
+	str = ft_calloc(ms->read_size, sizeof(char));
 	while( i <= ms->n_pipes)
 	{
 		//lembrar de modificar numero da alocacao de memoria 
@@ -54,29 +54,51 @@ void ft_parser(t_ms *ms, t_elem *list)
 		j = 0;
 		while (list != NULL && list->type != PIPE_LINE)
 		{
+			str = ft_calloc(ms->read_size, sizeof(char));
 			//falta a verificacao se ha plicas e aspas antes e depois para nao expandir
 			if(list->type == ENV)
 				ms->cmds[i].args[j] = ft_expand(*ms_env, list->data);
 			// else
 			// 	ms->cmds[i].args[j] = ft_strdup(list->data);
+			else if(list->type == SINGLE_QUOTE)
+			{
+				if(list->status == IN_DQUOTE)
+					str = ft_strjoin(str, list->data); //"
+
+				list = list->next;//hello
+				while(list->type != SINGLE_QUOTE)
+				{
+					str = ft_strjoin(str, list->data); //hello //ola  // echo '"hello"'
+					list = list->next;
+				}
+				if(list->status == IN_DQUOTE)
+					str = ft_strjoin(str, list->data);
+				ms->cmds[i].args[j] = str;
+			}
 			else if(list->type == DOUBLE_QUOTE)
 			{
-				str = ft_strjoin(str, list->data); //"
+				if(list->status == IN_SQUOTE)
+					str = ft_strjoin(str, list->data); //"
+
 				list = list->next;//hello
 				while(list->type != DOUBLE_QUOTE)
 				{
-					str = ft_strjoin(str, list->data); //hello //ola
+					str = ft_strjoin(str, list->data); //hello //ola  // echo '"hello"'
 					list = list->next;
 				}
-				str = ft_strjoin(str, list->data);
-			} 
-			ms->cmds[i].args[j] = str;
+				if(list->status == IN_SQUOTE)
+					str = ft_strjoin(str, list->data);
+				ms->cmds[i].args[j] = str;
+			}
+			else
+				ms->cmds[i].args[j] = ft_strdup(list->data);
 			list = list->next;
 			j++;
 		}
 		//necessaria a criacao do pipeline aqui
 		if(list != NULL)
 			list = list->next;
+		ms->cmds[i].args[j] = NULL;
 		i++;
 	}
 	ft_print_command_nodes(ms, ms->n_pipes);
@@ -93,7 +115,7 @@ void ft_print_command_nodes(t_ms *ms, int n_pipes)
 	{
 		j = 0;
 		printf("\nCOMMAND %i\n", i);
-		while(ms->cmds[i].args[j])
+		while(ms->cmds[i].args[j] != NULL)
 		{
 			printf("%s\n", ms->cmds[i].args[j]);
 			j++;

@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/10 21:53:15 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/12 18:20:31 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ int	ft_count_tokens(t_elem *list)
 		list = list->next;
 		counter += 1;
 	}
-	printf("|\t\t\t|\t%d total number of arguments in the element list.\t|\n", counter);
-	printf("-----------------------------------------------------------------------------------------\n");
 	return (counter);
 }
