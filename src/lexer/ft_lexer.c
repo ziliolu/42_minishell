@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/10 21:02:24 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:16:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void ft_lexer(t_ms *ms, char *str)
 
     while(str[i])
     {
-        if(str[i] == WHITE_SPACE)
+        if(str[i] == WHITE_SPACE && status != GENERAL)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
         else if(str[i] == SINGLE_QUOTE)
         {
@@ -37,14 +37,14 @@ void ft_lexer(t_ms *ms, char *str)
             {
                 squote_flag = 1;
                 status = GENERAL;
-                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+                //ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
                 status = IN_SQUOTE;
             } 
             else if(squote_flag == 1 && dquote_flag == 0) //ULTIMA plica
             {
                 squote_flag = 0;
                 status = GENERAL;
-                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
+                //ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
             }
             else
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, SINGLE_QUOTE, status));
@@ -55,14 +55,14 @@ void ft_lexer(t_ms *ms, char *str)
             {
                 dquote_flag = 1;
                 status = GENERAL;
-                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
+                //ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
                 status = IN_DQUOTE;
             }
             else if(dquote_flag == 1 && squote_flag == 0)
             {
                 dquote_flag = 0;
                 status = GENERAL;
-                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
+                //ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
             }
             else
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, DOUBLE_QUOTE, status));
@@ -89,9 +89,9 @@ void ft_lexer(t_ms *ms, char *str)
             else    
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_OUT, status));
         }
-        else
+        else if(str[i] != WHITE_SPACE)
         {
-            if(str[i] == '$' && ft_is_normal_character(str[i +1]) && squote_flag == 0)
+            if(str[i] == '$' && ft_is_normal_character(str[i + 1]) && squote_flag == 0)
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), ENV, status));
             else
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
@@ -100,10 +100,9 @@ void ft_lexer(t_ms *ms, char *str)
         if(!str[i + 1])
             break;
         i++;
-        //i++;
     }
     ft_print_tokens(*elem_head);
-    ft_parser(ms, *elem_head);
+    //ft_parser(ms, *elem_head);
 }
 
 int ft_count_char(char *str)

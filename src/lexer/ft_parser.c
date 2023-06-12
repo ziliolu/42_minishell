@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/10 22:07:55 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:37:06 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,39 +43,39 @@ void ft_parser(t_ms *ms, t_elem *list)
 	int			j;
 	char		*str;
 	int			counter;
-	char** test;
+	int n_pipes;
+	//int cmds_before_pipe;
 
 	i = 0;
-	j = 0;
 	counter = ft_count_tokens(list);
-	//Temos de inicializar a variavel str com valor null para o ft_strjoin aceitar
-	str = malloc(sizeof(char) * 1);
-	str[0] = '\0';
-	
-	//Temos de alocar espaço para a variavel ms->cmds->args
-	test = (char **)malloc(sizeof(char *) * counter);
-	(void)test;
+	n_pipes = ft_count_pipes(list);
+
 	ft_initialize_pipes(ms, ft_count_pipes(list));
-	ms->cmds = malloc(sizeof(t_command) * (ft_count_pipes(list) + 1));
+	ms->cmds = malloc(sizeof(t_command) * (n_pipes + 1));
+
 	while (list != NULL)
 	{
 		j = 0;
 		while (list->type != PIPE_LINE)
 		{
-			while(!(list->type == WHITE_SPACE && list->status == GENERAL))
-			{
-				str = ft_strjoin(str, list->data);
-				list = list->next;
-			}
-			ms->cmds[i].args[j] = ft_strdup(str);
+			ms->cmds[i].args[j] = ft_strdup(list->data);
+			list = list->next;
 			j++;
 		}
 		i++;
-		//list->len, ft_token_status(list->status), ft_token_type(list->type));
-		list = list->next;
 	}
 	ft_print_command_nodes(ms);
 }
+
+// int ft_count_cmds_before_pipe(t_elem *list)
+// {
+// 	int i;
+// 	while(list->data != NULL)
+// 	{
+// 		while(list->type != PIPE_LINE )
+// 	}
+// }
+
 
 void ft_print_command_nodes(t_ms *ms)
 {
@@ -102,3 +102,5 @@ void ft_initialize_pipes(t_ms *ms, int nbr_of_pipes)
 {
 	ms->pipes = malloc(sizeof(t_pipe) * nbr_of_pipes);
 }
+
+
