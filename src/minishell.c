@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 12:06:36 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:39:37 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main(int argc, char **argv, char **system_env)
 	{
 		read_content = readline(prompt);
 		add_history(read_content);
+		ms->read_size = read_content;
 		if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
 			break ;
 		else if(!ft_is_arg_valid(&ms, read_content))
@@ -38,8 +39,8 @@ int main(int argc, char **argv, char **system_env)
 		{
 			ft_init_ms(&ms, system_env, read_content);
 			ft_lexer(&ms, read_content);
+			ft_is_executable(&ms);
 			// ft_is_variable(&ms);
-			//ft_is_executable(&ms);
 		}
 	}
 	return (0);
@@ -147,34 +148,42 @@ bool ft_is_normal_character(char c)
 bool ft_is_executable(t_ms *ms)
 {
 	int i;
+	int j;
 
 	i = 0;
-	if(ft_is_absolute_path(ms->ms_argv[0]))
-	{
-		if(access(ms->ms_argv[0], X_OK) == 0)
+	j = 0;
+	while(j <= ms->n_pipes)
+	{	
+		if(ft_is_absolute_path(ms->cmds[j].args[0]))
 		{
-			fork();
-			execve(ms->ms_argv[0], ms->ms_argv, ms->system_env);
-			return (true);
+			if(access(ms->cmds[j].args[0], X_OK) == 0)
+			{
+				fork();
+				execve(ms->cmds[j].args[0], ms->cmds[j].args, ms->system_env);
+				return (true);
+			}
+			return (false);
 		}
-		return (false);
-	}
-	while(ms->paths[i])
-	{
-		if(access(ft_strjoin(ms->paths[i], ms->ms_argv[0]), X_OK) == 0)
+		while(ms->paths[i])
 		{
-			pid_t pid;
+			if(access(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), X_OK) == 0)
+			{
+				pid_t pid;
 
-			pid = fork();
-			if(pid == 0)
-				execve(ft_strjoin(ms->paths[i], ms->ms_argv[0]), ms->ms_argv, ms->system_env);
-			wait(&pid);
-			return (true);
+				pid = fork();
+				if(pid == 0)
+					execve(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), ms->cmds[j].args, ms->system_env);
+				wait(&pid);
+				return (true);
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
 	return (false);
 }
+
+
 
 bool ft_is_absolute_path(char *ms_argv)
 {

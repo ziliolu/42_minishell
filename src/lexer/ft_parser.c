@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 12:59:38 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:41:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,25 @@ void ft_parser(t_ms *ms, t_elem *list)
    	int			i;
 	int			j;
 	int			counter;
-	int n_pipes;
+	char *str;
 
 	i = 0;
 	counter = ft_count_tokens(list);
-	n_pipes = ft_count_pipes(list);
+	ms->n_pipes = ft_count_pipes(list);
 
-	ft_initialize_pipes(ms, ft_count_pipes(list));
-	ms->cmds = malloc(sizeof(t_command) * (n_pipes + 1));
-	
-	while( i <= n_pipes)
+	ft_initialize_pipes(ms, ms->n_pipes);
+	ms->cmds = malloc(sizeof(t_command) * (ms->n_pipes + 1));
+	str = malloc(sizeof(char) *ms->read_size);
+	while( i <= ms->n_pipes)
 	{
 		//lembrar de modificar numero da alocacao de memoria 
-		ms->cmds[i].args = malloc(sizeof(char *) * 10);
+		ms->cmds[i].args = ft_calloc(counter, sizeof(char *));
+		if(!ms->cmds[i].args)
+			return ; 
 		i++;
 	}
 	i = 0;
-	while (list != NULL && i <= n_pipes)
+	while (list != NULL && i <= ms->n_pipes)
 	{
 		j = 0;
 		while (list != NULL && list->type != PIPE_LINE)
@@ -55,8 +57,20 @@ void ft_parser(t_ms *ms, t_elem *list)
 			//falta a verificacao se ha plicas e aspas antes e depois para nao expandir
 			if(list->type == ENV)
 				ms->cmds[i].args[j] = ft_expand(*ms_env, list->data);
-			else
-				ms->cmds[i].args[j] = ft_strdup(list->data);
+			// else
+			// 	ms->cmds[i].args[j] = ft_strdup(list->data);
+			else if(list->type == DOUBLE_QUOTE)
+			{
+				str = ft_strjoin(str, list->data); //"
+				list = list->next;//hello
+				while(list->type != DOUBLE_QUOTE)
+				{
+					str = ft_strjoin(str, list->data); //hello //ola
+					list = list->next;
+				}
+				str = ft_strjoin(str, list->data);
+			} 
+			ms->cmds[i].args[j] = str;
 			list = list->next;
 			j++;
 		}
@@ -65,7 +79,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 			list = list->next;
 		i++;
 	}
-	ft_print_command_nodes(ms, n_pipes);
+	ft_print_command_nodes(ms, ms->n_pipes);
 }
 
 void ft_print_command_nodes(t_ms *ms, int n_pipes)
@@ -74,7 +88,7 @@ void ft_print_command_nodes(t_ms *ms, int n_pipes)
 	int j;
 	i = 0;
 	j = 0;
-	printf("\nPRINTANDO COMANDOS\n");
+	printf("\n------ PRINTANDO COMANDOS----------\n");
 	while(i <= n_pipes)
 	{
 		j = 0;
@@ -86,6 +100,7 @@ void ft_print_command_nodes(t_ms *ms, int n_pipes)
 		}
 		i++;
 	}
+	printf("--------------------------------------\n\n");
 }
 bool ft_is_not_redir(enum e_token type)
 {
