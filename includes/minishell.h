@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 11:31:59 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 12:25:02 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int			ft_count_pipes(t_elem *list);
 void		ft_parser(t_ms *ms, t_elem *list);
 void		ft_initialize_pipes(t_ms *ms, int nbr_of_pipes);
 bool		ft_is_not_redir(enum e_token type);
-void		ft_print_command_nodes(t_ms *ms);
+void		ft_print_command_nodes(t_ms *ms, int n_pipes);
 int			ft_count_tokens(t_elem *list);
 
 #endif

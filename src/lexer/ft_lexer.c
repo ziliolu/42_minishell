@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 11:16:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:39:58 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void ft_lexer(t_ms *ms, char *str)
         i++;
     }
     ft_print_tokens(*elem_head);
-    //ft_parser(ms, *elem_head);
+    ft_parser(ms, *elem_head);
 }
 
 int ft_count_char(char *str)

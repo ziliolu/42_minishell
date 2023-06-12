@@ -6,15 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 11:37:38 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:39:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
-
-char	ft_expand(t_env **ms_env, char *variable)
-{
-	int		i;
-	
-	
-}
