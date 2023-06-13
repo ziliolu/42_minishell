@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 17:48:22 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:30:16 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main(int argc, char **argv, char **system_env)
 	prompt = "minishell> ";
 	while (1)
 	{
+		
 		read_content = readline(prompt);
 		add_history(read_content);
 		ms.read_size = ft_strlen(read_content);
@@ -45,6 +46,20 @@ int main(int argc, char **argv, char **system_env)
 	}
 	return (0);
 }
+
+// int main(int argc, char **argv, char **env)
+// {
+//     char *command[] = {"echo", "luizaaaaa"};
+//     char *bin = command[0];
+
+//     int redirect = open("redirect.text", O_CREAT | O_TRUNC | O_WRONLY);
+//     dup2(redirect, STDOUT_FILENO);
+
+//     if(execve(command[0], command, env) == -1)
+//         printf("error!");
+//     else
+//         printf("done!");
+// }
 
 bool ft_is_variable(t_ms *ms)
 {
@@ -145,43 +160,7 @@ bool ft_is_normal_character(char c)
 	access returns true if the requested access is denied.) 
 **
 */
-bool ft_is_executable(t_ms *ms)
-{
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
-	while(j <= ms->n_pipes)
-	{	
-		if(ft_is_absolute_path(ms->cmds[j].args[0]))
-		{
-			if(access(ms->cmds[j].args[0], X_OK) == 0)
-			{
-				fork();
-				execve(ms->cmds[j].args[0], ms->cmds[j].args, ms->system_env);
-				return (true);
-			}
-			return (false);
-		}
-		while(ms->paths[i])
-		{
-			if(access(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), X_OK) == 0)
-			{
-				pid_t pid;
-
-				pid = fork();
-				if(pid == 0)
-					execve(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), ms->cmds[j].args, ms->system_env);
-				wait(&pid);
-				return (true);
-			}
-			i++;
-		}
-		j++;
-	}
-	return (false);
-}
 
 
 

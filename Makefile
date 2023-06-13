@@ -11,6 +11,10 @@ SRC =	./src/*.c			\
 		./src/utils/*.c		\
 		./src/builtins/env/*.c 	\
 		./src/lexer/*.c			\
+		./src/parser/*.c		\
+		./src/print/*.c			\
+		./src/redirect/*.c		\
+		./src/executable/*.c
 
 all: $(NAME) 
 

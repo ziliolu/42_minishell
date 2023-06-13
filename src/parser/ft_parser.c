@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 18:50:16 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:19:06 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 {
    	int			i;
 	int			j;
+	int			k;
 	int			counter;
 	char *str;
 
@@ -52,6 +53,14 @@ void ft_parser(t_ms *ms, t_elem *list)
 	while (list != NULL && i <= ms->n_pipes)
 	{
 		j = 0;
+		k = 0;
+		ms->cmds[i].redirs = malloc(sizeof(t_redirect) * counter);
+		while(k < counter)
+		{
+			ms->cmds[i].redirs[k].arg = NULL;
+			k++;
+		}
+		k = 0;
 		while (list != NULL && list->type != PIPE_LINE)
 		{
 			str = ft_calloc(ms->read_size, sizeof(char));
@@ -63,12 +72,12 @@ void ft_parser(t_ms *ms, t_elem *list)
 			else if(list->type == SINGLE_QUOTE)
 			{
 				if(list->status == IN_DQUOTE)
-					str = ft_strjoin(str, list->data); //"
+					str = ft_strjoin(str, list->data); 
 
-				list = list->next;//hello
+				list = list->next;
 				while(list->type != SINGLE_QUOTE)
 				{
-					str = ft_strjoin(str, list->data); //hello //ola  // echo '"hello"'
+					str = ft_strjoin(str, list->data); 
 					list = list->next;
 				}
 				if(list->status == IN_DQUOTE)
@@ -78,17 +87,28 @@ void ft_parser(t_ms *ms, t_elem *list)
 			else if(list->type == DOUBLE_QUOTE)
 			{
 				if(list->status == IN_SQUOTE)
-					str = ft_strjoin(str, list->data); //"
+					str = ft_strjoin(str, list->data); 
 
-				list = list->next;//hello
+				list = list->next;
 				while(list->type != DOUBLE_QUOTE)
 				{
-					str = ft_strjoin(str, list->data); //hello //ola  // echo '"hello"'
+					str = ft_strjoin(str, list->data);
 					list = list->next;
 				}
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(str, list->data);
 				ms->cmds[i].args[j] = str;
+			}
+			else if(ft_is_redir(list->type))
+			{
+				ms->cmds[i].redirs[k].type = list->type;
+				if (!list->next)
+				{
+					printf("bash: syntax error near unexpected token `newline'\n");
+					return ;
+				}
+				ms->cmds[i].redirs[k].arg = ft_strdup(list->next->data);
+				k++;
 			}
 			else
 				ms->cmds[i].args[j] = ft_strdup(list->data);
@@ -104,26 +124,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ft_print_command_nodes(ms, ms->n_pipes);
 }
 
-void ft_print_command_nodes(t_ms *ms, int n_pipes)
-{
-	int i;
-	int j;
-	i = 0;
-	j = 0;
-	printf("\n------ PRINTANDO COMANDOS----------\n");
-	while(i <= n_pipes)
-	{
-		j = 0;
-		printf("\nCOMMAND %i\n", i);
-		while(ms->cmds[i].args[j] != NULL)
-		{
-			printf("%s\n", ms->cmds[i].args[j]);
-			j++;
-		}
-		i++;
-	}
-	printf("--------------------------------------\n\n");
-}
+
+
 bool ft_is_not_redir(enum e_token type)
 {
 	if(type != REDIR_IN && type != REDIR_OUT && type != HERE_DOC && type != D_REDIR_OUT)

@@ -1,3 +1,0 @@
-system = ubuntu 
-pc = linux 
-eof 

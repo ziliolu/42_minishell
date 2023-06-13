@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 17:39:48 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/13 15:13:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <stdbool.h>
 # include <sys/wait.h>
 # include "../lib/libft/libft.h"
+# include <sys/stat.h>
+# include <fcntl.h>
 
 
 typedef struct s_env
@@ -73,11 +75,20 @@ typedef struct s_pipe
 	struct s_elem *left_command;
 }				t_pipe;
 
+typedef struct s_redirect
+{
+	char *arg; //file name or eof (heredoc)
+	enum e_token type;
+}				t_redirect;
+
 typedef struct s_command
 {
 	char **args;
-	
+	t_redirect *redirs;
+
 }				t_command;
+ 
+ // echo ola > n1 > n2
 
 typedef struct s_ms
 {
@@ -97,7 +108,6 @@ int			ft_strcmp(char *s1, char *s2);
 void		ft_run_command(char *command, char **env);
 void		ft_env(char **env);
 char		*ft_strndup(char *str, int n);
-
 
 //-----> ft_env functions <-----//
 t_env		*ft_new_node(char *str);
@@ -139,4 +149,10 @@ bool		ft_is_not_redir(enum e_token type);
 void		ft_print_command_nodes(t_ms *ms, int n_pipes);
 int			ft_count_tokens(t_elem *list);
 char	*ft_expand(t_env *list, char *variable);
+bool ft_is_redir(enum e_token type);
+char *ft_token_status(enum e_status status);
+void	ft_print_tokens(t_elem *list);
+char *ft_token_type(enum e_token type);
+bool ft_is_redir(enum e_token type);
+
 #endif
