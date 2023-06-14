@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/13 16:01:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:08:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,12 @@ bool ft_is_executable(t_ms *ms)
 {
 	int i;
 	int j;
+	int fd[2];
 
 	i = 0;
 	j = 0;
     
-    int in;
-    int out;
-
-    in = dup(STDIN_FILENO);
-    out = dup(STDOUT_FILENO);
-    
-    int r = open("a.text", O_CREAT | O_RDONLY);
-	dup2(r, STDOUT_FILENO);
-    
+	dup2(fd[1], STDOUT_FILENO);
 	while(j <= ms->n_pipes)
 	{	
 		if(ft_is_absolute_path(ms->cmds[j].args[0]))
@@ -38,7 +31,6 @@ bool ft_is_executable(t_ms *ms)
 			{
 				fork();
 				execve(ms->cmds[j].args[0], ms->cmds[j].args, ms->system_env);
-                dup2(out, STDOUT_FILENO);
 				return (true);
 			}
 			return (false);
@@ -51,9 +43,13 @@ bool ft_is_executable(t_ms *ms)
 
 				pid = fork();
 				if(pid == 0)
-					execve(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), ms->cmds[j].args, ms->system_env);
+				{
+					if(execve(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), ms->cmds[j].args, ms->system_env))
+						printf("everything alright!");
+					else
+						printf("error!");
+				}
 				wait(&pid);
-                dup2(out, STDOUT_FILENO);
 				return (true);
 			}
 			i++;
