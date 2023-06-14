@@ -13,7 +13,7 @@
  * 
  * 
  * - focar em entender melhor o dup e dup2
- * - execucao de um comando ja e classificada como processo ou necessrio o fork? 
+ * - execucao de um comando ja e classificada como processo ou necessario o fork? 
  * -  
  * 
 */
