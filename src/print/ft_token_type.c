@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:50:57 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/13 11:51:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:34:20 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char *ft_token_type(enum e_token type)
         return ("d_redir_out");
     else if (type == HERE_DOC)
         return ("here_doc");
+    else if (type == CMD)
+        return ("command");
 	else
 		return (NULL);
 }

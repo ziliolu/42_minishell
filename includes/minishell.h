@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/13 15:13:13 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:32:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ enum e_token
 	REDIR_OUT = '>',
 	HERE_DOC,
 	D_REDIR_OUT,
+	CMD,
 };
 
 enum e_status
@@ -83,11 +84,13 @@ typedef struct s_redirect
 
 typedef struct s_command
 {
-	char **args;
+	char **args; 
+	enum e_token type;
+	int fd[2];
 	t_redirect *redirs;
 
 }				t_command;
- 
+
  // echo ola > n1 > n2
 
 typedef struct s_ms
@@ -118,7 +121,7 @@ char		*ft_get_env_info(char *set);
 void		ft_print_list(t_env *list);
 
 void		ft_init_ms(t_ms *ms, char **system_env, char *read_content);
-bool		ft_is_executable(t_ms *ms);
+bool		ft_is_executable(t_ms *ms, t_command *cmd);
 char		*ft_getenv(char *name);
 bool		ft_is_absolute_path(char *input);
 
@@ -154,5 +157,5 @@ char *ft_token_status(enum e_status status);
 void	ft_print_tokens(t_elem *list);
 char *ft_token_type(enum e_token type);
 bool ft_is_redir(enum e_token type);
-
+void ft_run_cmds(t_ms *ms);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/13 15:30:16 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:08:03 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int main(int argc, char **argv, char **system_env)
 		{
 			ft_init_ms(&ms, system_env, read_content);
 			ft_lexer(&ms, read_content);
-			ft_is_executable(&ms);
+			//ft_is_executable(&ms);
+			ft_run_cmds(&ms);
 			// ft_is_variable(&ms);
 		}
 	}

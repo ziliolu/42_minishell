@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/13 12:19:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:21:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ void ft_parser(t_ms *ms, t_elem *list)
 		i++;
 	}
 	i = 0;
-	while (list != NULL && i <= ms->n_pipes)
+	while (list != NULL)
 	{
 		j = 0;
 		k = 0;
+		//criacao de lista de redirects 
 		ms->cmds[i].redirs = malloc(sizeof(t_redirect) * counter);
+		ms->cmds[i].type = CMD;
 		while(k < counter)
 		{
 			ms->cmds[i].redirs[k].arg = NULL;
@@ -73,7 +75,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 			{
 				if(list->status == IN_DQUOTE)
 					str = ft_strjoin(str, list->data); 
-
 				list = list->next;
 				while(list->type != SINGLE_QUOTE)
 				{
@@ -108,6 +109,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 					return ;
 				}
 				ms->cmds[i].redirs[k].arg = ft_strdup(list->next->data);
+				list = list->next; 
+				j--;
 				k++;
 			}
 			else
@@ -115,10 +118,19 @@ void ft_parser(t_ms *ms, t_elem *list)
 			list = list->next;
 			j++;
 		}
-		//necessaria a criacao do pipeline aqui
+		i++;
+		j = 0;
+		// if(list != NULL)
+		// {
+		// 	if(list->type == PIPE_LINE)
+		// 	{
+		// 		ms->cmds[i].args[j] = "|";
+		// 		ms->cmds[i].type = PIPE_LINE;
+		// 	}
+		// }
 		if(list != NULL)
 			list = list->next;
-		ms->cmds[i].args[j] = NULL;
+		//ms->cmds[i].args[j] = NULL;
 		i++;
 	}
 	ft_print_command_nodes(ms, ms->n_pipes);

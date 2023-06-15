@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:49:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/13 11:56:39 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:43:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void ft_print_command_nodes(t_ms *ms, int n_pipes)
 	j = 0;
 	k = 0;
 	printf("\n------ PRINTANDO COMANDOS----------\n");
-	while(i <= n_pipes)
+	while(i <= (n_pipes))
 	{
 		j = 0;
 		printf("\nCOMMAND %i\n", i);
