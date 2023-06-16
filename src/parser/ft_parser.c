@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/15 17:21:33 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:34:01 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,29 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ms->n_pipes = ft_count_pipes(list);
 
 	ft_initialize_pipes(ms, ms->n_pipes);
-	ms->cmds = malloc(sizeof(t_command) * (ms->n_pipes + 1));
+	ms->cmds = ft_calloc(ms->n_pipes + 1, sizeof(t_command *));
 	str = ft_calloc(ms->read_size, sizeof(char));
 	while( i <= ms->n_pipes)
 	{
 		//lembrar de modificar numero da alocacao de memoria 
 		ms->cmds[i].args = ft_calloc(counter, sizeof(char *));
+		while(ms->cmds[i].args[j])
+		{
+			ms->cmds[i].args[j] = NULL;
+			j++;
+		}
 		if(!ms->cmds[i].args)
 			return ; 
 		i++;
+		j = 0;	
 	}
 	i = 0;
-	while (list != NULL)
+	while (list != NULL && i <= ms->n_pipes)
 	{
 		j = 0;
 		k = 0;
 		//criacao de lista de redirects 
-		ms->cmds[i].redirs = malloc(sizeof(t_redirect) * counter);
+		ms->cmds[i].redirs = ft_calloc(counter, sizeof(t_redirect));
 		ms->cmds[i].type = CMD;
 		while(k < counter)
 		{
@@ -118,8 +124,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 			list = list->next;
 			j++;
 		}
-		i++;
-		j = 0;
+		// i++;
+		// j = 0;
 		// if(list != NULL)
 		// {
 		// 	if(list->type == PIPE_LINE)
