@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 15:20:51 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:43:51 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ typedef struct s_redirect
 typedef struct s_command
 {
 	char **args; 
-	enum e_token type;
 	int fd[2];
+	enum e_token type;
 	t_redirect *redirs;
 
 }				t_command;
@@ -99,11 +99,10 @@ typedef struct s_ms
     char **paths;
     char **system_env;
     char **ms_argv;
-	t_command *cmds;
-	t_pipe *pipes;
 	int read_size;
 	int n_pipes; 
-	
+	t_command *cmds;
+	t_pipe *pipes;
 }           t_ms;
 
 // ==== utils ====
@@ -151,13 +150,13 @@ void		ft_initialize_pipes(t_ms *ms, int nbr_of_pipes);
 bool		ft_is_not_redir(enum e_token type);
 void		ft_print_command_nodes(t_ms *ms, int n_pipes);
 int			ft_count_tokens(t_elem *list);
-char	*ft_expand(t_env *list, char *variable);
-bool ft_is_redir(enum e_token type);
-char *ft_token_status(enum e_status status);
-void	ft_print_tokens(t_elem *list);
-char *ft_token_type(enum e_token type);
-bool ft_is_redir(enum e_token type);
-void ft_run_cmds(t_ms *ms);
-int ft_count_cmds(t_ms *ms);
-int ft_count_redirs(t_elem *list);
+char		*ft_expand(t_env *list, char *variable);
+bool 		ft_is_redir(enum e_token type);
+char 		*ft_token_status(enum e_status status);
+void		ft_print_tokens(t_elem *list);
+char 		*ft_token_type(enum e_token type);
+bool 		ft_is_redir(enum e_token type);
+void 		ft_run_cmds(t_ms *ms);
+int 		ft_count_cmds(t_ms *ms);
+int 		ft_count_redirs(t_elem *list);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 15:31:58 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:52:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ms->n_pipes = ft_count_pipes(list);
 
 	ft_initialize_pipes(ms, ms->n_pipes);
-	ms->cmds = ft_calloc(ms->n_pipes + 2, sizeof(t_command *));
+	//ms->cmds = malloc((counter + ms->n_pipes) * sizeof(t_command *));
 	str = ft_calloc(ms->read_size, sizeof(char));
 	while( i <= ms->n_pipes)
 	{
