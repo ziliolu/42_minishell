@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 09:30:49 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:20:45 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 				else
 					printf("error!");
 			}
-			wait(&pid);
+			//wait(&pid);
 			return (true);
 		}
 		i++;

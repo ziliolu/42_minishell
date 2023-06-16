@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 10:16:45 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:20:51 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,4 +159,5 @@ char *ft_token_type(enum e_token type);
 bool ft_is_redir(enum e_token type);
 void ft_run_cmds(t_ms *ms);
 int ft_count_cmds(t_ms *ms);
+int ft_count_redirs(t_elem *list);
 #endif

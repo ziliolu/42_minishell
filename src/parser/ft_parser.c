@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 10:34:01 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:31:58 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ms->n_pipes = ft_count_pipes(list);
 
 	ft_initialize_pipes(ms, ms->n_pipes);
-	ms->cmds = ft_calloc(ms->n_pipes + 1, sizeof(t_command *));
+	ms->cmds = ft_calloc(ms->n_pipes + 2, sizeof(t_command *));
 	str = ft_calloc(ms->read_size, sizeof(char));
 	while( i <= ms->n_pipes)
 	{
@@ -61,9 +61,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 		j = 0;
 		k = 0;
 		//criacao de lista de redirects 
-		ms->cmds[i].redirs = ft_calloc(counter, sizeof(t_redirect));
 		ms->cmds[i].type = CMD;
-		while(k < counter)
+		ms->cmds[i].redirs = ft_calloc(ft_count_redirs(list), sizeof(t_redirect));
+		printf("redirects: %d\n", ft_count_redirs(list));
+		while(k <= ft_count_redirs(list))
 		{
 			ms->cmds[i].redirs[k].arg = NULL;
 			k++;
@@ -108,16 +109,16 @@ void ft_parser(t_ms *ms, t_elem *list)
 			}
 			else if(ft_is_redir(list->type))
 			{
-				ms->cmds[i].redirs[k].type = list->type;
+				//ms->cmds[i].redirs[k].type = list->type;
 				if (!list->next)
 				{
 					printf("bash: syntax error near unexpected token `newline'\n");
 					return ;
 				}
-				ms->cmds[i].redirs[k].arg = ft_strdup(list->next->data);
+				//ms->cmds[i].redirs[k].arg = ft_strdup(list->next->data);
 				list = list->next; 
 				j--;
-				k++;
+				//k++;
 			}
 			else
 				ms->cmds[i].args[j] = ft_strdup(list->data);
@@ -142,7 +143,19 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ft_print_command_nodes(ms, ms->n_pipes);
 }
 
+int ft_count_redirs(t_elem *list)
+{
+	int i;
 
+	i = 0;
+	while(list && list->type != PIPE_LINE)
+	{
+		if(!ft_is_not_redir(list->type))
+			i++;
+		list = list->next;
+	}
+	return (i);
+}
 
 bool ft_is_not_redir(enum e_token type)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/12 18:00:04 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/16 14:43:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int ft_count_char(char *str)
 { 
     int i;
     i = 0;
-    while(str[i] != WHITE_SPACE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE && str[i] != '\0')
+    while(str[i] != WHITE_SPACE && str[i] != PIPE_LINE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE && str[i] != '\0')
         i++;
     return (i);
 }
