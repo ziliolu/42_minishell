@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:49:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 15:08:07 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:11:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void ft_print_command_nodes(t_ms *ms, int n_pipes)
 			printf("%s - %s\n", ft_token_type(ms->cmds[i].redirs[k].type), ms->cmds[i].redirs[k].arg);
 			k++;
 		}
+		k = 0;
 		i++;
 	}
 	printf("--------------------------------------\n\n");

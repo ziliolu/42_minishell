@@ -3,6 +3,7 @@ file
 file2
 file3
 includes
+ivo
 lib
 Makefile
 minishell
@@ -10,4 +11,6 @@ README.md
 src
 subject
 text
+texto
 txt
+[?2004hminishell> [Kminishell> [Kminishell> [Kminishell> [Kminishell> [Kminishell> [Kminishell> [Kminishell> [Kminishell> [Kminishell> [Kminishell> ^C[?2004l

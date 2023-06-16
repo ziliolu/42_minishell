@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 16:43:51 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:26:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ typedef struct s_redirect
 typedef struct s_command
 {
 	char **args; 
-	int fd[2];
+	int in;
+	int out;
 	enum e_token type;
 	t_redirect *redirs;
 
@@ -159,4 +160,5 @@ bool 		ft_is_redir(enum e_token type);
 void 		ft_run_cmds(t_ms *ms);
 int 		ft_count_cmds(t_ms *ms);
 int 		ft_count_redirs(t_elem *list);
+int 		ft_count_redirs_cmd(t_command *cmd);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 16:52:44 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:14:05 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,9 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ms->n_pipes = ft_count_pipes(list);
 
 	ft_initialize_pipes(ms, ms->n_pipes);
-	//ms->cmds = malloc((counter + ms->n_pipes) * sizeof(t_command *));
 	str = ft_calloc(ms->read_size, sizeof(char));
 	while( i <= ms->n_pipes)
 	{
-		//lembrar de modificar numero da alocacao de memoria 
 		ms->cmds[i].args = ft_calloc(counter, sizeof(char *));
 		while(ms->cmds[i].args[j])
 		{
@@ -62,6 +60,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 		k = 0;
 		//criacao de lista de redirects 
 		ms->cmds[i].type = CMD;
+		ms->cmds[i].in = 0;
+		ms->cmds[i].out = 1;
 		ms->cmds[i].redirs = ft_calloc(ft_count_redirs(list), sizeof(t_redirect));
 		printf("redirects: %d\n", ft_count_redirs(list));
 		while(k <= ft_count_redirs(list))
@@ -109,16 +109,16 @@ void ft_parser(t_ms *ms, t_elem *list)
 			}
 			else if(ft_is_redir(list->type))
 			{
-				//ms->cmds[i].redirs[k].type = list->type;
+				ms->cmds[i].redirs[k].type = list->type;
 				if (!list->next)
 				{
 					printf("bash: syntax error near unexpected token `newline'\n");
 					return ;
 				}
-				//ms->cmds[i].redirs[k].arg = ft_strdup(list->next->data);
+				ms->cmds[i].redirs[k].arg = ft_strdup(list->next->data);
 				list = list->next; 
 				j--;
-				//k++;
+				k++;
 			}
 			else
 				ms->cmds[i].args[j] = ft_strdup(list->data);
@@ -139,23 +139,11 @@ void ft_parser(t_ms *ms, t_elem *list)
 			list = list->next;
 		//ms->cmds[i].args[j] = NULL;
 		i++;
+		k = 0;
 	}
 	ft_print_command_nodes(ms, ms->n_pipes);
 }
 
-int ft_count_redirs(t_elem *list)
-{
-	int i;
-
-	i = 0;
-	while(list && list->type != PIPE_LINE)
-	{
-		if(!ft_is_not_redir(list->type))
-			i++;
-		list = list->next;
-	}
-	return (i);
-}
 
 bool ft_is_not_redir(enum e_token type)
 {

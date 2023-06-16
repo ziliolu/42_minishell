@@ -6,58 +6,13 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 14:20:45 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/16 17:59:06 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 #include <unistd.h>
 
-// bool ft_is_executable(t_ms *ms)
-// {
-// 	int i;
-// 	int j;
-// 	int fd[2];
-
-// 	i = 0;
-// 	j = 0;
-    
-// 	dup2(fd[1], STDOUT_FILENO);
-// 	while(j <= ms->n_pipes)
-// 	{	
-// 		if(ft_is_absolute_path(ms->cmds[j].args[0]))
-// 		{
-// 			if(access(ms->cmds[j].args[0], X_OK) == 0)
-// 			{
-// 				fork();
-// 				execve(ms->cmds[j].args[0], ms->cmds[j].args, ms->system_env);
-// 				return (true);
-// 			}
-// 			return (false);
-// 		}
-// 		while(ms->paths[i])
-// 		{
-// 			if(access(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), X_OK) == 0)
-// 			{
-// 				pid_t pid;
-
-// 				pid = fork();
-// 				if(pid == 0)
-// 				{
-// 					if(execve(ft_strjoin(ms->paths[i], ms->cmds[j].args[0]), ms->cmds[j].args, ms->system_env))
-// 						printf("everything alright!");
-// 					else
-// 						printf("error!");
-// 				}
-// 				wait(&pid);
-// 				return (true);
-// 			}
-// 			i++;
-// 		}
-// 		j++;
-// 	}
-// 	return (false);
-// }
 
 bool ft_is_executable(t_ms *ms, t_command *cmd)
 {
@@ -67,8 +22,9 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 
 	i = 0;
 	//j = 0;
-    
-	//dup2(fd[1], STDOUT_FILENO);
+    //int in = dup(STDIN_FILENO);
+	int out = dup(STDOUT_FILENO);
+	dup2(cmd->out, STDOUT_FILENO);
 	if(ft_is_absolute_path(cmd->args[0]))
 	{
 		if(access(cmd->args[0], X_OK) == 0)
@@ -93,7 +49,8 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 				else
 					printf("error!");
 			}
-			//wait(&pid);
+			wait(&pid);
+			dup2(out, STDOUT_FILENO);
 			return (true);
 		}
 		i++;
