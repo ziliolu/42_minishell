@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/ziliolu/42_minishell?color=#FFFFFF&style=flat-square" />
-  <img src="https://img.shields.io/badge/status-process-success?color=#ffff00&style=flat-square" />
+  <img src="https://img.shields.io/badge/status-process-success?color=#FFFF00&style=flat-square" />
   <img src="https://img.shields.io/github/last-commit/ziliolu/42_minishell?color=#FFFFFF&style=flat-square" />
 </p>
 
