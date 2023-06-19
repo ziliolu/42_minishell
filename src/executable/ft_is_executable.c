@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 17:59:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:47:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 
 	i = 0;
 	//j = 0;
-    //int in = dup(STDIN_FILENO);
+    int in = dup(STDIN_FILENO);
 	int out = dup(STDOUT_FILENO);
+	close()
 	dup2(cmd->out, STDOUT_FILENO);
+	dup2(cmd->in, STDIN_FILENO);
 	if(ft_is_absolute_path(cmd->args[0]))
 	{
 		if(access(cmd->args[0], X_OK) == 0)
@@ -51,6 +53,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 			}
 			wait(&pid);
 			dup2(out, STDOUT_FILENO);
+			dup2(in, STDIN_FILENO);
 			return (true);
 		}
 		i++;

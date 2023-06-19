@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 14:43:43 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:03:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void ft_lexer(t_ms *ms, char *str)
     elem_head = (t_elem **)malloc(sizeof(t_elem *));
     i = 0;
 
+    // if(ft_check_syntax_error())
+    //     return (ft_error());
     while(str[i])
     {
         if(str[i] == WHITE_SPACE && status != GENERAL)
@@ -101,7 +103,8 @@ void ft_lexer(t_ms *ms, char *str)
             break;
         i++;
     }
-    ft_print_tokens(*elem_head);
+    if(ms->is_print)
+        ft_print_tokens(ms, *elem_head);
     ft_parser(ms, *elem_head);
 }
 

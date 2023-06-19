@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 18:14:05 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:39:23 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ void ft_parser(t_ms *ms, t_elem *list)
 
 	ft_initialize_pipes(ms, ms->n_pipes);
 	str = ft_calloc(ms->read_size, sizeof(char));
-	while( i <= ms->n_pipes)
+	while(i <= ms->n_pipes)
 	{
+		j = 0;	
 		ms->cmds[i].args = ft_calloc(counter, sizeof(char *));
 		while(ms->cmds[i].args[j])
 		{
@@ -51,7 +52,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 		if(!ms->cmds[i].args)
 			return ; 
 		i++;
-		j = 0;	
 	}
 	i = 0;
 	while (list != NULL && i <= ms->n_pipes)
@@ -63,7 +63,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 		ms->cmds[i].in = 0;
 		ms->cmds[i].out = 1;
 		ms->cmds[i].redirs = ft_calloc(ft_count_redirs(list), sizeof(t_redirect));
-		printf("redirects: %d\n", ft_count_redirs(list));
 		while(k <= ft_count_redirs(list))
 		{
 			ms->cmds[i].redirs[k].arg = NULL;
@@ -125,23 +124,16 @@ void ft_parser(t_ms *ms, t_elem *list)
 			list = list->next;
 			j++;
 		}
-		// i++;
-		// j = 0;
-		// if(list != NULL)
-		// {
-		// 	if(list->type == PIPE_LINE)
-		// 	{
-		// 		ms->cmds[i].args[j] = "|";
-		// 		ms->cmds[i].type = PIPE_LINE;
-		// 	}
-		// }
 		if(list != NULL)
+		{
+			if(list->type == PIPE_LINE)
+				ms->cmds[i].operator = PIPE_LINE;
 			list = list->next;
+		}
 		//ms->cmds[i].args[j] = NULL;
 		i++;
 		k = 0;
 	}
-	ft_print_command_nodes(ms, ms->n_pipes);
 }
 
 

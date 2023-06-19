@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/15 13:08:03 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:43:07 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,31 @@ int main(int argc, char **argv, char **system_env)
 
 	(void)argc;
 	(void)argv;
-	ft_env(system_env); 
 
 	prompt = "minishell> ";
+	ms.is_print = 0;
 	while (1)
 	{
 		
 		read_content = readline(prompt);
-		add_history(read_content);
-		ms.read_size = ft_strlen(read_content);
-		if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
-			break ;
-		else if(!ft_is_arg_valid(&ms, read_content))
-			continue ;
-		else if(read_content[0] != '\0')
+		if(ft_strcmp(read_content, "") != 0)
 		{
-			ft_init_ms(&ms, system_env, read_content);
-			ft_lexer(&ms, read_content);
-			//ft_is_executable(&ms);
-			ft_run_cmds(&ms);
-			// ft_is_variable(&ms);
+			add_history(read_content);
+			ms.read_size = ft_strlen(read_content);
+			ft_env(system_env); 
+			if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
+				break ;
+			else if(!ft_is_arg_valid(&ms, read_content))
+				continue ;
+			else if(read_content[0] != '\0')
+			{
+				ft_init_ms(&ms, system_env, read_content);
+				ft_lexer(&ms, read_content);
+				//ft_parser();
+				//ft_is_executable(&ms);
+				ft_run_cmds(&ms);
+				// ft_is_variable(&ms);
+			}
 		}
 	}
 	return (0);

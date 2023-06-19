@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/16 18:26:11 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/19 17:38:05 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ typedef struct s_redirect
 
 typedef struct s_command
 {
-	char **args; 
+	char **args;
+	enum e_token operator;
 	int in;
 	int out;
 	enum e_token type;
@@ -92,11 +93,8 @@ typedef struct s_command
 
 }				t_command;
 
- // echo ola > n1 > n2
-
 typedef struct s_ms
 {
-    //char *input;
     char **paths;
     char **system_env;
     char **ms_argv;
@@ -104,6 +102,7 @@ typedef struct s_ms
 	int n_pipes; 
 	t_command *cmds;
 	t_pipe *pipes;
+	int		is_print;
 }           t_ms;
 
 // ==== utils ====
@@ -141,7 +140,6 @@ void		ft_add_new_elem(t_elem **head, t_elem *new_elem);
 t_elem		*ft_find_last_elem(t_elem *list);
 void		ft_lexer(t_ms *ms, char *read_content);
 int			ft_size_list(t_elem **header);
-void		ft_print_tokens(t_elem *list);
 int			ft_count_char(char *str);
 char		*ft_token_status(enum e_status status);
 char		*ft_token_type(enum e_token type);
@@ -154,11 +152,13 @@ int			ft_count_tokens(t_elem *list);
 char		*ft_expand(t_env *list, char *variable);
 bool 		ft_is_redir(enum e_token type);
 char 		*ft_token_status(enum e_status status);
-void		ft_print_tokens(t_elem *list);
+void		ft_print_tokens(t_ms *ms, t_elem *list);
 char 		*ft_token_type(enum e_token type);
 bool 		ft_is_redir(enum e_token type);
 void 		ft_run_cmds(t_ms *ms);
 int 		ft_count_cmds(t_ms *ms);
 int 		ft_count_redirs(t_elem *list);
 int 		ft_count_redirs_cmd(t_command *cmd);
+void ft_is_heredoc(t_command *cmd, t_redirect *redir);
+void ft_pipeline(t_ms *ms, int i);
 #endif
