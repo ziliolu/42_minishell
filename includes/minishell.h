@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/19 17:38:05 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:06:41 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,5 +160,5 @@ int 		ft_count_cmds(t_ms *ms);
 int 		ft_count_redirs(t_elem *list);
 int 		ft_count_redirs_cmd(t_command *cmd);
 void ft_is_heredoc(t_command *cmd, t_redirect *redir);
-void ft_pipeline(t_ms *ms, int i);
+void ft_pipeline(t_ms *ms);
 #endif
