@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/20 14:47:25 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:07:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 
 	i = 0;
 	//j = 0;
-    // int in = dup(STDIN_FILENO);
-	// int out = dup(STDOUT_FILENO);
+    int in = dup(STDIN_FILENO);
+	int out = dup(STDOUT_FILENO);
 	// dup2(cmd->out, STDOUT_FILENO);
 	// dup2(cmd->in, STDIN_FILENO);
 	if(ft_is_absolute_path(cmd->args[0]))
@@ -51,8 +51,8 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 					printf("error!");
 			}
 			wait(&pid);
-			// dup2(out, STDOUT_FILENO);
-			// dup2(in, STDIN_FILENO);
+			dup2(out, STDOUT_FILENO);
+			dup2(in, STDIN_FILENO);
 			return (true);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/20 14:49:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:17:32 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,69 +56,173 @@ void ft_run_cmds(t_ms *ms)
 
 void ft_pipeline(t_ms *ms)
 {
-    int **fds = (int **)malloc(sizeof(int *) * ms->n_pipes);
+    int fd[2];
     pid_t pid;
-    int i;
     int j;
 
-    i = 0;
-    while(i < ms->n_pipes)
-    {
-        fds[i] = (int *)malloc(sizeof(int) * 2);
-        i++;
-    }
+	pipe(fd);
+	pid = fork();
+	
+	if (pid == 0)
+	{
+		printf("Child\n");
+		printf("fds[0][0] = %d\n", fd[0]);
+		printf("fds[0][1] = %d\n", fd[1]);
+		printf("\n");
+		
+	}
 
-    i = 0;
-    while(i < ms->n_pipes)
-    {
-        pipe(fds[i]);
-        
-        pid = fork();
-        if(pid == 0)
-        {
-            //fechar entradas e saidas 
-            //desnecessarios dos outros pipes
-            
-            //pipe[0][0] V
-            //pipe[0][1] V
+	if(pid == 0)
+	{
+		printf("Primeiro Comando\n");
+		dup2(fd[1], STDOUT_FILENO); //alterar stdout - escrita do pipe
+		close(fd[0]);
+		close(fd[1]); // fecha read
+		printf("Saiu do primeiro comando\n");
 
-            //ls | grep h | grep o
-            j = 0;
-            while(j < ms->n_pipes)
-            {
-                if(j != i) //nao fechar do pipe atual
-                close(fds[j][1]);
-                close(fds[j][0]);
-                j++;
-            }
-            if(i == 0) //primeiro comando 
-            {
-                close(fds[i][0]); // fecha read
-                dup2(fds[i][1], STDOUT_FILENO); //alterar stdout - escrita do pipe
-                close(fds[i][1]);
-            }
-            else if(i > 0 && i < ms->n_pipes) //comandos intermediarios
-            {
-                
-                close(fds[i][0]); //fds[1][0]
-                dup2(fds[i - 1][0], STDIN_FILENO); //leitura do comando anterior
-                close(fds[i - 1][0]);
-                dup2(fds[i][1], STDOUT_FILENO); //escrita para o proximo comando
-                close(fds[i][1]);
-                
-            }
-            else if(i == ms->n_pipes) // ultimo comando
-            {
-                close(fds[i][0]);
-                close(fds[i][1]);
-                dup2(fds[i - 1][0], STDIN_FILENO);
-                close(fds[i - 1][0]);
-            } 
-            ft_is_executable(ms, &ms->cmds[i]); //cmd[i = 1]
-        }
-        i++;
-    }
+		// printf("Segundo Comando\n");
+		// close(fds[i][0]); //fds[1][0]
+		// dup2(fds[i - 1][0], STDIN_FILENO); //leitura do comando anterior
+		// close(fds[i - 1][0]);
+		// dup2(fds[i][1], STDOUT_FILENO); //escrita para o proximo comando
+		// close(fds[i][1]);
+		// printf("Saiu do segundo comando\n");
+		
+		// printf("Terceiro Comando\n");
+		// close(fds[i][0]);
+		// close(fds[i][1]);
+		// dup2(fds[i - 1][0], STDIN_FILENO);
+		// close(fds[i - 1][0]);
+		// printf("Saiu do terceiro comando\n");
+
+		printf("Comando: %s\n", ms->cmds[0].args[0]);
+		ft_is_executable(ms, &ms->cmds[0]); //cmd[i = 1]
+	}
+	else
+	{
+		printf("Father\n");
+		while(j < ms->n_pipes)
+		{
+			// close(fds[j][1]);
+			// printf("Fechou fds[j][0] = %d\n", fds[j][0]);
+			
+			// close(fds[j][0]);
+			// printf("Fechou fds[j][1] = %d\n", fds[j][1]);
+			
+			printf("Valor de j = %d\n", j);
+			j++;
+		}
+		printf("\n");
+
+	}
+	wait(NULL);
 }
+
+
+// void ft_pipeline(t_ms *ms)
+// {
+//     int **fds = (int **)malloc(sizeof(int *) * ms->n_pipes);
+//     pid_t pid;
+//     int i;
+//     int j;
+
+//     i = 0;
+//     while(i < ms->n_pipes)
+//     {
+//         fds[i] = (int *)malloc(sizeof(int) * 2);
+//         i++;
+//     }
+
+//     i = 0;
+//     while(i < ms->n_pipes)
+//     {
+//         pipe(fds[i]);
+//         pid = fork();
+		
+// 		if (pid == 0)
+// 		{
+// 			printf("Child\n");
+// 			printf("fds[0][0] = %d\n", fds[0][0]);
+// 			printf("fds[0][1] = %d\n", fds[0][1]);
+// 			printf("\n");
+			
+// 		}
+
+//         if(pid == 0)
+//         {
+//             //fechar entradas e saidas 
+//             //desnecessarios dos outros pipes
+            
+//             //pipe[0][0] V
+//             //pipe[0][1] V
+
+//             //ls | grep h | grep o
+//             j = 0;
+//             while(j < ms->n_pipes)
+//             {
+//                 if(j != i) //nao fechar do pipe atual
+// 				{
+// 					close(fds[j][1]);
+// 					close(fds[j][0]);
+// 				}
+// 				j++;
+//             }
+//             if(i == 0) //primeiro comando 
+//             {
+// 				printf("Primeiro Comando\n");
+//                 dup2(fds[i][1], STDOUT_FILENO); //alterar stdout - escrita do pipe
+//                 close(fds[i][1]);
+//                 close(fds[i][0]); // fecha read
+// 				printf("Saiu do primeiro comando\n");
+
+//             }
+//             else if(i > 0 && i < ms->n_pipes) //comandos intermediarios
+//             {
+// 				printf("Segundo Comando\n");
+//                 close(fds[i][0]); //fds[1][0]
+//                 dup2(fds[i - 1][0], STDIN_FILENO); //leitura do comando anterior
+//                 close(fds[i - 1][0]);
+//                 dup2(fds[i][1], STDOUT_FILENO); //escrita para o proximo comando
+//                 close(fds[i][1]);
+// 				printf("Saiu do segundo comando\n");
+                
+//             }
+//             else if(i == ms->n_pipes) // ultimo comando
+//             {
+// 				printf("Terceiro Comando\n");
+//                 close(fds[i][0]);
+//                 close(fds[i][1]);
+//                 dup2(fds[i - 1][0], STDIN_FILENO);
+//                 close(fds[i - 1][0]);
+// 				printf("Saiu do terceiro comando\n");
+
+//             }
+// 			printf("Comando: %s\n", ms->cmds[i].args[0]);
+//             ft_is_executable(ms, &ms->cmds[i]); //cmd[i = 1]
+//         }
+// 		else
+// 		{
+// 			printf("Father\n");
+// 			while(j < ms->n_pipes)
+// 			{
+// 				// close(fds[j][1]);
+// 				// printf("Fechou fds[j][0] = %d\n", fds[j][0]);
+				
+// 				// close(fds[j][0]);
+// 				// printf("Fechou fds[j][1] = %d\n", fds[j][1]);
+				
+// 				printf("Valor de j = %d\n", j);
+// 				j++;
+// 			}
+// 			printf("\n");
+
+// 		}
+//         i++;
+//     }
+// 	i = 0;
+// 	while (i++ < ms->n_pipes)
+// 		wait(NULL);
+// }
 
 //ls | grep h | grep o 
 
