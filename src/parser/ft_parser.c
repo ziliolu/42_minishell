@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/21 14:27:42 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:28:03 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 		//ms->cmds[i].args[j] = NULL;
 		i++;
 	}
-	ft_print_command_nodes(ms, ms->n_pipes);
+	//ft_print_command_nodes(ms, ms->n_pipes);
 }
 
 

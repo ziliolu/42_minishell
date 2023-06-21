@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/21 13:47:34 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:57:16 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ void ft_run_cmds(t_ms *ms)
 
     i = 0;
     k = 0;
-    while(i <= ms->n_pipes)
+    //int in = dup(STDIN_FILENO);
+	//int out = dup(STDOUT_FILENO);
+    while(ms->cmds[i].type)
     {
+        ft_init_pipes(ms);
         if(ms->cmds[i].type == CMD)
         {
             if(ms->cmds[i].redirs[k].arg != NULL)
@@ -43,27 +46,54 @@ void ft_run_cmds(t_ms *ms)
                 else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
                     ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
             }
-            //if(ms->n_pipes == 0)
-                // just execute without pipe
-            
+            if(ms->cmds[i + 1].type != PIPE_LINE && ms->n_pipes == 0)
+            {
+                ft_is_executable(ms, &ms->cmds[i]);
+            } // ls | grep a | ls
+            // else if(ms->cmds[i - 1].type == PIPE_LINE && ms->cmds[i + 1].type == PIPE_LINE) //intermediarios
+            // {
+            //     ms->cmds[i].in = ms->cmds[i - 1].fd[0];
+            //     ms->cmds[i].out = ms->cmds[i + 1].fd[1];
+            //     ft_is_executable(ms, &ms->cmds[i]);
+            //     close(ms->cmds[i].in);
+            //     close(ms->cmds[i].out);
+            // } 
+            else if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
+            {
+                ms->cmds[i].out = ms->cmds[i + 1].fd[1];
+                ft_is_executable(ms, &ms->cmds[i]);
+                close(ms->cmds[i + 1].fd[1]);
+            }
+            else if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
+            {
+                ms->cmds[i].in = ms->cmds[i - 1].fd[0];
+                ms->cmds[i].out = 1;
+                ft_is_executable(ms, &ms->cmds[i]);
+                close(ms->cmds[i - 1].fd[0]);
+            }
         }
-        // else if (ms->cmds[i] == PIPE_LINE)
-        // {
-        //     {
-        //         //se existir redirect -> resultado vai estar cmd.out
-        //     }
-        //     //executar o comando anterior
-        //     //escreve no pipe
-            
-        // } 
+        //pipe [i + 1] - alterar                out - (echo ola | ------)
+        //pipe [i + 1] && pipe [i + 1] -        in e out - (---- | ls | -----)
+        //pipe [i - 1] -                            in -(---- | ls )
         i++;
     }
-    if(ms->n_pipes > 0)
-        ft_pipeline(ms);
-    else
-        ft_is_executable(ms, &ms->cmds[0]);
+    // if(ms->n_pipes > 0)
+    //     ft_pipeline(ms);
+    // else
+    //     ft_is_executable(ms, &ms->cmds[0]);
 }
+void ft_init_pipes(t_ms *ms)
+{
+    int i;
 
+    i = 0;
+    while(ms->cmds[i].type)
+    {
+        if(ms->cmds[i].type == PIPE_LINE)
+            pipe(ms->cmds[i].fd);
+        i++;
+    }
+}
 //ls | grep h |
 
 void ft_pipeline(t_ms *ms)

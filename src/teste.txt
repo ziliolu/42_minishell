@@ -3,11 +3,10 @@
 
 pipes e redirects 
 
-1. comando com redirects e sem pipes (echo ola > txt)
-2. comando sem redirects e sem pipes (echo ola)
+1. comando sem redirects e sem pipes (echo ola) OK
+2. comando com redirects e sem pipes (echo ola > txt) OK
 3. comando sem redirects e com pipes (echo ola | grep o)
-
-4. comando com redirects e com pipe (exho ola > txt | grep o)
+4. comando com redirects e com pipes (exho ola > txt | grep o)
 
 dup2(cmd.out, STDOUT);
 fd[1] = cmd.out;

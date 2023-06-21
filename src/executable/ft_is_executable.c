@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/20 18:05:48 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:02:24 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 
 	i = 0;
 	//j = 0;
-    // int in = dup(STDIN_FILENO);
-	// int out = dup(STDOUT_FILENO);
-	// dup2(cmd->out, STDOUT_FILENO);
-	// dup2(cmd->in, STDIN_FILENO);
+	// verificar e salvar dups antes de comecar o while
+    int in = dup(STDIN_FILENO);
+	int out = dup(STDOUT_FILENO);
+	dup2(cmd->out, STDOUT_FILENO);
+	dup2(cmd->in, STDIN_FILENO);
 	if(ft_is_absolute_path(cmd->args[0]))
 	{
 		if(access(cmd->args[0], X_OK) == 0)
@@ -59,8 +60,8 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 						printf("error!");
 				}
 				wait(&pid);
-				// dup2(out, STDOUT_FILENO);
-				// dup2(in, STDIN_FILENO);
+				dup2(out, STDOUT_FILENO);
+				dup2(in, STDIN_FILENO);
 				return (true);
 			}
 			i++;

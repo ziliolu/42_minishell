@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/20 12:06:41 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:35:15 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct s_command
 	enum e_token operator;
 	int in;
 	int out;
+	int fd[2];
 	enum e_token type;
 	t_redirect *redirs;
 
@@ -161,4 +162,6 @@ int 		ft_count_redirs(t_elem *list);
 int 		ft_count_redirs_cmd(t_command *cmd);
 void ft_is_heredoc(t_command *cmd, t_redirect *redir);
 void ft_pipeline(t_ms *ms);
+void ft_init_pipes(t_ms *ms);
+
 #endif

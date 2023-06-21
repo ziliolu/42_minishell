@@ -1,0 +1,16 @@
+total 116
+drwxr-xr-x  9 lpicoli- 2022_porto  4096 Jun 21 14:49 .
+drwxr-xr-x 17 lpicoli- 2022_porto  4096 Jun  9 15:16 ..
+drwxr-xr-x  8 lpicoli- 2022_porto  4096 Jun 21 14:29 .git
+drwxr-xr-x  3 lpicoli- 2022_porto  4096 Jun 21 12:59 .idea
+drwxr-xr-x  2 lpicoli- 2022_porto  4096 Jun 21 12:59 includes
+drwxr-xr-x  5 lpicoli- 2022_porto  4096 Jun 21 14:12 lib
+-rwxr-xr-x  1 lpicoli- 2022_porto     0 Jun 21 14:49 luiza
+-rw-r--r--  1 lpicoli- 2022_porto    85 Jun 21 12:59 main.c
+-rw-r--r--  1 lpicoli- 2022_porto   551 Jun 21 13:55 Makefile
+-rwxr-xr-x  1 lpicoli- 2022_porto 59288 Jun 21 14:48 minishell
+-rw-r--r--  1 lpicoli- 2022_porto  1122 Jun 21 12:59 README.md
+drwxr-xr-x 10 lpicoli- 2022_porto  4096 Jun 21 12:59 src
+drwxr-xr-x  2 lpicoli- 2022_porto  4096 Jun 12 09:31 subject
+-rwxr-xr-x  1 lpicoli- 2022_porto    65 Jun 21 14:48 txt
+drwxr-xr-x  2 lpicoli- 2022_porto  4096 Jun  3 17:57 .vscode

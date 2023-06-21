@@ -1,0 +1,37 @@
+out: 4
+in: 0
+includes
+ivo
+lib
+luiza
+main.c
+Makefile
+minishell
+ola
+README.md
+src
+subject
+test
+tst
+txt
+txxxt
+uhu
+out: 4
+in: 0
+includes
+ivo
+lib
+luiza
+main.c
+Makefile
+minishell
+ola
+README.md
+src
+subject
+test
+tst
+txt
+txxxt
+uhu
+minishell> ^C
