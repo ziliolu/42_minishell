@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/21 15:57:16 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:19:06 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@ void ft_run_cmds(t_ms *ms)
 
     i = 0;
     k = 0;
-    //int in = dup(STDIN_FILENO);
-	//int out = dup(STDOUT_FILENO);
+    ms->std_in = dup(STDIN_FILENO);
+	ms->std_out = dup(STDOUT_FILENO);
+    //printf("ms->out: %d\n", ms->std_out);
     while(ms->cmds[i].type)
     {
         ft_init_pipes(ms);
+        ms->cmds[i].in = 0;
+        ms->cmds[i].out = 1;
         if(ms->cmds[i].type == CMD)
         {
             if(ms->cmds[i].redirs[k].arg != NULL)
@@ -63,13 +66,17 @@ void ft_run_cmds(t_ms *ms)
                 ms->cmds[i].out = ms->cmds[i + 1].fd[1];
                 ft_is_executable(ms, &ms->cmds[i]);
                 close(ms->cmds[i + 1].fd[1]);
+                //close(ms->cmds[i].out);
             }
             else if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
                 ms->cmds[i].out = 1;
                 ft_is_executable(ms, &ms->cmds[i]);
+                
                 close(ms->cmds[i - 1].fd[0]);
+                // close(ms->cmds[i].fd[0]);
+                // close(ms->cmds[i].fd[1]);
             }
         }
         //pipe [i + 1] - alterar                out - (echo ola | ------)

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/21 15:35:15 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/21 17:26:41 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ typedef struct s_ms
     char **ms_argv;
 	int read_size;
 	int n_pipes; 
+	int std_in;
+	int std_out;
 	t_command *cmds;
 	t_pipe *pipes;
 	int		is_print;
