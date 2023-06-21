@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/20 18:03:46 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/21 13:47:34 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,38 @@ void ft_run_cmds(t_ms *ms)
     k = 0;
     while(i <= ms->n_pipes)
     {
-        if(ms->cmds[i].redirs[k].arg != NULL)
+        if(ms->cmds[i].type == CMD)
         {
-            while(k < ft_count_redirs_cmd(&ms->cmds[i]))  
+            if(ms->cmds[i].redirs[k].arg != NULL)
             {
-                if(ms->cmds[i].redirs[k].type == REDIR_OUT || ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
-                    open(ms->cmds[i].redirs[k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
-                else if (ms->cmds[i].redirs[k].type == REDIR_IN)
-                    ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
-                else if (ms->cmds[i].redirs[k].type == HERE_DOC)
-                    ft_is_heredoc(&ms->cmds[i], &ms->cmds[i].redirs[k]);
-                k++;
+                while(k < ft_count_redirs_cmd(&ms->cmds[i]))  
+                {
+                    if(ms->cmds[i].redirs[k].type == REDIR_OUT || ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
+                        open(ms->cmds[i].redirs[k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
+                    else if (ms->cmds[i].redirs[k].type == REDIR_IN)
+                        ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
+                    else if (ms->cmds[i].redirs[k].type == HERE_DOC)
+                        ft_is_heredoc(&ms->cmds[i], &ms->cmds[i].redirs[k]);
+                    k++;
+                }
+                if(ms->cmds[i].redirs[k - 1].type == REDIR_OUT)
+                    ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
+                else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
+                    ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
             }
-            if(ms->cmds[i].redirs[k - 1].type == REDIR_OUT)
-                ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
-            else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
-                ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
+            //if(ms->n_pipes == 0)
+                // just execute without pipe
+            
         }
-        // if(ms->cmds[i].operator == PIPE_LINE) // OR + AND operators here
-        //     ft_pipeline(ms, &ms->cmds[i], i);
-        // else
-        //     ft_is_executable(ms, &ms->cmds[i]);   
+        // else if (ms->cmds[i] == PIPE_LINE)
+        // {
+        //     {
+        //         //se existir redirect -> resultado vai estar cmd.out
+        //     }
+        //     //executar o comando anterior
+        //     //escreve no pipe
+            
+        // } 
         i++;
     }
     if(ms->n_pipes > 0)
@@ -306,6 +317,7 @@ void ft_is_heredoc(t_command *cmd, t_redirect *redir)
     char *prompt;
 
     (void)cmd;
+    read_content = NULL;
     prompt = "> ";
     eof = redir->arg;
     str = malloc(sizeof(char));

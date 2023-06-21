@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/19 17:39:23 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/21 14:27:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,25 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ms->n_pipes = ft_count_pipes(list);
 
 	ft_initialize_pipes(ms, ms->n_pipes);
+	ms->cmds = malloc(sizeof(t_command) * (ms->n_pipes * 2 + 1));
 	str = ft_calloc(ms->read_size, sizeof(char));
-	while(i <= ms->n_pipes)
+	while( i <= (ms->n_pipes * 2 + 1))
 	{
-		j = 0;	
+		//lembrar de modificar numero da alocacao de memoria 
 		ms->cmds[i].args = ft_calloc(counter, sizeof(char *));
-		while(ms->cmds[i].args[j])
-		{
-			ms->cmds[i].args[j] = NULL;
-			j++;
-		}
 		if(!ms->cmds[i].args)
 			return ; 
 		i++;
 	}
 	i = 0;
-	while (list != NULL && i <= ms->n_pipes)
+	while (list != NULL)
 	{
 		j = 0;
 		k = 0;
 		//criacao de lista de redirects 
+		ms->cmds[i].redirs = malloc(sizeof(t_redirect) * counter);
 		ms->cmds[i].type = CMD;
-		ms->cmds[i].in = 0;
-		ms->cmds[i].out = 1;
-		ms->cmds[i].redirs = ft_calloc(ft_count_redirs(list), sizeof(t_redirect));
-		while(k <= ft_count_redirs(list))
+		while(k < counter)
 		{
 			ms->cmds[i].redirs[k].arg = NULL;
 			k++;
@@ -124,17 +118,20 @@ void ft_parser(t_ms *ms, t_elem *list)
 			list = list->next;
 			j++;
 		}
-		if(list != NULL)
+		i++;
+		j = 0;
+		if(list != NULL && list->type == PIPE_LINE)
 		{
-			if(list->type == PIPE_LINE)
-				ms->cmds[i].operator = PIPE_LINE;
-			list = list->next;
+			ms->cmds[i].args[j] = "|";
+			ms->cmds[i].type = PIPE_LINE;
+			list = list->next;	
 		}
 		//ms->cmds[i].args[j] = NULL;
 		i++;
-		k = 0;
 	}
+	ft_print_command_nodes(ms, ms->n_pipes);
 }
+
 
 
 bool ft_is_not_redir(enum e_token type)
