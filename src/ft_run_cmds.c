@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 11:38:52 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:38:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void ft_run_cmds(t_ms *ms)
 {
+    
     int i;
     int k;
 
     i = 0;
     k = 0;
+    if(ms->print_cmd == 1)
+        ft_print_command_nodes(ms, ms->n_pipes);
     ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);
 	ft_init_pipes(ms);
@@ -26,6 +29,7 @@ void ft_run_cmds(t_ms *ms)
     {
         ms->cmds[i].in = 0;
         ms->cmds[i].out = 1;
+        k = 0;
         if(ms->cmds[i].type == CMD)
         {
             if(ms->cmds[i].redirs[k].arg != NULL)
@@ -50,14 +54,22 @@ void ft_run_cmds(t_ms *ms)
                 ft_is_executable(ms, &ms->cmds[i]);
             }
 			else */ 
+
 			if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
             {
-                ms->cmds[i].out = ms->cmds[i + 1].fd[1];
+
+                if(ms->cmds[i].out == 1)
+                    ms->cmds[i].out = ms->cmds[i + 1].fd[1];
+                else
+                    close(ms->cmds[i + 1].fd[1]);
+                
                // ft_is_executable(ms, &ms->cmds[i]);
             }
             if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
+                //if(ms->cmds[i].in == 0)
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
+                
                 //ms->cmds[i].out = 1;
                 //close(ms->cmds[i - 1].fd[0]);
                 // close(ms->cmds[i].fd[0]);
@@ -83,7 +95,6 @@ void ft_init_pipes(t_ms *ms)
 		i++;
     }
 }
-//ls | grep h |
 
 void ft_pipeline(t_ms *ms)
 {
@@ -216,10 +227,10 @@ void ft_is_heredoc(t_command *cmd, t_redirect *redir)
     char *prompt;
 
     (void)cmd;
-    read_content = NULL;
     prompt = "> ";
     eof = redir->arg;
     str = malloc(sizeof(char));
+    read_content = malloc(sizeof(char));
     while(ft_strcmp(read_content, eof) != 0)
     {
         read_content = readline(prompt);
