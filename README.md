@@ -27,7 +27,7 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ## Tests
 
-ls\n
+ls
 ls -l
 ls -a
 ls -l -a
