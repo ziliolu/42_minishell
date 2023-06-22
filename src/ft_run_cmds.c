@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 12:38:11 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 12:53:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void ft_run_cmds(t_ms *ms)
 
     i = 0;
     k = 0;
-    if(ms->print_cmd == 1)
-        ft_print_command_nodes(ms, ms->n_pipes);
+    // if(ms->print_cmd == 1)
+    //     ft_print_command_nodes(ms, ms->n_pipes);
     ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);
 	ft_init_pipes(ms);

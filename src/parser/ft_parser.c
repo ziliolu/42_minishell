@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/21 15:28:03 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:20:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 				}
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(str, list->data);
-				ms->cmds[i].args[j] = str;
+				if(ft_strcmp(str, "") != 0)
+					ms->cmds[i].args[j] = str;
+				else
+					j--;
 			}
 			else if(ft_is_redir(list->type))
 			{
@@ -116,7 +119,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 			else
 				ms->cmds[i].args[j] = ft_strdup(list->data);
 			list = list->next;
-			j++;
+			if(list->next->type != WHITE_SPACE)
+				j++;
 		}
 		i++;
 		j = 0;

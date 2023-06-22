@@ -23,3 +23,7 @@ The Minishell project is a minimalistic shell implementation developed as part o
 - Redirection and pipes for input/output redirection and command chaining.
 - Background process execution and management.
 - Error handling and graceful error reporting.
+
+
+## Tests
+
