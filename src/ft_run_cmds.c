@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 11:33:20 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/22 11:38:52 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,25 @@ void ft_run_cmds(t_ms *ms)
                 else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
                     ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
             }
-            if(ms->cmds[i + 1].type != PIPE_LINE && ms->n_pipes == 0)
+            /* if(ms->cmds[i + 1].type != PIPE_LINE && ms->n_pipes == 0)
             {
                 ft_is_executable(ms, &ms->cmds[i]);
             }
-            else if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
+			else */ 
+			if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
             {
                 ms->cmds[i].out = ms->cmds[i + 1].fd[1];
-                ft_is_executable(ms, &ms->cmds[i]);
+               // ft_is_executable(ms, &ms->cmds[i]);
             }
-            else if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
+            if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
-                ms->cmds[i].out = 1;
-                ft_is_executable(ms, &ms->cmds[i]);
-                close(ms->cmds[i - 1].fd[0]);
+                //ms->cmds[i].out = 1;
+                //close(ms->cmds[i - 1].fd[0]);
                 // close(ms->cmds[i].fd[0]);
                 // close(ms->cmds[i].fd[1]);
             }
+            ft_is_executable(ms, &ms->cmds[i]);
         }
         i++;
     }
