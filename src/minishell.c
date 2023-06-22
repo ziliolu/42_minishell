@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 16:27:51 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:29:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,6 @@ int main(int argc, char **argv, char **system_env)
 	}
 	return (0);
 }
-
-// int main(int argc, char **argv, char **env)
-// {
-//     char *command[] = {"echo", "luizaaaaa"};
-//     char *bin = command[0];
-
-//     int redirect = open("redirect.text", O_CREAT | O_TRUNC | O_WRONLY);
-//     dup2(redirect, STDOUT_FILENO);
-
-//     if(execve(command[0], command, env) == -1)
-//         printf("error!");
-//     else
-//         printf("done!");
-// }
 
 bool ft_is_variable(t_ms *ms)
 {
