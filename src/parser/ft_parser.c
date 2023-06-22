@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 13:20:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:58:50 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,16 @@ void ft_parser(t_ms *ms, t_elem *list)
 				j--;
 				k++;
 			}
-			else
+			else if (ms->cmds[i].args[j] != NULL)
+				ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], ft_strdup(list->data));
+			else if (list->type != WHITE_SPACE)
 				ms->cmds[i].args[j] = ft_strdup(list->data);
+			
 			list = list->next;
-			if(list->next->type != WHITE_SPACE)
+			if(list && list->type == WHITE_SPACE)
 				j++;
+			//printf("[%d][%d]Command:%s, Size:%ld\n", i, j, ms->cmds[i].args[j], ft_strlen(ms->cmds[i].args[j]));
+			// ls "-"l
 		}
 		i++;
 		j = 0;
@@ -135,7 +140,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 	}
 	//ft_print_command_nodes(ms, ms->n_pipes);
 }
-
 
 
 bool ft_is_not_redir(enum e_token type)

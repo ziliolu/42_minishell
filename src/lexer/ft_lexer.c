@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/19 15:03:35 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:04:46 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ void ft_lexer(t_ms *ms, char *str)
             else    
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, REDIR_OUT, status));
         }
-        else if(str[i] != WHITE_SPACE)
+        else if(str[i] == WHITE_SPACE)
+            ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
+		else
         {
             if(str[i] == '$' && ft_is_normal_character(str[i + 1]) && squote_flag == 0)
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), ENV, status));
