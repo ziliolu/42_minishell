@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/21 17:26:41 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/21 19:14:55 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,8 @@ void 		ft_run_cmds(t_ms *ms);
 int 		ft_count_cmds(t_ms *ms);
 int 		ft_count_redirs(t_elem *list);
 int 		ft_count_redirs_cmd(t_command *cmd);
-void ft_is_heredoc(t_command *cmd, t_redirect *redir);
-void ft_pipeline(t_ms *ms);
-void ft_init_pipes(t_ms *ms);
+void 		ft_is_heredoc(t_command *cmd, t_redirect *redir);
+void 		ft_pipeline(t_ms *ms);
+void 		ft_init_pipes(t_ms *ms);
 
 #endif

@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/21 18:19:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 11:33:20 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#define WRITE_END   1
-#define READ_END    0
 #include "../includes/minishell.h"
 
 void ft_run_cmds(t_ms *ms)
@@ -24,10 +21,9 @@ void ft_run_cmds(t_ms *ms)
     k = 0;
     ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);
-    //printf("ms->out: %d\n", ms->std_out);
+	ft_init_pipes(ms);
     while(ms->cmds[i].type)
     {
-        ft_init_pipes(ms);
         ms->cmds[i].in = 0;
         ms->cmds[i].out = 1;
         if(ms->cmds[i].type == CMD)
@@ -52,42 +48,24 @@ void ft_run_cmds(t_ms *ms)
             if(ms->cmds[i + 1].type != PIPE_LINE && ms->n_pipes == 0)
             {
                 ft_is_executable(ms, &ms->cmds[i]);
-            } // ls | grep a | ls
-            // else if(ms->cmds[i - 1].type == PIPE_LINE && ms->cmds[i + 1].type == PIPE_LINE) //intermediarios
-            // {
-            //     ms->cmds[i].in = ms->cmds[i - 1].fd[0];
-            //     ms->cmds[i].out = ms->cmds[i + 1].fd[1];
-            //     ft_is_executable(ms, &ms->cmds[i]);
-            //     close(ms->cmds[i].in);
-            //     close(ms->cmds[i].out);
-            // } 
+            }
             else if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
             {
                 ms->cmds[i].out = ms->cmds[i + 1].fd[1];
                 ft_is_executable(ms, &ms->cmds[i]);
-                close(ms->cmds[i + 1].fd[1]);
-                //close(ms->cmds[i].out);
             }
             else if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
                 ms->cmds[i].out = 1;
                 ft_is_executable(ms, &ms->cmds[i]);
-                
                 close(ms->cmds[i - 1].fd[0]);
                 // close(ms->cmds[i].fd[0]);
                 // close(ms->cmds[i].fd[1]);
             }
         }
-        //pipe [i + 1] - alterar                out - (echo ola | ------)
-        //pipe [i + 1] && pipe [i + 1] -        in e out - (---- | ls | -----)
-        //pipe [i - 1] -                            in -(---- | ls )
         i++;
     }
-    // if(ms->n_pipes > 0)
-    //     ft_pipeline(ms);
-    // else
-    //     ft_is_executable(ms, &ms->cmds[0]);
 }
 void ft_init_pipes(t_ms *ms)
 {
@@ -97,8 +75,11 @@ void ft_init_pipes(t_ms *ms)
     while(ms->cmds[i].type)
     {
         if(ms->cmds[i].type == PIPE_LINE)
+		{
             pipe(ms->cmds[i].fd);
-        i++;
+			//printf("Pipe %d --> fd[0]=%d fd[1]=%d\n", i, ms->cmds[i].fd[0], ms->cmds[i].fd[1]);
+		}
+		i++;
     }
 }
 //ls | grep h |
@@ -223,126 +204,6 @@ void ft_pipeline(t_ms *ms)
 	//while (i++ < ms->n_pipes)
 	//	wait(NULL);
 }
-
-
-
-//void ft_pipeline(t_ms *ms)
-// {
-//     int fd[2];
-//     pid_t pid;
-//     int j;
-
-// 	pipe(fd);
-// 	pid = fork();
-	
-// 	if (pid == 0)
-// 	{
-// 		printf("Child\n");
-// 		printf("fds[0][0] = %d\n", fd[0]);
-// 		printf("fds[0][1] = %d\n", fd[1]);
-// 		printf("\n");
-		
-// 	}
-
-// 	if(pid == 0)
-// 	{
-// 		printf("Primeiro Comando\n");
-// 		dup2(fd[1], STDOUT_FILENO); //alterar stdout - escrita do pipe
-// 		close(fd[0]);
-// 		close(fd[1]); // fecha read
-// 		printf("Saiu do primeiro comando\n");
-
-// 		// printf("Segundo Comando\n");
-// 		// close(fds[i][0]); //fds[1][0]
-// 		// dup2(fds[i - 1][0], STDIN_FILENO); //leitura do comando anterior
-// 		// close(fds[i - 1][0]);
-// 		// dup2(fds[i][1], STDOUT_FILENO); //escrita para o proximo comando
-// 		// close(fds[i][1]);
-// 		// printf("Saiu do segundo comando\n");
-		
-// 		// printf("Terceiro Comando\n");
-// 		// close(fds[i][0]);
-// 		// close(fds[i][1]);
-// 		// dup2(fds[i - 1][0], STDIN_FILENO);
-// 		// close(fds[i - 1][0]);
-// 		// printf("Saiu do terceiro comando\n");
-
-// 		printf("Comando: %s\n", ms->cmds[0].args[0]);
-// 		ft_is_executable(ms, &ms->cmds[0]); //cmd[i = 1]
-// 	}
-// 	else
-// 	{
-// 		printf("Father\n");
-// 		while(j < ms->n_pipes)
-// 		{
-// 			// close(fds[j][1]);
-// 			// printf("Fechou fds[j][0] = %d\n", fds[j][0]);
-			
-// 			// close(fds[j][0]);
-// 			// printf("Fechou fds[j][1] = %d\n", fds[j][1]);
-			
-// 			printf("Valor de j = %d\n", j);
-// 			j++;
-// 		}
-// 		printf("\n");
-
-// 	}
-// 	wait(NULL);
-// }
-
-//ls | grep h | grep o 
-
-//ls -> altera o out 
-// grep h -> alterar o in e o out 
-// grep o -> alterar in
-
-// void ft_pipeline(t_ms *ms, t_command *cmd, int i)
-// {
-//     int fd1[2];
-//     //int status, pid;
-	
-//     pipe(fd1);                 /* comunica ls y grep */
-	
-//     //pid = fork();       		
-//     close(fd1[READ_END]);
-//     cmd->out = fd1[WRITE_END];
-//         //dup2(fd1[WRITE_END], STDOUT_FILENO); 
-// 	close(fd1[WRITE_END]);
-//     ft_is_executable(ms, cmd);
-                         
-
-//     close(fd1[WRITE_END]);    /* extremo no necesario ya */
-//     ms->cmds[i + 1].in = fd1[READ_END];
-//     //dup2(fd1[READ_END], STDIN_FILENO);
-//     close(fd1[READ_END]);
-//     //ft_is_executable(ms, &ms->cmds[i + 1]);
-
-//     //wait(&status);
-// }
-
-// void ft_pipeline(t_ms *ms, t_command *cmd, int i)
-// {
-//     int fd[2];
-//     int pid;
-    
-//     pipe(fd);
-
-//     pid = fork();
-
-//     if(pid == 0)
-//     {
-//         close(fd[0]);
-//         ms->cmds[i].out = fd[1];
-//         close(fd[1]);
-//         ft_is_executable(ms, cmd);
-//     }
-//     else
-//     {
-//         close(fd[1]);
-//         ms->cmds[i + 1].in = fd[0];
-//         close(fd[0]); 
-//     }
-// }
 
 void ft_is_heredoc(t_command *cmd, t_redirect *redir)
 {

@@ -1,9 +1,15 @@
 {
     "files.associations": {
-        "libft.h": "c",
-        "ft_printf.h": "c",
-        "minishell.h": "c"
-    },
+		"libft.h": "c",
+		"ft_printf.h": "c",
+		"minishell.h": "c",
+		"array": "cpp",
+		"compare": "cpp",
+		"functional": "cpp",
+		"tuple": "cpp",
+		"type_traits": "cpp",
+		"utility": "cpp"
+	},
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "c-cpp-compile-run.run-in-external-terminal": true
 }
