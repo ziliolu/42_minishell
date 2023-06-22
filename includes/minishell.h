@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 16:18:36 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:57:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 
 typedef struct s_env
 {
-    char *name;
-	char *info;
-    char *full_info;
+    char 		*name;
+	char 		*info;
+    char 		*full_info;
     struct s_env *next;
-}               t_env;
+}	t_env;
 
 extern t_env **ms_env;
 
@@ -63,51 +63,50 @@ enum e_status
 
 typedef struct s_elem
 {
-    char *data;
-    int len;
+    char 		*data;
+    int 		len;
     enum e_token type;
     enum e_status status;
     struct s_elem *next;
-}               t_elem;
+}	t_elem;
 
 typedef struct s_pipe
 {
 	struct s_elem *right_command;
 	struct s_elem *left_command;
-}				t_pipe;
+}	t_pipe;
 
 typedef struct s_redirect
 {
-	char *arg; //file name or eof (heredoc)
+	char 		*arg; //file name or eof (heredoc)
 	enum e_token type;
-}				t_redirect;
+}	t_redirect;
 
 typedef struct s_command
 {
-	char **args;
+	char 		**args;
+	int 		in;
+	int 		out;
+	int 		fd[2];
+	t_redirect 	*redirs;
 	enum e_token operator;
-	int in;
-	int out;
-	int fd[2];
 	enum e_token type;
-	t_redirect *redirs;
-
-}				t_command;
+}	t_command;
 
 typedef struct s_ms
 {
-    char **paths;
-    char **system_env;
-    char **ms_argv;
-	int read_size;
-	int n_pipes; 
-	int std_in;
-	int std_out;
-	t_command *cmds;
-	t_pipe *pipes;
-	int		is_print;
-	int print_cmd;
-}           t_ms;
+    char 		**paths;
+    char 		**system_env;
+    char 		**ms_argv;
+	int 		read_size;
+	int 		n_pipes; 
+	int			std_in;
+	int 		std_out;
+	t_command 	*cmds;
+	t_pipe 		*pipes;
+	int			is_print;
+	int 		print_cmd;
+}	t_ms;
 
 // ==== utils ====
 int			ft_strcmp(char *s1, char *s2);

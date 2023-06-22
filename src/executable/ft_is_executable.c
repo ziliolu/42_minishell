@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 12:21:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:37:28 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,17 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 	if(cmd->out != 1)
 	{
 		if(dup2(cmd->out, STDOUT_FILENO) == -1)
-			printf("dup2 error!");
+		{
+			printf("dup2 error!\n");
+			printf("fd:%d\n", cmd->out);
+		}
 		close(cmd->out); // cmd.out + pipe	
 	}
 	
 	if(cmd->in != 0)
 	{
 		if(dup2(cmd->in, STDIN_FILENO) == -1)
-			printf("dup2 error!");
+			printf("dup2 error!\n");
 		close(cmd->in);
 	}
 

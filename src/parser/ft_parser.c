@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 17:07:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/22 20:43:07 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 	int			j;
 	int			k;
 	int			counter;
-	char *str;
+	char 		*str;
+	enum e_token	tmp;
 
 	i = 0;
 	counter = ft_count_tokens(list);
@@ -88,7 +89,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 			else if(list->type == DOUBLE_QUOTE)
 			{
 				if(list->status == IN_SQUOTE)
-					str = ft_strjoin(str, list->data); 
+					str = ft_strjoin(str, list->data);
 
 				list = list->next;
 				while(list->type != DOUBLE_QUOTE)
@@ -113,8 +114,18 @@ void ft_parser(t_ms *ms, t_elem *list)
 				}
 				list = list->next;
 				while (list->type == WHITE_SPACE)
-					list = list->next; 
-				ms->cmds[i].redirs[k].arg = ft_strdup(list->data);
+					list = list->next;
+				if (list->type == DOUBLE_QUOTE || list->type == SINGLE_QUOTE)
+				{
+					tmp = list->type;
+					list = list->next;
+					while (tmp != list->type)
+					{
+						str = ft_strjoin(str, list->data);
+						list = list->next;
+					}
+				}
+				ms->cmds[i].redirs[k].arg = ft_strdup(str);
 				j--;
 				k++;
 			}
@@ -122,7 +133,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 				ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], ft_strdup(list->data));
 			else if (list->type != WHITE_SPACE)
 				ms->cmds[i].args[j] = ft_strdup(list->data);
-			
+
 			list = list->next;
 			if(list && list->type == WHITE_SPACE)
 				j++;
@@ -155,5 +166,3 @@ void ft_initialize_pipes(t_ms *ms, int nbr_of_pipes)
 {
 	ms->pipes = malloc(sizeof(t_pipe) * nbr_of_pipes);
 }
-
-

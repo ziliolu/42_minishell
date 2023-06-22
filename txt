@@ -1,5 +1,4 @@
 includes
-ivooo
 lib
 main.c
 Makefile
@@ -7,5 +6,4 @@ minishell
 README.md
 src
 subject
-t0
-testeeee
+txt

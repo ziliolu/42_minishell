@@ -32,4 +32,8 @@ ls -l
 ls -a
 ls -l -a
 ls --help
-
+ls > "abc"
+ls >     "abcd"
+ls >   "'abc'"
+ls >   'abcde'
+ls >     '"abc"'
