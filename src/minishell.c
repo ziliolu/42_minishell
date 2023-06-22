@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 15:59:31 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:27:51 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <signal.h>
 
 t_env **ms_env;
 
@@ -29,7 +30,7 @@ int main(int argc, char **argv, char **system_env)
 	ms.print_cmd = 0;
 	while (1)
 	{
-		
+		ft_handle_signals();
 		read_content = readline(prompt);
 		if(ft_strcmp(read_content, "") != 0)
 		{
