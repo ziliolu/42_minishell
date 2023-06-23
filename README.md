@@ -29,19 +29,15 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ### Redirects
 
-|    |     CMD    |
-|----|------------|
-| ❌ | `ls > txt` |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
-| ❌ |            |
+|    |     CMD            |
+|----|------------        | 
+| ❌ | `ls > txt`         |
+| ❌ | `ls > t1 > t2`     |
+| ❌ |                    |
+| ❌ |                    |
+| ❌ |                    |
+| ❌ |                    |
+
 
 ls -a
 🔴 ls -l -a
