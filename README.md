@@ -31,11 +31,17 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 |    |     CMD    |
 |----|------------|
-| 🔴 | `ls `      |
-| 🔴 | `ls -l`    |
-| 🔴 |            |
-
-
+| ❌ | `ls > txt` |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
+| ❌ |            |
 
 ls -a
 🔴 ls -l -a
