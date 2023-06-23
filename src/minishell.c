@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/23 10:12:58 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:04:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ int main(int argc, char **argv, char **system_env)
 	ms.print_cmd = 0;
 	while (1)
 	{
-		ft_handle_signals(); 
 		read_content = readline(prompt);
+		ft_handle_signals(); 
 		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
+		{
+			printf("exit\n");
 			exit(0);
+		}
 		if(ft_strcmp(read_content, "") != 0)
 		{
 			add_history(read_content);
