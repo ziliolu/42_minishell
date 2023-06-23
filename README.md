@@ -29,6 +29,7 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ### Redirects
 
+|----|------------|
 | 🔴 | `ls `      |
 | 🔴 | `ls -l`    |
 | 🔴 |            |
