@@ -34,8 +34,8 @@ The Minishell project is a minimalistic shell implementation developed as part o
 | ❌ | `ls > t1`               |
 | ❌ | `ls > t1 > t2`          |
 | ❌ | `ls > t1 > t2 > t2`     |
-| ❌ |                         |
-| ❌ |                         |
+| ❌ | `echo test > t1 << eof` |
+| ❌ | `echo test << eof > t1  |
 | ❌ |                         | 
 
 

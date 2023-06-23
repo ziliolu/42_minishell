@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 20:43:07 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/23 15:35:25 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,13 @@ void ft_parser(t_ms *ms, t_elem *list)
 						str = ft_strjoin(str, list->data);
 						list = list->next;
 					}
+					ms->cmds[i].redirs[k].arg = ft_strdup(str);
 				}
-				ms->cmds[i].redirs[k].arg = ft_strdup(str);
+				else
+				{
+					
+					ms->cmds[i].redirs[k].arg = ft_strdup(list->data);
+				}
 				j--;
 				k++;
 			}
