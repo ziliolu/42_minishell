@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:27:26 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/22 17:24:30 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/23 08:56:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ void ft_handle_signals()
 {
 	signal(SIGINT, ft_handler);
 	signal(SIGQUIT, SIG_IGN);
+	//signal(SIGEOF, ft_handler);
 }
