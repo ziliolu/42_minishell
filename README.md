@@ -27,13 +27,15 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ## Tests
 
-ls
-ls -l
-ls -a
-ls -l -a
-ls --help
-ls > "abc"
-ls >     "abcd"
-ls >   "'abc'"
-ls >   'abcde'
-ls >     '"abc"'
+### Redirects
+
+🔴 ls
+🔴 ls -l
+🔴 ls -a
+🔴 ls -l -a
+🔴 ls --help
+🔴 ls > "abc"
+🔴 ls >     "abcd"
+🔴 ls >   "'abc'"
+🔴 ls >   'abcde'
+🔴 ls >     '"abc"'
