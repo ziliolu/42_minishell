@@ -27,7 +27,7 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ## Tests
 
-### Redirects
+##### Redirects
 
 |    |     CMD                 |
 |----|------------             | 
