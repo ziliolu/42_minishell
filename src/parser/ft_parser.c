@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/26 12:20:34 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:49:01 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 			{
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(str, list->data);
-
 				list = list->next;
 				while(list->type != DOUBLE_QUOTE)
 				{
@@ -104,8 +103,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 					str = ft_strjoin(str, list->data);
 				if(ft_strcmp(str, "") != 0)
 					ms->cmds[i].args[j] = str;
-				else
-					j--;
+				// else
+				// 	j--;
 			}
 			else if(ft_is_redir(list->type))
 			{
