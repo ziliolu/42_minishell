@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/23 15:04:29 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/26 12:01:45 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <signal.h>
 
 t_env **ms_env;
+int g_exit_status;
 
 int main(int argc, char **argv, char **system_env)
 {
@@ -26,12 +27,12 @@ int main(int argc, char **argv, char **system_env)
 	(void)argv;
 
 	prompt = "minishell> ";
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	while (1)
 	{
-		read_content = readline(prompt);
 		ft_handle_signals(); 
+		read_content = readline(prompt);
 		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
 		{
 			printf("exit\n");

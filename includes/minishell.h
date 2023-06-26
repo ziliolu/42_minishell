@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/23 14:51:19 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/26 10:58:18 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ typedef struct s_env
     struct s_env *next;
 }	t_env;
 
-extern t_env **ms_env;
+extern t_env **ms_env; 
+
+extern int g_exit_status;
 
 enum e_token
 {

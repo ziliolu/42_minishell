@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/23 15:35:25 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/26 12:20:34 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 		{
 			str = ft_calloc(ms->read_size, sizeof(char));
 			//falta a verificacao se ha plicas e aspas antes e depois para nao expandir
-			if(list->type == ENV)
+			if(list->type == ENV && list->status != IN_SQUOTE)
 				ms->cmds[i].args[j] = ft_expand(*ms_env, list->data);
 			// else
 			// 	ms->cmds[i].args[j] = ft_strdup(list->data);
@@ -94,7 +94,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 				list = list->next;
 				while(list->type != DOUBLE_QUOTE)
 				{
-					str = ft_strjoin(str, list->data);
+					if(list->type == ENV)
+						str = ft_strjoin(str, ft_expand(*ms_env, list->data));
+					else
+						str = ft_strjoin(str, list->data);
 					list = list->next;
 				}
 				if(list->status == IN_SQUOTE)

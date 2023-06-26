@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/23 15:20:24 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/26 11:46:44 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 {
 	int i;
 	int pid;
+	int status;
 
 	i = 0;
 	if(cmd->out != 1)
@@ -53,20 +54,19 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 		{
 			if(access(ft_strjoin(ms->paths[i], cmd->args[0]), X_OK) == 0)
 			{
-				pid_t pid;
+				int pid;
 
+				g_exit_status = 2;
 				pid = fork();
 				if(pid == 0)
 				{
-					if(execve(ft_strjoin(ms->paths[i], cmd->args[0]), cmd->args, ms->system_env))
-						printf("everything alright!");
-					else
-						printf("error!");
+					execve(ft_strjoin(ms->paths[i], cmd->args[0]), cmd->args, ms->system_env);
 				}
-
-				wait(&pid);
-				// while(waitpid(0, NULL, 0) > 0)
-                // 	continue;
+				waitpid(pid, &status, 0);
+				if(WIFEXITED(status))
+					g_exit_status = WEXITSTATUS(status);	
+				else if(WIFSIGNALED(status))
+					g_exit_status = WTERMSIG(status);	
 				dup2(ms->std_out, STDOUT_FILENO);
 				dup2(ms->std_in, STDIN_FILENO);
 				return (true);

@@ -27,25 +27,34 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ## Tests
 
-##### Redirects
+##### Redirects w/wout here_docs
 
-|    |     CMD                 |
-|----|------------             | 
-| ❌ | `ls > t1`               |
-| ❌ | `ls > t1 > t2`          |
-| ❌ | `ls > t1 > t2 > t2`     |
-| ❌ | `echo test > t1 << eof` |
-| ❌ | `echo test << eof > t1  |
-| ❌ |                         | 
+- [] ls > t1
+- [] ls > t1 > t2
+- [] ls > t1 > t2 > t2
+- [] echo test > t1 << eof
+- [] echo test << eof > t1
 
-- [ ] ls -a ""-""l
-- [ ] echo "o"ola"
+#### Quotes without redirects 
+
+- [] ls -a ""-""l
+- [] echo "o"ola"
+
+#### Quotes with redirects
+
+- []
+- [X] ls >     "abcd"
+- [X] ls >   "'abc'"
+- [X]  ls >   'abcde'
+- []     ls
+- [X] ls    >     '"abc"'
+
+#### ENV
+
+-[] echo $path
 
 ls -a
 🔴 ls -l -a
 🔴 ls --help
 🔴 ls > "abc"
-🔴 ls >     "abcd"
-🔴 ls >   "'abc'"
-🔴 ls >   'abcde'
-🔴 ls >     '"abc"'
+
