@@ -38,6 +38,8 @@ The Minishell project is a minimalistic shell implementation developed as part o
 | ❌ | `echo test << eof > t1  |
 | ❌ |                         | 
 
+- [ ] ls -a ""-""l
+- [ ] echo "o"ola"
 
 ls -a
 🔴 ls -l -a
