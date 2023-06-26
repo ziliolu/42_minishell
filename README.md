@@ -6,6 +6,8 @@
   <img src="https://img.shields.io/github/last-commit/ziliolu/42_minishell?color=#FFFFFF&style=flat-square" />
 </p>
 
+Partner: [Ivo Marques](https://github.com/Pastilhex)
+
 ## Table of Contents
 
 - [About](#about)
