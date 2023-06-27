@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/26 11:19:56 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/27 11:16:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void ft_lexer(t_ms *ms, char *str)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
 		else
         {
-            if(str[i] == '$' && (ft_is_normal_character(str[i + 1]) || str[i + 1] == '?') && squote_flag == 0)
+            if(str[i] == '$' && (ft_is_valid_character(str[i + 1]) || str[i + 1] == '?') && squote_flag == 0)
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), ENV, status));
             else
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));

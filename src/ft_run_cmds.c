@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 10:30:50 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:09:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,30 @@ void ft_run_cmds(t_ms *ms)
             {
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
             }
-            
-			ft_is_executable(ms, &ms->cmds[i]);
+            ft_filter_cmd(ms, &ms->cmds[i]);
+			//ft_is_executable(ms, &ms->cmds[i]);
         }
         i++;
     }
 }
+
+void ft_filter_cmd(t_ms *ms, t_command *cmd)
+{
+    if(ft_strcmp(cmd->args[0], "cd") == 0)
+        ft_cd(ms, cmd);
+    else if(ft_strcmp(cmd->args[0], "env") == 0)
+        ft_print_env(ms);
+    //else
+        //ft_is_executable(ms, cmd);
+
+    // else
+    //     if(ft_is_executable() == false)
+    //     {
+    //         printf("command not found");
+    //         g_exit_status = 127;
+    //     }
+}
+
 void ft_init_pipes(t_ms *ms)
 {
     int i;

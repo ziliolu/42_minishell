@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/26 15:39:02 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:13:12 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 #include <signal.h>
 
-t_env **ms_env;
+//t_env **ms_env;
 int g_exit_status;
 
 int main(int argc, char **argv, char **system_env)
@@ -29,6 +29,7 @@ int main(int argc, char **argv, char **system_env)
 	prompt = "minishell> ";
 	ms.is_print = 1;
 	ms.print_cmd = 0;
+	ft_create_env(&ms, system_env); 
 	while (1)
 	{
 		ft_handle_signals(); 
@@ -42,7 +43,6 @@ int main(int argc, char **argv, char **system_env)
 		{
 			add_history(read_content);
 			ms.read_size = ft_strlen(read_content);
-			ft_env(system_env); 
 			if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
 				break ;
 			else if(!ft_is_arg_valid(&ms, read_content))
@@ -69,7 +69,7 @@ bool ft_is_variable(t_ms *ms)
 	j = 0;
 	pos = 0;
 	printf("is a variable! \n");
-	while(ft_is_normal_character(ms->ms_argv[0][j]))
+	while(ft_is_valid_character(ms->ms_argv[0][j]))
 		j++;
 	if(ms->ms_argv[0][j] == '=')
 		pos = j;	 		
@@ -142,11 +142,19 @@ char *ft_charjoin(char *str, char c)
 	return (new_str);	
 }
 
-bool ft_is_normal_character(char c)
-{
-	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-		return (true);
-	return (false);		
+#include <stdbool.h>
+
+bool ft_is_valid_character(char character) {
+    if ((character >= 'A' && character <= 'Z') ||
+        (character >= 'a' && character <= 'z') ||
+        (character >= '0' && character <= '9') ||
+        character == '.' || character == '-' || character == '_' ||
+        character == '#' || character == '$' || character == '%' ||
+        character == '@' || character == '{' ||
+        character == '}' || character == '~') {
+        return true;
+    }
+    return false;
 }
 
 /* 
@@ -176,11 +184,11 @@ bool ft_is_absolute_path(char *ms_argv)
     1. caminho absoluto (./  / ../)
 	2. caminho relativo 
 */
-char *ft_getenv(char *name)
+char *ft_getenv(t_ms *ms, char *name)
 {
 	t_env *list;
 
-	list = *ms_env;
+	list = ms->ms_env;
 	while(list)
 	{
 		if(ft_strcmp(list->name, name) == 0)

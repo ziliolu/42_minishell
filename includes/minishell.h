@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/26 10:58:18 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:12:32 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_env
     struct s_env *next;
 }	t_env;
 
-extern t_env **ms_env; 
+//extern t_env **ms_env; 
 
 extern int g_exit_status;
 
@@ -97,6 +97,7 @@ typedef struct s_command
 
 typedef struct s_ms
 {
+	t_env		*ms_env;
     char 		**paths;
     char 		**system_env;
     char 		**ms_argv;
@@ -114,7 +115,7 @@ typedef struct s_ms
 // ==== utils ====
 int			ft_strcmp(char *s1, char *s2);
 void		ft_run_command(char *command, char **env);
-void		ft_env(char **env);
+void		ft_create_env(t_ms *ms, char **env);
 char		*ft_strndup(char *str, int n);
 
 //-----> ft_env functions <-----//
@@ -127,14 +128,14 @@ void		ft_print_list(t_env *list);
 
 void		ft_init_ms(t_ms *ms, char **system_env, char *read_content);
 bool		ft_is_executable(t_ms *ms, t_command *cmd);
-char		*ft_getenv(char *name);
+char		*ft_getenv(t_ms *ms, char *name);
 bool		ft_is_absolute_path(char *input);
 
 //-----> ft_is_arg_valid functions <-----//
 bool        ft_is_arg_valid(t_ms *ms, char *read_content);
 bool        ft_is_quote_valid(char *read_content);
 char        ft_choose_quotes(int s_quote, int d_quote);
-bool        ft_is_normal_character(char c);
+bool        ft_is_valid_character(char c);
 
 char        *ft_search_for_end(char *str, char c, int pos); 
 bool		ft_is_variable(t_ms *ms);
@@ -169,4 +170,8 @@ void 		ft_is_heredoc(t_command *cmd, t_redirect *redir);
 void 		ft_pipeline(t_ms *ms);
 void 		ft_init_pipes(t_ms *ms);
 void		ft_handle_signals();
+void	ft_print_env(t_ms *ms);
+void		ft_filter_cmd(t_ms *ms, t_command *cmd);
+void        ft_cd(t_ms *ms, t_command *cmd);
+void	ft_update_env(t_ms *ms, char *name, char *new_info);
 #endif

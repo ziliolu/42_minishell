@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_create_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:47:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/05 12:54:05 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/27 17:13:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 
-void ft_env(char **env)
+void ft_create_env(t_ms *ms, char **env)
 {
 	t_env	**env_head;
 	t_env	*list;
@@ -33,7 +33,7 @@ void ft_env(char **env)
 
 	//Impressão da lista com todos os elementos do "env"
 	//ft_print_list(*env_head);
-	ms_env = env_head;
+	ms->ms_env = *env_head;
 }
 
 
