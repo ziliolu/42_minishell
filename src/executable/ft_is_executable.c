@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/26 11:46:44 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:32:03 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 			printf("dup2 error!\n");
 			printf("fd:%d\n", cmd->out);
 		}
-		close(cmd->out); // cmd.out + pipe	
+		close(cmd->out);
 	}
 	
 	if(cmd->in != 0)
@@ -56,7 +56,6 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 			{
 				int pid;
 
-				g_exit_status = 2;
 				pid = fork();
 				if(pid == 0)
 				{

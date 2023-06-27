@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/26 15:49:01 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:12:42 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,20 @@ void ft_parser(t_ms *ms, t_elem *list)
 				j--;
 				k++;
 			}
-			else if (ms->cmds[i].args[j] != NULL)
-				ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], ft_strdup(list->data));
-			else if (list->type != WHITE_SPACE)
-				ms->cmds[i].args[j] = ft_strdup(list->data);
 
+			else if (ms->cmds[i].args[j] != NULL)
+			{
+				ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], ft_strdup(list->data));
+				if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
+					j++;
+			}
+
+			else if (list->type != WHITE_SPACE)
+			{
+				ms->cmds[i].args[j] = ft_strdup(list->data);
+				if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
+					j++;
+			}
 			list = list->next;
 			if(list && list->type == WHITE_SPACE)
 				j++;

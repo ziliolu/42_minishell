@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/23 15:53:30 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/27 10:30:50 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,6 @@ void ft_run_cmds(t_ms *ms)
                 else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
                     ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
             }
-            /* if(ms->cmds[i + 1].type != PIPE_LINE && ms->n_pipes == 0)
-            {
-                ft_is_executable(ms, &ms->cmds[i]);
-            }
-			else */ 
 
 			if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
             {
@@ -63,19 +58,13 @@ void ft_run_cmds(t_ms *ms)
                 else
                     close(ms->cmds[i + 1].fd[1]);
                 
-               // ft_is_executable(ms, &ms->cmds[i]);
             }
             if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
-                //if(ms->cmds[i].in == 0)
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
-                
-                //ms->cmds[i].out = 1;
-                //close(ms->cmds[i - 1].fd[0]);
-                // close(ms->cmds[i].fd[0]);
-                // close(ms->cmds[i].fd[1]);
             }
-            ft_is_executable(ms, &ms->cmds[i]);
+            
+			ft_is_executable(ms, &ms->cmds[i]);
         }
         i++;
     }
