@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 11:18:16 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:36:06 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int main(int argc, char **argv, char **system_env)
 	(void)argv;
 
 	prompt = "minishell> ";
-	ms.is_print = 1;
+	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ft_create_env(&ms, system_env); 
+	ft_init_ms(&ms, system_env);
 	while (1)
 	{
 		ft_handle_signals(); 
@@ -45,14 +46,18 @@ int main(int argc, char **argv, char **system_env)
 			ms.read_size = ft_strlen(read_content);
 			if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
 				break ;
-			else if(!ft_is_arg_valid(&ms, read_content))
-				continue ;
-			else if(read_content[0] != '\0')
+			if(ft_is_there_quote(read_content))
 			{
-				ft_init_ms(&ms, system_env, read_content);
+				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
+					continue ; // pular restante e voltar a mostrar o prompt 
+			}
+			if(read_content[0] != '\0')
+			{
 				ft_lexer(&ms, read_content);
 				//ft_parser();
 				//ft_is_executable(&ms);
+   				ms.ms_argv = ft_split(read_content, ' ');
+
 				ft_run_cmds(&ms);
 				// ft_is_variable(&ms);
 			}

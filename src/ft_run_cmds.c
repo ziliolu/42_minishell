@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 10:33:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:20:48 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,17 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     if(ft_strcmp(cmd->args[0], "cd") == 0)
         ft_cd(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "env") == 0)
+    {
+        printf("\n---- NOSSO ENV ---\n");
         ft_print_env(ms);
-    else 
-        ft_is_executable(ms, cmd);
+
+        printf("\n---- SYSTEM ENV ---\n");
+        printf("%s\n", ms->system_env[10]);
+    }
+    else if(ft_strcmp(cmd->args[0], "pwd") == 0)
+        printf("%s\n", ft_return_env_info(ms, "PWD"));
+    else if(!ft_is_executable(ms, cmd))
+        printf("minishell: command not found: %s\n", cmd->args[0]);
 }
 
 void ft_init_pipes(t_ms *ms)

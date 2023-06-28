@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 09:32:30 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:52:52 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef struct s_ms
 	int 		n_pipes; 
 	int			std_in;
 	int 		std_out;
+	int			*count_args;
 	t_command 	*cmds;
 	t_pipe 		*pipes;
 	int			is_print;
@@ -126,7 +127,7 @@ char		*ft_get_env_name(char *set);
 char		*ft_get_env_info(char *set);
 void		ft_print_list(t_env *list);
 
-void		ft_init_ms(t_ms *ms, char **system_env, char *read_content);
+void		ft_init_ms(t_ms *ms, char **system_env);
 bool		ft_is_executable(t_ms *ms, t_command *cmd);
 char		*ft_getenv(t_ms *ms, char *name);
 bool		ft_is_absolute_path(char *input);
@@ -174,4 +175,10 @@ void	ft_print_env(t_ms *ms);
 void		ft_filter_cmd(t_ms *ms, t_command *cmd);
 void        ft_cd(t_ms *ms, t_command *cmd);
 void	ft_update_env(t_ms *ms, char *name, char *new_info);
+char	*ft_return_env_info(t_ms *ms, char *name);
+bool	ft_is_there_quote(char *str);
+char *ft_strtrim_end(char *str, char set);
+void	ft_count_args(t_ms *ms, t_elem *list);
+char	**ft_env_to_array(t_ms *ms);
+void ft_print_array(char **str);
 #endif

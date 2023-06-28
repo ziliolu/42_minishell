@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 17:14:13 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:52:23 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ft_initialize_pipes(ms, ms->n_pipes);
 	ms->cmds = malloc(sizeof(t_command) * (ms->n_pipes * 2 + 1));
 	str = ft_calloc(ms->read_size, sizeof(char));
-	while( i <= (ms->n_pipes * 2 + 1))
+	while(i <= (ms->n_pipes * 2))
 	{
 		//lembrar de modificar numero da alocacao de memoria 
-		ms->cmds[i].args = ft_calloc(counter, sizeof(char *));
+		ms->cmds[i].args = ft_calloc(ms->count_args[i], sizeof(char *));
 		if(!ms->cmds[i].args)
 			return ; 
+		printf("Cmd[%d] = %d Args\n", i, ms->count_args[i]);
 		i++;
 	}
 	i = 0;
@@ -63,6 +64,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 			ms->cmds[i].redirs[k].arg = NULL;
 			k++;
 		}
+		
 		k = 0;
 		while (list != NULL && list->type != PIPE_LINE)
 		{

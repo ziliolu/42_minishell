@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 10:32:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:37:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 	int i;
 	int pid;
 	int status;
+	char **ms_env_array;
+
+	ms_env_array = ft_env_to_array(ms);
 
 	i = 0;
 	if(cmd->out != 1)
@@ -42,7 +45,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 		{
 			pid = fork();
 			if (pid == 0)
-				execve(cmd->args[0], cmd->args, ms->system_env);
+				execve(cmd->args[0], cmd->args, ms_env_array);
 			else
 				wait(&pid);
 		}
@@ -59,7 +62,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 				pid = fork();
 				if(pid == 0)
 				{
-					execve(ft_strjoin(ms->paths[i], cmd->args[0]), cmd->args, ms->system_env);
+					execve(ft_strjoin(ms->paths[i], cmd->args[0]), cmd->args, ms_env_array);
 				}
 				waitpid(pid, &status, 0);
 				if(WIFEXITED(status))

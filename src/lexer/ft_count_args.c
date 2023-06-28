@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_count_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:46:42 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/06/28 14:47:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:47:45 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_count_args(t_ms *ms, t_elem *list)
 	i = 0;
 	j = 0;
 	ms->n_pipes = ft_count_pipes(list);
-	ms->count_args = malloc((ms->n_pipes + 1) * sizeof(int));
+	ms->count_args = ft_calloc(sizeof(int), (ms->n_pipes * 2 + 1));
 	while (list)
 	{
 		if (list->type == SINGLE_QUOTE)

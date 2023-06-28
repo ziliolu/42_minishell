@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_env.c                                     :+:      :+:    :+:   */
+/*   ft_return_env_info.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 11:39:38 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 14:58:44 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/06/28 13:31:51 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/06/28 13:32:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_print_env(t_ms *ms)
+char *ft_return_env_info(t_ms *ms, char *name)
 {
-	t_env *list;
+    t_env *list;
 
-	list = ms->ms_env;
-	while (list != NULL)
-	{	
-		if(ft_strcmp(list->name, "PWD") == 0 || ft_strcmp(list->name, "OLDPWD") == 0)
-			printf("%s\n", list->full_info);
-		list = list->next;
-	}
+    list = ms->ms_env; 
+    while(list)
+    {
+        if(ft_strcmp(list->name, name) == 0)
+            return (list->info);
+        list = list->next;
+    }
+    return (NULL);
 }
-

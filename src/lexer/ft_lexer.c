@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 11:16:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:29:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void ft_lexer(t_ms *ms, char *str)
     status = GENERAL; //default
     squote_flag = 0;
     dquote_flag = 0;
-    elem_head = (t_elem **)malloc(sizeof(t_elem *));
+    elem_head = (t_elem **)ft_calloc(1, sizeof(t_elem *));
     i = 0;
 
     // if(ft_check_syntax_error())
@@ -107,6 +107,7 @@ void ft_lexer(t_ms *ms, char *str)
     }
     if(ms->is_print)
         ft_print_tokens(ms, *elem_head);
+    ft_count_args(ms, *elem_head);
     ft_parser(ms, *elem_head);
 }
 
