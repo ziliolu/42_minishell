@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 16:52:52 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 23:35:12 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,4 +181,5 @@ char *ft_strtrim_end(char *str, char set);
 void	ft_count_args(t_ms *ms, t_elem *list);
 char	**ft_env_to_array(t_ms *ms);
 void ft_print_array(char **str);
+void	ft_memory_ctrl(t_ms *ms);
 #endif

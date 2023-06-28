@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 17:28:21 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 00:09:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,33 @@ int main(int argc, char **argv, char **system_env)
 				// ft_is_variable(&ms);
 			}
 		}
+		//ft_memory_ctrl(&ms);
 	}
 	return (0);
+}
+
+void	ft_memory_ctrl(t_ms *ms)
+{
+	t_env *list;
+	
+	list = NULL;
+	list = ms->ms_env;
+	while (ms->ms_env)
+	{
+		list = ms->ms_env->next;
+		free (ms->ms_env);
+		ms->ms_env = list;
+	}
+	if (list)
+		free (list);
+	
+	// int i = 0;
+	// while (ms->paths[i])
+	// 	free(ms->paths[i++]);
+	
+	// i = 0;
+	// while (ms->count_args[i])
+	// 	free (ms->count_args);
 }
 
 bool ft_is_variable(t_ms *ms)

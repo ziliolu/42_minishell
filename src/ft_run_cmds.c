@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 17:26:51 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/28 23:19:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void ft_run_cmds(t_ms *ms)
                     close(ms->cmds[i + 1].fd[1]);
                 
             }
-            if(ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
+            if(i > 0 && ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
             }
