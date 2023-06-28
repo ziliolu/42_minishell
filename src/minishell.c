@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 17:13:12 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:18:16 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,7 @@ char *ft_charjoin(char *str, char c)
 #include <stdbool.h>
 
 bool ft_is_valid_character(char character) {
-    if ((character >= 'A' && character <= 'Z') ||
-        (character >= 'a' && character <= 'z') ||
-        (character >= '0' && character <= '9') ||
-        character == '.' || character == '-' || character == '_' ||
-        character == '#' || character == '$' || character == '%' ||
-        character == '@' || character == '{' ||
-        character == '}' || character == '~') {
+    if (character >= 32 && character <= 126) {
         return true;
     }
     return false;
