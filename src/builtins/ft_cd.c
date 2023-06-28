@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 17:11:29 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:31:56 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ void ft_cd(t_ms *ms, t_command *cmd)
     path = ft_strjoin(path, cmd->args[1]);
     if(chdir(path) == 0)
     {
-        printf("path: %s\n", path);
         ft_update_env(ms, "PWD", path);
-        ft_print_env(ms);
-        //ft_print_env_info()
     }
-    //ft_print_env(*ms->ms_env);
 }
 
 /**

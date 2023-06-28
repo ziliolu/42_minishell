@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 17:09:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:33:09 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,8 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         ft_cd(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "env") == 0)
         ft_print_env(ms);
-    //else
-        //ft_is_executable(ms, cmd);
-
-    // else
-    //     if(ft_is_executable() == false)
-    //     {
-    //         printf("command not found");
-    //         g_exit_status = 127;
-    //     }
+    else 
+        ft_is_executable(ms, cmd);
 }
 
 void ft_init_pipes(t_ms *ms)

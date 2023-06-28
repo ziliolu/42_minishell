@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:45:26 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 17:12:39 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:27:23 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_update_env(t_ms *ms, char *name, char *new_info)
    {
         if(ft_strcmp(list->name, name) == 0)
         {
-            list->info = new_info;
+            //strcpy(list->info, new_info);
+            list->full_info = ft_strjoin(name, ft_strjoin("=", new_info));
             //ft_print_env(ms);
             return ;
         }
