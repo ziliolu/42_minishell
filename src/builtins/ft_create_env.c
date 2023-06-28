@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:47:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/27 17:13:33 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:29:26 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_create_env(t_ms *ms, char **env)
 	int		i;
 
 	//Inicialização do Ponteiro para a lista de Nodes
-	env_head = (t_env **)malloc(sizeof(t_env *));
+	env_head = (t_env **)ft_calloc(1, sizeof(t_env *));
 
 	//Criação do Primeiro Node
 	i = 0;

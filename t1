@@ -1,0 +1,9 @@
+includes
+lib
+main.c
+Makefile
+minishell
+README.md
+src
+subject
+t1

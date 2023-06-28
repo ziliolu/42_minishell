@@ -4,7 +4,7 @@ t_env	*ft_new_node(char *str)
 {
 	t_env	*var;
 
-	var = (t_env *)malloc(sizeof(t_env));
+	var = (t_env *)ft_calloc(1, sizeof(t_env));
 	if (var)
 	{
 		var->name = ft_get_env_name(str);

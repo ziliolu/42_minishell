@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_new_elem.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:38:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/09 11:36:57 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:29:38 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status status)
 {
 	t_elem	*node;
 
-	node = (t_elem *)malloc(sizeof(t_elem));
+	node = (t_elem *)ft_calloc(1, sizeof(t_elem));
 	if (node)
 	{
         node->data = ft_strndup(str, len);

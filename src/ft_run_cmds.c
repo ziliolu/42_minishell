@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 16:20:48 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:26:51 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void ft_init_pipes(t_ms *ms)
 
 void ft_pipeline(t_ms *ms)
 {
-    int **fds = (int **)malloc(sizeof(int *) * ms->n_pipes);
+    int **fds = (int **)ft_calloc(ms->n_pipes, sizeof(int *));
     //pid_t pid;
     int i;
     //int j;
@@ -118,7 +118,7 @@ void ft_pipeline(t_ms *ms)
     i = 0;
     while(i < ms->n_pipes)
     {
-        fds[i] = (int *)malloc(sizeof(int) * 2);
+        fds[i] = (int *)ft_calloc(2, sizeof(int));
         i++;
     }
 
@@ -237,8 +237,8 @@ void ft_is_heredoc(t_command *cmd, t_redirect *redir)
     (void)cmd;
     prompt = "> ";
     eof = redir->arg;
-    str = malloc(sizeof(char));
-    read_content = malloc(sizeof(char));
+    str = ft_calloc(1, sizeof(char));
+    read_content = ft_calloc(1, sizeof(char));
     while(ft_strcmp(read_content, eof) != 0)
     {
         read_content = readline(prompt);

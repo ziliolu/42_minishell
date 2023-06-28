@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 14:36:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:28:21 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool ft_is_valid_info(t_ms *ms, int j)
 	char *var_info;
 	char *str;
 
-	var_info = malloc(ft_strlen(ms->ms_argv[0]));
+	var_info = ft_calloc(ft_strlen(ms->ms_argv[0]), sizeof(char));
 	while(ms->ms_argv[0][j])
 	{
 		if(ms->ms_argv[0][j] == '\"')
@@ -138,7 +138,7 @@ char *ft_charjoin(char *str, char c)
 	int i;
 	char *new_str;
 
-	new_str = malloc(sizeof(str) + 2);
+	new_str = ft_calloc(2, sizeof(str));
 	i = -1;
 	while(str[++i])
 		new_str[i] = str[i];
