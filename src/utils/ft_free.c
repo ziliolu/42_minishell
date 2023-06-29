@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 17:35:36 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:17:12 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	ft_free_memory(t_ms *ms)
 		free (ms->count_args);
 	
 }
-
 
 void ft_free_cmds(t_ms *ms)
 {
@@ -76,6 +75,26 @@ void	ft_free_env(t_ms *ms)
 			free (ms->ms_env);
 		}
 		ms->ms_env = list;
+	}
+	if (list)
+		free (list);
+}
+
+void	ft_free_elem_list(t_elem *head)
+{
+	t_elem *list;
+	
+	list = NULL;
+	list = head;
+	while (head)
+	{
+		if (head)
+		{
+			list = head->next;
+			free (head->data);
+			free (head);
+		}
+		head = list;
 	}
 	if (list)
 		free (list);

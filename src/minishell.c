@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 17:39:36 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:09:02 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(int argc, char **argv, char **system_env)
 {
 	 
 	char	prompt[256];
+	char 	*tmp_prompt;
 	size_t	read_content;
 	int		pid;
 	t_ms	ms;
@@ -36,7 +37,7 @@ int main(int argc, char **argv, char **system_env)
 		pid = fork();
 		if (pid == 0)
 		{
-			printf("minishel> ");
+			printf("minishell> ");
 			ft_free_env(&ms);
 			ft_free_array(ms.paths);
 			exit(0);
@@ -65,8 +66,12 @@ int main(int argc, char **argv, char **system_env)
 			{
 				add_history(prompt);
 				ms.read_size = ft_strlen(prompt);
-				if(ft_strcmp(ft_strtrim(prompt, " "), "exit") == 0)
+				tmp_prompt =  ft_strtrim(prompt, " ");
+				if(ft_strcmp(tmp_prompt, "exit") == 0)
+				{
+					free(tmp_prompt);
 					break ;
+				}
 				if(ft_is_there_quote(prompt))
 				{
 					if(!ft_is_arg_valid(&ms, prompt)) //caso as aspas/plicas não tenham fechamento
@@ -87,6 +92,8 @@ int main(int argc, char **argv, char **system_env)
 		wait(&pid);
 		ft_free_array(ms.ms_argv);
 		free (ms.count_args);
+		free(tmp_prompt);
+		//ft_free_cmds(&ms);
 	}
 	ft_free_cmds(&ms);
 	ft_free_array(ms.paths);
