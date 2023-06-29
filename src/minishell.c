@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 00:09:56 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 01:22:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,44 +19,55 @@ int g_exit_status;
 int main(int argc, char **argv, char **system_env)
 {
 	 
-	char *prompt;
-	char *read_content;
+	char prompt[256];
+	size_t read_content;
 	t_ms ms;
 
 	(void)argc;
 	(void)argv;
-
-	prompt = "minishell> ";
+	
+	// prompt = "minishell> ";
 	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
+	printf("minishel> ");
 	while (1)
 	{
-		ft_handle_signals(); 
-		read_content = readline(prompt);
-		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
+		printf("minishel> ");
+		ft_handle_signals();
+		// read_content = readline(prompt);
+		read_content = read(STDIN_FILENO, prompt, sizeof(prompt));
+	    if (read_content > 0) {
+			// Remove o caractere de nova linha (\n) do final da string
+        if (prompt[read_content - 1] == '\n') {
+            prompt[read_content - 1] = '\0';
+        }
+        printf("Linha digitada: %s\n", prompt);
+    	}
+		else // for handling ctrl + d -> its seen as an eof and not as a signal
 		{
 			printf("exit\n");
+			ft_memory_ctrl(&ms);
 			exit(0);
 		}
-		if(ft_strcmp(read_content, "") != 0)
+		if(ft_strcmp(prompt, "") != 0)
 		{
-			add_history(read_content);
-			ms.read_size = ft_strlen(read_content);
-			if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
+			add_history(prompt);
+			ms.read_size = ft_strlen(prompt);
+			if(ft_strcmp(ft_strtrim(prompt, " "), "exit") == 0)
 				break ;
-			if(ft_is_there_quote(read_content))
+			if(ft_is_there_quote(prompt))
 			{
-				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
+				if(!ft_is_arg_valid(&ms, prompt)) //caso as aspas/plicas não tenham fechamento
 					continue ; // pular restante e voltar a mostrar o prompt 
 			}
-			if(read_content[0] != '\0')
+			if(prompt[0] != '\0')
 			{
-				ft_lexer(&ms, read_content);
+				ft_lexer(&ms, prompt);
 				//ft_parser();
 				//ft_is_executable(&ms);
-   				ms.ms_argv = ft_split(read_content, ' ');
+   				ms.ms_argv = ft_split(prompt, ' ');
 
 				ft_run_cmds(&ms);
 				// ft_is_variable(&ms);
@@ -76,15 +87,17 @@ void	ft_memory_ctrl(t_ms *ms)
 	while (ms->ms_env)
 	{
 		list = ms->ms_env->next;
+		free (ms->ms_env->name);
+		free (ms->ms_env->info);
 		free (ms->ms_env);
 		ms->ms_env = list;
 	}
 	if (list)
 		free (list);
 	
-	// int i = 0;
-	// while (ms->paths[i])
-	// 	free(ms->paths[i++]);
+	int i = 0;
+	while (ms->paths[i])
+		free(ms->paths[i++]);
 	
 	// i = 0;
 	// while (ms->count_args[i])
