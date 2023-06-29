@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:49:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/05 12:34:42 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:10:06 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,18 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-/* int main()
-{
-    char **tab;
-    int i = 0;
+// int main()
+// {
+//     char **tab;
+//     int i = 0;
     
-    tab = ft_split("lorem ipsum dolor sit amet", ' ');
+//     tab = ft_split("lorem ipsum dolor sit amet", ' ');
     
-    while(i < 20)
-    {
-        printf("tab[%d]: %s\n", i, tab[i]);
-        i++;
-    }
-}*/
+//     while(tab[i])
+//     {
+//         printf("tab[%d]: %s\n", i, tab[i]);
+// 		free (tab[i]);
+//         i++;
+//     }
+// 	free (tab);
+// }

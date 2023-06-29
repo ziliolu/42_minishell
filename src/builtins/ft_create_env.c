@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:47:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 17:29:26 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:34:59 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,5 @@ void ft_create_env(t_ms *ms, char **env)
 	//Impressão da lista com todos os elementos do "env"
 	//ft_print_list(*env_head);
 	ms->ms_env = *env_head;
+	free (env_head);
 }
-
-
-
-
-
-
-
-
-
-
-

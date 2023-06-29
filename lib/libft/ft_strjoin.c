@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 17:40:09 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/24 13:21:14 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/29 12:18:28 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (str);
 }
 
-/*int main()
-{
-    char *s1 = "abc";
-    char *s2 = "123";
-    char *new_str = ft_strjoin(s1, s2);
-    puts(new_str);
-}*/
+	// int main()
+	// {
+	// 	char *s1 = "abc";
+	// 	char *s2 = "123";
+	// 	char *new_str = ft_strjoin(s1, s2);
+	// 	puts(new_str);
+	// 	free (new_str);
+	// }

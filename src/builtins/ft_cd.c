@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 17:29:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 10:56:57 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void ft_cd(t_ms *ms, t_command *cmd)
         pwd = ft_strjoin(oldpwd, ft_strjoin("/", ft_strtrim(cmd->args[1], "/")));  
         //pwd = ft_strjoin(oldpwd, ft_strjoin("/", cmd->args[1]));
     
-    printf("oldpwd: %s\n", oldpwd);
-    printf("pwd: %s\n", pwd);
+    // printf("oldpwd: %s\n", oldpwd);
+    // printf("pwd: %s\n", pwd);
     if(chdir(pwd) == 0)
     {
         ft_update_env(ms, "PWD", pwd);

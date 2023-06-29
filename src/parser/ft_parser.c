@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 23:31:16 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:16:52 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 	ms->cmds = ft_calloc(ms->n_pipes * 2 + 2, sizeof(t_command));
 	if (!ms->cmds)
 		return ;
-	str = ft_calloc(ms->read_size, sizeof(char));
+	//str = ft_calloc(ms->read_size, sizeof(char));
 	while(i <= (ms->n_pipes * 2))
 	{
 		//lembrar de modificar numero da alocacao de memoria 
