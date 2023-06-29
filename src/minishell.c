@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 16:17:00 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:39:36 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int main(int argc, char **argv, char **system_env)
 		if (pid == 0)
 		{
 			printf("minishel> ");
-			ft_memory_ctrl(&ms);
+			ft_free_env(&ms);
+			ft_free_array(ms.paths);
 			exit(0);
 		}
 		else
@@ -56,7 +57,8 @@ int main(int argc, char **argv, char **system_env)
 			else // for handling ctrl + d -> its seen as an eof and not as a signal
 			{
 				printf("\nexit\n");
-				ft_memory_ctrl(&ms);
+				ft_free_env(&ms);
+				ft_free_array(ms.paths);
 				exit(0);
 			}
 			if(ft_strcmp(prompt, "") != 0)
@@ -83,75 +85,13 @@ int main(int argc, char **argv, char **system_env)
 			}
 		}
 		wait(&pid);
-		int i = 0;
-		int j = 0;
-		// int k = 0;
-		if (ms.cmds)
-		{
-			while (ms.cmds[i].type)
-			{
-				if (ms.cmds[i].redirs)
-					free (ms.cmds[i].redirs);
-				while(ms.cmds[i].args[j])
-				{
-					if (ms.cmds[i].args[j])
-						free (ms.cmds[i].args[j]);
-					j++;
-				}
-				j = 0;
-				if (ms.cmds[i].args)
-					free (ms.cmds[i].args);
-				i++;
-			}
-			free (ms.cmds);
-		}
+		ft_free_array(ms.ms_argv);
+		free (ms.count_args);
 	}
+	ft_free_cmds(&ms);
+	ft_free_array(ms.paths);
+	ft_free_array(ms.ms_env_array);
 	return (0);
-}
-
-void	ft_memory_ctrl(t_ms *ms)
-{
-	t_env *list;
-	
-	list = NULL;
-	list = ms->ms_env;
-	while (ms->ms_env)
-	{
-		list = ms->ms_env->next;
-		free (ms->ms_env->name);
-		free (ms->ms_env->info);
-		free (ms->ms_env);
-		ms->ms_env = list;
-	}
-	if (list)
-		free (list);
-
-
-
-	int i = 0;
-	while (ms->paths[i])
-	{
-		//printf("ms->paths[%d] = %s\n", i, ms->paths[i]);
-		if (ms->paths[i])
-			free(ms->paths[i++]);
-	}
-	free (ms->paths);
-
-
-
-	// if (ms->paths[0])
-	// 	printf("sim");
-	// else
-	// 	printf("nao");
-
-
-	// i = 0;
-	// while (ms->count_args[i])
-	// {
-	// 	printf("args %d\n", ms->count_args[i]);
-	// 	if (ms->count_args)
-	// 		free (ms->count_args);
-	// }
 }
 
 bool ft_is_variable(t_ms *ms)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 23:35:12 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:00:50 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_command
 typedef struct s_ms
 {
 	t_env		*ms_env;
+	char 		**ms_env_array;
     char 		**paths;
     char 		**system_env;
     char 		**ms_argv;
@@ -143,6 +144,12 @@ bool		ft_is_variable(t_ms *ms);
 bool		ft_is_valid_info(t_ms *ms, int j);
 char		*ft_charjoin(char *str, char c);
 
+//-------> Free Memory <-------------//
+void		ft_free_array(char **array);
+void		ft_free_env(t_ms *ms);
+void 		ft_free_cmds(t_ms *ms);
+void		ft_free_memory(t_ms *ms);
+
 t_elem		*ft_new_elem(char *str, int len, enum e_token type, enum e_status);
 void		ft_add_new_elem(t_elem **head, t_elem *new_elem);
 t_elem		*ft_find_last_elem(t_elem *list);
@@ -181,5 +188,5 @@ char *ft_strtrim_end(char *str, char set);
 void	ft_count_args(t_ms *ms, t_elem *list);
 char	**ft_env_to_array(t_ms *ms);
 void ft_print_array(char **str);
-void	ft_memory_ctrl(t_ms *ms);
+
 #endif
