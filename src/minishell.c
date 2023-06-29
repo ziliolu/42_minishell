@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 23:42:05 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/30 00:01:39 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **system_env)
 {
 	 
 	char	*prompt;
-	// char 	*tmp_prompt;
+	 char 	*tmp_prompt;
 	char 	*read_content;
 	int		pid;
 	t_ms	ms;
@@ -47,9 +47,14 @@ int main(int argc, char **argv, char **system_env)
 		{
 			add_history(read_content);
 			ms.read_size = ft_strlen(read_content);
-			if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
+			// if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
+			// 	break ;
+			tmp_prompt =  ft_strtrim(read_content, " ");
+			if(ft_strcmp(tmp_prompt, "exit") == 0)
+			{
+				free(tmp_prompt);
 				break ;
-			if(ft_is_there_quote(read_content))
+			}			if(ft_is_there_quote(read_content))
 			{
 				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
 					continue ; // pular restante e voltar a mostrar o prompt 
@@ -70,9 +75,9 @@ int main(int argc, char **argv, char **system_env)
 		ft_free_array(ms.ms_env_array);
 		//ft_free_array(ms.paths); ----> Assim não dá erros e tb já está na linha 43
 		free (ms.count_args);
+		free(tmp_prompt);
 	}
 	wait(&pid);
-	// free(tmp_prompt);
 
 	return (0);
 }

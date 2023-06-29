@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 18:29:42 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/30 00:31:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ void ft_parser(t_ms *ms, t_elem *list)
 		k = 0;
 		while (list != NULL && list->type != PIPE_LINE)
 		{
-			str = ft_calloc(ms->read_size, sizeof(char));
+			//str = ft_calloc(ms->read_size, sizeof(char));
+			str = NULL;
+
 			//falta a verificacao se ha plicas e aspas antes e depois para nao expandir
 			if(list->type == ENV && list->status != IN_SQUOTE)
 				ms->cmds[i].args[j] = ft_expand(ms->ms_env, list->data);
-			// else
-			// 	ms->cmds[i].args[j] = ft_strdup(list->data);
+
 			else if(list->type == SINGLE_QUOTE)
 			{
 				if(list->status == IN_DQUOTE)
@@ -89,6 +90,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 					str = ft_strjoin(str, list->data);
 				ms->cmds[i].args[j] = str;
 			}
+
 			else if(list->type == DOUBLE_QUOTE)
 			{
 				if(list->status == IN_SQUOTE)
@@ -102,13 +104,14 @@ void ft_parser(t_ms *ms, t_elem *list)
 						str = ft_strjoin(str, list->data);
 					list = list->next;
 				}
+
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(str, list->data);
+
 				if(ft_strcmp(str, "") != 0)
 					ms->cmds[i].args[j] = str;
-				// else
-				// 	j--;
 			}
+
 			else if(ft_is_redir(list->type))
 			{
 				ms->cmds[i].redirs[k].type = list->type;
@@ -132,8 +135,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 					ms->cmds[i].redirs[k].arg = ft_strdup(str);
 				}
 				else
-				{
-					
+				{				
 					ms->cmds[i].redirs[k].arg = ft_strdup(list->data);
 				}
 				j--;
@@ -156,11 +158,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 			list = list->next;
 			if(list && list->type == WHITE_SPACE)
 				j++;
-			//printf("[%d][%d]Command:%s, Size:%ld\n", i, j, ms->cmds[i].args[j], ft_strlen(ms->cmds[i].args[j]));
-			// ls "-"l
 		}
 		i++;
 		j = 0;
+
 		if(list != NULL && list->type == PIPE_LINE)
 		{
 			ms->cmds[i].args[j] = "|";
@@ -170,8 +171,9 @@ void ft_parser(t_ms *ms, t_elem *list)
 		//ms->cmds[i].args[j] = NULL;
 		i++;
 	}
-	free(str);
-	ft_free_elem_list(list);
+	if (str)
+		free(str);
+	// ft_free_elem_list(list);
 	//ft_print_command_nodes(ms, ms->n_pipes);
 }
 
