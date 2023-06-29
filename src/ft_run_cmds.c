@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 23:19:56 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:28:15 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     {
         printf("\n---- NOSSO ENV ---\n");
         ft_print_env(ms);
-
         printf("\n---- SYSTEM ENV ---\n");
         printf("%s\n", ms->system_env[10]);
     }

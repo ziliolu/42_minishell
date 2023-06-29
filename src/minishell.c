@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 18:09:02 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:42:05 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,85 +19,61 @@ int g_exit_status;
 int main(int argc, char **argv, char **system_env)
 {
 	 
-	char	prompt[256];
-	char 	*tmp_prompt;
-	size_t	read_content;
+	char	*prompt;
+	// char 	*tmp_prompt;
+	char 	*read_content;
 	int		pid;
 	t_ms	ms;
 
 	(void)argc;
 	(void)argv;
-	// prompt = "minishell> ";
+	prompt = "minishell> ";
 	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
 	while (1)
 	{
-		pid = fork();
-		if (pid == 0)
+		ft_handle_signals(); 
+		read_content = readline(prompt);
+		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
 		{
-			printf("minishell> ");
+			printf("exit\n");
 			ft_free_env(&ms);
 			ft_free_array(ms.paths);
 			exit(0);
 		}
-		else
+		if(ft_strcmp(read_content, "") != 0)
 		{
-			ft_handle_signals();
-			// read_content = readline(prompt);
-			read_content = read(STDIN_FILENO, prompt, sizeof(prompt));
-			if (read_content > 0)
+			add_history(read_content);
+			ms.read_size = ft_strlen(read_content);
+			if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
+				break ;
+			if(ft_is_there_quote(read_content))
 			{
-				// Remove o caractere de nova linha (\n) do final da string
-				if (prompt[read_content - 1] == '\n')
-				{
-					prompt[read_content - 1] = '\0';
-				}
+				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
+					continue ; // pular restante e voltar a mostrar o prompt 
 			}
-			else // for handling ctrl + d -> its seen as an eof and not as a signal
+			if(read_content[0] != '\0')
 			{
-				printf("\nexit\n");
-				ft_free_env(&ms);
-				ft_free_array(ms.paths);
-				exit(0);
-			}
-			if(ft_strcmp(prompt, "") != 0)
-			{
-				add_history(prompt);
-				ms.read_size = ft_strlen(prompt);
-				tmp_prompt =  ft_strtrim(prompt, " ");
-				if(ft_strcmp(tmp_prompt, "exit") == 0)
-				{
-					free(tmp_prompt);
-					break ;
-				}
-				if(ft_is_there_quote(prompt))
-				{
-					if(!ft_is_arg_valid(&ms, prompt)) //caso as aspas/plicas não tenham fechamento
-						continue ; // pular restante e voltar a mostrar o prompt 
-				}
-				if(prompt[0] != '\0')
-				{
-					ft_lexer(&ms, prompt);
-					//ft_parser();
-					//ft_is_executable(&ms);
-					ms.ms_argv = ft_split(prompt, ' ');
+				ft_lexer(&ms, read_content);
+				//ft_parser();
+				//ft_is_executable(&ms);
+   				ms.ms_argv = ft_split(read_content, ' ');
 
-					ft_run_cmds(&ms);
-					// ft_is_variable(&ms);
-				}
+				ft_run_cmds(&ms);
+				// ft_is_variable(&ms);
 			}
 		}
-		wait(&pid);
 		ft_free_array(ms.ms_argv);
+		ft_free_cmds(&ms);
+		ft_free_array(ms.ms_env_array);
+		//ft_free_array(ms.paths); ----> Assim não dá erros e tb já está na linha 43
 		free (ms.count_args);
-		free(tmp_prompt);
-		//ft_free_cmds(&ms);
 	}
-	ft_free_cmds(&ms);
-	ft_free_array(ms.paths);
-	ft_free_array(ms.ms_env_array);
+	wait(&pid);
+	// free(tmp_prompt);
+
 	return (0);
 }
 
