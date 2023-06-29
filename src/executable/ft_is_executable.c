@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 16:37:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:44:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 	{
 		while(ms->paths[i])
 		{
-			if(access(ft_strjoin(ms->paths[i], cmd->args[0]), X_OK) == 0)
+			if (access(ft_strjoin(ft_strjoin(ms->paths[i], "/"), cmd->args[0]), X_OK) == 0)
 			{
 				int pid;
 
 				pid = fork();
 				if(pid == 0)
 				{
-					execve(ft_strjoin(ms->paths[i], cmd->args[0]), cmd->args, ms_env_array);
+					execve(ft_strjoin(ft_strjoin(ms->paths[i], "/"), cmd->args[0]), cmd->args, ms_env_array);
 				}
 				waitpid(pid, &status, 0);
 				if(WIFEXITED(status))

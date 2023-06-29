@@ -1,1 +1,3 @@
-4
+comandos.txt
+main.c
+Makefile

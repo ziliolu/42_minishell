@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 11:16:52 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:55:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 	counter = ft_count_tokens(list);
 	ms->n_pipes = ft_count_pipes(list);
 
-	ft_initialize_pipes(ms, ms->n_pipes);
 	ms->cmds = ft_calloc(ms->n_pipes * 2 + 2, sizeof(t_command));
 	if (!ms->cmds)
 		return ;
@@ -181,9 +180,4 @@ bool ft_is_not_redir(enum e_token type)
 	if(type != REDIR_IN && type != REDIR_OUT && type != HERE_DOC && type != D_REDIR_OUT)
 		return (true);
 	return (false);
-}
-
-void ft_initialize_pipes(t_ms *ms, int nbr_of_pipes)
-{
-	ms->pipes = ft_calloc(nbr_of_pipes, sizeof(t_pipe));
 }
