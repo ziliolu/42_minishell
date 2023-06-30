@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 00:31:17 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/30 08:23:57 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void ft_parser(t_ms *ms, t_elem *list)
 	{
 		//lembrar de modificar numero da alocacao de memoria 
 		ms->cmds[i].args = ft_calloc(ms->count_args[i] + 1, sizeof(char *));
+		printf("Cmd[%d] = %d Args\n", i, ms->count_args[i]);
 		if(!ms->cmds[i].args)
 			return ; 
-		//printf("Cmd[%d] = %d Args\n", i, ms->count_args[i]);
 		i++;
 	}
 	i = 0;

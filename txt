@@ -1,0 +1,13 @@
+total 136
+-rw-rw-r--  1 pastilhex pastilhex    17 jun 29 10:22 comandos.txt
+drwxrwxr-x  2 pastilhex pastilhex  4096 jun 29 20:25 includes
+drwxrwxr-x  5 pastilhex pastilhex  4096 jun 29 23:31 lib
+-rw-rw-r--  1 pastilhex pastilhex    85 jun 16 22:21 main.c
+-rw-rw-r--  1 pastilhex pastilhex  1275 jun 29 21:26 Makefile
+-rwxrwxr-x  1 pastilhex pastilhex 92688 jun 30 08:26 minishell
+-rwxrwxr-x  1 pastilhex pastilhex   941 jun 29 10:22 minishell_tester.sh
+-rw-rw-r--  1 pastilhex pastilhex   135 jun 29 21:28 readline.supp
+-rw-rw-r--  1 pastilhex pastilhex  1615 jun 26 14:14 README.md
+drwxrwxr-x 10 pastilhex pastilhex  4096 jun 30 07:58 src
+drwxrwxr-x  2 pastilhex pastilhex  4096 jun  9 13:39 subject
+-rwxrwxr-x  1 pastilhex pastilhex   642 jun 29 10:22 _tester.sh

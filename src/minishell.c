@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 00:01:39 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/30 08:16:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int main(int argc, char **argv, char **system_env)
 		ft_free_array(ms.ms_argv);
 		ft_free_cmds(&ms);
 		ft_free_array(ms.ms_env_array);
-		//ft_free_array(ms.paths); ----> Assim não dá erros e tb já está na linha 43
 		free (ms.count_args);
 		free(tmp_prompt);
 	}
