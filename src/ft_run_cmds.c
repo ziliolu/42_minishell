@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 20:28:15 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:35:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void ft_run_cmds(t_ms *ms)
     //     ft_print_command_nodes(ms, ms->n_pipes);
     ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);
+    ms->ms_env_array = ft_env_to_array(ms);
 	ft_init_pipes(ms);
     while(ms->cmds[i].type)
     {

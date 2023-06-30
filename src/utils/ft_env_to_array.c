@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:03:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 17:05:50 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:30:30 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ char **ft_env_to_array(t_ms *ms)
 		while (i < size)
 		{
 			tmp_size = ft_strlen(list->full_info);
-			array[i] = (char *)ft_calloc(tmp_size + 1, sizeof(char));
+			array[i] = (char *)ft_calloc(tmp_size, sizeof(char));
 			if (!array[i])
 				return (NULL);
-			ft_strlcpy(array[i], list->full_info, tmp_size + 1);
+			ft_strlcpy(array[i], list->full_info, tmp_size);
 			list = list->next;
 			i++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 08:16:44 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/06/30 09:21:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int main(int argc, char **argv, char **system_env)
 			printf("exit\n");
 			ft_free_env(&ms);
 			ft_free_array(ms.paths);
+			// if(ms.ms_env_array)
+			// 	ft_free_array(ms.ms_env_array);
 			exit(0);
 		}
 		if(ft_strcmp(read_content, "") != 0)
@@ -72,7 +74,8 @@ int main(int argc, char **argv, char **system_env)
 		}
 		ft_free_array(ms.ms_argv);
 		ft_free_cmds(&ms);
-		ft_free_array(ms.ms_env_array);
+		if(ms.ms_env_array)
+			ft_free_array(ms.ms_env_array);
 		free (ms.count_args);
 		free(tmp_prompt);
 	}
