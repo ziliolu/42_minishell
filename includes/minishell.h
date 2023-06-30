@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 18:15:18 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:40:48 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ enum e_token
 	D_REDIR_OUT,
 	CMD,
 };
+
+typedef struct s_var
+{
+	char *name;
+	char *info;
+	struct s_var *next;	
+}				t_var;
 
 enum e_status
 {
@@ -107,6 +114,7 @@ typedef struct s_ms
 	int			std_in;
 	int 		std_out;
 	int			*count_args;
+	t_var		**vars;
 	t_command 	*cmds;
 	t_pipe 		*pipes;
 	int			is_print;
@@ -189,5 +197,7 @@ char *ft_strtrim_end(char *str, char set);
 void	ft_count_args(t_ms *ms, t_elem *list);
 char	**ft_env_to_array(t_ms *ms);
 void ft_print_array(char **str);
+void ft_add_local_variable(t_var **head, char *name, char *info);
+char *ft_strchr_vars(char *s, char c);
 
 #endif

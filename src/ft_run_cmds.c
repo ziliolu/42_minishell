@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 09:35:43 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:55:10 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ void ft_run_cmds(t_ms *ms)
             if(i > 0 && ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
+            }
+            // verificacao do formato "nome=maria" p/ adicionar na lista de argumentos
+            if(ft_strchr_vars(ms->cmds[i].args[0], '='))
+            {
+                printf("é um argumento!\n");
+                ft_add_local_variable(ms->vars, ft_strtrim(ms->cmds[i].args[0], "="), ft_strtrim(ft_strchr_vars(ms->cmds[i].args[0], '='), "="));
             }
             ft_filter_cmd(ms, &ms->cmds[i]);
 			//ft_is_executable(ms, &ms->cmds[i]);
