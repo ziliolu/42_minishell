@@ -1,14 +1,14 @@
+Makefile
+README.md
+_tester.sh
 comandos.txt
 includes
 lib
 main.c
-Makefile
 minishell
 minishell_tester.sh
 readline.supp
-README.md
 src
 subject
 t
-_tester.sh
 txt

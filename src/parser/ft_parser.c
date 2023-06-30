@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 09:36:05 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:16:58 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ void ft_parser(t_ms *ms, t_elem *list)
 		//criacao de lista de redirects 
 		ms->cmds[i].redirs = ft_calloc(counter, sizeof(t_redirect));
 		ms->cmds[i].type = CMD;
-		while(k < counter)
-		{
-			ms->cmds[i].redirs[k].arg = NULL;
-			k++;
-		}
+		// while(k < counter)
+		// {
+		// 	ms->cmds[i].redirs[k].arg = NULL;
+		// 	k++;
+		// }
 		
 		k = 0;
 		while (list != NULL && list->type != PIPE_LINE)
@@ -136,8 +136,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 					ms->cmds[i].redirs[k].arg = ft_strdup(str);
 				}
 				else
-				{				
+				{	
+					//char *tmp = ms->cmds[i].redirs[k].arg;		
 					ms->cmds[i].redirs[k].arg = ft_strdup(list->data);
+					//free(tmp);
 				}
 				j--;
 				k++;
