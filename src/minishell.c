@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 09:47:49 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/03 10:30:20 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
+	ms.vars = (t_var **)ft_calloc(1, sizeof(t_var *));
 	while (1)
 	{
 		ft_handle_signals(); 
@@ -41,7 +42,6 @@ int main(int argc, char **argv, char **system_env)
 			printf("exit\n");
 			ft_free_env(&ms);
 			ft_free_array(ms.paths);
-
 			exit(0);
 		}
 		if(ft_strcmp(read_content, "") != 0)
@@ -72,6 +72,7 @@ int main(int argc, char **argv, char **system_env)
 				ft_run_cmds(&ms);
 				// ft_is_variable(&ms);
 			}
+			
 		}
 		ft_free_array(ms.ms_argv);
 		ft_free_cmds(&ms);

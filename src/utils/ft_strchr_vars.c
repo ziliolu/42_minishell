@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strchr_vars.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 11:52:52 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 17:35:42 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/06/30 17:36:11 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/06/30 17:49:26 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/minishell.h"
 
-char	*ft_strchr(const char *s, int c)
+char *ft_strchr_vars(char *s, char c)
 {
-	while (*s != '\0')
+    int i;
+
+    i = 0;
+	while (s[i] != '\0')
 	{
-		if (*s == (char)c )
-			return ((char *)s);
-		s++;
+		if (i != 0 && s[i] == c && i != (int)ft_strlen(s))
+			return (s + i);
+		i++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
 	return (0);
 }
-
-/*int main()
-{
-	printf("FAKE: %s\n", ft_strchr("hello", '\0'));
-	printf("ORIGINAL: %s\n", strchr("hello", '\0'));
-}*/

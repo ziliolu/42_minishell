@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/02 23:31:58 by ialves-m         ###   ########.fr       */
+=======
+/*   Updated: 2023/06/30 17:55:10 by lpicoli-         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +28,7 @@ void ft_run_cmds(t_ms *ms)
     //     ft_print_command_nodes(ms, ms->n_pipes);
     ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);
+    ms->ms_env_array = ft_env_to_array(ms);
 	ft_init_pipes(ms);
     while(ms->cmds[i].type)
     {
@@ -64,8 +69,18 @@ void ft_run_cmds(t_ms *ms)
             {
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
             }
+<<<<<<< HEAD
             
 			ft_filter_cmd(ms, &ms->cmds[i]);
+=======
+            // verificacao do formato "nome=maria" p/ adicionar na lista de argumentos
+            if(ft_strchr_vars(ms->cmds[i].args[0], '='))
+            {
+                printf("é um argumento!\n");
+                ft_add_local_variable(ms->vars, ft_strtrim(ms->cmds[i].args[0], "="), ft_strtrim(ft_strchr_vars(ms->cmds[i].args[0], '='), "="));
+            }
+            ft_filter_cmd(ms, &ms->cmds[i]);
+>>>>>>> refs/remotes/origin/main
 			//ft_is_executable(ms, &ms->cmds[i]);
         }
         i++;

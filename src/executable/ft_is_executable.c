@@ -6,7 +6,11 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/02 23:48:04 by ialves-m         ###   ########.fr       */
+=======
+/*   Updated: 2023/06/30 09:34:40 by lpicoli-         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +21,6 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 	int i;
 	int pid;
 	int status;
-
-	ms->ms_env_array = ft_env_to_array(ms);
 
 	i = 0;
 	if(cmd->out != 1)

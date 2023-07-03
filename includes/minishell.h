@@ -6,7 +6,11 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/02 23:47:51 by ialves-m         ###   ########.fr       */
+=======
+/*   Updated: 2023/06/30 17:40:48 by lpicoli-         ###   ########.fr       */
+>>>>>>> refs/remotes/origin/main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +59,13 @@ enum e_token
 	D_REDIR_OUT,
 	CMD,
 };
+
+typedef struct s_var
+{
+	char *name;
+	char *info;
+	struct s_var *next;	
+}				t_var;
 
 enum e_status
 {
@@ -109,6 +120,13 @@ typedef struct s_ms
 	int 		n_pipes; 
 	int			std_in;
 	int 		std_out;
+<<<<<<< HEAD
+=======
+	int			*count_args;
+	t_var		**vars;
+	t_command 	*cmds;
+	t_pipe 		*pipes;
+>>>>>>> refs/remotes/origin/main
 	int			is_print;
 	int 		print_cmd;
 	int			exit_status;
@@ -187,8 +205,20 @@ void		ft_handle_signals();
 void		ft_print_env(t_ms *ms);
 void		ft_filter_cmd(t_ms *ms, t_command *cmd);
 void        ft_cd(t_ms *ms, t_command *cmd);
+<<<<<<< HEAD
 void		ft_update_env(t_ms *ms, char *name, char *new_info);
 void		ft_count_args(t_ms *ms, t_elem *list);
 void 		ft_print_array(char **str);
+=======
+void	ft_update_env(t_ms *ms, char *name, char *new_info);
+char	*ft_return_env_info(t_ms *ms, char *name);
+bool	ft_is_there_quote(char *str);
+char *ft_strtrim_end(char *str, char set);
+void	ft_count_args(t_ms *ms, t_elem *list);
+char	**ft_env_to_array(t_ms *ms);
+void ft_print_array(char **str);
+void ft_add_local_variable(t_var **head, char *name, char *info);
+char *ft_strchr_vars(char *s, char c);
+>>>>>>> refs/remotes/origin/main
 
 #endif

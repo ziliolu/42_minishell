@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/01 23:53:18 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/03 10:31:39 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 	counter = ft_count_tokens(list);
 	ms->n_pipes = ft_count_pipes(list);
 	ms->cmds = ft_calloc(ms->n_pipes * 2 + 2, sizeof(t_command));
+		
 	if (!ms->cmds)
 		return ;
 	while(i <= (ms->n_pipes * 2))
@@ -136,8 +137,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 					ms->cmds[i].redirs[k].arg = ft_strdup(str);
 				}
 				else
-				{				
+				{	
+					//char *tmp = ms->cmds[i].redirs[k].arg;		
 					ms->cmds[i].redirs[k].arg = ft_strdup(list->data);
+					//free(tmp);
 				}
 				j--;
 				k++;
