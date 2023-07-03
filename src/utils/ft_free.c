@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/01 23:53:46 by ialves-m         ###   ########.fr       */
-=======
-/*   Updated: 2023/06/30 10:21:03 by lpicoli-         ###   ########.fr       */
->>>>>>> refs/remotes/origin/main
+/*   Updated: 2023/07/03 11:29:24 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +33,7 @@ void ft_free_cmds(t_ms *ms)
 {
 	int i = 0;
 	int j = 0;
-<<<<<<< HEAD
-	int k = 0;
-
-=======
 	int k;
->>>>>>> refs/remotes/origin/main
 	if (ms->cmds)
 	{
 		while (ms->cmds[i].type)
@@ -61,16 +52,11 @@ void ft_free_cmds(t_ms *ms)
 			{
 				if (ms->cmds[i].args[j])
 				{
-<<<<<<< HEAD
-					// printf("Cmd[%d]Args[%d] Free %s\n", i, j, ms->cmds[i].args[j]);
-					free (ms->cmds[i].args[j]);
-=======
 					if(ms->cmds[i].type != PIPE_LINE)
 					{
 						//printf("Cmd[%d]Args[%d] Free %s\n", i, j, ms->cmds[i].args[j]);
 						free (ms->cmds[i].args[j]);
 					}
->>>>>>> refs/remotes/origin/main
 				}
 				j++;
 			}
