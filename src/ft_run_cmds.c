@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 11:26:54 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:44:59 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,24 +71,50 @@ void ft_run_cmds(t_ms *ms)
                 printf("é um argumento!\n");
                 ft_add_local_variable(ms->vars, ft_strtrim(ms->cmds[i].args[0], "="), ft_strtrim(ft_strchr_vars(ms->cmds[i].args[0], '='), "="));
             }
-            ft_filter_cmd(ms, &ms->cmds[i]);
-			//ft_is_executable(ms, &ms->cmds[i]);
+            if(ms->cmds[i].type != PIPE_LINE)
+            {
+                ft_change_standard_in_out(&ms->cmds[i]);
+                ft_filter_cmd(ms, &ms->cmds[i]);
+                ft_reset_fd_in_out(ms);
+            }
         }
         i++;
     }
 }
 
+void ft_change_standard_in_out(t_command *cmd)
+{
+    if(cmd->out != 1)
+	{
+		if(dup2(cmd->out, STDOUT_FILENO) == -1)
+		{
+			printf("dup2 error!\n");
+			//printf("fd:%d\n", cmd->out);
+		}
+		close(cmd->out);
+	}
+	if(cmd->in != 0)
+	{
+		if(dup2(cmd->in, STDIN_FILENO) == -1)
+			printf("dup2 error!\n");
+		close(cmd->in);
+	}   
+}
+
+void ft_reset_fd_in_out(t_ms *ms)
+{
+    dup2(ms->std_out, STDOUT_FILENO);
+	dup2(ms->std_in, STDIN_FILENO);
+}
+    
 void ft_filter_cmd(t_ms *ms, t_command *cmd)
 {
-    if(ft_strcmp(cmd->args[0], "cd") == 0)
+    if(ft_strcmp(cmd->args[0], "echo") == 0)
+        ft_echo(cmd);
+    else if(ft_strcmp(cmd->args[0], "cd") == 0)
         ft_cd(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "env") == 0)
-    {
-        printf("\n---- NOSSO ENV ---\n");
         ft_print_env(ms);
-        printf("\n---- SYSTEM ENV ---\n");
-        printf("%s\n", ms->system_env[10]);
-    }
     else if(ft_strcmp(cmd->args[0], "pwd") == 0)
         printf("%s\n", ft_return_env_info(ms, "PWD"));
     else if(!ft_is_executable(ms, cmd))

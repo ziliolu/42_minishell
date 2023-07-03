@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 11:28:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:52:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,14 +195,18 @@ void		ft_handle_signals();
 void		ft_print_env(t_ms *ms);
 void		ft_filter_cmd(t_ms *ms, t_command *cmd);
 void        ft_cd(t_ms *ms, t_command *cmd);
-void	ft_update_env(t_ms *ms, char *name, char *new_info);
-char	*ft_return_env_info(t_ms *ms, char *name);
-bool	ft_is_there_quote(char *str);
-char *ft_strtrim_end(char *str, char set);
-void	ft_count_args(t_ms *ms, t_elem *list);
-char	**ft_env_to_array(t_ms *ms);
-void ft_print_array(char **str);
-void ft_add_local_variable(t_var **head, char *name, char *info);
-char *ft_strchr_vars(char *s, char c);
+void		ft_update_env(t_ms *ms, char *name, char *new_info);
+char		*ft_return_env_info(t_ms *ms, char *name);
+bool		ft_is_there_quote(char *str);
+char 		*ft_strtrim_end(char *str, char set);
+void		ft_count_args(t_ms *ms, t_elem *list);
+char		**ft_env_to_array(t_ms *ms);
+void		ft_print_array(char **str);
+void		ft_add_local_variable(t_var **head, char *name, char *info);
+char		*ft_strchr_vars(char *s, char c);
+void		ft_change_standard_in_out(t_command *cmd);
+void		ft_reset_fd_in_out(t_ms *ms);
+void		ft_echo(t_command *cmd);
+char		*ft_capitalize(char *str);
 
 #endif

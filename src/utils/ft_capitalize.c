@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_expand.c                                        :+:      :+:    :+:   */
+/*   ft_capitalize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 20:22:40 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/07/03 19:48:11 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/03 20:26:28 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_expand(t_env *list, char *variable)
+char *ft_capitalize(char *str)
 {
-	char	*str;
-	char	*tmp;
+    int i;
+    char *new_str;
 
-	tmp = ft_strtrim(variable, "$");
-	printf("%s\n", tmp);
-	str = ft_capitalize(tmp);
-	printf("%s\n", str);
-	free(tmp);
-	if(ft_strcmp(str, "?") == 0)
-	{
-		return (ft_itoa(g_exit_status));
-	}
-	while (list)
-	{
-		if (ft_strcmp(str, list->name) == 0)
-			return (list->info);
-		list = list->next;
-	}
-	free(str);
-	return (NULL);
+    i = 0;
+    printf("%s\n", str);
+    new_str = ft_calloc(ft_strlen(str), sizeof(char));
+    printf("%d\n", (int)ft_strlen(str));
+    while(i < (int)ft_strlen(str))
+    {
+        new_str[i] = ft_toupper(str[i]);
+        i++;
+    }
+    printf("%s\n", new_str);
+    return (new_str);
 }
-

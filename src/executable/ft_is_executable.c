@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 11:28:41 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/03 15:33:39 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 	int status;
 
 	i = 0;
-	if(cmd->out != 1)
-	{
-		if(dup2(cmd->out, STDOUT_FILENO) == -1)
-		{
-			printf("dup2 error!\n");
-			printf("fd:%d\n", cmd->out);
-		}
-		close(cmd->out);
-	}
+	// if(cmd->out != 1)
+	// {
+	// 	if(dup2(cmd->out, STDOUT_FILENO) == -1)
+	// 	{
+	// 		printf("dup2 error!\n");
+	// 		//printf("fd:%d\n", cmd->out);
+	// 	}
+	// 	close(cmd->out);
+	// }
 	
-	if(cmd->in != 0)
-	{
-		if(dup2(cmd->in, STDIN_FILENO) == -1)
-			printf("dup2 error!\n");
-		close(cmd->in);
-	}
+	// if(cmd->in != 0)
+	// {
+	// 	if(dup2(cmd->in, STDIN_FILENO) == -1)
+	// 		printf("dup2 error!\n");
+	// 	close(cmd->in);
+	// }
 
 	if(ft_is_absolute_path(cmd->args[0]))
 	{
@@ -68,8 +68,8 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 					g_exit_status = WEXITSTATUS(status);	
 				else if(WIFSIGNALED(status))
 					g_exit_status = WTERMSIG(status);	
-				dup2(ms->std_out, STDOUT_FILENO);
-				dup2(ms->std_in, STDIN_FILENO);
+				// dup2(ms->std_out, STDOUT_FILENO);
+				// dup2(ms->std_in, STDIN_FILENO);
 				free(total_path);
 				free(path_w_slash);
 				return (true);

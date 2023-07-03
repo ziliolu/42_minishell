@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 10:31:39 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/03 19:31:54 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 		while (list != NULL && list->type != PIPE_LINE)
 		{
 			str = NULL;
+			tmp_str = NULL;
 			if(list->type == ENV && list->status != IN_SQUOTE)
 				ms->cmds[i].args[j] = ft_expand(ms->ms_env, list->data);
 			else if(list->type == SINGLE_QUOTE)
@@ -66,7 +67,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 						if (str)
 							free (str);
 						str = ft_strjoin(tmp_str, list->data);
-						free(tmp_str);
+						if(tmp_str)
+							free(tmp_str);
 						tmp_str = ft_strdup(str);
 					}
 					list = list->next;
@@ -74,7 +76,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 				if(list->status == IN_DQUOTE)
 					str = ft_strjoin(tmp_str, list->data);
 				ms->cmds[i].args[j] = str;
-				free (tmp_str);
+				if(tmp_str)
+					free (tmp_str);
 			}
 			else if(list->type == DOUBLE_QUOTE)
 			{
@@ -107,7 +110,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 					}
 					list = list->next;
 				}
-				free (tmp_str);
+				if (tmp_str)
+					free (tmp_str);
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(tmp_str, list->data);
 				if(ft_strcmp(str, "") != 0)
@@ -159,7 +163,13 @@ void ft_parser(t_ms *ms, t_elem *list)
 			}
 			list = list->next;
 			if(list && list->type == WHITE_SPACE)
+			{
+				while(list && list->type == WHITE_SPACE)
+				{
+					list = list->next;
+				}
 				j++;
+			}
 		}
 		i++;
 		j = 0;
@@ -171,6 +181,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 		}
 		i++;
 	}
+	//ft_print_command_nodes(ms, ms->n_pipes);
 }
 
 bool ft_is_not_redir(enum e_token type)
