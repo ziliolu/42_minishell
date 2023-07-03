@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 18:15:18 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/02 23:47:51 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,50 +98,50 @@ typedef struct s_command
 typedef struct s_ms
 {
 	t_env		*ms_env;
+	t_command 	*cmds;
+	t_pipe 		*pipes;
 	char 		**ms_env_array;
     char 		**paths;
     char 		**system_env;
     char 		**ms_argv;
+	int			*count_args;
 	int 		read_size;
 	int 		n_pipes; 
 	int			std_in;
 	int 		std_out;
-	int			*count_args;
-	t_command 	*cmds;
-	t_pipe 		*pipes;
 	int			is_print;
 	int 		print_cmd;
 	int			exit_status;
 }	t_ms;
 
 // ==== utils ====
+char		*ft_strndup(char *str, int n);
 int			ft_strcmp(char *s1, char *s2);
 void		ft_run_command(char *command, char **env);
 void		ft_create_env(t_ms *ms, char **env);
-char		*ft_strndup(char *str, int n);
 
 //-----> ft_env functions <-----//
 t_env		*ft_new_node(char *str);
 t_env		*ft_find_last(t_env *list);
-void		ft_add_node(t_env **header, char *str);
 char		*ft_get_env_name(char *set);
 char		*ft_get_env_info(char *set);
+void		ft_add_node(t_env **header, char *str);
 void		ft_print_list(t_env *list);
 
-void		ft_init_ms(t_ms *ms, char **system_env);
 bool		ft_is_executable(t_ms *ms, t_command *cmd);
-char		*ft_getenv(t_ms *ms, char *name);
 bool		ft_is_absolute_path(char *input);
+char		*ft_getenv(t_ms *ms, char *name);
+void		ft_init_ms(t_ms *ms, char **system_env);
 
 //-----> ft_is_arg_valid functions <-----//
 bool        ft_is_arg_valid(t_ms *ms, char *read_content);
 bool        ft_is_quote_valid(char *read_content);
-char        ft_choose_quotes(int s_quote, int d_quote);
 bool        ft_is_valid_character(char c);
+char        ft_choose_quotes(int s_quote, int d_quote);
 
-char        *ft_search_for_end(char *str, char c, int pos); 
 bool		ft_is_variable(t_ms *ms);
 bool		ft_is_valid_info(t_ms *ms, int j);
+char        *ft_search_for_end(char *str, char c, int pos); 
 char		*ft_charjoin(char *str, char c);
 
 //-------> Free Memory <-------------//
@@ -149,45 +149,46 @@ void		ft_free_array(char **array);
 void		ft_free_env(t_ms *ms);
 void 		ft_free_cmds(t_ms *ms);
 void		ft_free_memory(t_ms *ms);
-void	ft_free_elem_list(t_elem *head);
+void		ft_free_elem_list(t_elem *head);
 
 t_elem		*ft_new_elem(char *str, int len, enum e_token type, enum e_status);
-void		ft_add_new_elem(t_elem **head, t_elem *new_elem);
 t_elem		*ft_find_last_elem(t_elem *list);
-void		ft_lexer(t_ms *ms, char *read_content);
-int			ft_size_list(t_elem **header);
-int			ft_count_char(char *str);
+bool		ft_is_not_redir(enum e_token type);
+bool 		ft_is_redir(enum e_token type);
+bool 		ft_is_redir(enum e_token type);
+bool		ft_is_there_quote(char *str);
 char		*ft_token_status(enum e_status status);
 char		*ft_token_type(enum e_token type);
-int			ft_count_pipes(t_elem *list);
-void		ft_parser(t_ms *ms, t_elem *list);
-void		ft_initialize_pipes(t_ms *ms, int nbr_of_pipes);
-bool		ft_is_not_redir(enum e_token type);
-void		ft_print_command_nodes(t_ms *ms, int n_pipes);
-int			ft_count_tokens(t_elem *list);
 char		*ft_expand(t_env *list, char *variable);
-bool 		ft_is_redir(enum e_token type);
 char 		*ft_token_status(enum e_status status);
-void		ft_print_tokens(t_ms *ms, t_elem *list);
+char		**ft_env_to_array(t_ms *ms);
 char 		*ft_token_type(enum e_token type);
-bool 		ft_is_redir(enum e_token type);
-void 		ft_run_cmds(t_ms *ms);
+char		*ft_return_env_info(t_ms *ms, char *name);
+char 		*ft_strtrim_end(char *str, char set);
+int			ft_size_list(t_elem **header);
+int			ft_count_char(char *str);
+int			ft_count_pipes(t_elem *list);
+int			ft_count_tokens(t_elem *list);
 int 		ft_count_cmds(t_ms *ms);
 int 		ft_count_redirs(t_elem *list);
 int 		ft_count_redirs_cmd(t_command *cmd);
+int			ft_count_pipes(t_elem *list);
+void		ft_add_new_elem(t_elem **head, t_elem *new_elem);
+void		ft_lexer(t_ms *ms, char *read_content);
+void		ft_parser(t_ms *ms, t_elem *list);
+void		ft_initialize_pipes(t_ms *ms, int nbr_of_pipes);
+void		ft_print_command_nodes(t_ms *ms, int n_pipes);
+void		ft_print_tokens(t_ms *ms, t_elem *list);
+void 		ft_run_cmds(t_ms *ms);
 void 		ft_is_heredoc(t_command *cmd, t_redirect *redir);
 void 		ft_pipeline(t_ms *ms);
 void 		ft_init_pipes(t_ms *ms);
 void		ft_handle_signals();
-void	ft_print_env(t_ms *ms);
+void		ft_print_env(t_ms *ms);
 void		ft_filter_cmd(t_ms *ms, t_command *cmd);
 void        ft_cd(t_ms *ms, t_command *cmd);
-void	ft_update_env(t_ms *ms, char *name, char *new_info);
-char	*ft_return_env_info(t_ms *ms, char *name);
-bool	ft_is_there_quote(char *str);
-char *ft_strtrim_end(char *str, char set);
-void	ft_count_args(t_ms *ms, t_elem *list);
-char	**ft_env_to_array(t_ms *ms);
-void ft_print_array(char **str);
+void		ft_update_env(t_ms *ms, char *name, char *new_info);
+void		ft_count_args(t_ms *ms, t_elem *list);
+void 		ft_print_array(char **str);
 
 #endif

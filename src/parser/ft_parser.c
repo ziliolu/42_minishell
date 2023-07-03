@@ -6,112 +6,112 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 08:23:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/01 23:53:18 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-int ft_count_pipes(t_elem *list)
-{
-	int pipes;
-
-	pipes = 0;
-	while(list != NULL)
-	{
-		if(list->type == PIPE_LINE)
-			pipes++;
-		list = list->next;
-	}
-	return (pipes);
-}
 
 void ft_parser(t_ms *ms, t_elem *list)
 {
    	int			i;
 	int			j;
 	int			k;
+	char		*tmp_str;
 	int			counter;
-	char 		*str;
 	enum e_token	tmp;
 
 	i = 0;
 	counter = ft_count_tokens(list);
 	ms->n_pipes = ft_count_pipes(list);
-
 	ms->cmds = ft_calloc(ms->n_pipes * 2 + 2, sizeof(t_command));
 	if (!ms->cmds)
 		return ;
-	//str = ft_calloc(ms->read_size, sizeof(char));
 	while(i <= (ms->n_pipes * 2))
 	{
-		//lembrar de modificar numero da alocacao de memoria 
 		ms->cmds[i].args = ft_calloc(ms->count_args[i] + 1, sizeof(char *));
-		printf("Cmd[%d] = %d Args\n", i, ms->count_args[i]);
 		if(!ms->cmds[i].args)
 			return ; 
 		i++;
 	}
+	tmp_str = NULL;
 	i = 0;
 	while (list != NULL)
 	{
 		j = 0;
 		k = 0;
-		//criacao de lista de redirects 
+		char	*str;
 		ms->cmds[i].redirs = ft_calloc(counter, sizeof(t_redirect));
 		ms->cmds[i].type = CMD;
-		while(k < counter)
-		{
-			ms->cmds[i].redirs[k].arg = NULL;
-			k++;
-		}
-		
-		k = 0;
 		while (list != NULL && list->type != PIPE_LINE)
 		{
-			//str = ft_calloc(ms->read_size, sizeof(char));
 			str = NULL;
-
-			//falta a verificacao se ha plicas e aspas antes e depois para nao expandir
 			if(list->type == ENV && list->status != IN_SQUOTE)
 				ms->cmds[i].args[j] = ft_expand(ms->ms_env, list->data);
-
 			else if(list->type == SINGLE_QUOTE)
 			{
 				if(list->status == IN_DQUOTE)
-					str = ft_strjoin(str, list->data); 
+					str = ft_strjoin(tmp_str, list->data); 
 				list = list->next;
 				while(list->type != SINGLE_QUOTE)
 				{
-					str = ft_strjoin(str, list->data); 
+					if (!tmp_str)
+					{
+						str = ft_strdup(list->data);
+						tmp_str = ft_strdup(list->data);
+					}
+					else
+					{
+						if (str)
+							free (str);
+						str = ft_strjoin(tmp_str, list->data);
+						free(tmp_str);
+						tmp_str = ft_strdup(str);
+					}
 					list = list->next;
 				}
 				if(list->status == IN_DQUOTE)
-					str = ft_strjoin(str, list->data);
+					str = ft_strjoin(tmp_str, list->data);
 				ms->cmds[i].args[j] = str;
+				free (tmp_str);
 			}
-
 			else if(list->type == DOUBLE_QUOTE)
 			{
 				if(list->status == IN_SQUOTE)
-					str = ft_strjoin(str, list->data);
+					str = ft_strjoin(tmp_str, list->data); 
 				list = list->next;
 				while(list->type != DOUBLE_QUOTE)
 				{
 					if(list->type == ENV)
-						str = ft_strjoin(str, ft_expand(ms->ms_env, list->data));
+					{
+						if (str)
+							free (str);
+						str = ft_strdup(ft_expand(ms->ms_env, list->data));
+					}
 					else
-						str = ft_strjoin(str, list->data);
+					{
+						if (!tmp_str)
+						{
+							str = ft_strdup(list->data);
+							tmp_str = ft_strdup(list->data);
+						}
+						else
+						{
+							if (str)
+								free (str);
+							str = ft_strjoin(tmp_str, list->data);
+							free(tmp_str);
+							tmp_str = ft_strdup(str);
+						}
+					}
 					list = list->next;
 				}
-
+				free (tmp_str);
 				if(list->status == IN_SQUOTE)
-					str = ft_strjoin(str, list->data);
-
+					str = ft_strjoin(tmp_str, list->data);
 				if(ft_strcmp(str, "") != 0)
 					ms->cmds[i].args[j] = str;
 			}
-
 			else if(ft_is_redir(list->type))
 			{
 				ms->cmds[i].redirs[k].type = list->type;
@@ -129,7 +129,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 					list = list->next;
 					while (tmp != list->type)
 					{
-						str = ft_strjoin(str, list->data);
+
+						str = ft_strjoin(str, list->data); 
 						list = list->next;
 					}
 					ms->cmds[i].redirs[k].arg = ft_strdup(str);
@@ -141,14 +142,12 @@ void ft_parser(t_ms *ms, t_elem *list)
 				j--;
 				k++;
 			}
-
 			else if (ms->cmds[i].args[j] != NULL)
 			{
 				ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], ft_strdup(list->data));
 				if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
 					j++;
 			}
-
 			else if (list->type != WHITE_SPACE)
 			{
 				ms->cmds[i].args[j] = ft_strdup(list->data);
@@ -161,22 +160,15 @@ void ft_parser(t_ms *ms, t_elem *list)
 		}
 		i++;
 		j = 0;
-
 		if(list != NULL && list->type == PIPE_LINE)
 		{
-			ms->cmds[i].args[j] = "|";
+			ms->cmds[i].args[j] = ft_strdup("|");
 			ms->cmds[i].type = PIPE_LINE;
 			list = list->next;	
 		}
-		//ms->cmds[i].args[j] = NULL;
 		i++;
 	}
-	if (str)
-		free(str);
-	// ft_free_elem_list(list);
-	//ft_print_command_nodes(ms, ms->n_pipes);
 }
-
 
 bool ft_is_not_redir(enum e_token type)
 {

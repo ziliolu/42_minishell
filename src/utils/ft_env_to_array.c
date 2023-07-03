@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_to_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:03:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 17:05:50 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/03 09:45:18 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char **ft_env_to_array(t_ms *ms)
 {
-	int	size;
-	int i;
-	int	tmp_size;
-	char **array;
-	t_env *list;
+	int		size;
+	int		i;
+	int		tmp_size;
+	char	**array;
+	t_env	*list;
 	
 	i = 0;
 	size = 0;
