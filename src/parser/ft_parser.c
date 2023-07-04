@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 19:31:54 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:50:04 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 		return ;
 	while(i <= (ms->n_pipes * 2))
 	{
-		ms->cmds[i].args = ft_calloc(ms->count_args[i] + 1, sizeof(char *));
+		ms->cmds[i].args = ft_calloc(ms->count_args[i] + 1, sizeof(t_command));
 		if(!ms->cmds[i].args)
 			return ; 
 		i++;
@@ -49,7 +49,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 			str = NULL;
 			tmp_str = NULL;
 			if(list->type == ENV && list->status != IN_SQUOTE)
-				ms->cmds[i].args[j] = ft_expand(ms->ms_env, list->data);
+				ms->cmds[i].args[j] = ft_expand(ms->ms_env, *ms->vars, list->data);
 			else if(list->type == SINGLE_QUOTE)
 			{
 				if(list->status == IN_DQUOTE)
@@ -75,7 +75,14 @@ void ft_parser(t_ms *ms, t_elem *list)
 				}
 				if(list->status == IN_DQUOTE)
 					str = ft_strjoin(tmp_str, list->data);
-				ms->cmds[i].args[j] = str;
+				if(str)
+				{
+					if(ms->cmds[i].args[j])
+						ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], str);
+					else
+						ms->cmds[i].args[j] = str;
+				}
+				//ms->cmds[i].args[j] = str;
 				if(tmp_str)
 					free (tmp_str);
 			}
@@ -90,7 +97,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 					{
 						if (str)
 							free (str);
-						str = ft_strdup(ft_expand(ms->ms_env, list->data));
+						str = ft_strdup(ft_expand(ms->ms_env, *ms->vars, list->data));
 					}
 					else
 					{
@@ -110,12 +117,18 @@ void ft_parser(t_ms *ms, t_elem *list)
 					}
 					list = list->next;
 				}
-				if (tmp_str)
-					free (tmp_str);
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(tmp_str, list->data);
-				if(ft_strcmp(str, "") != 0)
-					ms->cmds[i].args[j] = str;
+				
+				if(str)
+				{
+					if(ms->cmds[i].args[j])
+						ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], str);
+					else
+						ms->cmds[i].args[j] = str;
+				}
+				if (tmp_str)
+					free (tmp_str);
 			}
 			else if(ft_is_redir(list->type))
 			{
@@ -152,8 +165,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 			else if (ms->cmds[i].args[j] != NULL)
 			{
 				ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], ft_strdup(list->data));
-				if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
-					j++;
+				// if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
+				// 	j++;
 			}
 			else if (list->type != WHITE_SPACE)
 			{
@@ -168,7 +181,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 				{
 					list = list->next;
 				}
-				j++;
+				if(ms->cmds[i].args[j])
+					j++;
 			}
 		}
 		i++;

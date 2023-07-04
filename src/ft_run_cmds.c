@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 15:44:59 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:21:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void ft_run_cmds(t_ms *ms)
                 ms->cmds[i].in = ms->cmds[i - 1].fd[0];
             }
             // verificacao do formato "nome=maria" p/ adicionar na lista de argumentos
-            if(ft_strchr_vars(ms->cmds[i].args[0], '='))
-            {
-                printf("é um argumento!\n");
-                ft_add_local_variable(ms->vars, ft_strtrim(ms->cmds[i].args[0], "="), ft_strtrim(ft_strchr_vars(ms->cmds[i].args[0], '='), "="));
-            }
+            // if(ft_strchr_vars(ms->cmds[i].args[0], '='))
+            // {
+            //     printf("é um argumento!\n");
+            //     ft_add_local_variable(ms->vars, ft_strtrim(ms->cmds[i].args[0], "="), ft_strtrim(ft_strchr_vars(ms->cmds[i].args[0], '='), "="));
+            // }
             if(ms->cmds[i].type != PIPE_LINE)
             {
                 ft_change_standard_in_out(&ms->cmds[i]);
@@ -117,8 +117,13 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         ft_print_env(ms);
     else if(ft_strcmp(cmd->args[0], "pwd") == 0)
         printf("%s\n", ft_return_env_info(ms, "PWD"));
+    else if(ft_strchr_vars(cmd->args[0], '='))
+        ft_add_local_variable(ms->vars, ft_get_env_name(cmd->args[0]), ft_strtrim(ft_strchr_vars(cmd->args[0], '='), "="));
+    else if(ft_strcmp(cmd->args[0], "export") == 0)
+        ft_export(ms, cmd);
     else if(!ft_is_executable(ms, cmd))
         printf("minishell: command not found: %s\n", cmd->args[0]);
+    ft_print_local_variables(ms->vars);
 }
 
 void ft_init_pipes(t_ms *ms)

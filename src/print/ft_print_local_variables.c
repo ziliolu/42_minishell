@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_capitalize.c                                    :+:      :+:    :+:   */
+/*   ft_print_local_variables.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/03 19:48:11 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 11:39:02 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/07/04 14:29:10 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/04 14:36:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char *ft_capitalize(char *str)
+void ft_print_local_variables(t_var **head)
 {
+    t_var *list;
     int i;
-    char *new_str;
 
+    list = *head;
     i = 0;
-    new_str = ft_calloc(ft_strlen(str) + 1, sizeof(char));
-    while(i < (int)ft_strlen(str))
+    while(list)
     {
-        new_str[i] = ft_toupper(str[i]);
+        printf("[%d] %s = %s\n", i, list->name, list->info);
         i++;
+        list = list->next;
     }
-    return (new_str);
 }

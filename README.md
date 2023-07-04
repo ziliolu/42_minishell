@@ -29,6 +29,21 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ## Tests
 
+## ENV vs LOCAL VARIABLES
+
+  sem a palavra export
+    1. verificar se existe em alguma das listas
+    2. alterar a informacao da lista que pertence ou criar um novo nó na list de vars
+
+  com a palavra export
+    1. verificar se existe no env
+    2. alterar a info no env ou criar um novo nó no env
+
+  se variavel ja existir no env, nao é possivel criar fora outra 
+  com o mesmo nome e info diferente. 
+
+
+ 
 ##### Redirects w/wout here_docs
 
 - [] ls > t1

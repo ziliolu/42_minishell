@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 19:52:19 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:07:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ bool 		ft_is_redir(enum e_token type);
 bool		ft_is_there_quote(char *str);
 char		*ft_token_status(enum e_status status);
 char		*ft_token_type(enum e_token type);
-char		*ft_expand(t_env *list, char *variable);
+char		*ft_expand(t_env *list, t_var *vars, char *variable);
 char 		*ft_token_status(enum e_status status);
 char		**ft_env_to_array(t_ms *ms);
 char 		*ft_token_type(enum e_token type);
@@ -208,5 +208,7 @@ void		ft_change_standard_in_out(t_command *cmd);
 void		ft_reset_fd_in_out(t_ms *ms);
 void		ft_echo(t_command *cmd);
 char		*ft_capitalize(char *str);
-
+void		ft_print_local_variables(t_var **head);
+void		ft_update_vars(t_var *list, char *name, char *info);
+bool		ft_is_already_var(char *name, t_var *list);
 #endif

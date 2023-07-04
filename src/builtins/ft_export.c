@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/30 17:56:55 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:26:30 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,20 @@
     serão visíveis no ambiente e serão listadas pelo comando env.
 */
 
-void ft_add_local_variable(t_var **head, char *name, char *info)
+void ft_export(t_ms *ms, t_command *cmd)
 {
-    t_var *new_node;
-    t_var *last_node;
-    
-    new_node = ft_calloc(1, sizeof(t_var));
-    new_node->name = ft_strdup(name);
-    new_node->info = ft_strdup(info);
-    new_node->next = NULL;
-
-    //if the list is empty, new node becomes the first
-    if(*head == NULL)
+    if(ft_strchr_vars(cmd->args[1], '='))
     {
-        *head = new_node;
-        printf("var name->>> %s\n", new_node->name);
-        printf("var info->>> %s\n", new_node->info);
-        return ;
+        
     }
-    
-    //find last node of the list
-    last_node = *head;
-    while(last_node->next != NULL)
-    {
-        last_node = last_node->next;
-    }
-    
-    //add new node in the end of the list
-    last_node->next = new_node;
 }
 
-void ft_export()
-{
+/**
 
-}
+ * se formato 1 (nome) 
+    a) existe na lista de vars -> buscar na var_list e adicionar nó no env
+    b) nao existe na vars list -> nao faz nada
+ * se formato 2 (nome=maria)
+ *  a) existe ja em env -> update_env
+ *  b) nao existe no env -> adicionar nó no env diretamente 
+*/

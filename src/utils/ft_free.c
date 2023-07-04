@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 12:15:36 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 11:20:40 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,14 @@ void ft_free_cmds(t_ms *ms)
 				}
 				free (ms->cmds[i].redirs);
 			}
-			while(ms->cmds[i].args[j])
+			while(j < ms->count_args[i] + 1)
 			{
-				if (ms->cmds[i].args[j])
+				if(ms->cmds[i].type != PIPE_LINE)
 				{
-					if(ms->cmds[i].type != PIPE_LINE)
-					{
-						//printf("Cmd[%d]Args[%d] Free %s\n", i, j, ms->cmds[i].args[j]);
+					if(ms->cmds[i].args[j])
 						free (ms->cmds[i].args[j]);
-					}
 				}
+			
 				j++;
 			}
 			j = 0;

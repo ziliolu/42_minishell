@@ -6,33 +6,35 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 20:22:40 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:45:48 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_expand(t_env *list, char *variable)
+char	*ft_expand(t_env *env, t_var *vars, char *variable)
 {
 	char	*str;
-	char	*tmp;
 
-	tmp = ft_strtrim(variable, "$");
-	printf("%s\n", tmp);
-	str = ft_capitalize(tmp);
-	printf("%s\n", str);
-	free(tmp);
+	str= ft_strtrim(variable, "$");
 	if(ft_strcmp(str, "?") == 0)
 	{
 		return (ft_itoa(g_exit_status));
 	}
-	while (list)
+	while (env)
 	{
-		if (ft_strcmp(str, list->name) == 0)
-			return (list->info);
-		list = list->next;
+		if (ft_strcmp(str, env->name) == 0)
+			return (ft_strdup(env->info));
+		env = env->next;
+	}
+	while(vars)
+	{
+		if (ft_strcmp(str, vars->name) == 0)
+			return (ft_strdup(vars->info));
+		vars = vars->next;
 	}
 	free(str);
+	//nao teria que retornar \n quando nao conseguir expandir? ex: echo $pwd
 	return (NULL);
 }
 
