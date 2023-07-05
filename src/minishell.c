@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 14:23:42 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:46:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv, char **system_env)
 	ms.print_cmd = 0;
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
-	ms.vars = (t_var **)ft_calloc(1, sizeof(t_var *));
+	ms.vars = (t_lst **)ft_calloc(1, sizeof(t_lst *));
 	while (1)
 	{
 		ft_handle_signals(); 
@@ -68,7 +68,6 @@ int main(int argc, char **argv, char **system_env)
 				//ft_parser();
 				//ft_is_executable(&ms);
    				ms.ms_argv = ft_split(read_content, ' ');
-
 				ft_run_cmds(&ms);
 				// ft_is_variable(&ms);
 			}
@@ -202,7 +201,7 @@ bool ft_is_absolute_path(char *ms_argv)
 */
 char *ft_getenv(t_ms *ms, char *name)
 {
-	t_env *list;
+	t_lst *list;
 
 	list = ms->ms_env;
 	while(list)

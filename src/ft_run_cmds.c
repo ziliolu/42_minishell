@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 15:21:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:56:10 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void ft_run_cmds(t_ms *ms)
     //     ft_print_command_nodes(ms, ms->n_pipes);
     ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);
-    ms->ms_env_array = ft_env_to_array(ms);
+    ms->ms_env_array = ft_list_to_array(ms);
 	ft_init_pipes(ms);
     while(ms->cmds[i].type)
     {
@@ -114,16 +114,17 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     else if(ft_strcmp(cmd->args[0], "cd") == 0)
         ft_cd(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "env") == 0)
-        ft_print_env(ms);
+        ft_print_list(ms->ms_env);
     else if(ft_strcmp(cmd->args[0], "pwd") == 0)
-        printf("%s\n", ft_return_env_info(ms, "PWD"));
+        printf("%s\n", ft_return_list_info(ms->ms_env, "PWD"));
     else if(ft_strchr_vars(cmd->args[0], '='))
-        ft_add_local_variable(ms->vars, ft_get_env_name(cmd->args[0]), ft_strtrim(ft_strchr_vars(cmd->args[0], '='), "="));
+        ft_add_node_to_list(ms, ms->vars, cmd->args[0]);
     else if(ft_strcmp(cmd->args[0], "export") == 0)
-        ft_export(ms, cmd);
+        ft_export(ms, cmd->args[1]);
+    else if(ft_strcmp(cmd->args[0], "args") == 0)
+        ft_print_local_variables(ms->vars);
     else if(!ft_is_executable(ms, cmd))
         printf("minishell: command not found: %s\n", cmd->args[0]);
-    ft_print_local_variables(ms->vars);
 }
 
 void ft_init_pipes(t_ms *ms)

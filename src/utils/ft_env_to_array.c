@@ -3,44 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_to_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:03:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 10:28:19 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:18:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char **ft_env_to_array(t_ms *ms)
+char **ft_list_to_array(t_ms *ms)
 {
 	int		size;
 	int		i;
 	int		tmp_size;
 	char	**array;
-	t_env	*list;
+	t_lst	*lst;
 	
 	i = 0;
 	size = 0;
-	list = ms->ms_env;
-	while (list != NULL)
+	lst = ms->ms_env;
+	while (lst != NULL)
 	{	
 		size++;
-		list = list->next;
+		lst = lst->next;
 	}
-	list = ms->ms_env;
+	lst = ms->ms_env;
 	array = (char **)ft_calloc(size + 1, sizeof(char *));
 	if (array)
 	{
 		array[size] = NULL;
 		while (i < size)
 		{
-			tmp_size = ft_strlen(list->full_info);
+			tmp_size = ft_strlen(lst->full_info);
 			array[i] = (char *)ft_calloc(tmp_size, sizeof(char));
 			if (!array[i])
 				return (NULL);
-			ft_strlcpy(array[i], list->full_info, tmp_size);
-			list = list->next;
+			ft_strlcpy(array[i], lst->full_info, tmp_size);
+			lst = lst->next;
 			i++;
 		}
 	}

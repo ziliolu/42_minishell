@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_update_env.c                                    :+:      :+:    :+:   */
+/*   ft_print_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 11:45:26 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/28 15:01:22 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/06/08 11:39:38 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/04 15:48:14 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_update_env(t_ms *ms, char *name, char *new_info)
+void	ft_print_list(t_lst *lst)
 {
-    t_env *list;
+	int i;
 
-    list = ms->ms_env;
-   while(list)
-   {
-        if(ft_strcmp(list->name, name) == 0)
-        {
-            list->full_info = ft_strjoin(name, ft_strjoin("=", new_info));
-            list->info = new_info;
-            return ;
-        }
-        list = list->next;
-   }
+	i = 0;
+	while (lst != NULL)
+	{	
+		printf("%s\n", lst->full_info);
+		lst = lst->next;
+		i++;
+	}
 }
+

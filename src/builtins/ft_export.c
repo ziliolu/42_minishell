@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 15:26:30 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:17:03 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,24 @@
     serão visíveis no ambiente e serão listadas pelo comando env.
 */
 
-void ft_export(t_ms *ms, t_command *cmd)
+//export nome=luiza
+void ft_export(t_ms *ms, char *str)
 {
-    if(ft_strchr_vars(cmd->args[1], '='))
+    if(ft_is_already_in_list(ft_get_list_name(str), ms->ms_env))
     {
-        
+        ft_update_list_info(ms->ms_env, str);
+    }
+    else if(ft_is_already_in_list(ft_get_list_name(str), *ms->vars))
+    {
+        if(!ft_strchr_vars(str, '='))
+            str = ft_return_list_full_info(*ms->vars, str);
+        ft_add_export_node(&ms->ms_env, str);
+        ft_remove_node_list(ms->vars, str);
+    }
+    else
+    {
+        if(ft_strchr_vars(str, '='))
+            ft_add_export_node(&ms->ms_env, str);
     }
 }
 
@@ -37,6 +50,7 @@ void ft_export(t_ms *ms, t_command *cmd)
     a) existe na lista de vars -> buscar na var_list e adicionar nó no env
     b) nao existe na vars list -> nao faz nada
  * se formato 2 (nome=maria)
- *  a) existe ja em env -> update_env
- *  b) nao existe no env -> adicionar nó no env diretamente 
+ *  a) existe ja em env -> update_env (nao adicionar em lista local)
+ *  b) nao existe no env nem na lista -> adicionar nó na lista local diretamente 
+ *  c) existe ja na lista -> update lista 
 */

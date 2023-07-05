@@ -1,12 +1,12 @@
 
 #include "../../../includes/minishell.h"
 
-char	*ft_get_env_info(char *set)
+char	*ft_get_list_name(char *set)
 {
 	int 	i;
 	
 	i = 0;
 	while (set[i] != '=')
 		i++;
-	return (ft_substr(set, i+1, ft_strlen(set)));
+	return (ft_substr(set, 0, i));
 }

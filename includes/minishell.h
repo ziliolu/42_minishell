@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 15:07:33 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:04:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 # include <fcntl.h>
 
 
-typedef struct s_env
+typedef struct s_lst
 {
     char 		*name;
 	char 		*info;
     char 		*full_info;
-    struct s_env *next;
-}	t_env;
+    struct s_lst *next;
+}	t_lst;
 
-//extern t_env **ms_env; 
+//extern t_lst **ms_env; 
 
 extern int g_exit_status;
 
@@ -56,12 +56,12 @@ enum e_token
 	CMD,
 };
 
-typedef struct s_var
-{
-	char *name;
-	char *info;
-	struct s_var *next;	
-}				t_var;
+// typedef struct s_var
+// {
+// 	char *name;
+// 	char *info;
+// 	struct s_var *next;	
+// }				t_lst;
 
 enum e_status
 {
@@ -104,7 +104,7 @@ typedef struct s_command
 
 typedef struct s_ms
 {
-	t_env		*ms_env;
+	t_lst		*ms_env;
 	char 		**ms_env_array;
     char 		**paths;
     char 		**system_env;
@@ -114,7 +114,7 @@ typedef struct s_ms
 	int 		n_pipes; 
 	int			std_in;
 	int 		std_out;
-	t_var		**vars;
+	t_lst		**vars;
 	t_command 	*cmds;
 	t_pipe 		*pipes;
 	int			is_print;
@@ -129,12 +129,12 @@ void		ft_run_command(char *command, char **env);
 void		ft_create_env(t_ms *ms, char **env);
 
 //-----> ft_env functions <-----//
-t_env		*ft_new_node(char *str);
-t_env		*ft_find_last(t_env *list);
-char		*ft_get_env_name(char *set);
-char		*ft_get_env_info(char *set);
-void		ft_add_node(t_env **header, char *str);
-void		ft_print_list(t_env *list);
+t_lst		*ft_new_node(char *str);
+t_lst		*ft_find_last(t_lst *list);
+char		*ft_get_list_name(char *set);
+char		*ft_get_list_info(char *set);
+void		ft_add_node(t_lst **header, char *str);
+void		ft_print_list(t_lst *list);
 
 bool		ft_is_executable(t_ms *ms, t_command *cmd);
 bool		ft_is_absolute_path(char *input);
@@ -167,9 +167,9 @@ bool 		ft_is_redir(enum e_token type);
 bool		ft_is_there_quote(char *str);
 char		*ft_token_status(enum e_status status);
 char		*ft_token_type(enum e_token type);
-char		*ft_expand(t_env *list, t_var *vars, char *variable);
+char		*ft_expand(t_lst *list, t_lst *vars, char *variable);
 char 		*ft_token_status(enum e_status status);
-char		**ft_env_to_array(t_ms *ms);
+char		**ft_list_to_array(t_ms *ms);
 char 		*ft_token_type(enum e_token type);
 char		*ft_return_env_info(t_ms *ms, char *name);
 char 		*ft_strtrim_end(char *str, char set);
@@ -192,7 +192,6 @@ void 		ft_is_heredoc(t_command *cmd, t_redirect *redir);
 void 		ft_pipeline(t_ms *ms);
 void 		ft_init_pipes(t_ms *ms);
 void		ft_handle_signals();
-void		ft_print_env(t_ms *ms);
 void		ft_filter_cmd(t_ms *ms, t_command *cmd);
 void        ft_cd(t_ms *ms, t_command *cmd);
 void		ft_update_env(t_ms *ms, char *name, char *new_info);
@@ -200,15 +199,22 @@ char		*ft_return_env_info(t_ms *ms, char *name);
 bool		ft_is_there_quote(char *str);
 char 		*ft_strtrim_end(char *str, char set);
 void		ft_count_args(t_ms *ms, t_elem *list);
-char		**ft_env_to_array(t_ms *ms);
+char		**ft_list_to_array(t_ms *ms);
 void		ft_print_array(char **str);
-void		ft_add_local_variable(t_var **head, char *name, char *info);
+void		ft_add_local_variable(t_lst **head, char *name, char *info);
 char		*ft_strchr_vars(char *s, char c);
 void		ft_change_standard_in_out(t_command *cmd);
 void		ft_reset_fd_in_out(t_ms *ms);
 void		ft_echo(t_command *cmd);
 char		*ft_capitalize(char *str);
-void		ft_print_local_variables(t_var **head);
-void		ft_update_vars(t_var *list, char *name, char *info);
-bool		ft_is_already_var(char *name, t_var *list);
+void		ft_print_local_variables(t_lst **head);
+void		ft_update_list_info(t_lst *list, char *str);
+bool		ft_is_already_in_list(char *name, t_lst *list);
+void		ft_export(t_ms *ms, char *str);
+char		*ft_return_list_info(t_lst *lst, char *name);
+void		ft_add_node_to_list(t_ms *ms, t_lst **head, char *str);
+char		*ft_return_list_full_info(t_lst *lst, char *name);
+t_lst		*ft_find_second_to_last(t_lst **head);
+void		ft_add_export_node(t_lst **header, char *str);
+void 		ft_remove_node_list(t_lst **head, char *name);
 #endif

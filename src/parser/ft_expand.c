@@ -6,13 +6,13 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 14:45:48 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:48:59 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_expand(t_env *env, t_var *vars, char *variable)
+char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 {
 	char	*str;
 

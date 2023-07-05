@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 10:56:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/05 11:51:24 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void ft_cd(t_ms *ms, t_command *cmd)
     pwd = ft_calloc(1, sizeof(char));
     oldpwd = ft_calloc(1, sizeof(char));
     //oldpwd = getcwd(pwd, 4096);
-    oldpwd = ft_return_env_info(ms, "PWD");//pwd atual guardado no env
+    oldpwd = ft_return_list_full_info(ms->ms_env, "PWD");//pwd atual guardado no env
     if(ft_strcmp(cmd->args[1], "..") == 0)
         pwd = ft_strtrim_end(oldpwd, '/');
     else
@@ -33,8 +33,8 @@ void ft_cd(t_ms *ms, t_command *cmd)
     // printf("pwd: %s\n", pwd);
     if(chdir(pwd) == 0)
     {
-        ft_update_env(ms, "PWD", pwd);
-        ft_update_env(ms, "OLDPWD", oldpwd);
+        ft_update_list_info(ms->ms_env, pwd);
+        ft_update_list_info(ms->ms_env, oldpwd);
     }
     else
         printf("cd: no such file or directory: %s\n", cmd->args[1]);

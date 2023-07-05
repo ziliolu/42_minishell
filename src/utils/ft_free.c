@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 11:20:40 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:53:07 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void ft_free_cmds(t_ms *ms)
 
 void	ft_free_env(t_ms *ms)
 {
-	t_env *list;
+	t_lst *list;
 	
 	list = NULL;
 	list = ms->ms_env;

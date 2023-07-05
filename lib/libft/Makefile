@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+         #
+#    By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 09:29:52 by lpicoli-          #+#    #+#              #
-#    Updated: 2023/06/03 17:22:56 by ialves-m         ###   ########.fr        #
+#    Updated: 2023/07/04 15:42:36 by lpicoli-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,16 +46,6 @@ SRC =	./ft_atoi.c 		\
 		./ft_substr.c		\
 		./ft_tolower.c		\
 		./ft_toupper.c		\
-
-SRC_BONUS =		./ft_lstnew.c			\
-				./ft_lstadd_front.c 	\
-				./ft_lstsize.c 			\
-				./ft_lstlast.c 			\
-				./ft_lstadd_back.c 		\
-				./ft_lstdelone.c		\
-				./ft_lstclear.c			\
-				./ft_lstiter.c			\
-				./ft_lstmap.c			
 
 OBJ = $(SRC:.c=.o)                                                                                                                                                                                                 
 OBJ_BONUS = $(SRC_BONUS:.c=.o)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 

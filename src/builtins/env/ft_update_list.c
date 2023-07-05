@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_update_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/18 15:42:27 by root              #+#    #+#             */
-/*   Updated: 2023/05/30 09:27:23 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/06/27 11:45:26 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/04 15:31:02 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../../includes/minishell.h"
 
-
-t_list	*ft_lstnew(void *content)
+void	ft_update_list(t_ms *ms, char *name, char *new_info)
 {
-	t_list	*node;
+    t_lst *lst;
 
-	node = malloc(sizeof(*node));
-	if (!node)
-		return (NULL);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+    lst = ms->ms_env;
+   while(lst)
+   {
+        if(ft_strcmp(lst->name, name) == 0)
+        {
+            lst->full_info = ft_strjoin(name, ft_strjoin("=", new_info));
+            lst->info = new_info;
+            return ;
+        }
+        lst = lst->next;
+   }
 }
-
-/*int main()
-{
-	t_list *node;
-	int a = 42;
-
-	node = ft_lstnew(&a);
-	while(node)
-	{
-		printf("%d\n", *(int *)node->content);
-		node = node->next;
-	}
-	free(node);
-}*/
