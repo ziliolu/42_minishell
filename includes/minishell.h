@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 13:26:42 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:11:46 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,4 +220,9 @@ void 		ft_remove_node_list(t_lst **head, char *name);
 void 		ft_unset(t_lst **list, char *str);
 void    	ft_print_export(t_lst *lst);
 void	ft_update_list(t_lst *list, char *name, char *new_info);
+char	*ft_broken_cmds(char *str);
+
+
+
+
 #endif

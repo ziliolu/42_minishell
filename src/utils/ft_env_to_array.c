@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:03:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/05 11:18:43 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:55:03 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char **ft_list_to_array(t_ms *ms)
 		array[size] = NULL;
 		while (i < size)
 		{
-			tmp_size = ft_strlen(lst->full_info);
+			tmp_size = ft_strlen(lst->full_info) + 1;
 			array[i] = (char *)ft_calloc(tmp_size, sizeof(char));
 			if (!array[i])
 				return (NULL);

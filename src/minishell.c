@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 10:53:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:15:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,16 @@ int main(int argc, char **argv, char **system_env)
 			// if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
 			// 	break ;
 			tmp_prompt =  ft_strtrim(read_content, " ");
+			free(read_content);
+			read_content = ft_broken_cmds(tmp_prompt);
 			if(ft_strcmp(tmp_prompt, "exit") == 0)
 			{
 				free(tmp_prompt);
 				ft_free_env(&ms);
 				ft_free_array(ms.paths);
 				break ;
-			}			if(ft_is_there_quote(read_content))
+			}			
+			if(ft_is_there_quote(read_content))
 			{
 				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
 					continue ; // pular restante e voltar a mostrar o prompt 
@@ -71,13 +74,12 @@ int main(int argc, char **argv, char **system_env)
 				ft_run_cmds(&ms);
 				// ft_is_variable(&ms);
 			}
-			
+			ft_free_array(ms.ms_argv);
+			ft_free_cmds(&ms);
+			ft_free_array(ms.ms_env_array);
+			free(ms.count_args);
+			free(tmp_prompt);
 		}
-		ft_free_array(ms.ms_argv);
-		ft_free_cmds(&ms);
-		ft_free_array(ms.ms_env_array);
-		free(ms.count_args);
-		free(tmp_prompt);
 	}
 	wait(&pid);
 
