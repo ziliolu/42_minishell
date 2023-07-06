@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 15:33:39 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:01:02 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 			pid = fork();
 			if (pid == 0)
 				execve(cmd->args[0], cmd->args, ms->ms_env_array);
-			else
-				wait(&pid);
+			waitpid(pid, &status, 0);
+			if(WIFEXITED(status))
+				g_exit_status = WEXITSTATUS(status);	
+			else if(WIFSIGNALED(status))
+				g_exit_status = WTERMSIG(status);
+			return (true);
 		}
 		return (false);
 	}
@@ -68,8 +72,6 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 					g_exit_status = WEXITSTATUS(status);	
 				else if(WIFSIGNALED(status))
 					g_exit_status = WTERMSIG(status);	
-				// dup2(ms->std_out, STDOUT_FILENO);
-				// dup2(ms->std_in, STDIN_FILENO);
 				free(total_path);
 				free(path_w_slash);
 				return (true);

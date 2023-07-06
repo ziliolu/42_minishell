@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/05 11:51:24 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:45:12 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,29 @@ void ft_cd(t_ms *ms, t_command *cmd)
     char *pwd;
     char *oldpwd;
     
-    pwd = ft_calloc(1, sizeof(char));
-    oldpwd = ft_calloc(1, sizeof(char));
-    //oldpwd = getcwd(pwd, 4096);
-    oldpwd = ft_return_list_full_info(ms->ms_env, "PWD");//pwd atual guardado no env
-    if(ft_strcmp(cmd->args[1], "..") == 0)
-        pwd = ft_strtrim_end(oldpwd, '/');
+    // pwd = ft_calloc(1, sizeof(char));
+    // oldpwd = ft_calloc(1, sizeof(char));
+
+    oldpwd = ft_return_list_info(ms->ms_env, "PWD");//pwd atual guardado no env
+    if(ft_is_absolute_path(cmd->args[1]))
+       pwd = ft_strdup(cmd->args[1]);
     else
-        pwd = ft_strjoin(oldpwd, ft_strjoin("/", ft_strtrim(cmd->args[1], "/")));  
-        //pwd = ft_strjoin(oldpwd, ft_strjoin("/", cmd->args[1]));
-    
-    // printf("oldpwd: %s\n", oldpwd);
-    // printf("pwd: %s\n", pwd);
-    if(chdir(pwd) == 0)
     {
-        ft_update_list_info(ms->ms_env, pwd);
-        ft_update_list_info(ms->ms_env, oldpwd);
+        if(ft_strcmp(cmd->args[1], "..") == 0)
+            pwd = ft_strtrim_end(oldpwd, '/');
+        else
+            pwd = ft_strjoin(oldpwd, ft_strjoin("/", ft_strtrim(cmd->args[1], "/")));  
+        
+    }
+    if(chdir(pwd) == 0)//info
+    {
+        ft_update_list(ms->ms_env, "PWD", pwd); //full info
+        ft_update_list(ms->ms_env, "OLDPWD", oldpwd); //full info
     }
     else
         printf("cd: no such file or directory: %s\n", cmd->args[1]);
-    //free(pwd);
-    //free(oldpwd);
+    // free(pwd);
+    // free(oldpwd);
 }
 
 char *ft_strtrim_end(char *str, char set)

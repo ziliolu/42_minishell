@@ -75,3 +75,8 @@ ls -a
 🔴 ls --help
 🔴 ls > "abc"
 
+## EXPORT
+
+- [] export name=maria=joao
+- [] export name==maria
+- []

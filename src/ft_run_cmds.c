@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/05 15:56:10 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 11:31:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,10 +121,18 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         ft_add_node_to_list(ms, ms->vars, cmd->args[0]);
     else if(ft_strcmp(cmd->args[0], "export") == 0)
         ft_export(ms, cmd->args[1]);
+    else if(ft_strcmp(cmd->args[0], "unset") == 0)
+    {
+        if(!ft_strchr_vars(cmd->args[1], '='))
+            ft_remove_node_list(&ms->ms_env, cmd->args[1]);
+    }
     else if(ft_strcmp(cmd->args[0], "args") == 0)
         ft_print_local_variables(ms->vars);
     else if(!ft_is_executable(ms, cmd))
+    {
         printf("minishell: command not found: %s\n", cmd->args[0]);
+        g_exit_status = 127;
+    }
 }
 
 void ft_init_pipes(t_ms *ms)

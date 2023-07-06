@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/05 16:04:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:26:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void		ft_reset_fd_in_out(t_ms *ms);
 void		ft_echo(t_command *cmd);
 char		*ft_capitalize(char *str);
 void		ft_print_local_variables(t_lst **head);
-void		ft_update_list_info(t_lst *list, char *str);
+void		ft_update_list_info(t_lst *list, char *name, char *info);
 bool		ft_is_already_in_list(char *name, t_lst *list);
 void		ft_export(t_ms *ms, char *str);
 char		*ft_return_list_info(t_lst *lst, char *name);
@@ -217,4 +217,7 @@ char		*ft_return_list_full_info(t_lst *lst, char *name);
 t_lst		*ft_find_second_to_last(t_lst **head);
 void		ft_add_export_node(t_lst **header, char *str);
 void 		ft_remove_node_list(t_lst **head, char *name);
+void 		ft_unset(t_lst **list, char *str);
+void    	ft_print_export(t_lst *lst);
+void	ft_update_list(t_lst *list, char *name, char *new_info);
 #endif

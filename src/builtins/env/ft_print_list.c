@@ -25,3 +25,14 @@ void	ft_print_list(t_lst *lst)
 	}
 }
 
+void    ft_print_export(t_lst *lst)
+{
+    int i;
+    i = 0;
+    while (lst != NULL)
+    {   
+        printf("declare -x %s\n", lst->full_info);
+        lst = lst->next;
+        i++;
+    }
+}

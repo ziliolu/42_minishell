@@ -12,19 +12,16 @@
 
 #include "../../../includes/minishell.h"
 
-void	ft_update_list(t_ms *ms, char *name, char *new_info)
+void	ft_update_list(t_lst *list, char *name, char *new_info)
 {
-    t_lst *lst;
-
-    lst = ms->ms_env;
-   while(lst)
+   while(list)
    {
-        if(ft_strcmp(lst->name, name) == 0)
+        if(ft_strcmp(list->name, name) == 0)
         {
-            lst->full_info = ft_strjoin(name, ft_strjoin("=", new_info));
-            lst->info = new_info;
+            list->full_info = ft_strjoin(name, ft_strjoin("=", new_info));
+            list->info = new_info;
             return ;
         }
-        lst = lst->next;
+        list = list->next;
    }
 }

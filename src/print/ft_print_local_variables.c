@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:29:10 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/05 15:59:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 10:46:50 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_print_local_variables(t_lst **head)
     i = 0;
     while(lst != NULL)
     {
-        printf("[%d] %s = %s\n", i, lst->name, lst->info);
+        printf("[%d] %s=%s\n", i, lst->name, lst->info);
         i++;
         lst = lst->next;
     }
