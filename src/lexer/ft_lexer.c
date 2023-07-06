@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 10:28:26 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 22:13:38 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,25 @@ void ft_lexer(t_ms *ms, char *str)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
 		else
         {
-            if(str[i] == '$' && (ft_is_valid_character(str[i + 1]) || str[i + 1] == '?') && squote_flag == 0)
-                ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), ENV, status));
-            else
-                ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
-            i = i + ft_count_char(str + i) - 1;
-        }
+            if(str[i] == '$' && (ft_is_valid_character(str[i + 1]) || str[i + 1] == '?'))
+            {
+				ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
+				i = i + ft_count_char_env(str + i) - 1;
+			
+			}
+			else
+            {
+				ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
+				i = i + ft_count_char(str + i) - 1;
+        	}
+		}
         if(!str[i + 1])
             break;
         i++;
     }
     ft_count_args(ms, *elem_head);
     ft_parser(ms, *elem_head);
+
     if(ms->is_print)
     {
         ft_print_tokens(ms, *elem_head);
@@ -120,31 +127,28 @@ int ft_count_char(char *str)
 { 
     int i;
     i = 0;
-    while(str[i] != WHITE_SPACE && str[i] != PIPE_LINE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE && str[i] != '\0')
-        i++;
-    return (i);
+    while(str[i] != WHITE_SPACE && str[i] != PIPE_LINE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE && str[i] != '$' && str[i] != '\0')
+    {
+		i++;
+	}
+	return (i);
 }
 
-
-/* void ft_env(char **env)
-{
-	t_env	**env_head;
-	t_env	*list;
-	int		i;
-
-	//Inicialização do Ponteiro para a lista de Nodes
-	env_head = (t_env **)malloc(sizeof(t_env *));
-
-	//Criação do Primeiro Node
-	i = 0;
-	list = ft_new_node(env[i++]);
-	*env_head = list;
+int ft_count_char_env(char *str)
+{ 
+    int i;
+    i = 0;
 	
-	//Criação dos Seguintes Nodes
-	while (env[i])
-		ft_add_node(env_head, env[i++]);
-
-	//Impressão da lista com todos os elementos do "env"
-	//ft_print_list(*env_head);
-	ms_env = env_head;
-} */
+	i++;
+    while(str[i] != WHITE_SPACE && str[i] != PIPE_LINE && str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE && ft_valid_env(str[i]) && str[i] != '\0')
+    {
+		i++;
+	}
+	return (i);
+}
+int	ft_valid_env(char c)
+{
+	if ((c >= 65 && c <= 90 ) || (c == 95) || (c >= 97 && c <= 122))
+		return (1);
+	return (0);
+}

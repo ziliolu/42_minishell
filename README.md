@@ -84,14 +84,16 @@ ls -a
 # TESTS 
 
 ## LUIZA
-- [] echo bonjour ; |
+- [x] echo bonjour ; |
 - [] echo bonjour | |
 - [] |
-- [] echo bonjour |;
-- [] echo bonjour ; ls
+- [x] echo bonjour |;
+- [x] echo bonjour ; ls
 - [] echo bonjour > test\ 1
-- [] cd $HOME/Documents
-- [] echo "\s" & echo "\s"
+
+#
+- [x] cd $HOME/Documents
+- [] echo "\s" && echo "\s"
 - [] echo >
 - [] echo -n -n -nnnn -nnnnm
 - [] cat /dev/random | head -n 1 | cat -e
@@ -109,13 +111,13 @@ ls -a
 - [] echo 2 >> out1 > out2
 - [] echo 2 > out1 >> out2
 - [] cat < test # with non-existent test
-- [] export var; export var=test
+- [x] export var; export var=test
 - [] echo bonjour > $test # with test not defined
 - [] file_name_in_current_dir
-- [] cd ../../../../../.. ; pwd
+- [x] cd ../../../../../.. ; pwd
 - [] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
 - [] ctrl-\ .131 sur bin
-- [] echo "bip | bip ; coyotte > < " "
+- [x] echo "bip | bip ; coyotte > < " "
 - [] cat | cat | cat | ls # check outputs order
 - [] $bla # with bla not defined
 - [] export var ="cat Makefile | grep >"
@@ -132,7 +134,7 @@ ls -a
 - [] exit # should return the last exit code value
 - [] exit -10
 - [] exit +10
-- [] ;
+- [x] ;
 
 ## IVO
 - [x] echo coucou |
@@ -151,7 +153,7 @@ ls -a
 - [] echo "\"
 - [x] echo "\n \n \n"
 - [] echo "\n \n \\n"
-- [] echo ;;
+- [x] echo ;;
 - [x] echo hi";" hihi
 - [x] echo hi " ; " hihi
 - [] cd

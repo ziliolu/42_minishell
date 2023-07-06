@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 16:29:47 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 23:32:53 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,24 @@ void ft_parser(t_ms *ms, t_elem *list)
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(tmp_str, list->data); 
 				list = list->next;
-				while(list->type != DOUBLE_QUOTE)
+					while(list->type != DOUBLE_QUOTE)
 				{
 					if(list->type == ENV)
 					{
-						// if (str)
-						// 	free (str);
-						if(str)
-							str = 
-						str = ft_strdup(ft_expand(ms->ms_env, *ms->vars, list->data));
+						if (!tmp_str)
+						{
+							str = ft_expand(ms->ms_env, *ms->vars, list->data);
+							tmp_str = ft_expand(ms->ms_env, *ms->vars, list->data);
+
+						}
+						else
+						{
+							if (str)
+								free (str);
+							str = ft_strjoin(tmp_str, ft_expand(ms->ms_env, *ms->vars, list->data));
+							free(tmp_str);
+							tmp_str = ft_strdup(str);
+						}
 					}
 					else
 					{
@@ -167,12 +176,12 @@ void ft_parser(t_ms *ms, t_elem *list)
 			else if (ms->cmds[i].args[j] != NULL)
 			{
 				ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], ft_strdup(list->data));
-				// if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
-				// 	j++;
 			}
 			else if (list->type != WHITE_SPACE)
 			{
 				ms->cmds[i].args[j] = ft_strdup(list->data);
+				if (ft_is_dot_comma(ms->cmds[i].args[j]) && list->status != IN_SQUOTE && list->status != IN_DQUOTE)
+					ms->dot_comma_flag = true;
 				if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
 					j++;
 			}

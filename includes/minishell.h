@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 15:11:46 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 23:30:45 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_ms
 	int			is_print;
 	int 		print_cmd;
 	int			exit_status;
+	bool		dot_comma_flag;
 }	t_ms;
 
 // ==== utils ====
@@ -219,10 +220,10 @@ void		ft_add_export_node(t_lst **header, char *str);
 void 		ft_remove_node_list(t_lst **head, char *name);
 void 		ft_unset(t_lst **list, char *str);
 void    	ft_print_export(t_lst *lst);
-void	ft_update_list(t_lst *list, char *name, char *new_info);
-char	*ft_broken_cmds(char *str);
-
-
-
+void		ft_update_list(t_lst *list, char *name, char *new_info);
+char		*ft_broken_cmds(char *str);
+int 		ft_count_char_env(char *str);
+int			ft_valid_env(char c);
+bool		ft_is_dot_comma(char *str);
 
 #endif

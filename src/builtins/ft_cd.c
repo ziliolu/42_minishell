@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 13:45:12 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 21:18:59 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 void ft_cd(t_ms *ms, t_command *cmd)
 {
-    (void)ms;
-    (void)cmd;
-    char *pwd;
-    char *oldpwd;
-    
-    // pwd = ft_calloc(1, sizeof(char));
-    // oldpwd = ft_calloc(1, sizeof(char));
+    char 	*pwd;
+    char 	*oldpwd;
 
     oldpwd = ft_return_list_info(ms->ms_env, "PWD");//pwd atual guardado no env
     if(ft_is_absolute_path(cmd->args[1]))
-       pwd = ft_strdup(cmd->args[1]);
+	{
+		pwd = ft_strdup(cmd->args[1]);
+	}
     else
     {
         if(ft_strcmp(cmd->args[1], "..") == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 11:31:42 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 22:48:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         printf("minishell: command not found: %s\n", cmd->args[0]);
         g_exit_status = 127;
     }
+	ft_free_array(ms->ms_env_array);
+
 }
 
 void ft_init_pipes(t_ms *ms)
