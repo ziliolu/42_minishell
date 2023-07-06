@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 14:50:04 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:29:47 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 				{
 					if(list->type == ENV)
 					{
-						if (str)
-							free (str);
+						// if (str)
+						// 	free (str);
+						if(str)
+							str = 
 						str = ft_strdup(ft_expand(ms->ms_env, *ms->vars, list->data));
 					}
 					else

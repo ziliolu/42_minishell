@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 15:15:35 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:12:56 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
@@ -71,6 +71,7 @@ int main(int argc, char **argv, char **system_env)
 				//ft_parser();
 				//ft_is_executable(&ms);
    				ms.ms_argv = ft_split(read_content, ' ');
+				
 				ft_run_cmds(&ms);
 				// ft_is_variable(&ms);
 			}
