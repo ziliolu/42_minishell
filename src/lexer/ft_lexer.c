@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 22:13:38 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:26:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ void ft_lexer(t_ms *ms, char *str)
 {
     enum e_status status;
     t_elem **elem_head;
+    char *str_tmp;
     int squote_flag;
     int dquote_flag;
     int i;
+    int n_char;
+    int index;
     
     (void) ms;
     status = GENERAL; //default
@@ -29,8 +32,10 @@ void ft_lexer(t_ms *ms, char *str)
 
     // if(ft_check_syntax_error())
     //     return (ft_error());
+    
     while(str[i])
     {
+        str_tmp = NULL;
         if(str[i] == WHITE_SPACE && status != GENERAL)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
         else if(str[i] == SINGLE_QUOTE)
@@ -97,9 +102,27 @@ void ft_lexer(t_ms *ms, char *str)
         {
             if(str[i] == '$' && (ft_is_valid_character(str[i + 1]) || str[i + 1] == '?'))
             {
-				ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
-				i = i + ft_count_char_env(str + i) - 1;
-			
+                index = i;
+                while(str[index] != WHITE_SPACE)
+                {
+                    if(!str_tmp)
+                        str_tmp = ft_strndup(str + index, 1);
+                    else
+                        str_tmp = ft_strjoin(str_tmp, ft_strndup(str + index, 1));
+                    if((ft_is_already_in_list(ft_strtrim(str_tmp, "$"), ms->ms_env)) || ft_is_already_in_list(ft_strtrim(str_tmp, "$"), *ms->vars))
+                    {
+                       // i = index + 1;
+                        break ;
+                    }
+                    index++;
+                    //i++;
+                }
+                if(index != i)
+                    n_char = index - i + 1;
+                else 
+                    n_char = ft_count_char_env(str + i);
+				ft_add_new_elem(elem_head, ft_new_elem(str + i, n_char, ENV, status));
+				i = i + n_char - 1;
 			}
 			else
             {
