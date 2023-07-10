@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 10:13:39 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:33:02 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void ft_lexer(t_ms *ms, char *str)
     dquote_flag = 0;
     elem_head = (t_elem **)ft_calloc(1, sizeof(t_elem *));
     i = 0;
-
     // if(ft_check_syntax_error())
     //     return (ft_error());
     
@@ -102,7 +101,7 @@ void ft_lexer(t_ms *ms, char *str)
             if(str[i] == '$' && (ft_is_valid_character(str[i + 1]) || str[i + 1] == '?'))
             {
                 index = i;
-                while(str[index] != WHITE_SPACE)
+                while(str[index] && str[index] != WHITE_SPACE)
                 {
                     if(!str_tmp)
                         str_tmp = ft_strndup(str + index, 1);
@@ -117,13 +116,27 @@ void ft_lexer(t_ms *ms, char *str)
                     index++;
                     //i++;
                 }
+                if(i < index)
+                {
+                    ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
+                    i = i + ft_count_char_env(str + i); 
+                } 
 			}
 			else
             {
-                if(str[i - 1] == '$')
-                    i--;
-				ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
-				i = i + ft_count_char(str + i) - 1;
+                // if(str[i - 1] && str[i - 1] == '$')
+                // {ccvvv
+
+                //     i--;
+                //     ft_add_new_elem(elem_head, ft_new_eelem(str + i, ft_count_char_env(str + i), WORD, status));
+                //     i = i + ft_count_char_env(str + i);
+                                    
+                // }
+                // else
+                //{
+                    ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
+                    i = i + ft_count_char(str + i);        
+                //}
         	}
 		}
         if(!str[i + 1])
