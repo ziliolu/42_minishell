@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 15:23:30 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:53:15 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,8 @@ bool ft_is_valid_character(char character) {
 
 bool ft_is_absolute_path(char *ms_argv)
 {
+	if(!ms_argv)
+		return(false);
 	if(ms_argv[0] == '/' || (ms_argv[0] == '.' && ms_argv[1] == '/')
 		|| (ms_argv[0] == '.' && ms_argv[1] == '.' && ms_argv[2] == '/'))
 	 	return (true);

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 15:18:13 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:22:49 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_lexer(t_ms *ms, char *str)
     int squote_flag;
     int dquote_flag;
     int i;
-    int index;
+    //int index;
     
     (void) ms;
     status = GENERAL; //default
@@ -100,28 +100,30 @@ void ft_lexer(t_ms *ms, char *str)
         {
             if(str[i] == '$' && (ft_is_valid_character(str[i + 1]) || str[i + 1] == '?'))
             {
-                index = i;
-                while(str[index] && str[index] != WHITE_SPACE)
-                {
-                    if(!str_tmp)
-                        str_tmp = ft_strndup(str + index, 1);
-                    else
-                        str_tmp = ft_strjoin(str_tmp, ft_strndup(str + index, 1));
-                    if((ft_is_already_in_list(ft_strtrim(str_tmp, "$"), ms->ms_env)) || ft_is_already_in_list(ft_strtrim(str_tmp, "$"), *ms->vars))
-                    {
-                        ft_add_new_elem(elem_head, ft_new_elem(str + i, index - i + 1, ENV, status));
-                        i = i + (index - i);
-                        break ;
-                    }
-                    index++;
-                    //i++;
-                }
-                if(i < index)
-                {
-                    ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
-                    i = i + ft_count_char_env(str + i) - 1; 
-                } 
-			}
+                // index = i;
+                // while(str[index] && str[index] != WHITE_SPACE)
+                // {
+                //     if(!str_tmp)
+                //         str_tmp = ft_strndup(str + index, 1);
+                //     else
+                //         str_tmp = ft_strjoin(str_tmp, ft_strndup(str + index, 1));
+                //     if((ft_is_already_in_list(ft_strtrim(str_tmp, "$"), ms->ms_env)) || ft_is_already_in_list(ft_strtrim(str_tmp, "$"), *ms->vars))
+                //     {
+                //         ft_add_new_elem(elem_head, ft_new_elem(str + i, index - i + 1, ENV, status));
+                //         i = i + (index - i);
+                //         break ;
+                //     }
+                //     index++;
+                //     //i++;
+                // }
+                // if(i < index)
+                // {
+                //     ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
+                //     i = i + ft_count_char_env(str + i) - 1; 
+                // } 
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
+                i = i + ft_count_char_env(str + i) - 1; 
+            }
 			else
             {
                 // if(str[i - 1] && str[i - 1] == '$')

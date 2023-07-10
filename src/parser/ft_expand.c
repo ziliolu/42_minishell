@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 12:01:30 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:33:30 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 {
 	char	*str;
 
+	index = i;
+	
 	str= ft_strtrim(variable, "$");
+				
 	if(ft_strcmp(str, "?") == 0)
 	{
 		return (ft_itoa(g_exit_status));
