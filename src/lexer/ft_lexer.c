@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 15:09:11 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:18:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,10 +144,6 @@ void ft_lexer(t_ms *ms, char *str)
         i++;
     }
 	ms->lexed_list = elem_head;
-    if(ms->is_print)
-    {
-        ft_print_tokens(ms, *elem_head);
-    }
 
 }
 

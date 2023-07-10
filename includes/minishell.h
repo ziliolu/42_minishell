@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 15:07:59 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:28:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,5 +226,6 @@ char		*ft_broken_cmds(char *str);
 int 		ft_count_char_env(char *str);
 int			ft_valid_env(char c);
 bool		ft_is_dot_comma(char *str);
+bool		ft_arg_exist(char *arg);
 
 #endif
