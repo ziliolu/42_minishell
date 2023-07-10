@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/07 16:32:11 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:10:07 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ int main(int argc, char **argv, char **system_env)
 			{
 				ft_lexer(&ms, read_content);
    				ms.ms_argv = ft_split(read_content, ' ');
-
+				ft_count_args(&ms, *ms.lexed_list);
+				ft_parser(&ms, *ms.lexed_list);
+				ft_free_elem_list(*ms.lexed_list);
+				free(*ms.lexed_list);
 				if (!ms.dot_comma_flag) // Aqui é verificada uma flag (ativada no parser) para determinar se ; é aceite ou não
 					ft_run_cmds(&ms);
 				else
