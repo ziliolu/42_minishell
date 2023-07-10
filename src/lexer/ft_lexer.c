@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 11:33:02 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:49:04 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void ft_lexer(t_ms *ms, char *str)
                 if(i < index)
                 {
                     ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
-                    i = i + ft_count_char_env(str + i); 
+                    i = i + ft_count_char_env(str + i) - 1; 
                 } 
 			}
 			else
@@ -135,7 +135,7 @@ void ft_lexer(t_ms *ms, char *str)
                 // else
                 //{
                     ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char(str + i), WORD, status));
-                    i = i + ft_count_char(str + i);        
+                    i = i + ft_count_char(str + i) - 1;        
                 //}
         	}
 		}

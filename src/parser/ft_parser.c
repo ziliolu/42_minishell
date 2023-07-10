@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 23:32:53 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:00:40 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,9 +192,9 @@ void ft_parser(t_ms *ms, t_elem *list)
 				{
 					list = list->next;
 				}
-				if(ms->cmds[i].args[j])
-					j++;
 			}
+			if(ms->cmds[i].args[j])
+				j++;
 		}
 		i++;
 		j = 0;
