@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 16:22:49 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:53:07 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,11 @@ void ft_lexer(t_ms *ms, char *str)
                 // } 
                 ft_add_new_elem(elem_head, ft_new_elem(str + i, ft_count_char_env(str + i), ENV, status));
                 i = i + ft_count_char_env(str + i) - 1; 
+            }
+            else if(str[i] == '$' && !str[i + 1])
+            {
+                ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WORD, status));
+                i++;
             }
 			else
             {

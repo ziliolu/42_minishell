@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/11 12:39:26 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:44:09 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,13 @@ int main(int argc, char **argv, char **system_env)
 			}
 			if(read_content[0] != '\0')
 			{
-				printf(" aqui");
 				ft_lexer(&ms, read_content);
-				printf(" aqui");
 				ft_cmd_args_validation(&ms);
    				ms.ms_argv = ft_split(read_content, ' ');
 				ft_count_args(&ms, *ms.lexed_list);
 				ft_parser(&ms, *ms.lexed_list);
 				if(ms.is_print)
-				{
 					ft_print_tokens(&ms, *ms.lexed_list);
-				}
 				ft_free_elem_list(*ms.lexed_list);
 				free(ms.lexed_list);
 				if (!ms.dot_comma_flag) // Aqui é verificada uma flag (ativada no parser) para determinar se ; é aceite ou não

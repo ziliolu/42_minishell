@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:45:13 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 10:55:59 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:45:47 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void ft_echo(t_command *cmd)
 	
 	if (cmd->args[1] && ft_strcmp(cmd->args[1], "-n") == 0)
 		ft_printf("%s", str);
-	else
+	else if(cmd->args[1])
 		ft_printf("%s\n", str);
 	if (str)
 		free (str);

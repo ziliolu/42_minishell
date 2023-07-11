@@ -92,12 +92,12 @@ ls -a
 - [] echo bonjour > test\ 1
 - [x] cd $HOME/Documents
 - [] echo "\s" && echo "\s"
-- [] echo >
+- [x] echo >
 - [] echo -n -n -nnnn -nnnnm
 - [] cat /dev/random | head -n 1 | cat -e
 - [] unset var1 # with undefined var1
 - [] export "" et unset ""
-- [] echo test > file test1
+- [x] echo test > file test1
 - [] $
 - [] not_cmd bonjour > salut
 - [] env puis export puis env # vars aren't sorted
@@ -146,8 +146,8 @@ ls -a
 - [] echo
 - [x] echo simple
 - [] echo -n simple
-- [] echo ''
-- [] echo ""
+- [x] echo ''
+- [x] echo ""
 - [] echo "\"
 - [x] echo "\n \n \n"
 - [] echo "\n \n \\n"
