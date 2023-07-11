@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 16:33:30 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 10:17:58 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 {
 	char	*str;
 
-	index = i;
+	//index = i;
 	
 	str= ft_strtrim(variable, "$");
 				

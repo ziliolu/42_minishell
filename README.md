@@ -85,13 +85,11 @@ ls -a
 
 ## LUIZA
 - [x] echo bonjour ; |
-- [] echo bonjour | |
-- [] |
+- [x] echo bonjour | |
+- [x] |
 - [x] echo bonjour |;
 - [x] echo bonjour ; ls
 - [] echo bonjour > test\ 1
-
-#
 - [x] cd $HOME/Documents
 - [] echo "\s" && echo "\s"
 - [] echo >
@@ -156,9 +154,9 @@ ls -a
 - [x] echo ;;
 - [x] echo hi";" hihi
 - [x] echo hi " ; " hihi
-- [] cd
+- [x] cd
 - [x] cd .
-- [] cd ~
+- [x] cd ~
 - [x] cd /
 - [x] cd no_file
 - [] cd a b c d

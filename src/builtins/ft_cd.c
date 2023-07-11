@@ -6,11 +6,20 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 15:59:24 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:26:53 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+bool ft_is_home_path(char *str)
+{
+    if(!ft_arg_exist(str))
+       return (true);
+    if(ft_strcmp(str, "~") || ft_strcmp(str, "/"))
+        return (true);
+    return (false);
+}
 
 void ft_cd(t_ms *ms, t_command *cmd)
 {
@@ -24,11 +33,10 @@ void ft_cd(t_ms *ms, t_command *cmd)
     path = NULL;
     tmp = NULL;
     
-    if(!ft_arg_exist(cmd->args[1]))
+    if(ft_is_home_path(cmd->args[1]))
         pwd =  ft_return_list_info(ms->ms_env, "HOME");
-    
-    oldpwd = ft_return_list_info(ms->ms_env, "PWD");//pwd atual guardado no env
-    while(cmd->args[i])
+    oldpwd = ft_return_list_info(ms->ms_env, "PWD");
+    while(!ft_is_home_path(cmd->args[1]) && cmd->args[i])
     {
         if(!tmp)
         {
@@ -46,8 +54,7 @@ void ft_cd(t_ms *ms, t_command *cmd)
         }
         i++;
     }
-    printf("%s\n", path);
-    if(path && ft_is_absolute_path(path))
+    if(!ft_is_home_path(cmd->args[1]) && ft_is_absolute_path(cmd->args[1]))
 		pwd = ft_strdup(path);
     else if(path)
     {
@@ -57,20 +64,22 @@ void ft_cd(t_ms *ms, t_command *cmd)
             pwd = ft_strjoin(oldpwd, ft_strjoin("/", ft_strtrim(path, "/")));  
         
     }
-    if(chdir(pwd) == 0)//info
+    if((chdir(pwd) == 0 && ms->spaces_flag == 1 ) || ft_is_home_path(cmd->args[1]))
     {
-        ft_update_list(ms->ms_env, "PWD", pwd); //full info
-        ft_update_list(ms->ms_env, "OLDPWD", oldpwd); //full info
+        ft_update_list(ms->ms_env, "PWD", pwd);
+        ft_update_list(ms->ms_env, "OLDPWD", oldpwd);
     }
-    else if (path[0] == '$')
-    {
+    else if (path[0] == '$' && ms->spaces_flag == 1)
         chdir(ft_return_list_info(ms->ms_env, "HOME"));
-    }
+    else if(ms->spaces_flag > 1)
+        ft_error("cd: to many arguments");
     else
-        printf("cd: no such file or directory: %s\n", path);
+        printf("minishell: cd: no such file or directory: %s\n", path);
     // free(pwd);
     // free(oldpwd);
 }
+
+
 
 char *ft_strtrim_end(char *str, char set)
 {
@@ -92,10 +101,3 @@ char *ft_strtrim_end(char *str, char set)
     }
     return (NULL); 
 }
-
-/**
- * 1. recebe o caminho absoluto ou relativo
- * 2. getcwd para saber o diretorio atual
- * 3. entra nesse diretorio
- * 
-*/

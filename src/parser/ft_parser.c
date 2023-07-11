@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 16:24:03 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:58:32 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 	enum e_token	tmp;
 
 	i = 0;
+	ms->spaces_flag = 0;
 	counter = ft_count_tokens(list);
 	ms->n_pipes = ft_count_pipes(list);
 	ms->cmds = ft_calloc(ms->n_pipes * 2 + 2, sizeof(t_command));
@@ -192,6 +193,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 				{
 					list = list->next;
 				}
+				ms->spaces_flag++;
 			}
 			if(ms->cmds[i].args[j])
 				j++;

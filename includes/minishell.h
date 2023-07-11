@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 15:28:43 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 11:57:55 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef struct s_ms
 	int 		print_cmd;
 	int			exit_status;
 	bool		dot_comma_flag;
+	int			spaces_flag;
 }	t_ms;
 
 // ==== utils ====
@@ -227,5 +228,7 @@ int 		ft_count_char_env(char *str);
 int			ft_valid_env(char c);
 bool		ft_is_dot_comma(char *str);
 bool		ft_arg_exist(char *arg);
+bool ft_error(char *msg);
+bool ft_cmd_args_validation(t_ms *ms);
 
 #endif

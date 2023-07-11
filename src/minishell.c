@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/10 15:53:15 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:39:26 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 1;
+	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 
@@ -53,6 +53,10 @@ int main(int argc, char **argv, char **system_env)
 			tmp_prompt =  ft_strtrim(read_content, " ");
 			free(read_content);
 			read_content = ft_broken_cmds(tmp_prompt);
+			if(!read_content){
+				// printf(" NUUUUL");
+				continue ;
+			}
 			if(ft_strcmp(tmp_prompt, "exit") == 0)
 			{
 				free(tmp_prompt);
@@ -67,7 +71,10 @@ int main(int argc, char **argv, char **system_env)
 			}
 			if(read_content[0] != '\0')
 			{
+				printf(" aqui");
 				ft_lexer(&ms, read_content);
+				printf(" aqui");
+				ft_cmd_args_validation(&ms);
    				ms.ms_argv = ft_split(read_content, ' ');
 				ft_count_args(&ms, *ms.lexed_list);
 				ft_parser(&ms, *ms.lexed_list);
