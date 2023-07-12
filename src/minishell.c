@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/11 12:44:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:42:40 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 
@@ -52,13 +52,14 @@ int main(int argc, char **argv, char **system_env)
 			// 	break ;
 			tmp_prompt =  ft_strtrim(read_content, " ");
 			free(read_content);
-			read_content = ft_broken_cmds(tmp_prompt);
+			read_content = ft_broken_cmds(&ms, tmp_prompt);
 			if(!read_content){
 				// printf(" NUUUUL");
 				continue ;
 			}
 			if(ft_strcmp(tmp_prompt, "exit") == 0)
 			{
+				ft_printf("exit\n");
 				free(tmp_prompt);
 				ft_free_env(&ms);
 				ft_free_array(ms.paths);
@@ -72,20 +73,22 @@ int main(int argc, char **argv, char **system_env)
 			if(read_content[0] != '\0')
 			{
 				ft_lexer(&ms, read_content);
-				ft_cmd_args_validation(&ms);
    				ms.ms_argv = ft_split(read_content, ' ');
 				ft_count_args(&ms, *ms.lexed_list);
 				ft_parser(&ms, *ms.lexed_list);
-				if(ms.is_print)
-					ft_print_tokens(&ms, *ms.lexed_list);
-				ft_free_elem_list(*ms.lexed_list);
-				free(ms.lexed_list);
-				if (!ms.dot_comma_flag) // Aqui é verificada uma flag (ativada no parser) para determinar se ; é aceite ou não
-					ft_run_cmds(&ms);
-				else
+				if(ft_cmd_args_validation(&ms))
 				{
-					printf("minishell: syntax error near unexpected token `;'\n");
-					ms.dot_comma_flag = false;
+					if(ms.is_print)
+						ft_print_tokens(&ms, *ms.lexed_list);
+					ft_free_elem_list(*ms.lexed_list);
+					free(ms.lexed_list);
+					if (!ms.dot_comma_flag) // Aqui é verificada uma flag (ativada no parser) para determinar se ; é aceite ou não
+						ft_run_cmds(&ms);
+					else
+					{
+						ft_error(&ms, "minishell: syntax error near unexpected token `;'\n", NULL);
+						ms.dot_comma_flag = false;
+					}	
 				}	
 			}
 			ft_free_array(ms.ms_argv);

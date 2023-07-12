@@ -6,14 +6,13 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/11 11:57:55 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:26:47 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
 
-# include <readline/readline.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>
@@ -25,6 +24,7 @@
 # include "../lib/libft/libft.h"
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <errno.h>
 
 
 typedef struct s_lst
@@ -209,26 +209,25 @@ char		*ft_strchr_vars(char *s, char c);
 void		ft_change_standard_in_out(t_command *cmd);
 void		ft_reset_fd_in_out(t_ms *ms);
 void		ft_echo(t_command *cmd);
-char		*ft_capitalize(char *str);
 void		ft_print_local_variables(t_lst **head);
 void		ft_update_list_info(t_lst *list, char *name, char *info);
 bool		ft_is_already_in_list(char *name, t_lst *list);
-void		ft_export(t_ms *ms, char *str);
+void		ft_export(t_ms *ms, t_command *cmd);
 char		*ft_return_list_info(t_lst *lst, char *name);
 void		ft_add_node_to_list(t_ms *ms, t_lst **head, char *str);
 char		*ft_return_list_full_info(t_lst *lst, char *name);
 t_lst		*ft_find_second_to_last(t_lst **head);
 void		ft_add_export_node(t_lst **header, char *str);
 void 		ft_remove_node_list(t_lst **head, char *name);
-void 		ft_unset(t_lst **list, char *str);
 void    	ft_print_export(t_lst *lst);
 void		ft_update_list(t_lst *list, char *name, char *new_info);
-char		*ft_broken_cmds(char *str);
+char		*ft_broken_cmds(t_ms *ms, char *str);
 int 		ft_count_char_env(char *str);
 int			ft_valid_env(char c);
 bool		ft_is_dot_comma(char *str);
 bool		ft_arg_exist(char *arg);
-bool ft_error(char *msg);
+bool 		ft_error(t_ms *ms, char *msg, char *str);
 bool ft_cmd_args_validation(t_ms *ms);
+void ft_unset(t_ms *ms);
 
 #endif

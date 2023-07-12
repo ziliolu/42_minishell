@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/11 12:26:53 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:14:58 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void ft_cd(t_ms *ms, t_command *cmd)
     else if (path[0] == '$' && ms->spaces_flag == 1)
         chdir(ft_return_list_info(ms->ms_env, "HOME"));
     else if(ms->spaces_flag > 1)
-        ft_error("cd: to many arguments");
+        ft_error(ms, "cd: to many arguments", NULL);
     else
-        printf("minishell: cd: no such file or directory: %s\n", path);
+        ft_error(ms, "cd: no such file or directory %s\n", path);
     // free(pwd);
     // free(oldpwd);
 }

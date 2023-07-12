@@ -83,35 +83,38 @@ ls -a
 
 # TESTS 
 
+## BONUS
+- [] echo "\s" && echo "\s"
+- [] export "" && unset ""
+
 ## LUIZA
 - [x] echo bonjour ; |
 - [x] echo bonjour | |
 - [x] |
 - [x] echo bonjour |;
 - [x] echo bonjour ; ls
-- [] echo bonjour > test\ 1
+- [x] echo bonjour > test\ 1 (nao tratar)
 - [x] cd $HOME/Documents
-- [] echo "\s" && echo "\s"
 - [x] echo >
-- [] echo -n -n -nnnn -nnnnm
+- [x] echo -n -n -nnnn -nnnnm
 - [] cat /dev/random | head -n 1 | cat -e
-- [] unset var1 # with undefined var1
-- [] export "" et unset ""
+- [x] unset var1 # with undefined var1
+- [x] export ""
 - [x] echo test > file test1
-- [] $
+- [x] $
 - [] not_cmd bonjour > salut
 - [] env puis export puis env # vars aren't sorted
 - [] cat Makefile | grep pr | head -n 5 | cd test (mybin) # check status code
 - [] cat Makefile | grep pr | head -n 5 | cat test (bin) # check status code
 - [] cat Makefile | grep pr | head -n 5 | hello (NA) # check status code
-- [] echo bonjour >>> test
-- [] echo bonjour > > out
-- [] echo 2 >> out1 > out2
-- [] echo 2 > out1 >> out2
+- [x] echo bonjour >>> test
+- [x] echo bonjour > > out
+- [x] echo 2 >> out1 > out2
+- [x] echo 2 > out1 >> out2
 - [] cat < test # with non-existent test
 - [x] export var; export var=test
 - [] echo bonjour > $test # with test not defined
-- [] file_name_in_current_dir
+- [x] file_name_in_current_dir
 - [x] cd ../../../../../.. ; pwd
 - [] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
 - [] ctrl-\ .131 sur bin
@@ -119,7 +122,7 @@ ls -a
 - [] cat | cat | cat | ls # check outputs order
 - [] $bla # with bla not defined
 - [] export var ="cat Makefile | grep >"
-- [] export "test=ici"=coucou
+- [x] export "test=ici"=coucou
 - [] c$var Makefile # with var=at
 - [] $LESS$VAR
 - [] /bin/echo bonjour

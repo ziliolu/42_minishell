@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 13:41:26 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:32:51 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,19 @@
 */
 
 //export nome=luiza
-void ft_export(t_ms *ms, char *str)
+void ft_export(t_ms *ms, t_command *cmd)
 {
     char *name;
     char *info;
+    char *str;
 
+    str = cmd->args[1];
+    if(cmd->args[2] && cmd->args[2][0] == '=')
+    {
+        ft_reset_fd_in_out(ms);
+        ft_printf("minishell: export: `%s': not a valid identifier\n", cmd->args[2]);
+        return ;
+    }
     name = ft_get_list_name(str);
     info = ft_get_list_info(str);
     if (!str)

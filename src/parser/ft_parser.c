@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/11 11:58:32 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:36:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,20 +183,23 @@ void ft_parser(t_ms *ms, t_elem *list)
 				ms->cmds[i].args[j] = ft_strdup(list->data);
 				if (ft_is_dot_comma(ms->cmds[i].args[j]) && list->status != IN_SQUOTE && list->status != IN_DQUOTE)
 					ms->dot_comma_flag = true;
-				if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
-					j++;
+				// if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
+				// 	j++;
 			}
 			list = list->next;
+			int space = 0;
 			if(list && list->type == WHITE_SPACE)
 			{
 				while(list && list->type == WHITE_SPACE)
 				{
 					list = list->next;
 				}
+				space++;
 				ms->spaces_flag++;
 			}
-			if(ms->cmds[i].args[j])
+			if(ms->cmds[i].args[j] && space != 0)
 				j++;
+				
 		}
 		i++;
 		j = 0;

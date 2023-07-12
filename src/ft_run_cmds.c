@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 22:48:17 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:26:34 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <unistd.h>
 
 void ft_run_cmds(t_ms *ms)
 {
@@ -37,7 +38,7 @@ void ft_run_cmds(t_ms *ms)
             {
                 while(k < ft_count_redirs_cmd(&ms->cmds[i]))  
                 {
-                    if(ms->cmds[i].redirs[k].type == REDIR_OUT || ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
+                    if(ms->cmds[i].redirs[k].type == REDIR_OUT || ms->cmds[i].redirs[k].type == D_REDIR_OUT)
                         ms->cmds[i].out = open(ms->cmds[i].redirs[k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
                     else if (ms->cmds[i].redirs[k].type == REDIR_IN)
                         ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
@@ -120,17 +121,14 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     else if(ft_strchr_vars(cmd->args[0], '='))
         ft_add_node_to_list(ms, ms->vars, cmd->args[0]);
     else if(ft_strcmp(cmd->args[0], "export") == 0)
-        ft_export(ms, cmd->args[1]);
+        ft_export(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "unset") == 0)
-    {
-        if(!ft_strchr_vars(cmd->args[1], '='))
-            ft_remove_node_list(&ms->ms_env, cmd->args[1]);
-    }
+        ft_unset(ms);
     else if(ft_strcmp(cmd->args[0], "args") == 0)
         ft_print_local_variables(ms->vars);
     else if(!ft_is_executable(ms, cmd))
     {
-        printf("minishell: command not found: %s\n", cmd->args[0]);
+        ft_error(ms, "command not found:", cmd->args[0]);
         g_exit_status = 127;
     }
 	ft_free_array(ms->ms_env_array);
