@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 15:59:01 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:06:47 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         // ft_error(ms, "command not found", cmd->args[0]);
         g_exit_status = 127;
     }
-	ft_free_array(ms->ms_env_array);
+	// ft_free_array(ms->ms_env_array);
 
 }
 

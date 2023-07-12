@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cmd_args_validations.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 10:28:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 11:13:21 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:01:34 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ bool ft_redirs_validation(t_ms *ms)
 bool ft_cmd_args_validation(t_ms *ms)
 {
     
-    t_elem *list;
-    list = *ms->lexed_list;
+    // t_elem *list;
+    // list = *ms->lexed_list;
     if(!ft_redirs_validation(ms))
         return (false);
     return (true);

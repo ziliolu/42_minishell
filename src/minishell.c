@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 15:59:00 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:16:37 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 

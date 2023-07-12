@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 11:50:10 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:01:45 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void ft_lexer(t_ms *ms, char *str)
 {
     enum e_status status;
     t_elem **elem_head;
-    char *str_tmp;
+    // char *str_tmp;
     int squote_flag;
     int dquote_flag;
     int i;
@@ -33,7 +33,7 @@ void ft_lexer(t_ms *ms, char *str)
     
     while(str[i])
     {
-        str_tmp = NULL;
+        // str_tmp = NULL;
         if(str[i] == WHITE_SPACE && status != GENERAL)
             ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WHITE_SPACE, status));
         else if(str[i] == SINGLE_QUOTE)
