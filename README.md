@@ -184,7 +184,6 @@ ls -a
 - [x] echo |
 - [x] | echo
 - [] sort | ls # check output order
-
 - [x] cat < Makefile | grep gcc > output
 - [] exit 0 | exit 1
 - [] exit 1 | exit 0

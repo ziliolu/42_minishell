@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:45:13 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 15:57:34 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:35:28 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void ft_echo(t_command *cmd)
 			str = ft_strdup(cmd->args[i]);
 			tmp = ft_strdup(cmd->args[i]);
 		}
-		if (i > 1)
+		else if (i > 1)
 		{
 			if (tmp)
 				free(tmp);
