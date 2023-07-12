@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_lst.c                                    :+:      :+:    :+:   */
+/*   ft_print_export.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 11:39:38 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/04 15:48:14 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/06/13 11:49:32 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/12 15:06:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/minishell.h"
-
-void	ft_print_list(t_lst *lst)
-{
-	int i;
-
-	i = 0;
-	while (lst != NULL)
-	{	
-		printf("%s\n", lst->full_info);
-		lst = lst->next;
-		i++;
-	}
-}
+#include "../../includes/minishell.h"
 
 void    ft_print_export(t_lst *lst)
 {

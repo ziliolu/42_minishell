@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:45:13 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/11 12:45:47 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:57:34 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void ft_echo(t_command *cmd)
     //     printf("args: %s\n", cmd->args[i]);
     //     i++;
     // }
-    i = 1;
+    // i = 1;
 	while (cmd->args[i])
 	{
 		if (!tmp)
@@ -59,6 +59,8 @@ void ft_echo(t_command *cmd)
 		ft_printf("%s", str);
 	else if(cmd->args[1])
 		ft_printf("%s\n", str);
+	else if(!cmd->args[1])
+		ft_printf("\n");
 	if (str)
 		free (str);
 	g_exit_status = 0;

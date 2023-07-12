@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 12:36:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:34:555 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 	int			j;
 	int			k;
 	char		*tmp_str;
+	char 		*str_expanded;
 	int			counter;
 	enum e_token	tmp;
 
@@ -50,7 +51,15 @@ void ft_parser(t_ms *ms, t_elem *list)
 			str = NULL;
 			tmp_str = NULL;
 			if(list->type == ENV && list->status != IN_SQUOTE)
-				ms->cmds[i].args[j] = ft_expand(ms->ms_env, *ms->vars, list->data);
+			{
+				str_expanded = ft_expand(ms->ms_env, *ms->vars, list->data);
+				if(ms->cmds[i].args[j] && str_expanded)
+				{
+					ms->cmds[i].args[j] = ft_strjoin(ms->cmds[i].args[j], str_expanded);
+				}
+				else if(!ms->cmds[i].args[j])
+					ms->cmds[i].args[j] = str_expanded;
+			}
 			else if(list->type == SINGLE_QUOTE)
 			{
 				if(list->status == IN_DQUOTE)

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 13:06:18 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:59:01 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,18 @@ void ft_run_cmds(t_ms *ms)
                         ft_is_heredoc(&ms->cmds[i], &ms->cmds[i].redirs[k]);
                     k++;
                 }
-                if(ms->cmds[i].redirs[k - 1].type == REDIR_OUT)
-                    ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
-                else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
-                    ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
+                if(ms->cmds[i].redirs[k - 1].arg[0] != '$')
+                {
+                    if(ms->cmds[i].redirs[k - 1].type == REDIR_OUT)
+                        ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
+                    else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
+                        ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);    
+                }
+                else
+                {
+                    ft_error_var_start(ms, "ambiguous redirect", ms->cmds[i].redirs[k - 1].arg);
+                    return ;
+                }
             }
 
 			if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
@@ -110,6 +118,8 @@ void ft_reset_fd_in_out(t_ms *ms)
     
 void ft_filter_cmd(t_ms *ms, t_command *cmd)
 {
+    if(!cmd->args[0])
+        return ;
     if(ft_strcmp(cmd->args[0], "echo") == 0)
         ft_echo(cmd);
     else if(ft_strcmp(cmd->args[0], "cd") == 0)
@@ -130,7 +140,9 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         ft_print_local_variables(ms->vars);
     else if(!ft_is_executable(ms, cmd))
     {
-        ft_error(ms, "command not found:", cmd->args[0]);
+        ft_reset_fd_in_out(ms);
+        ft_printf("%s: command not found\n", cmd->args[0]);
+        // ft_error(ms, "command not found", cmd->args[0]);
         g_exit_status = 127;
     }
 	ft_free_array(ms->ms_env_array);
