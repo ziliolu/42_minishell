@@ -133,8 +133,8 @@ ls -a
 - [] minishell # binary not in path without "./" before
 - [] cat diufosgid # check exit code
 - [] exit # should return the last exit code value
-- [] exit -10
-- [] exit +10
+- [x] exit -10
+- [x] exit +10
 - [x] ;
 
 ## IVO
