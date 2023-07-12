@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 20:56:56 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:01:57 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 1;
+	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 
@@ -36,7 +36,7 @@ int main(int argc, char **argv, char **system_env)
 	while (1)
 	{
 		
-		ft_handle_signals(); 
+		ft_handle_signals();
 		read_content = readline(prompt);
 		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
 		{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 11:06:58 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:32:55 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 			{
 				int pid;
 
+				ft_handle_signals_loop();
 				pid = fork();
 				if(pid == 0)
 				{
@@ -71,7 +72,8 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 				if(WIFEXITED(status))
 					g_exit_status = WEXITSTATUS(status);	
 				else if(WIFSIGNALED(status))
-					g_exit_status = WTERMSIG(status);	
+					g_exit_status = status;
+					// g_exit_status = WTERMSIG(status);
 				free(total_path);
 				free(path_w_slash);
 				return (true);
