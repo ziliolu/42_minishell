@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 11:42:40 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:03:16 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int main(int argc, char **argv, char **system_env)
 				// printf(" NUUUUL");
 				continue ;
 			}
-			if(ft_strcmp(tmp_prompt, "exit") == 0)
-			{
-				ft_printf("exit\n");
-				free(tmp_prompt);
-				ft_free_env(&ms);
-				ft_free_array(ms.paths);
-				break ;
-			}			
+			// if(ft_strcmp(tmp_prompt, "exit") == 0)
+			// {
+			// 	ft_printf("exit\n");
+			// 	free(tmp_prompt);
+			// 	ft_free_env(&ms);
+			// 	ft_free_array(ms.paths);
+			// 	break ;
+			// }			
 			if(ft_is_there_quote(read_content))
 			{
 				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento

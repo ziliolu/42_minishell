@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 12:26:34 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:06:18 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         ft_export(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "unset") == 0)
         ft_unset(ms);
+    else if(ft_strcmp(cmd->args[0], "exit") == 0)
+        ft_exit(ms);
     else if(ft_strcmp(cmd->args[0], "args") == 0)
         ft_print_local_variables(ms->vars);
     else if(!ft_is_executable(ms, cmd))

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 12:26:47 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:07:06 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,5 +229,6 @@ bool		ft_arg_exist(char *arg);
 bool 		ft_error(t_ms *ms, char *msg, char *str);
 bool ft_cmd_args_validation(t_ms *ms);
 void ft_unset(t_ms *ms);
+void ft_exit(t_ms *ms);
 
 #endif
