@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 11:14:58 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:18:04 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ bool ft_is_home_path(char *str)
 {
     if(!ft_arg_exist(str))
        return (true);
-    if(ft_strcmp(str, "~") || ft_strcmp(str, "/"))
+    if(ft_strcmp(str, "~") == 0 || ft_strcmp(str, "/") == 0
+        || (ft_strcmp(str, "~/") == 0))
         return (true);
     return (false);
 }
@@ -30,13 +31,19 @@ void ft_cd(t_ms *ms, t_command *cmd)
     int i;
     
     i = 1;
+    pwd = NULL;
     path = NULL;
     tmp = NULL;
     
+    oldpwd = ft_return_list_info(ms->ms_env, "PWD");
     if(ft_is_home_path(cmd->args[1]))
         pwd =  ft_return_list_info(ms->ms_env, "HOME");
-    oldpwd = ft_return_list_info(ms->ms_env, "PWD");
-    while(!ft_is_home_path(cmd->args[1]) && cmd->args[i])
+    else if(ft_strcmp(cmd->args[1], "-") == 0)
+    {
+        pwd = ft_return_list_info(ms->ms_env, "OLDPWD");
+        printf("%s\n", pwd);
+    }
+    while(!pwd && !ft_is_home_path(cmd->args[1]) && cmd->args[i])
     {
         if(!tmp)
         {
@@ -54,8 +61,14 @@ void ft_cd(t_ms *ms, t_command *cmd)
         }
         i++;
     }
-    if(!ft_is_home_path(cmd->args[1]) && ft_is_absolute_path(cmd->args[1]))
-		pwd = ft_strdup(path);
+    path = ft_strtrim(path, "/");
+    if(!pwd && !ft_is_home_path(cmd->args[1]) && ft_is_absolute_path(cmd->args[1]))
+    {
+        if(cmd->args[1][0] == '~' && cmd->args[1][1] == '/') 
+            pwd = ft_strjoin(ft_return_list_info(ms->ms_env, "HOME"), ft_strtrim(path, "~"));
+        else
+    		pwd = ft_strdup(path);
+    }
     else if(path)
     {
         if(ft_strcmp(path, "..") == 0)
@@ -72,9 +85,9 @@ void ft_cd(t_ms *ms, t_command *cmd)
     else if (path[0] == '$' && ms->spaces_flag == 1)
         chdir(ft_return_list_info(ms->ms_env, "HOME"));
     else if(ms->spaces_flag > 1)
-        ft_error(ms, "cd: to many arguments", NULL);
+        ft_error(ms, "cd: too many arguments", NULL);
     else
-        ft_error(ms, "cd: no such file or directory %s\n", path);
+        ft_printf("cd: no such file or directory %s\n", path);
     // free(pwd);
     // free(oldpwd);
 }

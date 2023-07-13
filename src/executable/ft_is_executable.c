@@ -6,36 +6,24 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 10:17:29 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:04:01 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+#define LOOP_TIMEOUT 1
 
 bool ft_is_executable(t_ms *ms, t_command *cmd)
 {
 	int i;
 	int pid;
 	int status;
-
-	i = 0;
-	// if(cmd->out != 1)
-	// {
-	// 	if(dup2(cmd->out, STDOUT_FILENO) == -1)
-	// 	{
-	// 		printf("dup2 error!\n");
-	// 		//printf("fd:%d\n", cmd->out);
-	// 	}
-	// 	close(cmd->out);
-	// }
+	// int child_pid;
+	// int timeout;
 	
-	// if(cmd->in != 0)
-	// {
-	// 	if(dup2(cmd->in, STDIN_FILENO) == -1)
-	// 		printf("dup2 error!\n");
-	// 	close(cmd->in);
-	// }
-
+	i = 0;
+	//timeout = 0;
 	if(ft_is_absolute_path(cmd->args[0]))
 	{
 		if(access(cmd->args[0], X_OK) == 0)
@@ -65,8 +53,27 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 				ft_handle_signals_loop();
 				pid = fork();
 				if(pid == 0)
+				{
 					execve(total_path, cmd->args, ms->ms_env_array);
+				}
+				// else if(pid > 0)
+				// {
+				// 	child_pid = waitpid(pid, &status, WNOHANG);
+				// 	while(timeout < LOOP_TIMEOUT)
+				// 	{
+				// 		sleep(1);
+				// 		timeout++;
+				// 		child_pid = waitpid(pid, &status, WNOHANG);
+				// 	}
+				// }
+				// if(timeout >= LOOP_TIMEOUT)
+				// 	return (true);
+				//close(ms->cmds[1].fd[0]);
+				//close(ms->cmds[1].fd[1]);
+				
+				// ft_reset_fd_in_out(ms);
 				waitpid(pid, &status, 0);
+				//ms->cmds->out = 1;
 				if(WIFEXITED(status)) //com sucesso
 					g_exit_status = WEXITSTATUS(status);		
 				else if(WIFSIGNALED(status))

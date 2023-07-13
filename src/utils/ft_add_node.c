@@ -29,9 +29,14 @@ void	ft_add_export_node(t_lst **header, char *str)
         *header = new;
 		return ;
     }
-	new->next = ft_find_last(*header);			 //novo passa a apontar para o último
-	tmp = ft_find_second_to_last(header); //guarda o penúltimo nó
-	tmp->next = new; 			//penúltimo passa a apontar para o novo nó
+	// tmp = ft_find_second_to_last(header); //guarda o penúltimo nó
+	// new->next = ft_find_last(*header);			 //novo passa a apontar para o último
+	// tmp->next = new; 	
+	
+			//penúltimo passa a apontar para o novo nó
+	tmp = ft_find_last(*header);
+	tmp->next = new;
+	new->next = NULL;
 	//last->next = NULL;
 }
 
@@ -42,7 +47,7 @@ t_lst *ft_find_second_to_last(t_lst **head)
 	list = *head;
 	while(list->next)
 	{
-		if(ft_strcmp(list->next->name, "_") == 0)
+		if(ft_strcmp(list->next->name, "LANG") == 0)
 			return(list);
 		list = list->next;
 	}
