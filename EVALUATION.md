@@ -59,7 +59,7 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [X] Ctrl + \
 - [X] Ctrl + D
 - Test the command cat without arguments
-- [ ] Ctrl + C
-- [ ] Ctrl + \
-- [ ] Ctrl + D
+- [x] Ctrl + C
+- [x] Ctrl + \
+- [x] Ctrl + D
 
