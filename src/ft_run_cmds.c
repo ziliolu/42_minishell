@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 09:51:27 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:51:24 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,15 @@ void ft_run_cmds(t_ms *ms)
                     if(ms->cmds[i].redirs[k].type == REDIR_OUT || ms->cmds[i].redirs[k].type == D_REDIR_OUT)
                         ms->cmds[i].out = open(ms->cmds[i].redirs[k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
                     else if (ms->cmds[i].redirs[k].type == REDIR_IN)
-                        ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
+                    {
+                        if(open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777) != -1)
+                            ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
+                        else
+                        {
+                           ft_error_var_start("No such file or directory", ms->cmds[i].redirs[k].arg); 
+                           return ; 
+                        }
+                    }
                     else if (ms->cmds[i].redirs[k].type == HERE_DOC)
                         ft_is_heredoc(&ms->cmds[i], &ms->cmds[i].redirs[k]);
                     k++;
@@ -55,7 +63,7 @@ void ft_run_cmds(t_ms *ms)
                 }
                 else
                 {
-                    ft_error_var_start(ms, "ambiguous redirect", ms->cmds[i].redirs[k - 1].arg);
+                    ft_error_var_start("ambiguous redirect", ms->cmds[i].redirs[k - 1].arg);
                     return ;
                 }
             }
@@ -82,32 +90,40 @@ void ft_run_cmds(t_ms *ms)
             // }
             if(ms->cmds[i].type != PIPE_LINE)
             {
-                ft_change_standard_in_out(&ms->cmds[i]);
-                ft_filter_cmd(ms, &ms->cmds[i]);
-                ft_reset_fd_in_out(ms);
+                if(ft_change_standard_in_out(&ms->cmds[i]))
+                {
+                    ft_filter_cmd(ms, &ms->cmds[i]);
+                    ft_reset_fd_in_out(ms);
+                }
             }
         }
         i++;
     }
 }
 
-void ft_change_standard_in_out(t_command *cmd)
+bool ft_change_standard_in_out(t_command *cmd)
 {
+    
     if(cmd->out != 1)
 	{
 		if(dup2(cmd->out, STDOUT_FILENO) == -1)
 		{
 			printf("dup2 error!\n");
-			//printf("fd:%d\n", cmd->out);
+			return(false);
 		}
 		close(cmd->out);
 	}
 	if(cmd->in != 0)
 	{
 		if(dup2(cmd->in, STDIN_FILENO) == -1)
-			printf("dup2 error!\n");
-		close(cmd->in);
-	}   
+        {
+            printf("dup2 error!\n");
+            return(false);
+        }
+		else
+            close(cmd->in);
+	}
+    return (true);
 }
 
 void ft_reset_fd_in_out(t_ms *ms)
@@ -141,8 +157,10 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     else if(!ft_is_executable(ms, cmd))
     {
         ft_reset_fd_in_out(ms);
-        ft_printf("%s: command not found\n", cmd->args[0]);
-        // ft_error(ms, "command not found", cmd->args[0]);
+        if(ft_is_absolute_path(cmd->args[0]))
+            ft_error_var_start("No such file or directory", cmd->args[0]);
+        else
+            ft_printf("%s: command not found\n", cmd->args[0]);
         g_exit_status = 127;
     }
 	// ft_free_array(ms->ms_env_array);

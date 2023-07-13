@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 11:07:17 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:25:12 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int main(int argc, char **argv, char **system_env)
 						ft_error(&ms, "minishell: syntax error near unexpected token `;'\n", NULL);
 						ms.dot_comma_flag = false;
 					}	
-				}	
+				}
 			}
 			ft_free_array(ms.ms_argv);
 			ft_free_cmds(&ms);

@@ -75,9 +75,9 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 ​
 ## Single Quotes
 - [x] ls '-la'
-- [ ] ls ''
+- [ ] ls '' # export school=42lisboa bestschool=42porto
 - [x] ls ' '
-- [ ] ls > 'txt'
+- [ ] ls > 'txt' 
 - [ ] ls > "'txt'"
 ​
 ## env
@@ -85,9 +85,9 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] printenv -0
 ​
 ## export
-- [ ] school=42
+- [x] school=42
 - [x] export school=42porto 
-- [ ] export school=42lisboa bestschool=42porto
+- [x] export school=42lisboa bestschool=42porto
 ​
 ## unset
 - [ ] unset school
@@ -95,20 +95,20 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [ ] env
 ​
 ## cd
-- [ ] cd $HOME
-- [ ] cd ~
-- [ ] cd Documents
-- [ ] cd Docs
-- [ ] cd .
-- [ ] cd ..
+- [x] cd $HOME
+- [x] cd ~
+- [x] cd Documents
+- [x] cd Docs
+- [x] cd .
+- [x] cd ..
 ​
 ## pwd
-- [ ] /bin/pwd
-- [ ] pwd -LP
+- [x] /bin/pwd
+- [x] pwd -LP
 ​
 ## Relative Path
-- [ ] /bin/cd .././../
-- [ ] /bin/cd ~/../../home/
+- [x] /bin/cd .././../
+- [x] /bin/cd ~/../../home/
 ​
 ## Environment path
 - [ ] ls
@@ -181,7 +181,7 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo bonjour > > out
 - [x] echo 2 >> out1 > out2
 - [x] echo 2 > out1 >> out2
-- [] cat < test # with non-existent test
+- [x] cat < test # with non-existent test
 - [x] export var; export var=test
 - [] echo bonjour > $test # with test not defined
 - [x] file_name_in_current_dir
@@ -212,8 +212,6 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [] > a ls > b < Makefile
 - [] echo > a Hello World!
 - [] > a echo Hello World!
-
-## IVO
 - [x] echo coucou |
 - [x] echo "$HOME"
 - [x] echo '$HOME'

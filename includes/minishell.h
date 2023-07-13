@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 21:49:22 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:31:25 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ char		**ft_list_to_array(t_ms *ms);
 void		ft_print_array(char **str);
 void		ft_add_local_variable(t_lst **head, char *name, char *info);
 char		*ft_strchr_vars(char *s, char c);
-void		ft_change_standard_in_out(t_command *cmd);
+bool		ft_change_standard_in_out(t_command *cmd);
 void		ft_reset_fd_in_out(t_ms *ms);
 void		ft_echo(t_command *cmd);
 void		ft_print_local_variables(t_lst **head);
@@ -230,8 +230,9 @@ bool 		ft_error(t_ms *ms, char *msg, char *str);
 bool ft_cmd_args_validation(t_ms *ms);
 void ft_unset(t_ms *ms);
 void ft_exit(t_ms *ms);
-bool ft_error_var_start(t_ms *ms, char *msg, char *str);
+bool ft_error_var_start(char *msg, char *str);
 void ft_handler_loop(int signal);
 void ft_handle_signals_loop();
+char *ft_strtrim_end_quote(char *str, char set);
 
 #endif
