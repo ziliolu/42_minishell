@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 14:43:14 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:49:22 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,5 +231,7 @@ bool ft_cmd_args_validation(t_ms *ms);
 void ft_unset(t_ms *ms);
 void ft_exit(t_ms *ms);
 bool ft_error_var_start(t_ms *ms, char *msg, char *str);
+void ft_handler_loop(int signal);
+void ft_handle_signals_loop();
 
 #endif

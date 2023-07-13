@@ -147,7 +147,7 @@ ls -a
 - [x] echo coucou |
 - [x] echo "$HOME"
 - [x] echo '$HOME'
-- [] export
+- [x] export
 - [x] env # display is different for both commands
 - [x] echo $HOME
 - [] > log echo coucou
@@ -182,9 +182,8 @@ ls -a
 - [x] echo $?
 - [x] l^Ds
 - [x] echo |
-- [] | echo
+- [x] | echo
 - [] sort | ls # check output order
-
 - [x] cat < Makefile | grep gcc > output
 - [] exit 0 | exit 1
 - [] exit 1 | exit 0

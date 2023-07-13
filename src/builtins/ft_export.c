@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 15:59:46 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 09:50:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ void ft_export(t_ms *ms, t_command *cmd)
     char *info;
     char *str;
 
-    if(!cmd->args[1])
-        ft_print_export(ms->ms_env);
+	if(!cmd->args[1])
+	{
+		ft_print_export(ms->ms_env);
+		return ;
+	}
+	else if (cmd->args[1] == NULL)
+		ft_error(ms, "export: `': not a valid identifier", NULL);
+	
     str = cmd->args[1];    
     name = ft_get_list_name(str);
     info = ft_get_list_info(str);

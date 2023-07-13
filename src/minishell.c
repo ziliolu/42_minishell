@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 15:59:46 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 09:51:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int main(int argc, char **argv, char **system_env)
 	ms.vars = (t_lst **)ft_calloc(1, sizeof(t_lst *));
 	while (1)
 	{
-		ft_handle_signals(); 
+		
+		ft_handle_signals();
 		read_content = readline(prompt);
 		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
 		{
@@ -44,7 +45,7 @@ int main(int argc, char **argv, char **system_env)
 			ft_free_array(ms.paths);
 			exit(0);
 		}
-		if(ft_strcmp(read_content, "") != 0)
+		if(ft_strcmp(ft_strtrim(read_content, " "), "") != 0)
 		{
 			add_history(read_content);
 			ms.read_size = ft_strlen(read_content);

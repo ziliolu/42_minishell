@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 15:59:46 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 09:51:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         // ft_error(ms, "command not found", cmd->args[0]);
         g_exit_status = 127;
     }
-	ft_free_array(ms->ms_env_array);
+	// ft_free_array(ms->ms_env_array);
 
 }
 
