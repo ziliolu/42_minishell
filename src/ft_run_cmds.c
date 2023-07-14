@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 16:51:24 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:39:55 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     else if(ft_strcmp(cmd->args[0], "cd") == 0)
         ft_cd(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "env") == 0)
-        ft_print_list(ms->ms_env);
+        ft_env(ms->ms_env);
     else if(ft_strcmp(cmd->args[0], "pwd") == 0)
         printf("%s\n", ft_return_list_info(ms->ms_env, "PWD"));
     else if(ft_strchr_vars(cmd->args[0], '='))

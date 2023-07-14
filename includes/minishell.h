@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 17:31:25 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:40:11 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 #define MINISHELL_H
+
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -97,6 +98,8 @@ typedef struct s_command
 	int 		in;
 	int 		out;
 	int 		fd[2];
+	int			pid;
+	int			status;
 	t_redirect 	*redirs;
 	enum e_token operator;
 	enum e_token type;
@@ -234,5 +237,5 @@ bool ft_error_var_start(char *msg, char *str);
 void ft_handler_loop(int signal);
 void ft_handle_signals_loop();
 char *ft_strtrim_end_quote(char *str, char set);
-
+void		ft_env(t_lst *lst);
 #endif

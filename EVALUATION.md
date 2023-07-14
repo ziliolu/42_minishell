@@ -113,7 +113,7 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 ## Environment path
 - [ ] ls
 - [ ] unset $PATH
-- [ ] set $PATH="any/path/at/your/choice"
+- [ ] Set the path $PATH="any/path/at/your/choice"
 ​
 ## Redirection
 - [ ] 

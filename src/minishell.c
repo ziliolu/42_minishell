@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 16:25:12 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/14 11:46:08 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv, char **system_env)
 	char	*prompt;
 	char 	*tmp_prompt;
 	char 	*read_content;
-	int		pid;
+	int		i;
 	t_ms	ms;
 
 	(void)argc;
@@ -35,7 +35,6 @@ int main(int argc, char **argv, char **system_env)
 	ms.vars = (t_lst **)ft_calloc(1, sizeof(t_lst *));
 	while (1)
 	{
-		
 		ft_handle_signals();
 		read_content = readline(prompt);
 		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
@@ -49,23 +48,13 @@ int main(int argc, char **argv, char **system_env)
 		{
 			add_history(read_content);
 			ms.read_size = ft_strlen(read_content);
-			// if(ft_strcmp(ft_strtrim(read_content, " "), "exit") == 0)
-			// 	break ;
 			tmp_prompt =  ft_strtrim(read_content, " ");
 			free(read_content);
 			read_content = ft_broken_cmds(&ms, tmp_prompt);
-			if(!read_content){
-				// printf(" NUUUUL");
+			if(!read_content)
+			{
 				continue ;
 			}
-			// if(ft_strcmp(tmp_prompt, "exit") == 0)
-			// {
-			// 	ft_printf("exit\n");
-			// 	free(tmp_prompt);
-			// 	ft_free_env(&ms);
-			// 	ft_free_array(ms.paths);
-			// 	break ;
-			// }			
 			if(ft_is_there_quote(read_content))
 			{
 				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
@@ -92,14 +81,25 @@ int main(int argc, char **argv, char **system_env)
 					}	
 				}
 			}
+			i = 0;
+			while (ms.cmds[i].args)
+			{
+				if(ms.cmds[i].type != PIPE_LINE)
+				{
+					waitpid(ms.cmds[i].pid, &ms.cmds[i].status, 0);
+					if(WIFEXITED(ms.cmds[i].status))
+						g_exit_status = WEXITSTATUS(ms.cmds[i].status);		
+					else if(WIFSIGNALED(ms.cmds[i].status))
+						g_exit_status = 128 + WTERMSIG(ms.cmds[i].status);
+				}
+				i++;
+			}
 			ft_free_array(ms.ms_argv);
 			ft_free_cmds(&ms);
 			free(ms.count_args);
 			free(tmp_prompt);
 		}
 	}
-	wait(&pid);
-
 	return (0);
 }
 

@@ -12,17 +12,7 @@
 
 #include "../../includes/minishell.h"
 
-void	ft_print_list(t_lst *lst)
+void	ft_env(t_lst *lst)
 {
-	int i;
-
-	i = 0;
-	while (lst != NULL)
-	{	
-		printf("%s\n", lst->full_info);
-		lst = lst->next;
-		i++;
-	}
-	
+	ft_print_list(lst);
 }
-

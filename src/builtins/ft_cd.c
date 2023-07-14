@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 17:34:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:51:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,11 @@ void ft_cd(t_ms *ms, t_command *cmd)
 char *ft_strtrim_end(char *str, char set)
 {
     int i;
-    int j;
     char *new_str;
 
     i = ft_strlen(str);
     if(str[i] == set)
     {
-        j = i;
         new_str = ft_calloc(i - 1, sizeof(char));
         ft_strlcpy(new_str, str, i - 1);
         return(new_str);
