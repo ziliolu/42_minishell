@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 12:52:18 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:41:37 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,14 @@ void ft_export(t_ms *ms, t_command *cmd)
         str = cmd->args[i];    
         name = ft_get_list_name(str);
         info = ft_get_list_info(str);
-        if(cmd->args[i + 1] && cmd->args[i + 1][0] == '=')
+        //falta alterar g_exit_status no erro
+        if((cmd->args[i + 1] && (cmd->args[i + 1][0] == '=')) || !ft_is_export_type(cmd->args[i]))
         {
             ft_reset_fd_in_out(ms);
-            ft_printf("minishell: export: `%s': not a valid identifier\n", cmd->args[i + 1]);
+            if(!ft_is_export_type(cmd->args[i]))
+                ft_printf("minishell: export: `%s': not a valid identifier\n", cmd->args[i]);
+            else
+                ft_printf("minishell: export: `%s': not a valid identifier\n", cmd->args[i + 1]);
             return ;
         }
         if(ft_is_already_in_list(ft_get_list_name(str), ms->ms_env))

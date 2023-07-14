@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 11:39:55 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:14:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void ft_run_cmds(t_ms *ms)
     {
         ms->cmds[i].in = 0;
         ms->cmds[i].out = 1;
+        ms->cmds[i].status = -1;
         k = 0;
         if(ms->cmds[i].type == CMD)
         {
@@ -46,7 +47,7 @@ void ft_run_cmds(t_ms *ms)
                             ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
                         else
                         {
-                           ft_error_var_start("No such file or directory", ms->cmds[i].redirs[k].arg); 
+                           ft_error_var_start("No such file or directory", ms->cmds[i].redirs[k].arg, 1); 
                            return ; 
                         }
                     }
@@ -63,7 +64,7 @@ void ft_run_cmds(t_ms *ms)
                 }
                 else
                 {
-                    ft_error_var_start("ambiguous redirect", ms->cmds[i].redirs[k - 1].arg);
+                    ft_error_var_start("ambiguous redirect", ms->cmds[i].redirs[k - 1].arg, 1);
                     return ;
                 }
             }
@@ -80,7 +81,13 @@ void ft_run_cmds(t_ms *ms)
 			
             if(i > 0 && ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
             {
-                ms->cmds[i].in = ms->cmds[i - 1].fd[0];
+                if(ms->cmds[i - 1].fd[0] != 0)
+                    ms->cmds[i].in = ms->cmds[i - 1].fd[0];
+                else
+                    {
+                        close(ms->cmds[i - 1].fd[0]);
+                        close(ms->cmds[i - 1].fd[1]);
+                    }
             }
             // verificacao do formato "nome=maria" p/ adicionar na lista de argumentos
             // if(ft_strchr_vars(ms->cmds[i].args[0], '='))
@@ -158,7 +165,7 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     {
         ft_reset_fd_in_out(ms);
         if(ft_is_absolute_path(cmd->args[0]))
-            ft_error_var_start("No such file or directory", cmd->args[0]);
+            ft_error_var_start("No such file or directory", cmd->args[0], 2);
         else
             ft_printf("%s: command not found\n", cmd->args[0]);
         g_exit_status = 127;

@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_redir.c                                      :+:      :+:    :+:   */
+/*   ft_is_there_space.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 10:58:57 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 15:39:01 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/07/14 16:54:08 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/14 16:54:18 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool ft_is_redir(enum e_token type)
+bool ft_is_there_space(char *str)
 {
-	if(type == REDIR_IN || type == REDIR_OUT || type == D_REDIR_OUT || type == HERE_DOC)
-		return (true);
-	return (false);
-}
+    int i = 0;
 
-bool ft_is_arg_redir(char *arg)
-{
-	if(ft_strcmp(arg, ">") == 0 || ft_strcmp(arg, ">>") == 0
-		|| ft_strcmp(arg, "<") == 0 || ft_strcmp(arg, "<<") == 0)
-		return (true);
-	return (false);
+    while (str[i] != '\0')
+    {
+        if (str[i] == ' ' || str[i] == '\t')
+            return true;
+        i++;
+    }
+    return false;
 }

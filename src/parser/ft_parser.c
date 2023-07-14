@@ -33,6 +33,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 	while(i <= (ms->n_pipes * 2))
 	{
 		ms->cmds[i].args = ft_calloc(ms->count_args[i] + 1, sizeof(t_command));
+		ms->cmds[i].status = -1;
 		if(!ms->cmds[i].args)
 			return ; 
 		i++;

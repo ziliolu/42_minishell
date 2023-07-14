@@ -90,8 +90,8 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] export school=42lisboa bestschool=42porto
 ​
 ## unset
-- [ ] unset school
-- [ ] unset bestschool
+- [x] unset school
+- [x] unset bestschool
 - [ ] env
 ​
 ## cd
@@ -111,7 +111,7 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] /bin/cd ~/../../home/
 ​
 ## Environment path
-- [ ] ls
+- [x] ls
 - [ ] unset $PATH
 - [ ] Set the path $PATH="any/path/at/your/choice"
 ​
@@ -158,6 +158,7 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo '"$USER"' should print "$USER" variable
 
 ## LUIZA
+- [] cat <<
 - [x] echo bonjour ; |
 - [x] echo bonjour | |
 - [x] |
@@ -183,7 +184,7 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo 2 > out1 >> out2
 - [x] cat < test # with non-existent test
 - [x] export var; export var=test
-- [] echo bonjour > $test # with test not defined
+- [x] echo bonjour > $test # with test not defined
 - [x] file_name_in_current_dir
 - [x] cd ../../../../../.. ; pwd
 - [] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
@@ -193,7 +194,7 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] $bla # with bla not defined
 - [x] export var ="cat Makefile | grep >"
 - [x] export "test=ici"=coucou
-- [] c$var Makefile # with var=at
+- [x] c$var Makefile # with var=at
 - [x] $LESS$VAR
 - [x] /bin/echo bonjour
 - [x] not_cmd
@@ -201,25 +202,25 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo bonjour > $test w/ t
 - [x] "exit retour a la ligne"
 - [x] minishell # binary not in path without "./" before
-- [] cat diufosgid # check exit code
+- [x] cat diufosgid # check exit code
 - [] exit # should return the last exit code value
 - [x] exit -10
 - [x] exit +10
 - [x] ;
-- [] cat < >
-- [] cat < <
+- [x] cat < >
+- [x] cat < <
 - [x] cat > >
-- [] > a ls > b < Makefile
-- [] echo > a Hello World!
-- [] > a echo Hello World!
+- [x] > a ls > b < Makefile
+- [x] echo > a Hello World!
+- [x] > a echo Hello World!
 - [x] echo coucou |
 - [x] echo "$HOME"
 - [x] echo '$HOME'
 - [x] export
 - [x] env # display is different for both commands
 - [x] echo $HOME
-- [] > log echo coucou
-- [] echo hudifg d | | hugdfihd
+- [x] > log echo coucou
+- [x] echo hudifg d | | hugdfihd
 - [x] echo
 - [x] echo simple
 - [x] echo -n simple
@@ -241,7 +242,8 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] export LOL=lala ROR=rara
 - [x] unset LOL ROR
 - [x] export "HI= hi"
-- [] export "HI =hi"
+- [x] export nome=
+- [x] export "HI =hi"
 - [x] /bin/ls
 - [x] # write something the press ctrl+c
 - [x] # write something then press ctrl+d
@@ -250,7 +252,7 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] l^Ds
 - [x] echo |
 - [x] | echo
-- [] sort | ls # check output order
+- [x] sort | ls # check output order
 - [x] cat < Makefile | grep gcc > output
 - [x] exit 0 | exit 1
 - [x] exit 1 | exit 0

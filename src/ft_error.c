@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 10:33:52 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 16:14:37 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:01:17 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ bool ft_error(t_ms *ms, char *msg, char *str)
     return(false);
 }
 
-bool ft_error_var_start(char *msg, char *str)
+bool ft_error_var_start(char *msg, char *str, int err_number)
 {
     if(str)
+    {
         ft_printf("minishell: %s: %s\n", str, msg);
+        g_exit_status = err_number;
+    }
     return (false);
 }

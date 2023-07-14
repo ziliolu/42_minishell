@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 11:40:11 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:54:28 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,9 +233,13 @@ bool 		ft_error(t_ms *ms, char *msg, char *str);
 bool ft_cmd_args_validation(t_ms *ms);
 void ft_unset(t_ms *ms);
 void ft_exit(t_ms *ms);
-bool ft_error_var_start(char *msg, char *str);
+bool ft_error_var_start(char *msg, char *str, int err_number);
 void ft_handler_loop(int signal);
 void ft_handle_signals_loop();
 char *ft_strtrim_end_quote(char *str, char set);
 void		ft_env(t_lst *lst);
+bool ft_is_arg_redir(char *arg);
+bool ft_is_export_type(char *str);
+bool ft_is_there_space(char *str);
+
 #endif

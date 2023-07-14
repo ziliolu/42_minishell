@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 11:46:08 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:17:56 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 
@@ -87,10 +87,13 @@ int main(int argc, char **argv, char **system_env)
 				if(ms.cmds[i].type != PIPE_LINE)
 				{
 					waitpid(ms.cmds[i].pid, &ms.cmds[i].status, 0);
-					if(WIFEXITED(ms.cmds[i].status))
-						g_exit_status = WEXITSTATUS(ms.cmds[i].status);		
-					else if(WIFSIGNALED(ms.cmds[i].status))
-						g_exit_status = 128 + WTERMSIG(ms.cmds[i].status);
+					if(ms.cmds[i].status != -1)
+					{
+						if(WIFEXITED(ms.cmds[i].status))
+							g_exit_status = WEXITSTATUS(ms.cmds[i].status);		
+						else if(WIFSIGNALED(ms.cmds[i].status))
+							g_exit_status = 128 + WTERMSIG(ms.cmds[i].status);
+					}
 				}
 				i++;
 			}
