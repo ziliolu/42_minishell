@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 11:18:13 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:40:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 			if (access(total_path, X_OK) == 0)
 			{
 				ft_handle_signals_loop();
-				cmd->pid = fork();
-				if(cmd->pid == 0)
+				ms->pid = fork();
+				ms->processes++;
+				if(ms->pid == 0)
 				{
 					execve(total_path, cmd->args, ms->ms_env_array);
 				}

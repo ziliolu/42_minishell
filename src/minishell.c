@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 16:17:56 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:46:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int main(int argc, char **argv, char **system_env)
 	ms.vars = (t_lst **)ft_calloc(1, sizeof(t_lst *));
 	while (1)
 	{
+		ms.processes = 0;
 		ft_handle_signals();
 		read_content = readline(prompt);
 		if(!read_content) // for handling ctrl + d -> its seen as an eof and not as a signal
@@ -82,21 +83,8 @@ int main(int argc, char **argv, char **system_env)
 				}
 			}
 			i = 0;
-			while (ms.cmds[i].args)
-			{
-				if(ms.cmds[i].type != PIPE_LINE)
-				{
-					waitpid(ms.cmds[i].pid, &ms.cmds[i].status, 0);
-					if(ms.cmds[i].status != -1)
-					{
-						if(WIFEXITED(ms.cmds[i].status))
-							g_exit_status = WEXITSTATUS(ms.cmds[i].status);		
-						else if(WIFSIGNALED(ms.cmds[i].status))
-							g_exit_status = 128 + WTERMSIG(ms.cmds[i].status);
-					}
-				}
-				i++;
-			}
+
+			ft_wait(&ms);
 			ft_free_array(ms.ms_argv);
 			ft_free_cmds(&ms);
 			free(ms.count_args);
@@ -104,6 +92,23 @@ int main(int argc, char **argv, char **system_env)
 		}
 	}
 	return (0);
+}
+
+void ft_wait(t_ms *ms)
+{
+	if(waitpid(ms->pid, &ms->status, 0) != -1)
+	{
+		if(WIFEXITED(ms->status))
+			g_exit_status = WEXITSTATUS(ms->status);		
+		else if(WIFSIGNALED(ms->status))
+			g_exit_status = 128 + WTERMSIG(ms->status);
+		ms->processes--;
+	}
+	while(ms->processes)
+	{
+		wait(0);
+		ms->processes--;
+	}
 }
 
 bool ft_is_variable(t_ms *ms)
