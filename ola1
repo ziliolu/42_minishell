@@ -9,6 +9,7 @@ Makefile
 minishell
 minishell_tester.sh
 ola
+ola1
 readline.supp
 README.md
 src

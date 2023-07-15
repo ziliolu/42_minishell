@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 11:57:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:44:54 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_command
 	int			pid;
 	int			status;
 	t_redirect 	*redirs;
+	bool		err;
 	enum e_token operator;
 	enum e_token type;
 }	t_command;

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 11:55:38 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:45:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void ft_run_cmds(t_ms *ms)
         ms->cmds[i].in = 0;
         ms->cmds[i].out = 1;
         ms->cmds[i].status = -1;
+        ms->cmds[i].err = false;
         k = 0;
         if(ms->cmds[i].type == CMD)
         {
@@ -47,10 +48,16 @@ void ft_run_cmds(t_ms *ms)
                     {
                         if(open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777) != -1)
                             ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
-                        else
+                        else if(!ms->cmds[i + 1].args)
                         {
+                            ms->cmds[i].err = true;
                            ft_error_var_start("No such file or directory", ms->cmds[i].redirs[k].arg, 1); 
                            return ; 
+                        }
+                        else
+                        {
+                            ms->cmds[i].err = true;
+                            ft_error_var_start("No such file or directory", ms->cmds[i].redirs[k].arg, 1); 
                         }
                     }
                     else if (ms->cmds[i].redirs[k].type == HERE_DOC)
@@ -89,16 +96,16 @@ void ft_run_cmds(t_ms *ms)
             {
                 // if(ms->cmds[i - 1].fd[0] != 0)
                 // {
-                if(ms->cmds[i - 2].out != 1)
+                if(ms->cmds[i].in == 0)
                 {
                     ms->cmds[i].in = dup(ms->cmds[i - 1].fd[0]);
                     close(ms->cmds[i - 1].fd[0]);
                 }
                 else
-                    {
-                        close(ms->cmds[i - 1].fd[0]);
-                        close(ms->cmds[i - 1].fd[1]);
-                    }
+                {
+                    close(ms->cmds[i - 1].fd[0]);
+                    close(ms->cmds[i - 1].fd[1]);
+                }
             }
             // verificacao do formato "nome=maria" p/ adicionar na lista de argumentos
             // if(ft_strchr_vars(ms->cmds[i].args[0], '='))

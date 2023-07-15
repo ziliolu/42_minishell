@@ -226,7 +226,7 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo -n simple
 - [x] echo ''
 - [x] echo ""
-- [x] echo "\n \n \n"
+- [] echo "\n \n \n"
 - [] echo "\n \n \\n"
 - [x] echo ;;
 - [x] echo hi";" hihi

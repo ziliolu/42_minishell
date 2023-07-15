@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 11:52:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:46:16 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 	
 	i = 0;
 	//timeout = 0;
+
+	if(cmd->err)
+		return (true);
 	if(ft_is_absolute_path(cmd->args[0]))
 	{
 		if(access(cmd->args[0], X_OK) == 0)

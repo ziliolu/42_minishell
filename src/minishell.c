@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 12:04:56 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:10:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ void ft_wait(t_ms *ms)
 			g_exit_status = 128 + WTERMSIG(ms->status);
 		ms->processes--;
 	}
-	while(ms->processes)
-	{
-		wait(0);
-		ms->processes--;
-	}
+	// while(ms->processes)
+	// {
+	// 	wait(0);
+	// 	ms->processes--;
+	// }
 }
 
 bool ft_is_variable(t_ms *ms)
