@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 20:46:35 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 12:02:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int argc, char **argv, char **system_env)
 	(void)argc;
 	(void)argv;
 	prompt = "minishell> ";
-	ms.is_print = 1;
+	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 

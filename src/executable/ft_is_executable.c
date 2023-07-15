@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 20:40:22 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:52:06 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 				ms->processes++;
 				if(ms->pid == 0)
 				{
+					ft_close_pipes(ms);
 					execve(total_path, cmd->args, ms->ms_env_array);
 				}
 				else

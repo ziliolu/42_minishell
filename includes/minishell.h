@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 20:40:45 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:57:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,5 +245,6 @@ bool ft_is_arg_redir(char *arg);
 bool ft_is_export_type(char *str);
 bool ft_is_there_space(char *str);
 void ft_wait(t_ms *ms);
+void ft_close_pipes(t_ms *ms);
 
 #endif

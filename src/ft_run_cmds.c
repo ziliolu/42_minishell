@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 20:02:15 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 11:55:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void ft_run_cmds(t_ms *ms)
                 }
                 if(ms->cmds[i].redirs[k - 1].arg[0] != '$')
                 {
+                    //verificar fechar e atualizar
                     if(ms->cmds[i].redirs[k - 1].type == REDIR_OUT)
                         ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
                     else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
@@ -75,16 +76,24 @@ void ft_run_cmds(t_ms *ms)
             {
 
                 if(ms->cmds[i].out == 1)
-                    ms->cmds[i].out = ms->cmds[i + 1].fd[1];
+                {
+                    ms->cmds[i].out = dup(ms->cmds[i + 1].fd[1]);
+                    close(ms->cmds[i + 1].fd[1]);
+                }
                 else
                     close(ms->cmds[i + 1].fd[1]);
                 
             }
 			
-            if(i > 0 && ms->cmds[i - 1].type == PIPE_LINE) //ultimo comando (in)
+            if(i > 0 && ms->cmds[i - 1].type == PIPE_LINE) // comandos intermediarios e ultimo 
             {
-                if(ms->cmds[i - 1].fd[0] != 0)
-                    ms->cmds[i].in = ms->cmds[i - 1].fd[0];
+                // if(ms->cmds[i - 1].fd[0] != 0)
+                // {
+                if(ms->cmds[i - 2].out != 1)
+                {
+                    ms->cmds[i].in = dup(ms->cmds[i - 1].fd[0]);
+                    close(ms->cmds[i - 1].fd[0]);
+                }
                 else
                     {
                         close(ms->cmds[i - 1].fd[0]);
