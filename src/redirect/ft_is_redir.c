@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:58:57 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 15:39:01 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:33:48 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ bool ft_is_redir(enum e_token type)
 
 bool ft_is_arg_redir(char *arg)
 {
-	if(ft_strcmp(arg, ">") == 0 || ft_strcmp(arg, ">>") == 0
-		|| ft_strcmp(arg, "<") == 0 || ft_strcmp(arg, "<<") == 0)
-		return (true);
+	if(arg)
+	{
+		if(ft_strcmp(arg, ">") == 0 || ft_strcmp(arg, ">>") == 0
+			|| ft_strcmp(arg, "<") == 0 || ft_strcmp(arg, "<<") == 0)
+			return (true);
+	}
 	return (false);
 }

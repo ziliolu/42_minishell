@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 10:28:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 15:50:46 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:34:52 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ bool ft_redirs_validation(t_ms *ms)
 
     type = ms->cmds[i].redirs[j].type;
     arg = ms->cmds[i].redirs[j].arg;
+
+    if(!arg)
+        return false;
     while(ms->cmds[i].args)
     {
         j = 0;

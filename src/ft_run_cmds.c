@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 12:45:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:50:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,10 +346,19 @@ void ft_is_heredoc(t_command *cmd, t_redirect *redir)
     while(ft_strcmp(read_content, eof) != 0)
     {
         read_content = readline(prompt);
-        if(ft_strcmp(read_content, eof) == 0)
-            break ;
-        str = ft_strjoin(str, read_content);
-        str = ft_strjoin(str, "\n");
+        if(!read_content)
+        {
+            cmd->err = true;
+            printf("\n");
+            return ;
+        }
+        else
+        {
+            if(ft_strcmp(read_content, eof) == 0)
+                break ;
+            str = ft_strjoin(str, read_content);
+            str = ft_strjoin(str, "\n");
+        }
     }
     fd = open("temp.txt", O_WRONLY|O_CREAT|O_EXCL|O_TRUNC, 0600);
     fd2 = dup(fd);
