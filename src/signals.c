@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:27:26 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 10:15:33 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:16:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ void ft_handler_loop(int signal)
 	if(signal == SIGINT)
 	{
 		printf("\n");
-		//g_exit_status = 130;
-		printf("STATUS %d\n", g_exit_status);
-
+		g_exit_status = 130;
 	}
 	if(signal == SIGQUIT)
 	{
 		printf("Quit (core dumped)\n");
-		//g_exit_status = 131;
+		g_exit_status = 131;
 	}
 }
 

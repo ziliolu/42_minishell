@@ -158,7 +158,11 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo '"$USER"' should print "$USER" variable
 
 ## LUIZA
-- [] cat <<
+- [] echo "\n \n \n"
+- [] echo \n \n \n
+- [] echo "\n \n \\n"
+- [] exit # should return the last exit code value
+- [x] cat <<
 - [x] echo bonjour ; |
 - [x] echo bonjour | |
 - [x] |
@@ -168,16 +172,13 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] cd $HOME/Documents
 - [x] echo >
 - [x] echo -n -n -nnnn -nnnnm
-- [] cat /dev/random | head -n 1 | cat -e
+- [x] cat /dev/random | head -n 1 | cat -e
 - [x] unset var1 # with undefined var1
 - [x] export ""
 - [x] echo test > file test1
 - [x] $
 - [x] not_cmd bonjour > salut
-- [] env puis export puis env # vars aren't sorted
-- [] cat Makefile | grep pr | head -n 5 | cd test (mybin) # check status code
-- [] cat Makefile | grep pr | head -n 5 | cat test (bin) # check status code
-- [] cat Makefile | grep pr | head -n 5 | hello (NA) # check status code
+- [x] env puis export puis env # vars aren't sorted
 - [x] echo bonjour >>> test
 - [x] echo bonjour > > out
 - [x] echo 2 >> out1 > out2
@@ -187,10 +188,10 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo bonjour > $test # with test not defined
 - [x] file_name_in_current_dir
 - [x] cd ../../../../../.. ; pwd
-- [] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
-- [] ctrl-\ .131 sur bin
+- [x] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
+- [x] ctrl-\ .131 sur bin
 - [x] echo "bip | bip ; coyotte > < " "
-- [] cat | cat | cat | ls # check outputs order
+- [x] cat | cat | cat | ls # check outputs order
 - [x] $bla # with bla not defined
 - [x] export var ="cat Makefile | grep >"
 - [x] export "test=ici"=coucou
@@ -203,7 +204,6 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] "exit retour a la ligne"
 - [x] minishell # binary not in path without "./" before
 - [x] cat diufosgid # check exit code
-- [] exit # should return the last exit code value
 - [x] exit -10
 - [x] exit +10
 - [x] ;
@@ -226,9 +226,6 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo -n simple
 - [x] echo ''
 - [x] echo ""
-- [] echo "\n \n \n"
-- [] echo \n \n \n
-- [] echo "\n \n \\n"
 - [x] echo ;;
 - [x] echo hi";" hihi
 - [x] echo hi " ; " hihi
@@ -257,3 +254,4 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] cat < Makefile | grep gcc > output
 - [x] exit 0 | exit 1
 - [x] exit 1 | exit 0
+

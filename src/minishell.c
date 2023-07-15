@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 13:37:38 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:16:57 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int main(int argc, char **argv, char **system_env)
 	char	*prompt;
 	char 	*tmp_prompt;
 	char 	*read_content;
-	int		i;
 	t_ms	ms;
 
 	(void)argc;
@@ -82,8 +81,6 @@ int main(int argc, char **argv, char **system_env)
 					}	
 				}
 			}
-			i = 0;
-
 			ft_wait(&ms);
 			ft_free_array(ms.ms_argv);
 			ft_free_cmds(&ms);
@@ -104,11 +101,11 @@ void ft_wait(t_ms *ms)
 			g_exit_status = 128 + WTERMSIG(ms->status);
 		ms->processes--;
 	}
-	// while(ms->processes)
-	// {
-	// 	wait(0);
-	// 	ms->processes--;
-	// }
+	while(ms->processes)
+	{
+		wait(0);
+		ms->processes--;
+	}
 }
 
 bool ft_is_variable(t_ms *ms)
@@ -212,7 +209,6 @@ bool ft_is_valid_character(char character) {
 	access returns true if the requested access is denied.) 
 **
 */
-
 
 bool ft_is_absolute_path(char *str)
 {

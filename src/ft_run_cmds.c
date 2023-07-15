@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 13:50:43 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/15 14:00:02 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     else if(ft_strcmp(cmd->args[0], "cd") == 0)
         ft_cd(ms, cmd);
     else if(ft_strcmp(cmd->args[0], "env") == 0)
-        ft_env(ms->ms_env);
+        ft_env(cmd, ms->ms_env);
     else if(ft_strcmp(cmd->args[0], "pwd") == 0)
         printf("%s\n", ft_return_list_info(ms->ms_env, "PWD"));
     else if(ft_strchr_vars(cmd->args[0], '='))
