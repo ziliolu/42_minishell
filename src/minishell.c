@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 14:16:57 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:03:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main(int argc, char **argv, char **system_env)
 	prompt = "minishell> ";
 	ms.is_print = 0;
 	ms.print_cmd = 0;
+	ms.status = 0;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
@@ -63,6 +64,7 @@ int main(int argc, char **argv, char **system_env)
 			if(read_content[0] != '\0')
 			{
 				ft_lexer(&ms, read_content);
+				//ft_lexer(&ms, ft_chartrim(read_content, '\\'));
    				ms.ms_argv = ft_split(read_content, ' ');
 				ft_count_args(&ms, *ms.lexed_list);
 				ft_parser(&ms, *ms.lexed_list);
@@ -97,7 +99,7 @@ void ft_wait(t_ms *ms)
 	{
 		if(WIFEXITED(ms->status))
 			g_exit_status = WEXITSTATUS(ms->status);		
-		else if(WIFSIGNALED(ms->status))
+		else if(WIFSIGNALED(ms->status) && g_exit_status == 0)
 			g_exit_status = 128 + WTERMSIG(ms->status);
 		ms->processes--;
 	}

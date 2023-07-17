@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 12:46:16 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:37:32 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,59 +15,46 @@
 bool ft_is_executable(t_ms *ms, t_command *cmd)
 {
 	int i;
-	int pid;
-	int status;
-	// int child_pid;
-	// int timeout;
-	
-	i = 0;
-	//timeout = 0;
+	char *path_w_slash;
+	char *total_path;
 
+	i = 0;
+	path_w_slash = NULL;
 	if(cmd->err)
 		return (true);
 	if(ft_is_absolute_path(cmd->args[0]))
+		total_path = ft_strdup(cmd->args[0]);
+	while(ms->paths[i])
 	{
-		if(access(cmd->args[0], X_OK) == 0)
+		if (!ft_is_absolute_path(cmd->args[0]))
 		{
-			pid = fork();
-			if (pid == 0)
-				execve(cmd->args[0], cmd->args, ms->ms_env_array);
-			waitpid(pid, &status, 0);
-			if(WIFEXITED(status))
-				g_exit_status = WEXITSTATUS(status);	
-			else if(WIFSIGNALED(status))
-				g_exit_status = WTERMSIG(status);
-			return (true);
+			path_w_slash = ft_strjoin(ms->paths[i], "/");
+			total_path = ft_strjoin(path_w_slash, cmd->args[0]);
 		}
-		return (false);
-	}
-	else
-	{
-		while(ms->paths[i])
+		if (access(total_path, X_OK) == 0)
 		{
-			char *path_w_slash = ft_strjoin(ms->paths[i], "/");
-			char *total_path = ft_strjoin(path_w_slash, cmd->args[0]);
-			if (access(total_path, X_OK) == 0)
+			ft_handle_signals_loop();
+			ms->pid = fork();
+			ms->processes++;
+			if(ms->pid == 0)
 			{
-				ft_handle_signals_loop();
-				ms->pid = fork();
-				ms->processes++;
-				if(ms->pid == 0)
-				{
-					ft_close_pipes(ms);
-					execve(total_path, cmd->args, ms->ms_env_array);
-				}
-				else
-				{
-					free(total_path);
-					free(path_w_slash);
-					return (true);
-				}
+				ft_close_pipes(ms);
+				execve(total_path, cmd->args, ms->ms_env_array);
 			}
-			i++;
-			free(total_path);
-			free(path_w_slash);
+			else
+			{
+				// if(total_path)
+				// 	free(total_path);
+				// if(path_w_slash)
+				// 	free(path_w_slash);
+				return (true);
+			}
 		}
+		i++;
 	}
+	if(total_path)
+		free(total_path);
+	if(path_w_slash)
+		free(path_w_slash);
 	return (false);
 }

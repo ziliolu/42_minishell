@@ -93,7 +93,10 @@ void ft_parser(t_ms *ms, t_elem *list)
 					else
 						ms->cmds[i].args[j] = str;
 				}
-				//ms->cmds[i].args[j] = str;
+				else if(!ms->cmds[i].args[j])
+				{
+					ms->cmds[i].args[j] = "";
+				}
 				if(tmp_str)
 					free (tmp_str);
 			}
@@ -102,7 +105,8 @@ void ft_parser(t_ms *ms, t_elem *list)
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(tmp_str, list->data); 
 				list = list->next;
-					while(list->type != DOUBLE_QUOTE)
+				
+				while(list->type != DOUBLE_QUOTE)
 				{
 					if(list->type == ENV)
 					{
@@ -110,7 +114,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 						{
 							str = ft_expand(ms->ms_env, *ms->vars, list->data);
 							tmp_str = ft_expand(ms->ms_env, *ms->vars, list->data);
-
 						}
 						else
 						{
@@ -139,6 +142,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 					}
 					list = list->next;
 				}
+				
 				if(list->status == IN_SQUOTE)
 					str = ft_strjoin(tmp_str, list->data);
 				
@@ -149,6 +153,12 @@ void ft_parser(t_ms *ms, t_elem *list)
 					else
 						ms->cmds[i].args[j] = str;
 				}
+				else if(!ms->cmds[i].args[j])
+				{
+					ms->cmds[i].args[j] = "";
+				}
+
+
 				if (tmp_str)
 					free (tmp_str);
 			}
@@ -177,9 +187,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 				}
 				else
 				{	
-					//char *tmp = ms->cmds[i].redirs[k].arg;		
 					ms->cmds[i].redirs[k].arg = ft_strdup(list->data);
-					//free(tmp);
 				}
 				j--;
 				k++;
@@ -193,8 +201,6 @@ void ft_parser(t_ms *ms, t_elem *list)
 				ms->cmds[i].args[j] = ft_strdup(list->data);
 				if (ft_is_dot_comma(ms->cmds[i].args[j]) && list->status != IN_SQUOTE && list->status != IN_DQUOTE)
 					ms->dot_comma_flag = true;
-				// if (list->next && (list->next->type == SINGLE_QUOTE || list->next->type == DOUBLE_QUOTE))
-				// 	j++;
 			}
 			list = list->next;
 			int space = 0;
@@ -207,7 +213,7 @@ void ft_parser(t_ms *ms, t_elem *list)
 				space++;
 				ms->spaces_flag++;
 			}
-			if(ms->cmds[i].args[j] && space != 0)
+			if ((ms->cmds[i].args[j] || ft_strcmp(ms->cmds[i].args[j], "") == 0) && space != 0)
 				j++;
 				
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 13:57:49 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/17 13:37:57 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,5 +247,8 @@ bool ft_is_export_type(char *str);
 bool ft_is_there_space(char *str);
 void ft_wait(t_ms *ms);
 void ft_close_pipes(t_ms *ms);
+char	*ft_chartrim_wo_dquotes(char *str, char c);
+char	*ft_chartrim_w_dquotes(char *str, char c);
+
 
 #endif

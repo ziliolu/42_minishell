@@ -1,0 +1,14 @@
+comandos.txt
+EVALUATION.md
+includes
+lib
+main.c
+Makefile
+minishell
+minishell_tester.sh
+readline.supp
+README.md
+src
+subject
+_tester.sh
+txt

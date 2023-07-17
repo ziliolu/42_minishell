@@ -75,7 +75,7 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 ​
 ## Single Quotes
 - [x] ls '-la'
-- [ ] ls '' # export school=42lisboa bestschool=42porto
+- [x] ls '' # export school=42lisboa bestschool=42porto
 - [x] ls ' '
 - [ ] ls > 'txt' 
 - [ ] ls > "'txt'"
@@ -158,10 +158,7 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo '"$USER"' should print "$USER" variable
 
 ## LUIZA
-- [] echo "\n \n \n"
-- [] echo \n \n \n
-- [] echo "\n \n \\n"
-- [] exit # should return the last exit code value
+- [x] exit # should return the last exit code value
 - [x] cat <<
 - [x] echo bonjour ; |
 - [x] echo bonjour | |

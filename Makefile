@@ -28,12 +28,12 @@ COLOUR_BLUE_L =		\e[94m
 
 
 all: $(NAME) 
-	@echo "$(COLOUR_RED)    __  ________   ___________ __  __________    __ "
+	@echo "$(COLOUR_RED)    __  ________   ___________ __  __________    __ ";
 	@echo "$(COLOUR_ORANGE_B)   /  |/  /  _/ | / /  _/ ___// / / / ____/ /   / / ";
 	@echo "$(COLOUR_YELLOW)  / /|_/ // //  |/ // / \__  / /_/ / __/ / /   / /  ";
 	@echo "$(COLOUR_GREEN_L) / /  / // // /|  // / ___/ / __  / /___/ /___/ /___";
 	@echo "$(COLOUR_BLUE_L)/_/  /_/___/_/ |_/___//____/_/ /_/_____/_____/_____/";
-	@echo "$(COLOUR_BLUE_B)******* Project made by: ipicoli && ialves-i *******                                                   ";
+	@echo "$(COLOUR_BLUE_B)******* Project made by: ipicoli && ialves-i *******";
 
 
 $(NAME): $(OBJ) $(LIB)
