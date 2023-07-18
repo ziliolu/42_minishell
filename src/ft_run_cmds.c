@@ -13,8 +13,11 @@
 #include "../includes/minishell.h"
 #include <unistd.h>
 
+//teste
+
 bool ft_open_redirs(t_ms *ms, t_counters *c)
 {
+    printf("ola");
      if(ms->cmds[c->i].type == CMD)
         {
             if(ms->cmds[c->i].redirs[c->k].arg != NULL)
