@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_wo_leaks.c                              :+:      :+:    :+:   */
+/*   ft_free_counters.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/17 17:09:13 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/17 17:27:41 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/06/28 14:02:56 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/18 12:19:45 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*ft_strjoin_wo_leaks(char* s1, char* s2)
+void ft_free_counters(t_counters *c)
 {
-	char *str;
-
-	str = NULL;
-	if (!s1)
-	{
-		s1 = ft_strdup(s2);
-		return (s1);
-	}
-	else
-	{
-		// if (str)
-		// 	free (str);
-		str = ft_strjoin(s1, s2);
-		free(s1);
-		return (str);
-	}
+    if(c->str)
+        free(c->str);
+    if(c->tmp_str)
+        free(c->tmp_str);
+    if(c->tmp_arg)
+        free(c->tmp_arg);    
+    free(c);
 }

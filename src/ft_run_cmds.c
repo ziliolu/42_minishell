@@ -6,127 +6,121 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/17 14:35:37 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:19:36 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 #include <unistd.h>
 
+bool ft_open_redirs(t_ms *ms, t_counters *c)
+{
+     if(ms->cmds[c->i].type == CMD)
+        {
+            if(ms->cmds[c->i].redirs[c->k].arg != NULL)
+            {
+                while(c->k < ft_count_redirs_cmd(&ms->cmds[c->i]))  
+                {
+                    if(ms->cmds[c->i].redirs[c->k].type == REDIR_OUT || ms->cmds[c->i].redirs[c->k].type == D_REDIR_OUT)
+                        ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
+                    else if (ms->cmds[c->i].redirs[c->k].type == REDIR_IN)
+                    {
+                        if(open(ms->cmds[c->i].redirs[c->k].arg, O_RDONLY, 0777) != -1)
+                            ms->cmds[c->i].in = open(ms->cmds[c->i].redirs[c->k].arg, O_RDONLY, 0777);
+                        else
+                        {
+                            ms->cmds[c->i].err = true;
+                            ft_error_var_start("No such file or directory", ms->cmds[c->i].redirs[c->k].arg, 1); 
+                        }
+                        if(!ms->cmds[c->i + 1].args)
+                           return (false); 
+                    }
+                    else if (ms->cmds[c->i].redirs[c->k].type == HERE_DOC)
+                        ft_is_heredoc(&ms->cmds[c->i], &ms->cmds[c->i].redirs[c->k]);
+                    c->k++;
+                }
+                if(ms->cmds[c->i].redirs[c->k - 1].arg[0] != '$')
+                {
+                    if(ms->cmds[c->i].redirs[c->k - 1].type == REDIR_OUT)
+                        ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
+                    else if(ms->cmds[c->i].redirs[c->k - 1].type == D_REDIR_OUT)
+                        ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);    
+                }
+                else
+                {
+                    ft_error_var_start("ambiguous redirect", ms->cmds[c->i].redirs[c->k - 1].arg, 1);
+                    return (false);
+                }
+            }
+        }
+        return true;
+    }
+    
+
+void ft_connect_pipes(t_ms *ms, t_counters *c)
+{
+    if(ms->cmds[c->i + 1].type == PIPE_LINE)
+    {
+
+        if(ms->cmds[c->i].out == 1)
+        {
+            ms->cmds[c->i].out = dup(ms->cmds[c->i + 1].fd[1]);
+            close(ms->cmds[c->i + 1].fd[1]);
+        }
+        else
+            close(ms->cmds[c->i + 1].fd[1]);    
+    }		
+    if(c->i > 0 && ms->cmds[c->i - 1].type == PIPE_LINE) 
+    {
+        if(ms->cmds[c->i].in == 0)
+        {
+            ms->cmds[c->i].in = dup(ms->cmds[c->i - 1].fd[0]);
+            close(ms->cmds[c->i - 1].fd[0]);
+        }
+        else
+        {
+            close(ms->cmds[c->i - 1].fd[0]);
+            close(ms->cmds[c->i - 1].fd[1]);
+        }
+    }
+}
+
+
 void ft_run_cmds(t_ms *ms)
 {
-    
-    int i;
-    int k;
+    t_counters *c;
 
+    c = ft_calloc(1, sizeof(t_counters));
 
-
-    i = 0;
-    k = 0;
     ms->std_in = dup(STDIN_FILENO);
 	ms->std_out = dup(STDOUT_FILENO);
     ms->ms_env_array = ft_list_to_array(ms);
 	ft_init_pipes(ms);
-    while(ms->cmds[i].type)
+    while(ms->cmds[c->i].type)
     {
-        ms->cmds[i].in = 0;
-        ms->cmds[i].out = 1;
-        ms->cmds[i].status = -1;
-        ms->cmds[i].err = false;
-        k = 0;
-        if(ms->cmds[i].type == CMD)
+        c->k = 0;
+        
+        if(!ft_open_redirs(ms, c))
+            return ;          
+        ft_connect_pipes(ms, c);
+        if(ms->cmds[c->i].type != PIPE_LINE)
         {
-            if(ms->cmds[i].redirs[k].arg != NULL)
+            if(ft_change_standard_in_out(&ms->cmds[c->i]))
             {
-                while(k < ft_count_redirs_cmd(&ms->cmds[i]))  
-                {
-                    if(ms->cmds[i].redirs[k].type == REDIR_OUT || ms->cmds[i].redirs[k].type == D_REDIR_OUT)
-                        ms->cmds[i].out = open(ms->cmds[i].redirs[k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
-                    else if (ms->cmds[i].redirs[k].type == REDIR_IN)
-                    {
-                        if(open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777) != -1)
-                            ms->cmds[i].in = open(ms->cmds[i].redirs[k].arg, O_RDONLY, 0777);
-                        else if(!ms->cmds[i + 1].args)
-                        {
-                            ms->cmds[i].err = true;
-                           ft_error_var_start("No such file or directory", ms->cmds[i].redirs[k].arg, 1); 
-                           return ; 
-                        }
-                        else
-                        {
-                            ms->cmds[i].err = true;
-                            ft_error_var_start("No such file or directory", ms->cmds[i].redirs[k].arg, 1); 
-                        }
-                    }
-                    else if (ms->cmds[i].redirs[k].type == HERE_DOC)
-                        ft_is_heredoc(&ms->cmds[i], &ms->cmds[i].redirs[k]);
-                    k++;
-                }
-                if(ms->cmds[i].redirs[k - 1].arg[0] != '$')
-                {
-                    //verificar fechar e atualizar
-                    if(ms->cmds[i].redirs[k - 1].type == REDIR_OUT)
-                        ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
-                    else if(ms->cmds[i].redirs[k - 1].type == D_REDIR_OUT)
-                        ms->cmds[i].out = open(ms->cmds[i].redirs[k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);    
-                }
-                else
-                {
-                    ft_error_var_start("ambiguous redirect", ms->cmds[i].redirs[k - 1].arg, 1);
-                    return ;
-                }
-            }
-
-			if(ms->cmds[i + 1].type == PIPE_LINE) // primeiro comando
-            {
-
-                if(ms->cmds[i].out == 1)
-                {
-                    ms->cmds[i].out = dup(ms->cmds[i + 1].fd[1]);
-                    close(ms->cmds[i + 1].fd[1]);
-                }
-                else
-                    close(ms->cmds[i + 1].fd[1]);
-                
-            }
-			
-            if(i > 0 && ms->cmds[i - 1].type == PIPE_LINE) // comandos intermediarios e ultimo 
-            {
-                // if(ms->cmds[i - 1].fd[0] != 0)
-                // {
-                if(ms->cmds[i].in == 0)
-                {
-                    ms->cmds[i].in = dup(ms->cmds[i - 1].fd[0]);
-                    close(ms->cmds[i - 1].fd[0]);
-                }
-                else
-                {
-                    close(ms->cmds[i - 1].fd[0]);
-                    close(ms->cmds[i - 1].fd[1]);
-                }
-            }
-            // verificacao do formato "nome=maria" p/ adicionar na lista de argumentos
-            // if(ft_strchr_vars(ms->cmds[i].args[0], '='))
-            // {
-            //     printf("é um argumento!\n");
-            //     ft_add_local_variable(ms->vars, ft_strtrim(ms->cmds[i].args[0], "="), ft_strtrim(ft_strchr_vars(ms->cmds[i].args[0], '='), "="));
-            // }
-            if(ms->cmds[i].type != PIPE_LINE)
-            {
-                if(ft_change_standard_in_out(&ms->cmds[i]))
-                {
-                    ft_filter_cmd(ms, &ms->cmds[i]);
-                    ft_reset_fd_in_out(ms);
-                }
+                ft_filter_cmd(ms, &ms->cmds[c->i]);
+                ft_reset_fd_in_out(ms);
             }
         }
-        i++;
+        c->i++;
     }
+    ft_free_counters(c);
+
 }
 
+
+
 bool ft_change_standard_in_out(t_command *cmd)
-{
-    
+{    
     if(cmd->out != 1)
 	{
 		if(dup2(cmd->out, STDOUT_FILENO) == -1)
@@ -175,8 +169,6 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
         ft_unset(ms);
     else if(ft_strcmp(cmd->args[0], "exit") == 0)
         ft_exit(ms);
-    else if(ft_strcmp(cmd->args[0], "args") == 0)
-        ft_print_local_variables(ms->vars);
     else if(!ft_is_executable(ms, cmd))
     {
         ft_reset_fd_in_out(ms);
@@ -186,8 +178,6 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
             ft_printf("%s: command not found\n", cmd->args[0]);
         g_exit_status = 127;
     }
-	// ft_free_array(ms->ms_env_array);
-
 }
 
 void ft_init_pipes(t_ms *ms)
@@ -198,134 +188,11 @@ void ft_init_pipes(t_ms *ms)
     while(ms->cmds[i].type)
     {
         if(ms->cmds[i].type == PIPE_LINE)
-		{
             pipe(ms->cmds[i].fd);
-			//printf("Pipe %d --> fd[0]=%d fd[1]=%d\n", i, ms->cmds[i].fd[0], ms->cmds[i].fd[1]);
-		}
 		i++;
     }
 }
 
-void ft_pipeline(t_ms *ms)
-{
-    int **fds = (int **)ft_calloc(ms->n_pipes, sizeof(int *));
-    //pid_t pid;
-    int i;
-    //int j;
-	int out;
-    int in;
-
-	out = dup(STDOUT_FILENO);
-    in = dup(STDIN_FILENO);
-    i = 0;
-    while(i < ms->n_pipes)
-    {
-        fds[i] = (int *)ft_calloc(2, sizeof(int));
-        i++;
-    }
-
-    i = 0;
-    //printf("ms pipes %d\n", ms->n_pipes);
-    while(i < ms->n_pipes + 1)
-    {
-        pipe(fds[i]);
-        //funcao abrir todos os pipes
-        //pid = fork();
-		//if (pid == 0)
-		//{
-		//	printf("Child 1\n");
-		//	printf("fds[0][0] = %d\n", fds[i][0]);
-		//	printf("fds[0][1] = %d\n", fds[i][1]);
-		//	printf("\n");
-			
-		//}
-        //if(pid == 0)
-        //{
-            //fechar entradas e saidas 
-            //desnecessarios dos outros pipes
-            
-            //pipe[0][0] V
-            //pipe[0][1] V
-
-            //ls | grep h | grep o
-            // j = 0;
-            // while(j < ms->n_pipes)
-            // {
-            //     if(j != i) //nao fechar do pipe atual
-			// 	{
-			// 		close(fds[j][1]);
-			// 		close(fds[j][0]);
-			// 	}
-			// 	j++;
-            // }
-            if(i == 0) //primeiro comando 
-            {
-				//printf("Primeiro Comando\n");
-                //close(fds[i][0]); // fecha read
-                dup2(fds[i][1], STDOUT_FILENO); //alterar stdout - escrita do pipe
-                close(fds[i][1]);
-				//printf("Saiu do primeiro comando\n");
-
-            }
-            else if(i > 0 && i < ms->n_pipes) //comandos intermediarios
-            {
-				printf("Segundo Comando\n");
-                close(fds[i][0]); //fds[1][0]
-                dup2(fds[i - 1][0], STDIN_FILENO); //leitura do comando anterior
-				
-                close(fds[i - 1][0]);
-                dup2(fds[i][1], STDOUT_FILENO); //escrita para o proximo comando
-                
-                close(fds[i][1]);
-				printf("Saiu do segundo comando\n");
-            }
-            else if(i == ms->n_pipes) // ultimo comando
-            {
-				//printf("Terceiro Comando\n");
-                //close(fds[i][0]);
-                //close(fds[i][1]);
-                dup2(fds[i - 1][0], STDIN_FILENO);
-                close(fds[i - 1][0]);
-				//printf("Saiu do terceiro comando\n");
-
-            }
-			if (i == 0)
-				ft_is_executable(ms, &ms->cmds[i]); //cmd[i = 1]
-			else if (i == 1)
-			{
-				dup2(out, STDOUT_FILENO);
-				ft_is_executable(ms, &ms->cmds[i]);
-				close(out);
-                dup2(in, STDIN_FILENO);
-                close(in);
-			}
-			//exit(0);
-        //}
-		//else
-		//{
-		//	//printf("Father\n");
-		//	//while(j < ms->n_pipes)
-		//	//{
-		//	//	// close(fds[j][1]);
-		//	//	// printf("Fechou fds[j][0] = %d\n", fds[j][0]);
-				
-		//	//	// close(fds[j][0]);
-		//	//	// printf("Fechou fds[j][1] = %d\n", fds[j][1]);
-				
-		//	//	printf("Valor de j = %d\n", j);
-		//	//	j++;
-		//	//}
-        //    while(waitpid(0, NULL, 0) > 0)
-        //        continue;
-		//	//printf("\n");
-
-		//}
-        i++;
-    }
-	//i = -1;
-	//while (i++ < ms->n_pipes)
-	//	wait(NULL);
-}
 
 void ft_is_heredoc(t_command *cmd, t_redirect *redir)
 {
@@ -366,8 +233,6 @@ void ft_is_heredoc(t_command *cmd, t_redirect *redir)
     close(fd);
     unlink("temp.txt");
     cmd->in = fd2;
-    //printf("%s\n", str);    
-    //cmd->args[1] = str;
 }
 
 int ft_count_cmds(t_ms *ms)

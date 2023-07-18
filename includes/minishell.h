@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/17 13:37:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:27:32 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,17 @@ typedef struct s_command
 	enum e_token type;
 }	t_command;
 
+typedef struct s_counters
+{
+	int		i;
+	int		j;
+	int		k;
+	char	*str;
+	char	*tmp_str;
+	char	*tmp_arg;
+	t_elem	*list;
+}	t_counters;
+
 typedef struct s_ms
 {
 	t_lst		*ms_env;
@@ -171,7 +182,6 @@ void		ft_free_elem_list(t_elem *head);
 
 t_elem		*ft_new_elem(char *str, int len, enum e_token type, enum e_status);
 t_elem		*ft_find_last_elem(t_elem *list);
-bool		ft_is_not_redir(enum e_token type);
 bool 		ft_is_redir(enum e_token type);
 bool 		ft_is_redir(enum e_token type);
 bool		ft_is_there_quote(char *str);
@@ -193,7 +203,6 @@ int 		ft_count_redirs_cmd(t_command *cmd);
 int			ft_count_pipes(t_elem *list);
 void		ft_add_new_elem(t_elem **head, t_elem *new_elem);
 void		ft_lexer(t_ms *ms, char *read_content);
-void		ft_parser(t_ms *ms, t_elem *list);
 void		ft_initialize_pipes(t_ms *ms, int nbr_of_pipes);
 void		ft_print_command_nodes(t_ms *ms, int n_pipes);
 void		ft_print_tokens(t_ms *ms, t_elem *list);
@@ -234,21 +243,45 @@ int			ft_valid_env(char c);
 bool		ft_is_dot_comma(char *str);
 bool		ft_arg_exist(char *arg);
 bool 		ft_error(t_ms *ms, char *msg, char *str);
-bool ft_cmd_args_validation(t_ms *ms);
-void ft_unset(t_ms *ms);
-void ft_exit(t_ms *ms);
-bool ft_error_var_start(char *msg, char *str, int err_number);
-void ft_handler_loop(int signal);
-void ft_handle_signals_loop();
-char *ft_strtrim_end_quote(char *str, char set);
+bool 		ft_cmd_args_validation(t_ms *ms);
+void 		ft_unset(t_ms *ms);
+void 		ft_exit(t_ms *ms);
+bool 		ft_error_var_start(char *msg, char *str, int err_number);
+void 		ft_handler_loop(int signal);
+void 		ft_handle_signals_loop();
+char 		*ft_strtrim_end_quote(char *str, char set);
 void		ft_env(t_command *cmd, t_lst *lst);
-bool ft_is_arg_redir(char *arg);
-bool ft_is_export_type(char *str);
-bool ft_is_there_space(char *str);
-void ft_wait(t_ms *ms);
-void ft_close_pipes(t_ms *ms);
-char	*ft_chartrim_wo_dquotes(char *str, char c);
-char	*ft_chartrim_w_dquotes(char *str, char c);
+bool 		ft_is_arg_redir(char *arg);
+bool 		ft_is_export_type(char *str);
+bool 		ft_is_there_space(char *str);
+void 		ft_wait(t_ms *ms);
+void 		ft_close_pipes(t_ms *ms);
+char		*ft_chartrim_wo_dquotes(char *str, char c);
+char		*ft_chartrim_w_dquotes(char *str, char c);
+char		*ft_strjoin_wo_leaks(char* s1, char* s2);
+void 		ft_free_counters(t_counters *c);
+void 		ft_free(char *str);
 
+
+//Parser
+void	ft_parser(t_ms *ms, t_elem *list);
+void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c, char *str_ex);
+void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c, char *str_ex);
+bool	ft_is_not_redir(enum e_token type);
+
+
+//Parser_one
+void	ft_ptr_is_in_quotes(t_ms *ms, t_counters *p);
+void	ft_is_in_single_quote(t_ms *ms, t_counters *p);
+void	ft_is_in_double_quote_while(t_ms *ms, t_counters *p);
+void	ft_is_in_double_quote(t_ms *ms, t_counters *p);
+void	ft_is_redir_single_quote(t_ms *ms, t_counters *p);
+
+//Parser_two
+void	ft_is_redir_double_quote(t_ms *ms, t_counters *p);
+void	ft_is_redir_type(t_ms *ms, t_counters *p);
+void	ft_is_env_and_squote(t_ms *ms, t_counters *p, char *str_expanded);
+void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p, char *str_expanded);
+void	ft_parser_count_pipes(t_ms *ms, t_counters *p);
 
 #endif

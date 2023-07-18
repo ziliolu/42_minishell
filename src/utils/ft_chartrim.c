@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 12:15:22 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/17 14:02:25 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:00:55 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,11 @@ char	*ft_chartrim_wo_dquotes(char *str, char c)
 			}
 			i++;
 		}
-		//free (str);
 		return (tmp);
 	}
 	else
 	{
-		free (tmp);	
+		free (tmp);
 		return (str);
 	}
 }

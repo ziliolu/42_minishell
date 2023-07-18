@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/17 13:39:15 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 11:50:28 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void ft_lexer(t_ms *ms, char *str)
         i++;
     }
 	ms->lexed_list = elem_head;
-
 }
 
 int ft_count_char(char *str)

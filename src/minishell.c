@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/17 15:03:56 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:38:05 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int main(int argc, char **argv, char **system_env)
 	char	*prompt;
 	char 	*tmp_prompt;
 	char 	*read_content;
+	//char	*tmp_read_content;
 	t_ms	ms;
 
 	(void)argc;
@@ -45,26 +46,23 @@ int main(int argc, char **argv, char **system_env)
 			ft_free_array(ms.paths);
 			exit(0);
 		}
-		if(ft_strcmp(ft_strtrim(read_content, " "), "") != 0)
+
+		tmp_prompt = ft_strtrim(read_content, " ");
+		//free (tmp_read_content);
+		if(ft_strcmp(tmp_prompt, "") != 0)
 		{
 			add_history(read_content);
 			ms.read_size = ft_strlen(read_content);
-			tmp_prompt =  ft_strtrim(read_content, " ");
 			free(read_content);
 			read_content = ft_broken_cmds(&ms, tmp_prompt);
 			if(!read_content)
-			{
 				continue ;
-			}
 			if(ft_is_there_quote(read_content))
-			{
 				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
 					continue ; // pular restante e voltar a mostrar o prompt 
-			}
 			if(read_content[0] != '\0')
 			{
 				ft_lexer(&ms, read_content);
-				//ft_lexer(&ms, ft_chartrim(read_content, '\\'));
    				ms.ms_argv = ft_split(read_content, ' ');
 				ft_count_args(&ms, *ms.lexed_list);
 				ft_parser(&ms, *ms.lexed_list);
@@ -72,8 +70,8 @@ int main(int argc, char **argv, char **system_env)
 				{
 					if(ms.is_print)
 						ft_print_tokens(&ms, *ms.lexed_list);
-					ft_free_elem_list(*ms.lexed_list);
-					free(ms.lexed_list);
+					//ft_free_elem_list(*ms.lexed_list);
+					// free(ms.lexed_list);
 					if (!ms.dot_comma_flag) // Aqui é verificada uma flag (ativada no parser) para determinar se ; é aceite ou não
 						ft_run_cmds(&ms);
 					else
@@ -84,10 +82,16 @@ int main(int argc, char **argv, char **system_env)
 				}
 			}
 			ft_wait(&ms);
+			// free(read_content); //teste
+
 			ft_free_array(ms.ms_argv);
+			ft_free_array(ms.ms_env_array);
 			ft_free_cmds(&ms);
 			free(ms.count_args);
-			free(tmp_prompt);
+			free(tmp_prompt);	
+			ft_free_elem_list(*ms.lexed_list);
+			free(ms.lexed_list);
+			
 		}
 	}
 	return (0);

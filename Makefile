@@ -2,7 +2,7 @@ NAME = minishell
 LIB = lib.a
 
 CC = cc 
-CFLAGS = -Wextra -Werror -Wall -g -I./includes #-fsanitize=address
+CFLAGS = -Wextra -Werror -Wall -g -I./includes -fsanitize=address
 RM = rm -f 
 
 LIBDIR = ./lib/

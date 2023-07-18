@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/13 19:51:17 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 13:04:24 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,24 @@ void ft_cd(t_ms *ms, t_command *cmd)
         if(!tmp)
         {
             tmp = ft_strdup(cmd->args[i]);
+            ft_free(path);
             path = ft_strdup(cmd->args[i]);
         }
         else
         {
-            if(path)
-                free(path);
+            ft_free(path);
             path = ft_strjoin(tmp, cmd->args[i]);
-            if(tmp)
-                free(tmp);
+            ft_free(tmp);
             tmp = ft_strdup(path);
         }
         i++;
     }
     if(path)
-        path = ft_strtrim_end(path, '/');
+    {
+        //ft_free(path);
+        path = ft_strtrim_end(tmp, '/');
+        //free(tmp);
+    }
     if(!pwd && !ft_is_home_path(cmd->args[1]) && ft_is_absolute_path(cmd->args[1]))
     {
         if(cmd->args[1][0] == '~' && cmd->args[1][1] == '/') 

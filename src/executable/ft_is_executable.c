@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/17 15:37:32 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:27:19 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 
 	i = 0;
 	path_w_slash = NULL;
+	total_path = NULL;
 	if(cmd->err)
 		return (true);
 	if(ft_is_absolute_path(cmd->args[0]))
@@ -43,18 +44,15 @@ bool ft_is_executable(t_ms *ms, t_command *cmd)
 			}
 			else
 			{
-				// if(total_path)
-				// 	free(total_path);
-				// if(path_w_slash)
-				// 	free(path_w_slash);
+				ft_free(total_path);
+				ft_free(path_w_slash);
 				return (true);
 			}
 		}
+		ft_free(total_path);
+		ft_free(path_w_slash);
 		i++;
 	}
-	if(total_path)
-		free(total_path);
-	if(path_w_slash)
-		free(path_w_slash);
 	return (false);
 }
+

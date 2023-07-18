@@ -77,8 +77,8 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] ls '-la'
 - [x] ls '' # export school=42lisboa bestschool=42porto
 - [x] ls ' '
-- [ ] ls > 'txt' 
-- [ ] ls > "'txt'"
+- [x] ls > 'txt' 
+- [x] ls > "'txt'"
 ​
 ## env
 - [x] env
@@ -251,4 +251,5 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] cat < Makefile | grep gcc > output
 - [x] exit 0 | exit 1
 - [x] exit 1 | exit 0
+- [] lss | ls (ordem errada);
 

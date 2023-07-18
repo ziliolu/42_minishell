@@ -6,12 +6,17 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/17 16:32:00 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 12:27:31 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
+void ft_free(char *str)
+{
+	if(str)
+		free(str);
+}
 void	ft_free_memory(t_ms *ms)
 {
 	ft_free_array(ms->paths);
@@ -81,7 +86,7 @@ void	ft_free_env(t_ms *ms)
 			list = ms->ms_env->next;
 			free (ms->ms_env->name);
 			free (ms->ms_env->info);
-			//free (ms->ms_env->full_info);
+			free (ms->ms_env->full_info);
 			free (ms->ms_env);
 		}
 		ms->ms_env = list;

@@ -9,7 +9,6 @@ t_lst	*ft_new_node(char *str)
 	{
 		var->name = ft_get_list_name(str);
 		var->info = ft_get_list_info(str);
-
 		var->full_info = ft_strdup(str);
 		var->next = NULL;
 		return (var);
