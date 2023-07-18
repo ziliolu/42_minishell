@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 14:38:05 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:51:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int main(int argc, char **argv, char **system_env)
 	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ms.status = 0;
+	ms.pid = 0;
+	tmp_prompt = NULL;
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
@@ -46,15 +48,15 @@ int main(int argc, char **argv, char **system_env)
 			ft_free_array(ms.paths);
 			exit(0);
 		}
-
+		ft_free(tmp_prompt);
 		tmp_prompt = ft_strtrim(read_content, " ");
-		//free (tmp_read_content);
 		if(ft_strcmp(tmp_prompt, "") != 0)
 		{
 			add_history(read_content);
 			ms.read_size = ft_strlen(read_content);
 			free(read_content);
 			read_content = ft_broken_cmds(&ms, tmp_prompt);
+
 			if(!read_content)
 				continue ;
 			if(ft_is_there_quote(read_content))
@@ -82,7 +84,6 @@ int main(int argc, char **argv, char **system_env)
 				}
 			}
 			ft_wait(&ms);
-			// free(read_content); //teste
 
 			ft_free_array(ms.ms_argv);
 			ft_free_array(ms.ms_env_array);
@@ -99,6 +100,7 @@ int main(int argc, char **argv, char **system_env)
 
 void ft_wait(t_ms *ms)
 {
+	ms->status = 0;
 	if(waitpid(ms->pid, &ms->status, 0) != -1)
 	{
 		if(WIFEXITED(ms->status))
