@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_broken_cmds.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:02:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 17:41:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:26:24 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ char	*ft_broken_cmds(t_ms *ms, char *str)
 			printf("%s\n", new_str);
 			tmp = ft_strtrim(new_str, " ");
 			free (new_str);
+			free(prompt_tmp);
 			return (tmp);
 		}
 	}
-	return (str);
+	
+	return (ft_strdup(str));
 }

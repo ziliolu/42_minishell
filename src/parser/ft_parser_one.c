@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_one.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/18 14:28:30 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:17:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ void	ft_is_in_single_quote(t_ms *ms, t_counters *p)
 
 void	ft_is_in_double_quote_while(t_ms *ms, t_counters *p)
 {
+	char *tmp_expand;
+	
 	if (p->list->type == ENV)
 	{
-		p->str = ft_strjoin_wo_leaks(p->tmp_str,
-				ft_expand(ms->ms_env, *ms->vars, p->list->data));
+		tmp_expand = ft_expand(ms->ms_env, *ms->vars, p->list->data);
+		p->str = ft_strjoin_wo_leaks(p->tmp_str, tmp_expand);
 		p->tmp_str = ft_strdup(p->str);
+		ft_free(tmp_expand);
 	}
 	else
 	{

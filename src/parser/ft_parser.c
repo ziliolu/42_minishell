@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 14:23:53 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:18:18 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c, char *str_ex)
+void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c)
 {
 	int	space;
 
@@ -22,7 +22,7 @@ void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c, char *str_ex)
 	ms->cmds[p->i].type = CMD;
 	while (p->list != NULL && p->list->type != PIPE_LINE)
 	{
-		ft_if_redir_dif_pipe(ms, p, str_ex);
+		ft_if_redir_dif_pipe(ms, p);
 		p->list = p->list->next;
 		space = 0;
 		if (p->list && p->list->type == WHITE_SPACE)
@@ -40,11 +40,11 @@ void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c, char *str_ex)
 	p->j = 0;
 }
 
-void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c, char *str_ex)
+void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c)
 {
 	while (p->list != NULL)
 	{
-		ft_parser_while_dif_pipe(ms, p, c, str_ex);
+		ft_parser_while_dif_pipe(ms, p, c);
 		if (p->list != NULL && p->list->type == PIPE_LINE)
 		{
 			ms->cmds[p->i].args[p->j] = "|";
@@ -57,11 +57,9 @@ void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c, char *str_ex)
 
 void	ft_parser(t_ms *ms, t_elem *list)
 {
-	char		*str_expanded;
 	int			counter;
 	t_counters	p;
 
-	str_expanded = NULL;
 	ms->spaces_flag = 0;
 	counter = ft_count_tokens(list);
 	ms->n_pipes = ft_count_pipes(list);
@@ -75,7 +73,7 @@ void	ft_parser(t_ms *ms, t_elem *list)
 	ft_parser_count_pipes(ms, &p);
 	p.tmp_str = NULL;
 	p.i = 0;
-	ft_parser_while_dif_null(ms, &p, counter, str_expanded);
+	ft_parser_while_dif_null(ms, &p, counter);
 }
 
 bool	ft_is_not_redir(enum e_token type)

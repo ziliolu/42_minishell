@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_two.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/18 14:28:37 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:12:40 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,32 @@ void	ft_is_redir_type(t_ms *ms, t_counters *p)
 	p->k++;
 }
 
-void	ft_is_env_and_squote(t_ms *ms, t_counters *p, char *str_expanded)
+void	ft_is_env_and_squote(t_ms *ms, t_counters *p)
 {
+	char	*str_expanded; 
+	char *tmp_arg;
+	
+	str_expanded = NULL;
 	str_expanded = ft_expand(ms->ms_env, *ms->vars, p->list->data);
 	if (ms->cmds[p->i].args[p->j] && str_expanded)
-		ms->cmds[p->i].args[p->j]
-			= ft_strjoin(ms->cmds[p->i].args[p->j], str_expanded);
+	{
+		tmp_arg = ft_strdup(ms->cmds[p->i].args[p->j]);
+		ms->cmds[p->i].args[p->j]= ft_strjoin(tmp_arg, str_expanded);
+		free(tmp_arg);
+	}
 	else if (!ms->cmds[p->i].args[p->j])
-		ms->cmds[p->i].args[p->j] = str_expanded;
+		ms->cmds[p->i].args[p->j] = ft_strdup(str_expanded);
+	free (str_expanded);
 }
 
-void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p, char *str_expanded)
+void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p)
 {
+	
 	p->str = NULL;
-	p->tmp_str = NULL;
+	char *tmp_arg;
+	char *tmp_list;
 	if (p->list->type == ENV && p->list->status != IN_SQUOTE)
-		ft_is_env_and_squote(ms, p, str_expanded);
+		ft_is_env_and_squote(ms, p);
 	else if (p->list->type == SINGLE_QUOTE)
 		ft_is_in_single_quote(ms, p);
 	else if (p->list->type == DOUBLE_QUOTE)
@@ -89,8 +99,15 @@ void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p, char *str_expanded)
 	else if (ft_is_redir(p->list->type))
 		ft_is_redir_type(ms, p);
 	else if (ms->cmds[p->i].args[p->j] != NULL)
-		ms->cmds[p->i].args[p->j]
-			= ft_strjoin(ms->cmds[p->i].args[p->j], ft_strdup(p->list->data));
+	{
+		tmp_arg = ft_strdup(ms->cmds[p->i].args[p->j]);
+		tmp_list = ft_strdup(p->list->data);
+		ft_free(ms->cmds[p->i].args[p->j]);
+		ms->cmds[p->i].args[p->j] = ft_strjoin(tmp_arg, tmp_list);
+		ft_free(tmp_arg);
+		ft_free(tmp_list);
+		
+	}
 	else if (p->list->type != WHITE_SPACE)
 	{
 		ms->cmds[p->i].args[p->j] = ft_strdup(p->list->data);

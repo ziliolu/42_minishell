@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 17:51:17 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:29:56 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ int main(int argc, char **argv, char **system_env)
 	ms.status = 0;
 	ms.pid = 0;
 	tmp_prompt = NULL;
+	read_content = NULL;
+	ms.std_in = dup(STDIN_FILENO); //precisa estar aqui
+	ms.std_out = dup(STDOUT_FILENO); //precisa estar aqui
 	ms.dot_comma_flag = false; 
 	ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
+	ms.ms_env_array = NULL;
 	ms.vars = (t_lst **)ft_calloc(1, sizeof(t_lst *));
 	while (1)
 	{
@@ -48,15 +52,14 @@ int main(int argc, char **argv, char **system_env)
 			ft_free_array(ms.paths);
 			exit(0);
 		}
-		ft_free(tmp_prompt);
 		tmp_prompt = ft_strtrim(read_content, " ");
 		if(ft_strcmp(tmp_prompt, "") != 0)
 		{
 			add_history(read_content);
 			ms.read_size = ft_strlen(read_content);
-			free(read_content);
+			ft_free(read_content);
 			read_content = ft_broken_cmds(&ms, tmp_prompt);
-
+			ft_free(tmp_prompt);
 			if(!read_content)
 				continue ;
 			if(ft_is_there_quote(read_content))
@@ -72,24 +75,21 @@ int main(int argc, char **argv, char **system_env)
 				{
 					if(ms.is_print)
 						ft_print_tokens(&ms, *ms.lexed_list);
-					//ft_free_elem_list(*ms.lexed_list);
-					// free(ms.lexed_list);
 					if (!ms.dot_comma_flag) // Aqui é verificada uma flag (ativada no parser) para determinar se ; é aceite ou não
 						ft_run_cmds(&ms);
 					else
 					{
-						ft_error(&ms, "minishell: syntax error near unexpected token `;'\n", NULL);
+						ft_error(&ms, "minishell: syntax error near unexpected token `;'", NULL);
 						ms.dot_comma_flag = false;
 					}	
 				}
 			}
 			ft_wait(&ms);
-
 			ft_free_array(ms.ms_argv);
 			ft_free_array(ms.ms_env_array);
 			ft_free_cmds(&ms);
 			free(ms.count_args);
-			free(tmp_prompt);	
+			ft_free(read_content);
 			ft_free_elem_list(*ms.lexed_list);
 			free(ms.lexed_list);
 			

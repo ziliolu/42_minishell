@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 13:04:24 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:43:21 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void ft_cd(t_ms *ms, t_command *cmd)
     char 	*pwd;
     char 	*oldpwd;
     char    *path;
-    char *tmp;
+    char    *tmp;
+    char    *tmp_path;
+    char    *tmp_path_w_slash;
     int i;
     
     i = 1;
@@ -64,10 +66,11 @@ void ft_cd(t_ms *ms, t_command *cmd)
     }
     if(path)
     {
-        //ft_free(path);
+        ft_free(path);
         path = ft_strtrim_end(tmp, '/');
         //free(tmp);
     }
+    ft_free(tmp);
     if(!pwd && !ft_is_home_path(cmd->args[1]) && ft_is_absolute_path(cmd->args[1]))
     {
         if(cmd->args[1][0] == '~' && cmd->args[1][1] == '/') 
@@ -77,10 +80,18 @@ void ft_cd(t_ms *ms, t_command *cmd)
     }
     else if(path)
     {
+        if(pwd)
+            ft_free(pwd);
         if(ft_strcmp(path, "..") == 0)
             pwd = ft_strtrim_end_quote(oldpwd, '/');
         else
-            pwd = ft_strjoin(oldpwd, ft_strjoin("/", ft_strtrim(path, "/")));  
+        {
+            tmp_path = ft_strtrim(path, "/");
+            tmp_path_w_slash = ft_strjoin("/", tmp_path);
+            pwd = ft_strjoin(oldpwd, tmp_path_w_slash); 
+            ft_free(tmp_path);
+            ft_free(tmp_path_w_slash);
+        }
         
     }
     if(chdir(pwd) == 0 && ((ms->spaces_flag <= 1 ) || ft_is_home_path(cmd->args[1])))
@@ -94,8 +105,9 @@ void ft_cd(t_ms *ms, t_command *cmd)
         ft_error(ms, "cd: too many arguments", NULL);
     else
         ft_printf("minishell: cd: %s: no such file or directory\n", path);
-    // free(pwd);
-    // free(oldpwd);
+    free(path);
+    free(oldpwd);
+    free(pwd);
 }
 
 
@@ -112,7 +124,7 @@ char *ft_strtrim_end(char *str, char set)
         ft_strlcpy(new_str, str, i - 1);
         return(new_str);
     }
-    return (str); 
+    return (ft_strdup(str)); 
 }
 
 char *ft_strtrim_end_quote(char *str, char set)

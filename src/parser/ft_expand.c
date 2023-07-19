@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 15:59:46 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:46:16 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,19 @@ char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 	while (env)
 	{
 		if (ft_strcmp(str, env->name) == 0)
+		{
+			ft_free(str);	
 			return (ft_strdup(env->info));
+		}
 		env = env->next;
 	}
 	while(vars)
 	{
 		if (ft_strcmp(str, vars->name) == 0)
+		{
+			ft_free(str);	
 			return (ft_strdup(vars->info));
+		}
 		vars = vars->next;
 	}
 	free(str);

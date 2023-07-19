@@ -1,0 +1,105 @@
+
+## MEMORY LEAKS TESTS
+
+valgrind --leak-check=full ./minishell 
+
+## testados com "exit" - não com sinais
+
+- [x] exit # should return the last exit code value
+- [x] cat <<
+- [x] echo bonjour ; |
+- [x] echo bonjour | |
+- [x] |
+- [x] echo bonjour |;
+- [x] echo bonjour ; ls
+- [x] cd includes
+- [x] echo >
+- [x] echo -n -n -nnnn -nnnnm
+- [x] export n1=1 n2=2
+- [x] export ""
+- [x] export n=1
+- [x] not_cmd bonjour > salut
+- [x] ls -l
+- [x] echo bonjour >>> test
+- [x] echo bonjour > > out
+- [x] echo 2 >> out1 > out2
+- [x] echo 2 > out1 >> out2
+- [x] echo bonjour > test
+- [x] echo test > file test1
+- [x] env puis export puis env # vars aren't sorted
+- [x] export var; export var=test
+- [x] /bin/echo bonjour
+- [x] cd ../../../../../.. ; pwd
+- [x] not_cmd
+- [x] echo bonjour > $test # with test not defined
+- [x] $
+- [x] cd $HOME/Documents
+- [x] cat diufosgid # check exit code
+- [x] exit -10
+- [x] exit +10
+- [x] ;
+- [x] cat | cat | cat | ls # check outputs order
+- [x] cat < >
+- [x] cat < <
+- [x] cat > >
+- [x] cat /dev/random | head -n 1 | cat -e
+- [] unset var1 # with undefined var1
+- [] file_name_in_current_dir
+- [] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
+- [] ctrl-\ .131 sur bin
+- [] echo "bip | bip ; coyotte > < " "
+- [] $bla # with bla not defined
+- [] export var ="cat Makefile | grep >"
+- [] export "test=ici"=coucou
+- [] c$var Makefile # with var=at
+- [] $LESS$VAR
+- [] cat < test # with non-existent test
+- [] sleep 5 | exit
+- [] echo bonjour > $test w/ t
+- [] "exit retour a la ligne"
+- [] minishell # binary not in path without "./" before
+- [] > a ls > b < Makefile
+- [] echo > a Hello World!
+- [] > a echo Hello World!
+- [] echo coucou |
+- [] echo "$HOME"
+- [] echo '$HOME'
+- [] export
+- [] env # display is different for both commands
+- [] echo $HOME
+- [] > log echo coucou
+- [] echo hudifg d | | hugdfihd
+- [] echo
+- [] echo simple
+- [] echo -n simple
+- [] echo ''
+- [] echo ""
+- [] echo ;;
+- [] echo hi";" hihi
+- [] echo hi " ; " hihi
+- [] cd
+- [] cd .
+- [] cd ~
+- [] cd /
+- [] cd no_file
+- [] cd a b c d
+- [] pwd a
+- [] pwd a b c d
+- [] export LOL=lala ROR=rara
+- [] unset LOL ROR
+- [] export "HI= hi"
+- [] export nome=
+- [] export "HI =hi"
+- [] /bin/ls
+- [] # write something the press ctrl+c
+- [] # write something then press ctrl+d
+- [] # write something then press ctrl+\
+- [] echo $?
+- [] l^Ds
+- [] echo |
+- [] | echo
+- [] sort | ls # check output order
+- [] cat < Makefile | grep gcc > output
+- [] exit 0 | exit 1
+- [] exit 1 | exit 0
+- [] lss | ls (ordem errada);

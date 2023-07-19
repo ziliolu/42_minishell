@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/14 16:41:37 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:57:51 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,6 @@ void ft_export(t_ms *ms, t_command *cmd)
 	
     while(cmd->args[i])
     { 
-        str = cmd->args[i];    
-        name = ft_get_list_name(str);
-        info = ft_get_list_info(str);
         //falta alterar g_exit_status no erro
         if((cmd->args[i + 1] && (cmd->args[i + 1][0] == '=')) || !ft_is_export_type(cmd->args[i]))
         {
@@ -92,9 +89,12 @@ void ft_export(t_ms *ms, t_command *cmd)
                 ft_printf("minishell: export: `%s': not a valid identifier\n", cmd->args[i + 1]);
             return ;
         }
-        if(ft_is_already_in_list(ft_get_list_name(str), ms->ms_env))
+        str = cmd->args[i];
+        name = ft_get_list_name(str);
+        info = ft_get_list_info(str);
+        if(ft_is_already_in_list(name, ms->ms_env))
             ft_update_list(ms->ms_env, name, info);
-        else if(ft_is_already_in_list(ft_get_list_name(str), *ms->vars))
+        else if(ft_is_already_in_list(name, *ms->vars))
         {
             if(!ft_strchr_vars(str, '='))
                 str = ft_return_list_full_info(*ms->vars, str);
@@ -106,6 +106,8 @@ void ft_export(t_ms *ms, t_command *cmd)
             if(ft_strchr_vars(str, '='))
                 ft_add_export_node(&ms->ms_env, str);
         }
+        ft_free(name);
+        ft_free(info);
         i++;
     }
 }

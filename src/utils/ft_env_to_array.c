@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:03:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 14:55:03 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/19 11:29:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ char **ft_list_to_array(t_ms *ms)
 	i = 0;
 	size = 0;
 	lst = ms->ms_env;
+
+	// if(ms->ms_env_array)
+	// 	ft_free_array(ms->ms_env_array);
 	while (lst != NULL)
 	{	
 		size++;

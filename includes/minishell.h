@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 14:27:32 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 10:19:41 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,8 +265,8 @@ void 		ft_free(char *str);
 
 //Parser
 void	ft_parser(t_ms *ms, t_elem *list);
-void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c, char *str_ex);
-void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c, char *str_ex);
+void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c);
+void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c);
 bool	ft_is_not_redir(enum e_token type);
 
 
@@ -280,8 +280,8 @@ void	ft_is_redir_single_quote(t_ms *ms, t_counters *p);
 //Parser_two
 void	ft_is_redir_double_quote(t_ms *ms, t_counters *p);
 void	ft_is_redir_type(t_ms *ms, t_counters *p);
-void	ft_is_env_and_squote(t_ms *ms, t_counters *p, char *str_expanded);
-void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p, char *str_expanded);
+void	ft_is_env_and_squote(t_ms *ms, t_counters *p);
+void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p);
 void	ft_parser_count_pipes(t_ms *ms, t_counters *p);
 
 #endif

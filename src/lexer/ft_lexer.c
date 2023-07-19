@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 11:50:28 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:29:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void ft_lexer(t_ms *ms, char *str)
 			else if(str[i] == '$' && !str[i + 1])
 			{
 				ft_add_new_elem(elem_head, ft_new_elem(str + i, 1, WORD, status));
-				i++;
+
 			}
 			else
 			{

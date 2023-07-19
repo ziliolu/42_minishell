@@ -157,6 +157,10 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] echo "'$USER'" should print USER variable
 - [x] echo '"$USER"' should print "$USER" variable
 
+## RETESTAR
+- [] cd /$HOME/Documents # verificar pwd //home/lpicoli-/Documents
+- [] lss | ls (ordem errada);
+
 ## LUIZA
 - [x] exit # should return the last exit code value
 - [x] cat <<
@@ -251,5 +255,4 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] cat < Makefile | grep gcc > output
 - [x] exit 0 | exit 1
 - [x] exit 1 | exit 0
-- [] lss | ls (ordem errada);
 

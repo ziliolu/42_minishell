@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 12:19:36 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:08:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 
 bool ft_open_redirs(t_ms *ms, t_counters *c)
 {
-    printf("ola");
      if(ms->cmds[c->i].type == CMD)
         {
             if(ms->cmds[c->i].redirs[c->k].arg != NULL)
             {
                 while(c->k < ft_count_redirs_cmd(&ms->cmds[c->i]))  
                 {
+                    if(ms->cmds[c->i].redirs[c->k].arg[0] == '$')
+                        return(ft_error_var_start("ambiguous redirect", ms->cmds[c->i].redirs[c->k].arg, 1));
+                    
                     if(ms->cmds[c->i].redirs[c->k].type == REDIR_OUT || ms->cmds[c->i].redirs[c->k].type == D_REDIR_OUT)
                         ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
                     else if (ms->cmds[c->i].redirs[c->k].type == REDIR_IN)
@@ -42,18 +44,18 @@ bool ft_open_redirs(t_ms *ms, t_counters *c)
                         ft_is_heredoc(&ms->cmds[c->i], &ms->cmds[c->i].redirs[c->k]);
                     c->k++;
                 }
-                if(ms->cmds[c->i].redirs[c->k - 1].arg[0] != '$')
-                {
+               // if(ms->cmds[c->i].redirs[c->k - 1].arg[0] != '$')
+                //{
                     if(ms->cmds[c->i].redirs[c->k - 1].type == REDIR_OUT)
                         ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k - 1].arg, O_CREAT | O_TRUNC | O_WRONLY, 0777);
                     else if(ms->cmds[c->i].redirs[c->k - 1].type == D_REDIR_OUT)
                         ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k - 1].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);    
-                }
-                else
-                {
-                    ft_error_var_start("ambiguous redirect", ms->cmds[c->i].redirs[c->k - 1].arg, 1);
-                    return (false);
-                }
+               // }
+                // else
+                // {
+                //     ft_error_var_start("ambiguous redirect", ms->cmds[c->i].redirs[c->k - 1].arg, 1);
+                //     return (false);
+                // }
             }
         }
         return true;
@@ -93,10 +95,7 @@ void ft_run_cmds(t_ms *ms)
 {
     t_counters *c;
 
-    c = ft_calloc(1, sizeof(t_counters));
-
-    ms->std_in = dup(STDIN_FILENO);
-	ms->std_out = dup(STDOUT_FILENO);
+    c = ft_calloc(1, sizeof(t_counters ));
     ms->ms_env_array = ft_list_to_array(ms);
 	ft_init_pipes(ms);
     while(ms->cmds[c->i].type)
@@ -104,7 +103,11 @@ void ft_run_cmds(t_ms *ms)
         c->k = 0;
         
         if(!ft_open_redirs(ms, c))
+        {
+            ft_free_counters(c);
             return ;          
+            
+        }
         ft_connect_pipes(ms, c);
         if(ms->cmds[c->i].type != PIPE_LINE)
         {
@@ -117,7 +120,6 @@ void ft_run_cmds(t_ms *ms)
         c->i++;
     }
     ft_free_counters(c);
-
 }
 
 
@@ -149,11 +151,13 @@ bool ft_change_standard_in_out(t_command *cmd)
 void ft_reset_fd_in_out(t_ms *ms)
 {
     dup2(ms->std_out, STDOUT_FILENO);
-	dup2(ms->std_in, STDIN_FILENO);
+    dup2(ms->std_in, STDIN_FILENO);
 }
     
 void ft_filter_cmd(t_ms *ms, t_command *cmd)
 {
+    char *tmp_list;
+    
     if(!cmd->args[0])
         return ;
     if(ft_strcmp(cmd->args[0], "echo") == 0)
@@ -163,7 +167,11 @@ void ft_filter_cmd(t_ms *ms, t_command *cmd)
     else if(ft_strcmp(cmd->args[0], "env") == 0)
         ft_env(cmd, ms->ms_env);
     else if(ft_strcmp(cmd->args[0], "pwd") == 0)
-        printf("%s\n", ft_return_list_info(ms->ms_env, "PWD"));
+    {
+        tmp_list = ft_return_list_info(ms->ms_env, "PWD");
+        printf("%s\n", tmp_list);
+        ft_free(tmp_list);
+    }
     else if(ft_strchr_vars(cmd->args[0], '='))
         ft_add_node_to_list(ms, ms->vars, cmd->args[0]);
     else if(ft_strcmp(cmd->args[0], "export") == 0)
