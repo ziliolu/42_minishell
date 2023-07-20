@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/19 16:17:22 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:00:40 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void	ft_ptr_is_in_quotes(t_ms *ms, t_counters *p)
 			ms->cmds[p->i].args[p->j]
 				= ft_strjoin(ms->cmds[p->i].args[p->j], p->str);
 		else
-			ms->cmds[p->i].args[p->j] = p->str;
+			ms->cmds[p->i].args[p->j] = ft_strdup(p->str);
 	}
+	ft_free(p->str);
 }
 
 void	ft_is_in_single_quote(t_ms *ms, t_counters *p)
@@ -58,6 +59,7 @@ void	ft_is_in_double_quote_while(t_ms *ms, t_counters *p)
 	}
 	else
 	{
+		ft_free(p->str);
 		p->str = ft_strjoin_wo_leaks(p->tmp_str, p->list->data);
 		p->tmp_str = ft_strdup(p->str);
 	}

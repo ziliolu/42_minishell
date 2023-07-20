@@ -43,63 +43,67 @@ valgrind --leak-check=full ./minishell
 - [x] cat < <
 - [x] cat > >
 - [x] cat /dev/random | head -n 1 | cat -e
+- [x] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
+- [x] ctrl-\ .131 sur bin
+- [x] export "test=ici"=coucou
+- [x] $LESS$VAR
+- [x] cat < test # with non-existent test
+- [x] minishell # binary not in path without "./" before
+- [x] echo coucou |
+- [x] echo "$HOME"
+- [x] echo '$HOME'
+- [x] export
+- [x] env # display is different for both commands
+- [x] echo $HOME
+- [x] echo hudifg d | | hugdfihd
+- [x] echo
+- [x] echo simple
+- [x] echo -n simple
+- [x] l^Ds
+- [x] echo |
+- [x] | echo
+- [x] sort | ls # check output order
+- [x] cat < Makefile | grep gcc > output
+- [x] lss | ls (ordem errada);
+- [x] /bin/ls
+- [x] # write something the press ctrl+c
+- [x] export nome=
+- [x] # write something then press ctrl+d
+- [x] # write something then press ctrl+\
+- [x] cd ~
+- [x] cd /
+- [x] cd no_file
+- [x] cd a b c d
+- [x] pwd a
+- [x] pwd a b c d
+- [x] cd
+- [x] export LOL=lala ROR=rara
+- [x] echo ''
+- [x] echo ""
+- [x] echo ;;
+- [x] sleep 5 | exit 
+- [x] exit 0 | exit 1
+- [x] exit 1 | exit 0
+- [x] echo hi " ; " hihi
+- [x] cd .
+- [x] pwd
+- [x] echo $?
+- [x] unset LOL ROR
+
+
+- [] export "HI= hi"
+- [] export "HI =hi"
 - [] unset var1 # with undefined var1
-- [] file_name_in_current_dir
-- [] ctrl-C . 130 sur bin(ex : sleep 10)&line vide
-- [] ctrl-\ .131 sur bin
+- [] file_name_in_current_dirgit 
 - [] echo "bip | bip ; coyotte > < " "
 - [] $bla # with bla not defined
 - [] export var ="cat Makefile | grep >"
-- [] export "test=ici"=coucou
+- [] var=cat
 - [] c$var Makefile # with var=at
-- [] $LESS$VAR
-- [] cat < test # with non-existent test
-- [] sleep 5 | exit
 - [] echo bonjour > $test w/ t
 - [] "exit retour a la ligne"
-- [] minishell # binary not in path without "./" before
+- [] echo hi";" hihi
+- [] > a echo Hello World!
 - [] > a ls > b < Makefile
 - [] echo > a Hello World!
-- [] > a echo Hello World!
-- [] echo coucou |
-- [] echo "$HOME"
-- [] echo '$HOME'
-- [] export
-- [] env # display is different for both commands
-- [] echo $HOME
 - [] > log echo coucou
-- [] echo hudifg d | | hugdfihd
-- [] echo
-- [] echo simple
-- [] echo -n simple
-- [] echo ''
-- [] echo ""
-- [] echo ;;
-- [] echo hi";" hihi
-- [] echo hi " ; " hihi
-- [] cd
-- [] cd .
-- [] cd ~
-- [] cd /
-- [] cd no_file
-- [] cd a b c d
-- [] pwd a
-- [] pwd a b c d
-- [] export LOL=lala ROR=rara
-- [] unset LOL ROR
-- [] export "HI= hi"
-- [] export nome=
-- [] export "HI =hi"
-- [] /bin/ls
-- [] # write something the press ctrl+c
-- [] # write something then press ctrl+d
-- [] # write something then press ctrl+\
-- [] echo $?
-- [] l^Ds
-- [] echo |
-- [] | echo
-- [] sort | ls # check output order
-- [] cat < Makefile | grep gcc > output
-- [] exit 0 | exit 1
-- [] exit 1 | exit 0
-- [] lss | ls (ordem errada);

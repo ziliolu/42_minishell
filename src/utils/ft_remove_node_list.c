@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:27:55 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/06 11:28:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:17:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_remove_node_list(t_lst **head, char *str)
     if(!str)
         return ; 
 
-    //nome=
+    //nome=cuiza
     name = ft_get_list_name(str);
     if(list->next == NULL && ft_strcmp(list->name, name) == 0)
     {

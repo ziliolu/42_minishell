@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/19 15:46:16 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:12:50 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 				
 	if(ft_strcmp(str, "?") == 0)
 	{
+		ft_free(str);
 		return (ft_itoa(g_exit_status));
 	}
 	while (env)

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/19 16:12:40 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 10:47:44 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	ft_is_redir_type(t_ms *ms, t_counters *p)
 	{	
 		ms->cmds[p->i].redirs[p->k].arg = ft_strdup(p->list->data);
 	}
-	p->j--;
+	if(p->j > 1)
+		p->j--;
 	p->k++;
 }
 
@@ -110,6 +111,7 @@ void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p)
 	}
 	else if (p->list->type != WHITE_SPACE)
 	{
+		free(ms->cmds[p->i].args[p->j]);
 		ms->cmds[p->i].args[p->j] = ft_strdup(p->list->data);
 		if (ft_is_dot_comma(ms->cmds[p->i].args[p->j])
 			&& p->list->status != IN_SQUOTE && p->list->status != IN_DQUOTE)

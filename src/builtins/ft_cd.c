@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/19 11:43:21 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:08:09 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void ft_cd(t_ms *ms, t_command *cmd)
     path = NULL;
     tmp = NULL;
     
-    oldpwd = ft_return_list_info(ms->ms_env, "PWD");
     if(ft_is_home_path(cmd->args[1]))
         pwd =  ft_return_list_info(ms->ms_env, "HOME");
     else if(ft_strcmp(cmd->args[1], "-") == 0)
@@ -47,6 +46,7 @@ void ft_cd(t_ms *ms, t_command *cmd)
     }
     else if(ft_strcmp(cmd->args[1], ".") == 0)
         return ;
+    oldpwd = ft_return_list_info(ms->ms_env, "PWD");
     while(!pwd && !ft_is_home_path(cmd->args[1]) && cmd->args[i])
     {
         if(!tmp)
