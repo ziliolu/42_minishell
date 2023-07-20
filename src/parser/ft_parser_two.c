@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/20 10:47:44 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 17:19:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,15 @@ void	ft_is_env_and_squote(t_ms *ms, t_counters *p)
 		ms->cmds[p->i].args[p->j]= ft_strjoin(tmp_arg, str_expanded);
 		free(tmp_arg);
 	}
-	else if (!ms->cmds[p->i].args[p->j])
+	else if (!ms->cmds[p->i].args[p->j] && str_expanded)
 		ms->cmds[p->i].args[p->j] = ft_strdup(str_expanded);
-	free (str_expanded);
+	ft_free (str_expanded);
 }
 
 void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p)
 {
 	
+
 	p->str = NULL;
 	char *tmp_arg;
 	char *tmp_list;
@@ -123,8 +124,8 @@ void	ft_parser_count_pipes(t_ms *ms, t_counters *p)
 {
 	while (p->i <= (ms->n_pipes * 2))
 	{
-		ms->cmds[p->i].args
-			= ft_calloc(ms->count_args[p->i] + 1, sizeof(t_command));
+		//ms->cmds[p->i].args = ft_calloc(ms->count_args[p->i] + 1, sizeof(char *));
+		ms->cmds[p->i].args = ft_calloc(ms->count_args[p->i] + 1, sizeof(t_command));
 		ms->cmds[p->i].in = 0;
 		ms->cmds[p->i].out = 1;
 		ms->cmds[p->i].status = -1;

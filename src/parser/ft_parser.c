@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 11:48:59 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:34:32 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ void	ft_parser(t_ms *ms, t_elem *list)
 	p->tmp_str = NULL;
 	p->i = 0;
 	ft_parser_while_dif_null(ms, p, counter);
-	ft_free_counters(p);
-	// ft_free(p->str);
-	// ft_free(p->tmp_arg);
+	free(p);
 }
 
 bool	ft_is_not_redir(enum e_token type)

@@ -89,20 +89,20 @@ valgrind --leak-check=full ./minishell
 - [x] pwd
 - [x] echo $?
 - [x] unset LOL ROR
+- [x] export "HI= hi"
+- [x] export "HI =hi"
+- [x] unset var1 # with undefined var1
+- [x] "exit retour a la ligne"
+- [x] echo hi";" hihi
+- [x] echo "bip | bip ; coyotte > < " "
+- [x] $bla # with bla not defined
+- [x] export var ="cat Makefile | grep >"
+- [x] var=cat
 
 
-- [] export "HI= hi"
-- [] export "HI =hi"
-- [] unset var1 # with undefined var1
 - [] file_name_in_current_dirgit 
-- [] echo "bip | bip ; coyotte > < " "
-- [] $bla # with bla not defined
-- [] export var ="cat Makefile | grep >"
-- [] var=cat
 - [] c$var Makefile # with var=at
 - [] echo bonjour > $test w/ t
-- [] "exit retour a la ligne"
-- [] echo hi";" hihi
 - [] > a echo Hello World!
 - [] > a ls > b < Makefile
 - [] echo > a Hello World!

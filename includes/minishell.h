@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 11:36:34 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:38:26 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,6 +261,7 @@ char		*ft_chartrim_w_dquotes(char *str, char c);
 char		*ft_strjoin_wo_leaks(char* s1, char* s2);
 void 		ft_free_counters(t_counters *c);
 void 		ft_free(char *str);
+void		ft_free_node(t_lst *node);
 
 
 //Parser

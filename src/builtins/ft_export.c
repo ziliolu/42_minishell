@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/19 11:57:51 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:16:36 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,7 @@ void ft_export(t_ms *ms, t_command *cmd)
 	{
 		ft_print_export(ms->ms_env);
 		return ;
-	}
-	else if (cmd->args[1] == NULL)
-		ft_error(ms, "export: `': not a valid identifier", NULL);
-	
+    }
     while(cmd->args[i])
     { 
         //falta alterar g_exit_status no erro
@@ -89,7 +86,7 @@ void ft_export(t_ms *ms, t_command *cmd)
                 ft_printf("minishell: export: `%s': not a valid identifier\n", cmd->args[i + 1]);
             return ;
         }
-        str = cmd->args[i];
+        str = ft_strdup(cmd->args[i]);
         name = ft_get_list_name(str);
         info = ft_get_list_info(str);
         if(ft_is_already_in_list(name, ms->ms_env))
@@ -107,6 +104,7 @@ void ft_export(t_ms *ms, t_command *cmd)
                 ft_add_export_node(&ms->ms_env, str);
         }
         ft_free(name);
+        ft_free(str);
         ft_free(info);
         i++;
     }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_local_variables.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:28:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 11:35:18 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:32:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void ft_add_node_to_list(t_ms *ms, t_lst **head, char *str)
         return ; 
     }
     ft_add_node(head, str);
+    ft_free(name);
 }
 
 // void ft_update_list_info(t_lst *list, char *name, char *info)

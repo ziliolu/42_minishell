@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/19 15:29:56 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:22:44 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int main(int argc, char **argv, char **system_env)
 			ft_free(tmp_prompt);
 			if(!read_content)
 				continue ;
-			if(ft_is_there_quote(read_content))
-				if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
-					continue ; // pular restante e voltar a mostrar o prompt 
-			if(read_content[0] != '\0')
+			// if(ft_is_there_quote(read_content))
+			// 	if(!ft_is_arg_valid(&ms, read_content)) //caso as aspas/plicas não tenham fechamento
+			// 		continue ; // pular restante e voltar a mostrar o prompt 
+			if(read_content[0] != '\0' && ft_is_arg_valid(&ms, read_content))
 			{
 				ft_lexer(&ms, read_content);
    				ms.ms_argv = ft_split(read_content, ' ');
@@ -83,15 +83,16 @@ int main(int argc, char **argv, char **system_env)
 						ms.dot_comma_flag = false;
 					}	
 				}
+				ft_free_array(ms.ms_argv);
+				ft_free_cmds(&ms);
+				free(ms.count_args);
+				ft_free_elem_list(*ms.lexed_list);
+				free(ms.lexed_list);
+				
 			}
 			ft_wait(&ms);
-			ft_free_array(ms.ms_argv);
 			ft_free_array(ms.ms_env_array);
-			ft_free_cmds(&ms);
-			free(ms.count_args);
 			ft_free(read_content);
-			ft_free_elem_list(*ms.lexed_list);
-			free(ms.lexed_list);
 			
 		}
 	}

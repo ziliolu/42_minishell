@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:02:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/19 15:26:24 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 15:16:03 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ char	*ft_broken_cmds(t_ms *ms, char *str)
 			return (tmp);
 		}
 	}
-	
 	return (ft_strdup(str));
 }

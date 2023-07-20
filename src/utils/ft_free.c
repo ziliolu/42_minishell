@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/19 10:31:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:38:31 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,4 +132,12 @@ void	ft_free_array(char **array)
 	}
 	if (array)
 		free (array);
+}
+
+void ft_free_node(t_lst *node)
+{
+	free(node->full_info);
+    free(node->info);
+    free(node->name);
+	free(node);
 }
