@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 11:43:12 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:36:444 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,33 @@
 
 void ft_exit(t_ms *ms, t_command *cmd)
 {
-	if(ms->n_pipes == 0)
+	char	*tmp;
+	int		atoi_tmp;
+	int		pipes;
+	
+	tmp = NULL;
+	pipes = ms->n_pipes;
+	if (cmd->args[1])
+	{
+		tmp = ft_strdup(cmd->args[1]);
+		atoi_tmp = ft_atoi(tmp);
+	}	
+	ft_free_env(ms);
+	ft_free_array(ms->paths);
+	ft_free_cmds(ms);
+	if(pipes == 0)
 	{
 		ft_printf("exit\n");
-		ft_free_env(ms);
-		ft_free_array(ms->paths);
-		if (ms->cmds[0].args[1])
-			exit(ft_atoi(ms->cmds[0].args[1]));
+		if (tmp)
+		{
+			ft_free(tmp);	
+			exit(atoi_tmp);
+		}
 		exit(g_exit_status);
 	}
-	if(cmd->args[1])
-		g_exit_status = ft_atoi(cmd->args[1]);
-	//wait(0);
-	//exit(g_exit_status);
+	if(tmp)
+	{
+		ft_free(tmp);
+		g_exit_status = atoi_tmp;
+	}
 }

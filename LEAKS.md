@@ -98,12 +98,12 @@ valgrind --leak-check=full ./minishell
 - [x] $bla # with bla not defined
 - [x] export var ="cat Makefile | grep >"
 - [x] var=cat
+- [x] > log echo coucou
+- [x] > a echo Hello World!
+- [x] echo > a Hello World!
+- [x] file_name_in_current_dirgit
 
 
-- [] file_name_in_current_dirgit 
 - [] c$var Makefile # with var=at
-- [] echo bonjour > $test w/ t
-- [] > a echo Hello World!
 - [] > a ls > b < Makefile
-- [] echo > a Hello World!
-- [] > log echo coucou
+- [] echo bonjour > $test w/ t

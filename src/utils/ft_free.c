@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 16:38:31 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 14:41:53 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void ft_free_cmds(t_ms *ms)
 				}
 				free (ms->cmds[i].redirs);
 			}
-			while(j < ms->count_args[i] + 1)
+			while(ms->cmds[i].args[j]) //j < ms->count_args[i] + 1
 			{
 				if(ms->cmds[i].type != PIPE_LINE)
 				{

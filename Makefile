@@ -12,6 +12,7 @@ SRC =	./src/*.c			\
 		./src/utils/general/*.c \
 		./src/utils/list_utils/*.c \
 		./src/utils/validations/*.c \
+		./src/error/*c			\
 		./src/pipes/*.c			\
 		./src/lexer/*.c			\
 		./src/parser/*.c		\
