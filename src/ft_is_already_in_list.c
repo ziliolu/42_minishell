@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_is_already_in_list.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/21 00:05:32 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/21 00:06:51 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+bool ft_is_already_in_list(char *name, t_lst *list)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
-		return (false);
-    return (true);
+    while(list)
+    {
+        if(ft_strcmp(list->name, name) == 0)
+            return (true);
+        list = list->next;
+    }
+    return (false);
 }

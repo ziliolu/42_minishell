@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_error_var_start.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/21 00:10:00 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/21 00:10:22 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+bool ft_error_var_start(char *msg, char *str, int err_number)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
-		return (false);
-    return (true);
+    if(str)
+    {
+        ft_printf("minishell: %s: %s\n", str, msg);
+        g_exit_status = err_number;
+    }
+    return (false);
 }

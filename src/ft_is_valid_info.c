@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_is_valid_info.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/20 23:54:58 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/21 01:18:05 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+bool	ft_is_valid_info(t_ms *ms, int j)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
+	char	*var_info;
+	char	*str;
+
+	str = NULL;
+	var_info = ft_calloc(ft_strlen(ms->ms_argv[0]), sizeof(char));
+	while (ms->ms_argv[0][j])
+	{
+		if (ms->ms_argv[0][j] == '\"')
+			ft_if_valid_info_is_dquote(ms, j, str, var_info);
+		else if (ms->ms_argv[0][j] == '\'')
+			ft_if_valid_info_is_squote(ms, j, str, var_info);
+	}
+	if (str == NULL)
+	{
+		printf("erro!");
 		return (false);
-    return (true);
+	}
+	return (true);
 }

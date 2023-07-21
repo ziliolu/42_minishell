@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_cmd_args_validation.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/21 00:08:14 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/21 00:09:01 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+bool	ft_cmd_args_validation(t_ms *ms)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
+	if (!ft_redirs_validation(ms))
 		return (false);
-    return (true);
+	if (!ft_pipe_validation(ms))
+		return (false);
+	return (true);
 }

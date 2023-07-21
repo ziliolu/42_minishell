@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_is_valid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/20 23:41:22 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/20 23:57:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+bool	ft_is_variable(t_ms *ms)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
+	int	j;
+	int	pos;
+
+	j = 0;
+	pos = 0;
+	printf("is a variable! \n");
+	while (ft_is_valid_character(ms->ms_argv[0][j]))
+		j++;
+	if (ms->ms_argv[0][j] == '=')
+		pos = j;
+	if (pos == 0)
 		return (false);
-    return (true);
+	printf("valid info:: %d\n", ft_is_valid_info(ms, pos + 1));
+	return (true);
 }

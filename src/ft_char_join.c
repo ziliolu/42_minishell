@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_char_join.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/20 23:52:11 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/20 23:52:52 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+char	*ft_charjoin(char *str, char c)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
-		return (false);
-    return (true);
+	int		i;
+	char	*new_str;
+
+	new_str = ft_calloc(2, sizeof(str));
+	i = -1;
+	while (str[++i])
+		new_str[i] = str[i];
+	new_str[++i] = c;
+	new_str[++i] = '\0';
+	return (new_str);
 }

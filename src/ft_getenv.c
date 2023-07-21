@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_get_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/20 23:48:48 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/20 23:53:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+char	*ft_getenv(t_ms *ms, char *name)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
-		return (false);
-    return (true);
+	t_lst	*list;
+
+	list = ms->ms_env;
+	while (list)
+	{
+		if (ft_strcmp(list->name, name) == 0)
+			return (list->info);
+		list = list->next;
+	}
+	return (NULL);
 }

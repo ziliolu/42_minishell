@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_arg_valid.c                                  :+:      :+:    :+:   */
+/*   ft_is_absolute_path.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/05 17:52:43 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 00:12:19 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/20 23:51:05 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/20 23:51:52 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-bool ft_is_arg_valid(t_ms *ms, char *read_content)
+bool	ft_is_absolute_path(char *str)
 {
-    (void)ms;
-	if(!ft_is_quote_valid(read_content))
+	if (!str)
 		return (false);
-    return (true);
+	if (str[0] == '/' || (str[0] == '.' && str[1] == '/')
+		|| (str[0] == '.' && str[1] == '.' && str[2] == '/')
+		|| (str[0] == '~' && str[1] == '/'))
+		return (true);
+	return (false);
 }
