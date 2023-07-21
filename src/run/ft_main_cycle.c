@@ -6,11 +6,11 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/21 10:31:02 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:34:59 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_main_cycle(t_ms *ms, char *read_content, char *tmp_prompt, char *prompt)
 {

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/03 17:18:10 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:32:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,4 @@ void	ft_print_tokens(t_ms *ms, t_elem *list)
 	printf("|\t%d Pipes\t\t|\t%d total number of arguments in the element list.\t|\n", ft_count_pipes(additional), ft_count_tokens(additional));
 	printf("-----------------------------------------------------------------------------------------\n");
 	ft_print_command_nodes(ms, ms->n_pipes);
-	//printf("Redirects: %d\n", ft_count_redirs(list));
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:30:37 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-lpcoilpcoi52lpcoilpcoilpcoi50lpcoilpcoilpcoi7lpcoilpcoilpcoi5lpcoilpcoilpcoi41lpcoilpcoilpcoi9lpcoilpcoilpcoi6lpcoilpcoilpcoi4lpcoilpcoilpcoi31lpcoilpcoilpcoi3lpcoi22#ifndef MINISHELL_H
+#ifndef MINISHELL_H
 #define MINISHELL_H
 
 

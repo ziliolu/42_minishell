@@ -8,10 +8,11 @@ RM = rm -f
 LIBDIR = ./lib/
 SRC =	./src/*.c			\
 		./src/builtins/*.c	\
-		./src/utils/*.c		\
 		./src/utils/general/*.c \
 		./src/utils/list_utils/*.c \
 		./src/utils/validations/*.c \
+		./src/utils/free_memory/*.c	\
+		./src/run/*.c			\
 		./src/error/*c			\
 		./src/pipes/*.c			\
 		./src/lexer/*.c			\

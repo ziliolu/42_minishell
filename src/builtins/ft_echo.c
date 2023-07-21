@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:45:13 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/12 17:35:28 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:31:15 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void ft_echo(t_command *cmd)
 	tmp = NULL;
 	if (cmd->args[1] && ft_strcmp(cmd->args[1], "-n") == 0)
 		i++;
-	
-    // while (cmd->args[i])
-    // {
-    //     printf("args: %s\n", cmd->args[i]);
-    //     i++;
-    // }
-    // i = 1;
 	while (cmd->args[i])
 	{
 		if (!tmp)
@@ -54,7 +47,6 @@ void ft_echo(t_command *cmd)
 	}
 	if(tmp)
 	    free(tmp);
-	
 	if (cmd->args[1] && ft_strcmp(cmd->args[1], "-n") == 0)
 		ft_printf("%s", str);
 	else if(cmd->args[1])

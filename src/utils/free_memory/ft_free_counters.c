@@ -6,11 +6,11 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 14:02:56 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 11:46:58 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:37:44 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
 void ft_free_counters(t_counters *c)
 {

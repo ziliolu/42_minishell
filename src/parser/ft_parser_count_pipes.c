@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_count_pipes.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:02 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:32:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_parser_count_pipes(t_ms *ms, t_counters *p)
 {
 	while (p->i <= (ms->n_pipes * 2))
 	{
-		// ms->cmds[p->i].args = ft_calloc(ms->count_args[p->i] + 1, sizeof(char *));
 		ms->cmds[p->i].args = ft_calloc(ms->count_args[p->i] + 1, sizeof(t_command));
 		ms->cmds[p->i].in = 0;
 		ms->cmds[p->i].out = 1;

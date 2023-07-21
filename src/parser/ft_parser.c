@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:04 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:32:28 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_parser(t_ms *ms, t_elem *list)
 	int			counter;
 	t_counters	p;
 
-	//p = ft_calloc(1, sizeof(t_counters));
 	ms->spaces_flag = 0;
 	counter = ft_count_tokens(list);
 	ms->n_pipes = ft_count_pipes(list);
@@ -32,5 +31,4 @@ void	ft_parser(t_ms *ms, t_elem *list)
 	p.tmp_str = NULL;
 	p.i = 0;
 	ft_parser_while_dif_null(ms, &p, counter);
-	//free(p);
 }

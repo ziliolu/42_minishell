@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_new_elem.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:38:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/18 12:01:35 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:31:52 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,7 @@ void	ft_add_new_elem(t_elem **head, t_elem *new_elem)
 	{
 		last = ft_find_last_elem(*head); // *head == > 
 		last->next = new;
-	}
-	
-	// if(ft_size_list(head) > 1)
-	// {
-	// 	last = ft_find_last_elem(*head); // *head == > 
-	// 	last->next = new;
-	// }
-	
+	}	
 }
 
 t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status status)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:01 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:33:39 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 bool ft_open_redirs(t_ms *ms, t_counters *c)
 {

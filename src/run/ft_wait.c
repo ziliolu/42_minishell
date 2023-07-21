@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_wait.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:02:28 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/21 00:02:42 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:33:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 void	ft_wait(t_ms *ms)
 {

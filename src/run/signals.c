@@ -6,11 +6,12 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:27:26 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 14:16:11 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:34:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
+
 #include <unistd.h>
 void ft_handler(int signal)
 {
