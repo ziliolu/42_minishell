@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 01:23:47 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:28:03 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
+lpcoilpcoi52lpcoilpcoilpcoi50lpcoilpcoilpcoi7lpcoilpcoilpcoi5lpcoilpcoilpcoi41lpcoilpcoilpcoi9lpcoilpcoilpcoi6lpcoilpcoilpcoi4lpcoilpcoilpcoi31lpcoilpcoilpcoi3lpcoi22#ifndef MINISHELL_H
 #define MINISHELL_H
 
 
@@ -209,6 +209,7 @@ void 		ft_handler_loop(int signal);
 void 		ft_handle_signals_loop();
 
 // I
+bool 		ft_is_home_path(char *str);
 void		ft_init_ms(t_ms *ms, char **system_env);
 void 		ft_init_pipes(t_ms *ms);
 bool		ft_is_absolute_path(char *input);

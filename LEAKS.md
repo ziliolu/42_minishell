@@ -102,8 +102,8 @@ valgrind --leak-check=full ./minishell
 - [x] > a echo Hello World!
 - [x] echo > a Hello World!
 - [x] file_name_in_current_dirgit
+- [x] echo bonjour > $test w/ t
 
 
 - [] c$var Makefile # with var=at
 - [] > a ls > b < Makefile
-- [] echo bonjour > $test w/ t

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_env.c                                    :+:      :+:    :+:   */
+/*   ft_strtrim_end.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 14:47:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:03 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/06/07 10:52:56 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/21 16:28:02 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-
-void ft_create_env(t_ms *ms, char **env)
+char *ft_strtrim_end(char *str, char set)
 {
-	t_lst	**env_head;
-	t_lst	*list;
-	int		i;
+    int i;
+    char *new_str;
 
-	env_head = (t_lst **)ft_calloc(1, sizeof(t_lst *));
-	i = 0;
-	list = ft_new_node(env[i++]);
-	*env_head = list;
-	while (env[i])
-		ft_add_node(env_head, env[i++]);
-	ms->ms_env = *env_head;
-	free (env_head);
+    i = ft_strlen(str);
+    if(str[i] == set)
+    {
+        new_str = ft_calloc(i - 1, sizeof(char));
+        ft_strlcpy(new_str, str, i - 1);
+        return(new_str);
+    }
+    return (ft_strdup(str)); 
 }

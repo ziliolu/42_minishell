@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 11:36:16 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:28:01 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include <unistd.h>
-
-//teste
 
 bool ft_open_redirs(t_ms *ms, t_counters *c)
 {
+    char *tmp_arg;
+
+    tmp_arg = NULL;
      if(ms->cmds[c->i].type == CMD)
         {
             if(ms->cmds[c->i].redirs[c->k].arg != NULL)
@@ -24,8 +24,21 @@ bool ft_open_redirs(t_ms *ms, t_counters *c)
                 while(c->k < ft_count_redirs_cmd(&ms->cmds[c->i]))  
                 {
                     if(ms->cmds[c->i].redirs[c->k].arg[0] == '$')
-                        return(ft_error_var_start("ambiguous redirect", ms->cmds[c->i].redirs[c->k].arg, 1));
-                    
+                    {
+                        tmp_arg = ft_strtrim(ms->cmds[c->i].redirs[c->k].arg, "$");
+                        if(!ft_is_already_in_list(tmp_arg, *ms->vars) && !ft_is_already_in_list(tmp_arg, ms->ms_env))
+                            {
+                                ft_free(tmp_arg);
+                                return(ft_error_var_start("ambiguous redirect", ms->cmds[c->i].redirs[c->k].arg, 1));
+                            }
+                                
+                        ft_free(ms->cmds[c->i].redirs[c->k].arg);
+                        if(ft_is_already_in_list(tmp_arg, ms->ms_env))
+                            ms->cmds[c->i].redirs[c->k].arg = ft_return_list_info(ms->ms_env, tmp_arg);
+                        else if(ft_is_already_in_list(tmp_arg, *ms->vars))
+                            ms->cmds[c->i].redirs[c->k].arg = ft_return_list_info(*ms->vars, tmp_arg);
+                        ft_free(tmp_arg);
+                    }
                     if(ms->cmds[c->i].redirs[c->k].type == REDIR_OUT || ms->cmds[c->i].redirs[c->k].type == D_REDIR_OUT)
                         ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k].arg, O_CREAT | O_APPEND | O_WRONLY, 0777);
                     else if (ms->cmds[c->i].redirs[c->k].type == REDIR_IN)

@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_env.c                                    :+:      :+:    :+:   */
+/*   ft_is_home_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 14:47:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:03 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/21 16:28:05 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-
-void ft_create_env(t_ms *ms, char **env)
+bool ft_is_home_path(char *str)
 {
-	t_lst	**env_head;
-	t_lst	*list;
-	int		i;
-
-	env_head = (t_lst **)ft_calloc(1, sizeof(t_lst *));
-	i = 0;
-	list = ft_new_node(env[i++]);
-	*env_head = list;
-	while (env[i])
-		ft_add_node(env_head, env[i++]);
-	ms->ms_env = *env_head;
-	free (env_head);
+    if(!ft_arg_exist(str))
+       return (true);
+    if(ft_strcmp(str, "~") == 0 || ft_strcmp(str, "/") == 0
+        || (ft_strcmp(str, "~/") == 0))
+        return (true);
+    return (false);
 }

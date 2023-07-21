@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim_end_quote.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 17:56:37 by lpicoli-          #+#    #+#             */
+/*   Created: 2023/06/07 10:52:56 by lpicoli-          #+#    #+#             */
 /*   Updated: 2023/07/21 16:28:04 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../../../includes/minishell.h"
 
-void	ft_parser(t_ms *ms, t_elem *list)
+char *ft_strtrim_end_quote(char *str, char set)
 {
-	int			counter;
-	t_counters	p;
+    int i;
+    int j;
+    char *new_str;
 
-	//p = ft_calloc(1, sizeof(t_counters));
-	ms->spaces_flag = 0;
-	counter = ft_count_tokens(list);
-	ms->n_pipes = ft_count_pipes(list);
-	ms->cmds = ft_calloc(ms->n_pipes * 2 + 2, sizeof(t_command));
-	p.i = 0;
-	p.j = 0;
-	p.k = 0;
-	p.list = list;
-	if (!ms->cmds)
-		return ;
-	ft_parser_count_pipes(ms, &p);
-	p.tmp_str = NULL;
-	p.i = 0;
-	ft_parser_while_dif_null(ms, &p, counter);
-	//free(p);
+    i = ft_strlen(str);
+    while(i >= 0)
+    {
+        if(str[i] == set)
+        {
+            j = i;
+            new_str = ft_calloc(j + 1, sizeof(char));
+            ft_strlcpy(new_str, str, j + 1);
+            return(new_str);
+        }
+        i--;
+    }
+    return (str); 
 }

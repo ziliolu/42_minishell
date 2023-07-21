@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 12:08:09 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 16:28:03 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-bool ft_is_home_path(char *str)
-{
-    if(!ft_arg_exist(str))
-       return (true);
-    if(ft_strcmp(str, "~") == 0 || ft_strcmp(str, "/") == 0
-        || (ft_strcmp(str, "~/") == 0))
-        return (true);
-    return (false);
-}
 
 void ft_cd(t_ms *ms, t_command *cmd)
 {
@@ -112,38 +102,6 @@ void ft_cd(t_ms *ms, t_command *cmd)
 
 
 
-char *ft_strtrim_end(char *str, char set)
-{
-    int i;
-    char *new_str;
 
-    i = ft_strlen(str);
-    if(str[i] == set)
-    {
-        new_str = ft_calloc(i - 1, sizeof(char));
-        ft_strlcpy(new_str, str, i - 1);
-        return(new_str);
-    }
-    return (ft_strdup(str)); 
-}
 
-char *ft_strtrim_end_quote(char *str, char set)
-{
-    int i;
-    int j;
-    char *new_str;
 
-    i = ft_strlen(str);
-    while(i >= 0)
-    {
-        if(str[i] == set)
-        {
-            j = i;
-            new_str = ft_calloc(j + 1, sizeof(char));
-            ft_strlcpy(new_str, str, j + 1);
-            return(new_str);
-        }
-        i--;
-    }
-    return (str); 
-}
