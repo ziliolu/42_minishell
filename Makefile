@@ -9,13 +9,15 @@ LIBDIR = ./lib/
 SRC =	./src/*.c			\
 		./src/builtins/*.c	\
 		./src/utils/*.c		\
-		./src/builtins/env/*.c 	\
+		./src/utils/general/*.c \
+		./src/utils/list_utils/*.c \
+		./src/utils/validations/*.c \
 		./src/pipes/*.c			\
 		./src/lexer/*.c			\
 		./src/parser/*.c		\
 		./src/print/*.c			\
 		./src/redirect/*.c		\
-		./src/executable/*.c
+		./src/executable/*.c	\
 
 COLOUR_RED = 		\e[31m
 COLOUR_ORANGE_B = 	\e[91m

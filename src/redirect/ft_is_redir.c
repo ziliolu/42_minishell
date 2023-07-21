@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:58:57 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/15 13:33:48 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 12:12:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,12 @@ bool ft_is_arg_redir(char *arg)
 			|| ft_strcmp(arg, "<") == 0 || ft_strcmp(arg, "<<") == 0)
 			return (true);
 	}
+	return (false);
+}
+bool	ft_is_not_redir(enum e_token type)
+{
+	if (type != REDIR_IN && type != REDIR_OUT
+		&& type != HERE_DOC && type != D_REDIR_OUT)
+		return (true);
 	return (false);
 }

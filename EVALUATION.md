@@ -255,4 +255,5 @@ Use &&, || and parenthesis with commands and ensure minishell behaves the same w
 - [x] cat < Makefile | grep gcc > output
 - [x] exit 0 | exit 1
 - [x] exit 1 | exit 0
+- [] echo oi | (newline without input)
 

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:02:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/20 15:16:03 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/21 10:27:17 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ char	*ft_broken_cmds(t_ms *ms, char *str)
 	char	*tmp;
 
 	size = ft_strlen(str) - 1;
+	prompt_tmp = NULL;
+	new_str = NULL;
+	tmp = NULL;
 	prompt = "> ";
 	if(str[0] == '|' || (str[size] == '|' && str[size - 1] == '|'))
 	{
@@ -39,14 +42,20 @@ char	*ft_broken_cmds(t_ms *ms, char *str)
 		}
 		else
 		{
-			prompt_tmp = readline(prompt);
-			new_str = ft_strjoin(str, prompt_tmp);
-			printf("%s\n", new_str);
-			tmp = ft_strtrim(new_str, " ");
-			free (new_str);
-			free(prompt_tmp);
+			while(!prompt_tmp || (prompt_tmp && ft_strcmp(prompt_tmp, "") == 0))
+			{
+				ft_free(tmp);
+				ft_free(prompt_tmp);
+				prompt_tmp = readline(prompt);
+				new_str = ft_strjoin(str, prompt_tmp);
+				tmp = ft_strtrim(new_str, " ");	
+				ft_free (new_str);
+			}
+			ft_free(prompt_tmp);
 			return (tmp);
 		}
 	}
 	return (ft_strdup(str));
 }
+
+;
