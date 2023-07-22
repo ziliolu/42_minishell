@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_if_redir_dif_pipe.c                             :+:      :+:    :+:   */
+/*   ft_parser_is.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:06:12 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 12:10:17 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:52:08 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p)
+void	ft_parser_is(t_ms *ms, t_counters *p)
 {
-	char *tmp_arg;
-	char *tmp_list;
+	char	*tmp_arg;
+	char	*tmp_list;
 
 	p->str = NULL;
+	p->tmp_str = NULL;
+	tmp_arg = NULL;
+	tmp_list = NULL;
 	if (p->list->type == ENV && p->list->status != IN_SQUOTE)
 		ft_is_env_and_squote(ms, p);
 	else if (p->list->type == SINGLE_QUOTE)
@@ -27,14 +30,7 @@ void	ft_if_redir_dif_pipe(t_ms *ms, t_counters *p)
 	else if (ft_is_redir(p->list->type))
 		ft_is_redir_type(ms, p);
 	else if (ms->cmds[p->i].args[p->j] != NULL)
-	{
-		tmp_arg = ft_strdup(ms->cmds[p->i].args[p->j]);
-		tmp_list = ft_strdup(p->list->data);
-		ft_free(ms->cmds[p->i].args[p->j]);
-		ms->cmds[p->i].args[p->j] = ft_strjoin(tmp_arg, tmp_list);
-		ft_free(tmp_arg);
-		ft_free(tmp_list);
-	}
+		ft_parser_is_not_null(ms, p, tmp_arg, tmp_list);
 	else if (p->list->type != WHITE_SPACE)
 	{
 		free(ms->cmds[p->i].args[p->j]);

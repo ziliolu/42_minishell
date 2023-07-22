@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 12:08:07 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:38:54 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 {
 	char	*str;
 
-	str = ft_strtrim(variable, "$");			
-	if(ft_strcmp(str, "?") == 0)
+	str = NULL;
+	str = ft_strtrim(variable, "$");
+	if (ft_strcmp(str, "?") == 0)
 	{
 		ft_free(str);
 		return (ft_itoa(g_exit_status));
@@ -25,23 +26,15 @@ char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 	while (env)
 	{
 		if (ft_strcmp(str, env->name) == 0)
-		{
-			ft_free(str);	
-			return (ft_strdup(env->info));
-		}
+			return (ft_expand_while_env(env, vars, str));
 		env = env->next;
 	}
-	while(vars)
+	while (vars)
 	{
 		if (ft_strcmp(str, vars->name) == 0)
-		{
-			ft_free(str);	
-			return (ft_strdup(vars->info));
-		}
+			return (ft_expand_while_vars(env, vars, str));
 		vars = vars->next;
 	}
 	free(str);
-	//nao teria que retornar \n quando nao conseguir expandir? ex: echo $pwd
 	return (NULL);
 }
-

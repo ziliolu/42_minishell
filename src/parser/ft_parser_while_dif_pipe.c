@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:01 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:49:13 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c)
 	ms->cmds[p->i].type = CMD;
 	while (p->list != NULL && p->list->type != PIPE_LINE)
 	{
-		ft_if_redir_dif_pipe(ms, p);
+		ft_parser_is(ms, p);
 		p->list = p->list->next;
 		space = 0;
 		if (p->list && p->list->type == WHITE_SPACE)
@@ -32,7 +32,8 @@ void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c)
 			space++;
 			ms->spaces_flag++;
 		}
-		if ((ms->cmds[p->i].args[p->j] || ft_strcmp(ms->cmds[p->i].args[p->j], "") == 0) && space != 0)
+		if ((ms->cmds[p->i].args[p->j]
+				|| ft_strcmp(ms->cmds[p->i].args[p->j], "") == 0) && space != 0)
 			p->j++;
 	}
 	p->i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:30:37 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/22 21:37:27 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,54 @@ typedef struct s_ms
 	int			pid;
 	int			status;
 	int			processes;
+	int			atoi_tmp;
+	int			i;
+	int			j;
+	int			go_out;
 }	t_ms;
+
+typedef struct s_cd
+{
+	char	*pwd;
+	char	*oldpwd;
+	char	*path;
+	char	*tmp;
+	char	*tmp_path;
+	char	*tmp_path_w_slash;
+	int		i;
+}	t_cd;
+
+typedef struct s_export
+{
+	char	*name;
+	char	*info;
+	char	*str;
+	int		i;
+}	t_export;
+
+typedef struct s_echo
+{
+	char	*tmp;
+	char	*final;
+	char	*str;
+	int		i;
+}	t_echo;
+
+typedef struct s_lexer
+{
+    int		squote_flag;
+    int		dquote_flag;
+    int		i;
+}	t_lexer;
+
+typedef struct s_broken_cmds
+{
+	int		size;
+	char	*prompt;
+	char	*prompt_tmp;
+    char	*new_str;
+	char	*tmp;
+}	t_broken_cmds;
 
 // A
 void		ft_add_node_to_list(t_ms *ms, t_lst **head, char *str);
@@ -153,6 +200,7 @@ bool		ft_arg_exist(char *arg);
 
 // B
 char		*ft_broken_cmds(t_ms *ms, char *str);
+char	*ft_is_broken_cmds_pipe(t_ms *ms, char *str, t_broken_cmds *b);
 
 // C
 void		ft_create_env(t_ms *ms, char **env);
@@ -174,15 +222,31 @@ void 		ft_close_pipes(t_ms *ms);
 char		*ft_chartrim_wo_dquotes(char *str, char c);
 char		*ft_chartrim_w_dquotes(char *str, char c);
 char		*ft_charjoin(char *str, char c);
+void		ft_cd_is_chdir(t_ms *ms, t_command *cmd, t_cd *cd);
+t_elem		*ft_count_args_is_squote(t_ms *ms, t_elem *list);
+t_elem		*ft_count_args_is_dquote(t_ms *ms, t_elem *list);
+t_elem		*ft_count_args_is_pipe(t_ms *ms, t_elem *list);
+t_elem		*ft_count_args_is_word(t_ms *ms, t_elem *list);
+int		ft_count_redirs_cmd(t_command *cmd);
+
+
 
 // E
 void		ft_echo(t_command *cmd);
-void		ft_export(t_ms *ms, t_command *cmd);
-bool 		ft_error(t_ms *ms, char *msg, char *str);
-void 		ft_exit(t_ms *ms, t_command *cmd);
-bool 		ft_error_var_start(char *msg, char *str, int err_number);
+void		ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo);
 void		ft_env(t_command *cmd, t_lst *lst);
+bool 		ft_error(t_ms *ms, char *msg, char *str);
+bool 		ft_error_var_start(char *msg, char *str, int err_number);
+void		ft_export(t_ms *ms, t_command *cmd);
+void		ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i);
+void		ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp);
+bool		ft_executable_is_access(t_ms *ms, t_command *cmd, char *total_path, char *path_w_slash);
+void 		ft_exit(t_ms *ms, t_command *cmd);
+void		ft_exit_free(t_ms *ms);
+char		*ft_exit_is_cmd_arg(t_ms *ms, t_command *cmd, char *tmp);
 char		*ft_expand(t_lst *list, t_lst *vars, char *variable);
+char	*ft_expand_while_env(t_lst *env, t_lst *vars, char *str);
+char	*ft_expand_while_vars(t_lst *env, t_lst *vars, char *str);
 
 // F
 t_lst		*ft_find_last(t_lst *list);
@@ -230,7 +294,6 @@ bool		ft_is_not_redir(enum e_token type);
 bool        ft_is_quote_valid(char *read_content);
 void		ft_if_readline_is_valid(t_ms *ms, char *read_content);
 bool 		ft_is_redir(enum e_token type);
-void		ft_if_redir_dif_pipe(t_ms *ms, t_counters *p);
 void		ft_is_redir_single_quote(t_ms *ms, t_counters *p);
 void		ft_is_redir_double_quote(t_ms *ms, t_counters *p);
 void		ft_is_redir_type(t_ms *ms, t_counters *p);
@@ -243,11 +306,22 @@ bool		ft_is_variable(t_ms *ms);
 bool		ft_is_valid_info(t_ms *ms, int j);
 void		ft_if_valid_info_is_squote(t_ms *ms, int j, char *str, char *var_info);
 void		ft_if_valid_info_is_dquote(t_ms *ms, int j, char *str, char *var_info);
+void		ft_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
+void	ft_is_env_in_quotes(t_counters *p, char *exp_or_data, char *tmp_str);
+void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, char *path_w_slash, char *total_path);
 
 // L
 char		**ft_list_to_array(t_ms *ms);
-void		ft_lexer(t_ms *ms, char *read_content);
 char		**ft_list_to_array(t_ms *ms);
+void		ft_lexer(t_ms *ms, char *read_content);
+// void		ft_lexer_is_squote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
+void		ft_lexer_if_str_squote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
+void		ft_lexer_if_str_dquote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
+void		ft_lexer_if_str_redir_in(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
+void		ft_lexer_if_str_redir_out(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
+void		ft_lexer_if_str_else(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
+void		ft_lexer_if_while_str(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
+
 
 // M
 void		ft_main_cycle(t_ms *ms, char *read_content, char *tmp_prompt, char *prompt);
@@ -256,10 +330,16 @@ void		ft_main_cycle(t_ms *ms, char *read_content, char *tmp_prompt, char *prompt
 t_lst		*ft_new_node(char *str);
 t_elem		*ft_new_elem(char *str, int len, enum e_token type, enum e_status);
 
+
+// O
+bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg);
+bool	ft_open_redirs(t_ms *ms, t_counters *c);
+
 // P
 bool		ft_pipe_validation(t_ms *ms);
 void		ft_print_list(t_lst *list);
 void		ft_print_command_nodes(t_ms *ms, int n_pipes);
+void	ft_print_command_nodes_while_pipe(t_ms *ms, int i, int j, int k);
 void		ft_print_tokens(t_ms *ms, t_elem *list);
 void		ft_print_array(char **str);
 void		ft_print_local_variables(t_lst **head);
@@ -268,6 +348,8 @@ void		ft_parser_count_pipes(t_ms *ms, t_counters *p);
 void		ft_parser(t_ms *ms, t_elem *list);
 void		ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c);
 void		ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c);
+void		ft_parser_is(t_ms *ms, t_counters *p);
+void	ft_parser_is_not_null(t_ms *ms, t_counters *p, char *tmp_arg, char *tmp_list);
 void		ft_ptr_is_in_quotes(t_ms *ms, t_counters *p);
 
 // R
@@ -295,6 +377,7 @@ char		*ft_token_status(enum e_status status);
 char		*ft_token_type(enum e_token type);
 char 		*ft_token_status(enum e_status status);
 char 		*ft_token_type(enum e_token type);
+char		*ft_token_type_else(enum e_token type);
 
 // U
 void		ft_update_list(t_lst *list, char *name, char *new_info);
@@ -305,5 +388,6 @@ int			ft_valid_env(char c);
 
 // W
 void 		ft_wait(t_ms *ms);
+void	ft_cd_while_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
 
 #endif

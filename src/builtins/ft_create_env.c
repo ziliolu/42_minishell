@@ -6,14 +6,13 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 14:47:25 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:28:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/21 21:19:12 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-
-void ft_create_env(t_ms *ms, char **env)
+void	ft_create_env(t_ms *ms, char **env)
 {
 	t_lst	**env_head;
 	t_lst	*list;

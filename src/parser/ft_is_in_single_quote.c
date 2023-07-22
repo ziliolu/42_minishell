@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_in_single_quote.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:06:12 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 12:07:37 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:18:29 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_is_in_single_quote(t_ms *ms, t_counters *p)
 	p->list = p->list->next;
 	while (p->list->type != SINGLE_QUOTE)
 	{
-		p->str = ft_strjoin_wo_leaks(p->tmp_str, p->list->data);
-		p->tmp_str = ft_strdup(p->str);
+		p->str = ft_strdup(p->list->data);
+		ft_is_env_in_quotes(p, p->str, p->tmp_str);
 		p->list = p->list->next;
 	}
 	if (p->list->status == IN_DQUOTE)

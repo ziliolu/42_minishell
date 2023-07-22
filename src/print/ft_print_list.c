@@ -14,15 +14,13 @@
 
 void	ft_print_list(t_lst *lst)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (lst != NULL)
-	{	
+	{
 		printf("%s\n", lst->full_info);
 		lst = lst->next;
 		i++;
 	}
-	
 }
-

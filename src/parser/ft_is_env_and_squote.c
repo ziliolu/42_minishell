@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_env_and_squote.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:06:12 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 12:11:02 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:21:01 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 void	ft_is_env_and_squote(t_ms *ms, t_counters *p)
 {
-	char	*str_expanded; 
-	char *tmp_arg;
-	
+	char	*str_expanded;
+	char	*tmp_arg;
+
 	str_expanded = NULL;
 	str_expanded = ft_expand(ms->ms_env, *ms->vars, p->list->data);
 	if (ms->cmds[p->i].args[p->j] && str_expanded)
 	{
 		tmp_arg = ft_strdup(ms->cmds[p->i].args[p->j]);
-		ms->cmds[p->i].args[p->j]= ft_strjoin(tmp_arg, str_expanded);
+		free(ms->cmds[p->i].args[p->j]);
+		ms->cmds[p->i].args[p->j] = ft_strjoin(tmp_arg, str_expanded);
 		free(tmp_arg);
 	}
 	else if (!ms->cmds[p->i].args[p->j] && str_expanded)
