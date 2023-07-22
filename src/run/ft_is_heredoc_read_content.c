@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_filter_cmd.c                                    :+:      :+:    :+:   */
+/*   ft_is_heredoc_read_content.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 23:59:10 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/23 00:17:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_filter_cmd(t_ms *ms, t_command *cmd)
+char	*ft_is_heredoc_read_content(t_command *cmd, t_heredoc *h)
 {
-	char	*tmp_list;
-
-	if (!cmd->args[0])
-		return ;
-	if (ft_strcmp(cmd->args[0], "echo") == 0)
-		ft_echo(cmd);
-	else if (ft_strcmp(cmd->args[0], "cd") == 0)
-		ft_cd(ms, cmd);
-	else if (ft_strcmp(cmd->args[0], "env") == 0)
-		ft_env(cmd, ms->ms_env);
-	else if (ft_strcmp(cmd->args[0], "pwd") == 0)
+	while (ft_strcmp(h->read_content, h->eof) != 0)
 	{
-		tmp_list = ft_return_list_info(ms->ms_env, "PWD");
-		printf("%s\n", tmp_list);
-		ft_free(tmp_list);
+		h->read_content = readline(h->prompt);
+		if (!h->read_content)
+		{
+			cmd->err = true;
+			printf("\n");
+			return (NULL);
+		}
+		else
+		{
+			if (ft_strcmp(h->read_content, h->eof) == 0)
+				break ;
+			h->str = ft_strjoin(h->str, h->read_content);
+			h->str = ft_strjoin(h->str, "\n");
+		}
 	}
-	else
-		ft_filter_cmd_else(ms, cmd);
+	return (h->str);
 }

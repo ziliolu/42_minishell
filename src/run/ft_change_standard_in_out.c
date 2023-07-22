@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_run_cmds copy 4.c                               :+:      :+:    :+:   */
+/*   ft_change_standard_in_out.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 21:28:40 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/22 23:49:24 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	ft_change_standard_in_out(t_command *cmd)
 		if (dup2(cmd->out, STDOUT_FILENO) == -1)
 		{
 			printf("dup2 error!\n");
-			return(false);
+			return (false);
 		}
 		close(cmd->out);
 	}
@@ -28,7 +28,7 @@ bool	ft_change_standard_in_out(t_command *cmd)
 		if (dup2(cmd->in, STDIN_FILENO) == -1)
 		{
 			printf("dup2 error!\n");
-			return(false);
+			return (false);
 		}
 		else
 			close(cmd->in);

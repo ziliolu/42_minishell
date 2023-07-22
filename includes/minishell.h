@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 21:37:27 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/23 00:15:03 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,16 @@ typedef struct s_broken_cmds
 	char	*tmp;
 }	t_broken_cmds;
 
+typedef struct s_heredoc
+{
+	char	*eof;
+	char	*str;
+	int		fd;
+	int		fd2;
+	char	*read_content;
+	char	*prompt;
+}	t_heredoc;
+
 // A
 void		ft_add_node_to_list(t_ms *ms, t_lst **head, char *str);
 void		ft_add_node(t_lst **header, char *str);
@@ -228,6 +238,7 @@ t_elem		*ft_count_args_is_dquote(t_ms *ms, t_elem *list);
 t_elem		*ft_count_args_is_pipe(t_ms *ms, t_elem *list);
 t_elem		*ft_count_args_is_word(t_ms *ms, t_elem *list);
 int		ft_count_redirs_cmd(t_command *cmd);
+void	ft_connect_pipes(t_ms *ms, t_counters *c);
 
 
 
@@ -260,6 +271,7 @@ void 		ft_free(char *str);
 void		ft_free_node(t_lst *node);
 t_elem		*ft_find_last_elem(t_elem *list);
 void		ft_filter_cmd(t_ms *ms, t_command *cmd);
+void		ft_filter_cmd_else(t_ms *ms, t_command *cmd);
 t_lst		*ft_find_second_to_last(t_lst **head);
 
 // G
@@ -286,6 +298,7 @@ bool		ft_is_executable(t_ms *ms, t_command *cmd);
 bool 		ft_is_export_type(char *str);
 void		ft_is_env_and_squote(t_ms *ms, t_counters *p);
 void 		ft_is_heredoc(t_command *cmd, t_redirect *redir);
+char	*ft_is_heredoc_read_content(t_command *cmd, t_heredoc *h);
 void		ft_is_in_single_quote(t_ms *ms, t_counters *p);
 void		ft_is_in_double_quote_while(t_ms *ms, t_counters *p);
 void		ft_is_in_double_quote(t_ms *ms, t_counters *p);
@@ -332,8 +345,9 @@ t_elem		*ft_new_elem(char *str, int len, enum e_token type, enum e_status);
 
 
 // O
-bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg);
 bool	ft_open_redirs(t_ms *ms, t_counters *c);
+bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg);
+bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c);
 
 // P
 bool		ft_pipe_validation(t_ms *ms);
