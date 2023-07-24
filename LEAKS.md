@@ -56,6 +56,7 @@ valgrind --leak-check=full ./minishell
 - [x] env # display is different for both commands
 - [x] echo $HOME
 - [x] echo hudifg d | | hugdfihd
+
 - [x] echo
 - [x] echo simple
 - [x] echo -n simple
@@ -104,6 +105,4 @@ valgrind --leak-check=full ./minishell
 - [x] file_name_in_current_dirgit
 - [x] echo bonjour > $test w/ t
 - [x] c$var Makefile # with var=at
-
-
-- [] > a ls > b < Makefile
+- [x] > a ls > b < Makefile

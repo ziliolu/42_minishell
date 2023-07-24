@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/23 00:15:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/24 11:20:15 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -273,6 +273,14 @@ t_elem		*ft_find_last_elem(t_elem *list);
 void		ft_filter_cmd(t_ms *ms, t_command *cmd);
 void		ft_filter_cmd_else(t_ms *ms, t_command *cmd);
 t_lst		*ft_find_second_to_last(t_lst **head);
+void	ft_free_cmds(t_ms *ms);
+void	ft_free_array(char **array);
+void	ft_free_counters(t_counters *c);
+void	ft_free_elem_list(t_elem *head);
+void	ft_free_env(t_ms *ms);
+void	ft_free_memory(t_ms *ms);
+void	ft_free_node(t_lst *node);
+void	ft_free(char *str);
 
 // G
 char		*ft_get_list_name(char *set);
@@ -321,7 +329,7 @@ void		ft_if_valid_info_is_squote(t_ms *ms, int j, char *str, char *var_info);
 void		ft_if_valid_info_is_dquote(t_ms *ms, int j, char *str, char *var_info);
 void		ft_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_is_env_in_quotes(t_counters *p, char *exp_or_data, char *tmp_str);
-void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, char *path_w_slash, char *total_path);
+void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, char **path_w_slash, char **total_path);
 
 // L
 char		**ft_list_to_array(t_ms *ms);
