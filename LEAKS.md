@@ -21,7 +21,6 @@ valgrind --leak-check=full ./minishell
 - [x] not_cmd bonjour > salut
 - [x] ls -l
 - [x] echo bonjour >>> test
-- [x] echo bonjour > > out
 - [x] echo 2 >> out1 > out2
 - [x] echo 2 > out1 >> out2
 - [x] echo bonjour > test
@@ -29,7 +28,6 @@ valgrind --leak-check=full ./minishell
 - [x] env puis export puis env # vars aren't sorted
 - [x] export var; export var=test
 - [x] /bin/echo bonjour
-- [x] cd ../../../../../.. ; pwd
 - [x] not_cmd
 - [x] echo bonjour > $test # with test not defined
 - [x] $
@@ -37,9 +35,7 @@ valgrind --leak-check=full ./minishell
 - [x] cat diufosgid # check exit code
 - [x] exit -10
 - [x] exit +10
-- [x] ;
 - [x] cat | cat | cat | ls # check outputs order
-- [x] cat < >
 - [x] cat < <
 - [x] cat > >
 - [x] cat /dev/random | head -n 1 | cat -e
@@ -47,55 +43,41 @@ valgrind --leak-check=full ./minishell
 - [x] ctrl-\ .131 sur bin
 - [x] export "test=ici"=coucou
 - [x] $LESS$VAR
-- [x] cat < test # with non-existent test
 - [x] minishell # binary not in path without "./" before
 - [x] echo coucou |
-- [x] echo "$HOME"
 - [x] echo '$HOME'
 - [x] export
 - [x] env # display is different for both commands
 - [x] echo $HOME
-- [x] echo hudifg d | | hugdfihd
-
+- [x] ; # check exit code (return 2)
+- [x] echo hudifg d | | hugdfihd (exit status)
+- [x] cat < test # with non-existent test
 - [x] echo
 - [x] echo simple
 - [x] echo -n simple
-- [x] l^Ds
-- [x] echo |
+- [x] echo ''
+- [x] echo ""
 - [x] | echo
+- [x] l^Ds
 - [x] sort | ls # check output order
 - [x] cat < Makefile | grep gcc > output
-- [x] lss | ls (ordem errada);
 - [x] /bin/ls
 - [x] # write something the press ctrl+c
-- [x] export nome=
 - [x] # write something then press ctrl+d
 - [x] # write something then press ctrl+\
+- [x] export nome=
+- [x] export LOL=lala ROR=rara
+- [x] cd
 - [x] cd ~
-- [x] cd /
+- [x] cd .
 - [x] cd no_file
 - [x] cd a b c d
 - [x] pwd a
 - [x] pwd a b c d
-- [x] cd
-- [x] export LOL=lala ROR=rara
-- [x] echo ''
-- [x] echo ""
-- [x] echo ;;
-- [x] sleep 5 | exit 
-- [x] exit 0 | exit 1
-- [x] exit 1 | exit 0
-- [x] echo hi " ; " hihi
-- [x] cd .
 - [x] pwd
 - [x] echo $?
-- [x] unset LOL ROR
-- [x] export "HI= hi"
-- [x] export "HI =hi"
-- [x] unset var1 # with undefined var1
-- [x] "exit retour a la ligne"
 - [x] echo hi";" hihi
-- [x] echo "bip | bip ; coyotte > < " "
+- [x] unset var1 # with undefined var1
 - [x] $bla # with bla not defined
 - [x] export var ="cat Makefile | grep >"
 - [x] var=cat
@@ -106,3 +88,26 @@ valgrind --leak-check=full ./minishell
 - [x] echo bonjour > $test w/ t
 - [x] c$var Makefile # with var=at
 - [x] > a ls > b < Makefile
+- [x] echo ;;
+- [x] echo bonjour > > out
+- [x] cat < >
+- [x] echo "bip | bip ; coyotte > < " "
+- [x] unset '
+- [x] sleep 5 | exit 
+- [x] exit 0 | exit 1
+- [x] exit 1 | exit 0
+
+## ERRORS
+- [] echo | (ctrl + d)
+- [] cd ../../../../../.. ; pwd
+- [] echo oi | (completar com |) -> leaks e double free
+- [] lss | ls (ordem errada);
+- [] cd /
+- [] unset LOL ROR
+
+## double free
+- [] echo "$HOME"
+- [] "exit retour a la ligne"
+- [] export "HI= hi"
+- [] echo hi " ; " hihi
+- [] export "HI =hi"

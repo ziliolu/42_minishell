@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:01:50 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/21 11:57:05 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:05:12 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	ft_if_readline_is_valid(t_ms *ms, char *read_content)
 				ft_run_cmds(ms);
 			else
 			{
-				ft_error(ms, "minishell: syntax error near \
-					unexpected token `;'", NULL);
+				ft_error(ms, \
+				"minishell: syntax error near unexpected token `;'", NULL, 2);
 				ms->dot_comma_flag = false;
 			}	
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_broken_cmds.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:02:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 15:04:19 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:04:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_broken_cmds(t_ms *ms, char *str)
 	b.prompt = "> ";
 	if (str[0] == '|' || (str[b.size] == '|' && str[b.size - 1] == '|'))
 	{
-		ft_error(ms, "syntax error near unexpected token `|'", NULL);
+		ft_error(ms, "syntax error near unexpected token `|'", NULL, 2);
 		return (NULL);
 	}
 	if (str[b.size] == '|')

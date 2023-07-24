@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 11:20:15 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:04:23 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ void	ft_connect_pipes(t_ms *ms, t_counters *c);
 void		ft_echo(t_command *cmd);
 void		ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo);
 void		ft_env(t_command *cmd, t_lst *lst);
-bool 		ft_error(t_ms *ms, char *msg, char *str);
+bool 		ft_error(t_ms *ms, char *msg, char *str, int err_n);
 bool 		ft_error_var_start(char *msg, char *str, int err_number);
 void		ft_export(t_ms *ms, t_command *cmd);
 void		ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i);

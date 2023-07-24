@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 10:28:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 11:57:40 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:09:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	ft_pipe_validation(t_ms *ms)
             while (list->next->type == WHITE_SPACE)
                 list = list->next;
             if (list->next->type == PIPE_LINE)
-                return (ft_error(ms, "syntax error near unexpected token `|'", NULL));
+                return (ft_error(ms, "syntax error near unexpected token `|'", NULL, 2));
         }
         list = list->next;
     }

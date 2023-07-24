@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_broken_cmds_pipe.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:02:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 15:04:46 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:04:52 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_is_broken_cmds_pipe(t_ms *ms, char *str, t_broken_cmds *b)
 {
 	if (str[b->size] == '|')
 	{
-		ft_error(ms, "syntax error near unexpected token `|'", NULL);
+		ft_error(ms, "syntax error near unexpected token `|'", NULL, 2);
 		return (NULL);
 	}
 	else

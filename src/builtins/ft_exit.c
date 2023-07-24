@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 21:48:51 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/24 12:29:48 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 	pipes = ms->n_pipes;
 	ms->atoi_tmp = 0;
 	tmp = ft_exit_is_cmd_arg(ms, cmd, tmp);
-	ft_exit_free(ms);
+	//ft_exit_free(ms);
 	if (pipes == 0)
 	{
 		ft_printf("exit\n");
