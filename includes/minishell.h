@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 12:04:23 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:03:06 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,6 @@ enum e_token
 	D_REDIR_OUT,
 	CMD,
 };
-
-// typedef struct s_var
-// {
-// 	char *name;
-// 	char *info;
-// 	struct s_var *next;	
-// }				t_lst;
 
 enum e_status
 {
@@ -200,6 +193,38 @@ typedef struct s_heredoc
 	char	*prompt;
 }	t_heredoc;
 
+typedef struct s_trim
+{
+	char	*tmp;
+	char	*str_tmp;
+	int		i;
+	int		j;
+}	t_trim;
+
+typedef struct s_env_to_array
+{
+	int		size;
+	int		i;
+	int		tmp_size;
+	char	**array;
+	t_lst	*lst;
+}	t_env_to_array;
+
+typedef struct s_val_redir
+{
+	int				i;
+	int				j;
+	enum e_token	type;
+	char			*arg;
+}	t_val_redir;
+
+typedef struct s_val_quote
+{
+	int	i;
+	int	s_quote;
+	int	d_quote;
+}	t_val_quote;
+
 // A
 void		ft_add_node_to_list(t_ms *ms, t_lst **head, char *str);
 void		ft_add_node(t_lst **header, char *str);
@@ -229,8 +254,6 @@ bool		ft_change_standard_in_out(t_command *cmd);
 int 		ft_count_char_env(char *str);
 bool 		ft_cmd_args_validation(t_ms *ms);
 void 		ft_close_pipes(t_ms *ms);
-char		*ft_chartrim_wo_dquotes(char *str, char c);
-char		*ft_chartrim_w_dquotes(char *str, char c);
 char		*ft_charjoin(char *str, char c);
 void		ft_cd_is_chdir(t_ms *ms, t_command *cmd, t_cd *cd);
 t_elem		*ft_count_args_is_squote(t_ms *ms, t_elem *list);
@@ -239,6 +262,11 @@ t_elem		*ft_count_args_is_pipe(t_ms *ms, t_elem *list);
 t_elem		*ft_count_args_is_word(t_ms *ms, t_elem *list);
 int		ft_count_redirs_cmd(t_command *cmd);
 void	ft_connect_pipes(t_ms *ms, t_counters *c);
+void	ft_free_cmds_while(t_ms *ms, int i, int j, int k);
+char		*ft_chartrim_wo_dquotes(char *str, char c);
+char		*ft_chartrim_w_dquotes(char *str, char c);
+void	ft_chartrim_w_dquotes_while(t_trim *t, char *str, char c);
+void	ft_chartrim_wo_dquotes_while(t_trim *t, char *str, char c);
 
 
 
@@ -258,6 +286,7 @@ char		*ft_exit_is_cmd_arg(t_ms *ms, t_command *cmd, char *tmp);
 char		*ft_expand(t_lst *list, t_lst *vars, char *variable);
 char	*ft_expand_while_env(t_lst *env, t_lst *vars, char *str);
 char	*ft_expand_while_vars(t_lst *env, t_lst *vars, char *str);
+bool	ft_env_to_array_while(t_ms *ms, t_env_to_array *e);
 
 // F
 t_lst		*ft_find_last(t_lst *list);
@@ -307,9 +336,6 @@ bool 		ft_is_export_type(char *str);
 void		ft_is_env_and_squote(t_ms *ms, t_counters *p);
 void 		ft_is_heredoc(t_command *cmd, t_redirect *redir);
 char	*ft_is_heredoc_read_content(t_command *cmd, t_heredoc *h);
-void		ft_is_in_single_quote(t_ms *ms, t_counters *p);
-void		ft_is_in_double_quote_while(t_ms *ms, t_counters *p);
-void		ft_is_in_double_quote(t_ms *ms, t_counters *p);
 void		ft_is_not_read_content(t_ms *ms, char *read_content);
 bool		ft_is_not_redir(enum e_token type);
 bool        ft_is_quote_valid(char *read_content);
@@ -328,14 +354,17 @@ bool		ft_is_valid_info(t_ms *ms, int j);
 void		ft_if_valid_info_is_squote(t_ms *ms, int j, char *str, char *var_info);
 void		ft_if_valid_info_is_dquote(t_ms *ms, int j, char *str, char *var_info);
 void		ft_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
-void	ft_is_env_in_quotes(t_counters *p, char *exp_or_data, char *tmp_str);
+void		ft_is_in_single_quote(t_ms *ms, t_counters *p);
+void		ft_is_in_double_quote_while(t_ms *ms, t_counters *p, char *tmp_exp_or_data);
+void		ft_is_in_double_quote(t_ms *ms, t_counters *p);
+void	ft_is_env_in_quotes(t_counters *p, char *exp_or_data);
 void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, char **path_w_slash, char **total_path);
+bool	ft_is_quote_valid_msg(char *read_content, int s_quote, int d_quote);
 
 // L
 char		**ft_list_to_array(t_ms *ms);
 char		**ft_list_to_array(t_ms *ms);
 void		ft_lexer(t_ms *ms, char *read_content);
-// void		ft_lexer_is_squote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
 void		ft_lexer_if_str_squote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
 void		ft_lexer_if_str_dquote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
 void		ft_lexer_if_str_redir_in(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
@@ -381,6 +410,8 @@ void		ft_reset_fd_in_out(t_ms *ms);
 char		*ft_return_list_info(t_lst *lst, char *name);
 char		*ft_return_list_full_info(t_lst *lst, char *name);
 void 		ft_remove_node_list(t_lst **head, char *name);
+void	ft_remove_node_list_while(t_lst **head, char *name, t_lst *list, t_lst *tmp);
+bool	ft_redirs_validation_while(t_ms *ms, t_val_redir *r);
 
 // S
 char		*ft_strndup(char *str, int n);

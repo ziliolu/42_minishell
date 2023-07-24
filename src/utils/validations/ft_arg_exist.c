@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arg_exist.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:27:21 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 11:56:55 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:44:19 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-bool ft_arg_exist(char *arg)
+bool	ft_arg_exist(char *arg)
 {
-    if(!arg)
-        return (false);
-    return(true);
+	if (!arg)
+		return (false);
+	return (true);
 }

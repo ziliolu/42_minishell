@@ -12,7 +12,8 @@
 		"string": "c",
 		"string_view": "c",
 		"typeinfo": "cpp",
-		"initializer_list": "c"
+		"initializer_list": "c",
+		"numbers": "c"
 	},
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "c-cpp-compile-run.run-in-external-terminal": true

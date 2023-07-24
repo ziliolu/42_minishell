@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_redirs_validation.c                             :+:      :+:    :+:   */
+/*   ft_remove_node_list_while.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 00:07:27 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/24 23:04:45 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/05 15:27:55 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/24 21:50:14 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-bool	ft_redirs_validation(t_ms *ms)
+void	ft_remove_node_list_while(t_lst **head, char *name, \
+	t_lst *list, t_lst *tmp)
 {
-	t_val_redir	r;
-
-	r.i = 0;
-	r.j = 0;
-	r.type = ms->cmds[r.i].redirs[r.j].type;
-	r.arg = ms->cmds[r.i].redirs[r.j].arg;
-	if (r.type && !r.arg)
-		return (false);
-	while (ms->cmds[r.i].args)
+	if (list->next == NULL && ft_strcmp(list->name, name) == 0)
 	{
-		r.j = 0;
-		if (!ft_redirs_validation_while(ms, &r))
-			return (false);
-		r.i++;
+		free(list);
+		*head = NULL;
 	}
-	return (true);
+	else if (list->next->next == NULL && ft_strcmp(list->name, name) == 0)
+	{
+		tmp = list;
+		*head = tmp->next;
+		free(tmp);
+	}
 }

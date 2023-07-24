@@ -96,11 +96,11 @@ valgrind --leak-check=full ./minishell
 - [x] sleep 5 | exit 
 - [x] exit 0 | exit 1
 - [x] exit 1 | exit 0
+- [x] echo | (ctrl + d)
+- [x] echo oi | (completar com |) -> leaks e double free
 
 ## ERRORS
-- [] echo | (ctrl + d)
 - [] cd ../../../../../.. ; pwd
-- [] echo oi | (completar com |) -> leaks e double free
 - [] lss | ls (ordem errada);
 - [] cd /
 - [] unset LOL ROR

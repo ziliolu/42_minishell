@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_redirs_validation.c                             :+:      :+:    :+:   */
+/*   ft_is_quote_valid_msg.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 00:07:27 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/24 23:04:45 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/21 00:12:03 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/24 23:11:03 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-bool	ft_redirs_validation(t_ms *ms)
+bool	ft_is_quote_valid_msg(char *read_content, int s_quote, int d_quote)
 {
-	t_val_redir	r;
-
-	r.i = 0;
-	r.j = 0;
-	r.type = ms->cmds[r.i].redirs[r.j].type;
-	r.arg = ms->cmds[r.i].redirs[r.j].arg;
-	if (r.type && !r.arg)
-		return (false);
-	while (ms->cmds[r.i].args)
+	(void) read_content;
+	if (s_quote == 1 || d_quote == 1)
 	{
-		r.j = 0;
-		if (!ft_redirs_validation_while(ms, &r))
-			return (false);
-		r.i++;
+		printf("> minishell: unexpected EOF while looking for matching `%c'\n", \
+			ft_choose_quotes(s_quote, d_quote));
+		printf("minishell: syntax error: unexpected end of file\n");
+		return (false);
 	}
 	return (true);
 }

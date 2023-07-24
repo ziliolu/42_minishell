@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_redirs_validation.c                             :+:      :+:    :+:   */
+/*   ft_chartrim_w_dquotes.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 00:07:27 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/24 23:04:45 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/17 12:15:22 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/24 22:26:52 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-bool	ft_redirs_validation(t_ms *ms)
+char	*ft_chartrim_w_dquotes(char *str, char c)
 {
-	t_val_redir	r;
+	t_trim	t;
 
-	r.i = 0;
-	r.j = 0;
-	r.type = ms->cmds[r.i].redirs[r.j].type;
-	r.arg = ms->cmds[r.i].redirs[r.j].arg;
-	if (r.type && !r.arg)
-		return (false);
-	while (ms->cmds[r.i].args)
+	t.i = 0;
+	t.j = 0;
+	t.tmp = ft_calloc(ft_strlen(str) + 1, sizeof(char));
+	if (ft_strrchr(str, '\\'))
 	{
-		r.j = 0;
-		if (!ft_redirs_validation_while(ms, &r))
-			return (false);
-		r.i++;
+		ft_chartrim_w_dquotes_while(&t, str, c);
+		return (t.tmp);
 	}
-	return (true);
+	else
+	{
+		free (t.tmp);
+		return (str);
+	}
 }

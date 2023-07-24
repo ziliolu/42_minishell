@@ -3,62 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_to_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:03:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 11:58:37 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/24 22:41:57 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char **ft_list_to_array(t_ms *ms)
+char	**ft_list_to_array(t_ms *ms)
 {
-	int		size;
-	int		i;
-	int		tmp_size;
-	char	**array;
-	t_lst	*lst;
-	
-	i = 0;
-	size = 0;
-	lst = ms->ms_env;
+	t_env_to_array	e;
 
-	// if(ms->ms_env_array)
-	// 	ft_free_array(ms->ms_env_array);
-	while (lst != NULL)
+	e.i = 0;
+	e.size = 0;
+	e.lst = ms->ms_env;
+	while (e.lst != NULL)
 	{	
-		size++;
-		lst = lst->next;
+		e.size++;
+		e.lst = e.lst->next;
 	}
-	lst = ms->ms_env;
-	array = (char **)ft_calloc(size + 1, sizeof(char *));
-	if (array)
+	e.lst = ms->ms_env;
+	e.array = (char **)ft_calloc(e.size + 1, sizeof(char *));
+	if (e.array)
 	{
-		array[size] = NULL;
-		while (i < size)
-		{
-			tmp_size = ft_strlen(lst->full_info) + 1;
-			array[i] = (char *)ft_calloc(tmp_size, sizeof(char));
-			if (!array[i])
-				return (NULL);
-			ft_strlcpy(array[i], lst->full_info, tmp_size);
-			lst = lst->next;
-			i++;
-		}
+		e.array[e.size] = NULL;
+		if (!ft_env_to_array_while(ms, &e))
+			return (NULL);
 	}
-	//ft_print_array(array);
-	return (array);
-}
-
-void ft_print_array(char **str)
-{
-	int i;
-
-	i = 0;
-	while(str[i])
-	{
-		printf("%s\n", str[i]);
-		i++;
-	}
+	return (e.array);
 }
