@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_new_elem.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:50:18 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 22:14:33 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 11:58:59 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 t_elem	*ft_new_elem(char *str, int len, \
-	enum e_token type, enum e_status status)
+	enum e_token type, enum e_status *status)
 	{
 	t_elem	*node;
 	char	*str_tmp;
@@ -22,15 +22,15 @@ t_elem	*ft_new_elem(char *str, int len, \
 	node = (t_elem *)ft_calloc(1, sizeof(t_elem));
 	if (node)
 	{
-		if (ft_strrchr(str_tmp, '\\') && status == GENERAL)
+		if (ft_strrchr(str_tmp, '\\') && *status == GENERAL)
 			node->data = ft_chartrim_wo_dquotes(str_tmp, '\\');
-		else if (ft_strrchr(str_tmp, '\\') && status == IN_DQUOTE)
+		else if (ft_strrchr(str_tmp, '\\') && *status == IN_DQUOTE)
 			node->data = ft_chartrim_w_dquotes(str_tmp, '\\');
 		else
 			node->data = ft_strdup(str_tmp);
 		node->len = ft_strlen(node->data);
 		node->next = NULL;
-		node->status = status;
+		node->status = *status;
 		node->type = type;
 		free(str_tmp);
 		return (node);

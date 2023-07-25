@@ -94,20 +94,20 @@ valgrind --leak-check=full ./minishell
 - [x] echo hi " ; " hihi
 - [x] export "HI =hi"
 - [x] cd ../../../../../.. ; pwd
+- [x] unset LOL ROR
+- [x] echo bonjour > $test w/ t
+- [x] pwd
+- [x] pwd a
+- [x] pwd a b c d
+- [x] cd ..
+- [x] cd ~
+- [x] cd
+- [x] export var; export var=test
+- [x] cd /
+- [x] echo bonjour ; |
+- [x] echo coucou |
+- [x] echo hudifg d | | hugdfihd (exit status)
+- [x] export var ="cat Makefile | grep >"
+- [x] lss | ls (ordem errada);
 
 ## ERRORS
-- [] lss | ls (ordem errada);
-- [] cd /
-- [] unset LOL ROR
-- [] pwd a
-- [] pwd a b c d
-- [] pwd
-- [] cd ..
-- [] echo coucou |
-- [] export var ="cat Makefile | grep >"
-- [] echo hudifg d | | hugdfihd (exit status)
-- [] echo bonjour > $test w/ t
-- [] cd
-- [] cd ~
-- [] echo bonjour ; |
-- [] export var; export var=test

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 14:02:44 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 11:59:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_lexer(t_ms *ms, char *str)
 	x.i = 0;
 	while (str[x.i])
 	{
-		ft_lexer_if_while_str(&x, elem_head, str, status);
+		ft_lexer_if_while_str(&x, elem_head, str, &status);
 		if (!str[x.i + 1])
 			break ;
 		x.i++;

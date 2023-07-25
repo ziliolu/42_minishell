@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 20:33:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/25 00:25:03 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 10:53:110 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	ft_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd)
 		else
 		{
 			cd->tmp_path = ft_strtrim(cd->path, "/");
-			cd->tmp_path_w_slash = ft_strjoin("/", cd->tmp_path);
+			if(cd->oldpwd[ft_strlen(cd->oldpwd) - 1] == '/')
+				cd->tmp_path_w_slash = ft_strdup(cd->tmp_path);
+			else
+				cd->tmp_path_w_slash = ft_strjoin("/", cd->tmp_path);
 			cd->pwd = ft_strjoin(cd->oldpwd, cd->tmp_path_w_slash);
 			ft_free(cd->tmp_path);
 			ft_free(cd->tmp_path_w_slash);

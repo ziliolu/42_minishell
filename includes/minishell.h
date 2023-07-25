@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 09:49:20 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 11:58:59 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,10 +236,10 @@ void	ft_env(t_command *cmd, t_lst *lst);
 void	ft_exit_free(t_ms *ms);
 char	*ft_exit_is_cmd_arg(t_ms *ms, t_command *cmd, char *tmp);
 void	ft_exit(t_ms *ms, t_command *cmd);
-void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i);
+void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i, int *err);
 void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp);
 void	ft_export(t_ms *ms, t_command *cmd);
-void	ft_unset(t_ms *ms);
+void	ft_unset(t_ms *ms, t_command *cmd);
 
 // =============== ERROR ===============
 
@@ -264,15 +264,15 @@ void	ft_count_args(t_ms *ms, t_elem *list);
 int		ft_count_char_env(char *str);
 int		ft_count_char(char *str);
 t_elem	*ft_find_last_elem(t_elem *list);
-void	ft_lexer_if_str_dquote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
-void	ft_lexer_if_str_else(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
-void	ft_lexer_if_str_redir_in(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
-void	ft_lexer_if_str_redir_out(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
-void	ft_lexer_if_str_squote(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
-void	ft_lexer_if_while_str(t_lexer *x, t_elem **elem_head, char *str, enum e_status status);
-void	ft_lexer_is_squote(t_lexer *x, enum e_status status, t_elem **elem_head, char *str);
+void	ft_lexer_if_str_dquote(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
+void	ft_lexer_if_str_else(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
+void	ft_lexer_if_str_redir_in(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
+void	ft_lexer_if_str_redir_out(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
+void	ft_lexer_if_str_squote(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
+void	ft_lexer_if_while_str(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
+void	ft_lexer_is_squote(t_lexer *x, enum e_status *status, t_elem **elem_head, char *str);
 void	ft_lexer(t_ms *ms, char *str);
-t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status status);
+t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status *status);
 int		ft_size_list(t_elem **header);
 char	*ft_token_status(enum e_status status);
 char	*ft_token_type_else(enum e_token type);
@@ -404,7 +404,7 @@ char	*ft_getenv(t_ms *ms, char *name);
 bool	ft_is_already_in_list(char *name, t_lst *list);
 t_lst	*ft_new_node(char *str);
 void	ft_remove_node_list_while(t_lst **head, char *name, t_lst *list, t_lst *tmp);
-void	ft_remove_node_list(t_lst **head, char *str);
+void	ft_remove_node_list(t_lst **head, char *str, t_command *cmd);
 char	*ft_return_list_full_info(t_lst *lst, char *name);
 char	*ft_return_list_info(t_lst *lst, char *name);
 void	ft_update_list(t_lst *list, char *name, char *new_info);

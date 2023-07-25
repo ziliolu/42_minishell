@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 00:10:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 00:14:50 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 11:59:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ bool	ft_input_is_pipe(t_ms *ms, char **tmp, char *str, t_broken_cmds *b)
 			ft_free (*tmp);
 			return (true);
 		}
+		ft_free (*tmp);
 	}
 	return (false);
 }

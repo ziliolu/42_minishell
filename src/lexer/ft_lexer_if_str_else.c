@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lexer_if_str_else.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:50:18 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 14:02:58 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 11:58:55 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 void	ft_lexer_if_str_else(t_lexer *x, t_elem **elem_head, \
-	char *str, enum e_status status)
+	char *str, enum e_status *status)
 {
 	if (str[x->i] == '$' && (ft_is_valid_character(str[x->i + 1])
 			|| str[x->i + 1] == '?'))
