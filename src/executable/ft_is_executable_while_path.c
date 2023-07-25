@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 16:25:36 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:27:10 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,5 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 			ms->go_out = 1;
 	}
 	else if(ft_is_absolute_path(cmd->args[0]))
-		ms->go_out = 1;
+		ms->go_out = -1;
 }
