@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:06:12 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 00:00:56 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:54:50 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ void	ft_is_in_double_quote(t_ms *ms, t_counters *p)
 		p->list = p->list->next;
 	}
 	if (p->list->status == IN_SQUOTE)
+	{
+		ft_free(p->str);
 		p->str = ft_strjoin(p->tmp_str, p->list->data);
+	}
 	if (p->str)
 	{
 		ft_ptr_is_in_quotes(ms, p);

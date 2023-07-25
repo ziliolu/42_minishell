@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/25 16:41:51 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:56:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	ft_is_redir_double_quote(t_ms *ms, t_counters *p)
 {
 	(void) ms;
 	if (p->list->status == IN_SQUOTE)
+	{
+		ft_free(p->str);
 		p->str = ft_strjoin(p->tmp_str, p->list->data);
+	}
 	p->list = p->list->next;
 	while (p->list->type != DOUBLE_QUOTE)
 	{
@@ -28,7 +31,9 @@ void	ft_is_redir_double_quote(t_ms *ms, t_counters *p)
 		}
 		else
 		{
+			ft_free(p->str);
 			p->str = ft_strjoin_wo_leaks(p->tmp_str, p->list->data);
+			ft_free(p->tmp_str);
 			p->tmp_str = ft_strdup(p->str);
 		}
 		p->list = p->list->next;

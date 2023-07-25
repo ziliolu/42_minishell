@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/25 00:01:05 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:50:48 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_is_redir_type(t_ms *ms, t_counters *p)
 		else if (p->list->type == DOUBLE_QUOTE)
 			ft_is_redir_double_quote(ms, p);
 		ms->cmds[p->i].redirs[p->k].arg = ft_strdup(p->str);
+		ft_free(p->str);
 	}
 	else
 	{
