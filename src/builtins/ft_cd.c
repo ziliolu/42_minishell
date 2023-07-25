@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 11:58:59 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:14:07 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void ft_cd(t_ms *ms, t_command *cmd)
+void	ft_cd(t_ms *ms, t_command *cmd)
 {
-	t_cd cd;
+	t_cd	cd;
 
 	cd.i = 1;
 	cd.pwd = NULL;
@@ -30,7 +30,7 @@ void ft_cd(t_ms *ms, t_command *cmd)
 		printf("%s\n", cd.pwd);
 	}
 	else if (ft_strcmp(cmd->args[1], ".") == 0)
-		return;
+		return ;
 	cd.oldpwd = ft_return_list_info(ms->ms_env, "PWD");
 	ft_cd_while_is_not_pwd(ms, cmd, &cd);
 	ft_free(cd.tmp);

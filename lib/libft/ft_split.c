@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 20:49:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/06/29 13:10:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:25:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ char	**ft_split(char const *s, char c)
 // {
 //     char **tab;
 //     int i = 0;
-    
 //     tab = ft_split("lorem ipsum dolor sit amet", ' ');
-    
 //     while(tab[i])
 //     {
 //         printf("tab[%d]: %s\n", i, tab[i]);

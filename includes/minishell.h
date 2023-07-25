@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 11:58:59 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:23:49 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
-#define MINISHELL_H
-
-
+# define MINISHELL_H
 # include "../lib/libft/libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -27,16 +25,15 @@
 # include <fcntl.h>
 # include <errno.h>
 
+extern int	g_exit_status;
 
 typedef struct s_lst
 {
-    char 		*name;
-	char 		*info;
-    char 		*full_info;
-    struct s_lst *next;
+	char			*name;
+	char			*info;
+	char			*full_info;
+	struct s_lst	*next;
 }	t_lst;
-
-extern int g_exit_status;
 
 enum e_token
 {
@@ -64,37 +61,37 @@ enum e_status
 
 typedef struct s_elem
 {
-    char 		*data;
-    int 		len;
-    enum e_token type;
-    enum e_status status;
-    struct s_elem *next;
+	enum e_token	type;
+	enum e_status	status;
+	char			*data;
+	int				len;
+	struct s_elem	*next;
 }	t_elem;
 
 typedef struct s_pipe
 {
-	struct s_elem *right_command;
-	struct s_elem *left_command;
+	struct s_elem	*right_command;
+	struct s_elem	*left_command;
 }	t_pipe;
 
 typedef struct s_redirect
 {
-	char 		*arg; //file name or eof (heredoc)
-	enum e_token type;
+	enum e_token	type;
+	char			*arg;
 }	t_redirect;
 
 typedef struct s_command
 {
-	char 		**args;
-	int 		in;
-	int 		out;
-	int 		fd[2];
-	int			pid;
-	int			status;
-	t_redirect 	*redirs;
-	bool		err;
-	enum e_token operator;
-	enum e_token type;
+	t_redirect		*redirs;
+	enum e_token	operator;
+	enum e_token	type;
+	char			**args;
+	int				in;
+	int				out;
+	int				fd[2];
+	int				pid;
+	int				status;
+	bool			err;
 }	t_command;
 
 typedef struct s_counters
@@ -111,21 +108,21 @@ typedef struct s_counters
 typedef struct s_ms
 {
 	t_lst		*ms_env;
-	char 		**ms_env_array;
 	t_elem		**lexed_list;
-    char 		**paths;
-    char 		**system_env;
-    char 		**ms_argv;
-	int			*count_args;
-	int 		read_size;
-	int 		n_pipes; 
-	int			std_in;
-	int 		std_out;
 	t_lst		**vars;
-	t_command 	*cmds;
-	t_pipe 		*pipes;
+	t_command	*cmds;
+	t_pipe		*pipes;
+	char		**ms_env_array;
+	char		**paths;
+	char		**system_env;
+	char		**ms_argv;
+	int			*count_args;
+	int			read_size;
+	int			n_pipes;
+	int			std_in;
+	int			std_out;
 	int			is_print;
-	int 		print_cmd;
+	int			print_cmd;
 	int			exit_status;
 	bool		dot_comma_flag;
 	int			spaces_flag;
@@ -167,9 +164,9 @@ typedef struct s_echo
 
 typedef struct s_lexer
 {
-    int		squote_flag;
-    int		dquote_flag;
-    int		i;
+	int		squote_flag;
+	int		dquote_flag;
+	int		i;
 }	t_lexer;
 
 typedef struct s_broken_cmds
@@ -177,7 +174,7 @@ typedef struct s_broken_cmds
 	int		size;
 	char	*prompt;
 	char	*prompt_tmp;
-    char	*new_str;
+	char	*new_str;
 	char	*tmp;
 }	t_broken_cmds;
 
@@ -210,9 +207,9 @@ typedef struct s_env_to_array
 
 typedef struct s_val_redir
 {
+	enum e_token	type;
 	int				i;
 	int				j;
-	enum e_token	type;
 	char			*arg;
 }	t_val_redir;
 
@@ -240,6 +237,7 @@ void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i, int *err);
 void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp);
 void	ft_export(t_ms *ms, t_command *cmd);
 void	ft_unset(t_ms *ms, t_command *cmd);
+void	ft_join_old_w_new_pwd(t_cd *cd);
 
 // =============== ERROR ===============
 
@@ -249,7 +247,8 @@ bool	ft_error(t_ms *ms, char *msg, char *str, int err_n);
 // =============== EXECUTABLE ===============
 
 bool	ft_is_absolute_path(char *str);
-void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, char **path_w_slash, char **total_path);
+void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
+	char **path_w_slash, char **total_path);
 bool	ft_is_executable(t_ms *ms, t_command *cmd);
 bool	ft_is_home_path(char *str);
 
@@ -264,15 +263,23 @@ void	ft_count_args(t_ms *ms, t_elem *list);
 int		ft_count_char_env(char *str);
 int		ft_count_char(char *str);
 t_elem	*ft_find_last_elem(t_elem *list);
-void	ft_lexer_if_str_dquote(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
-void	ft_lexer_if_str_else(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
-void	ft_lexer_if_str_redir_in(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
-void	ft_lexer_if_str_redir_out(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
-void	ft_lexer_if_str_squote(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
-void	ft_lexer_if_while_str(t_lexer *x, t_elem **elem_head, char *str, enum e_status *status);
-void	ft_lexer_is_squote(t_lexer *x, enum e_status *status, t_elem **elem_head, char *str);
+void	ft_lexer_if_str_dquote(t_lexer *x, t_elem **elem_head, \
+	char *str, enum e_status *status);
+void	ft_lexer_if_str_else(t_lexer *x, t_elem **elem_head, \
+	char *str, enum e_status *status);
+void	ft_lexer_if_str_redir_in(t_lexer *x, t_elem **elem_head, \
+	char *str, enum e_status *status);
+void	ft_lexer_if_str_redir_out(t_lexer *x, t_elem **elem_head, \
+	char *str, enum e_status *status);
+void	ft_lexer_if_str_squote(t_lexer *x, t_elem **elem_head, \
+	char *str, enum e_status *status);
+void	ft_lexer_if_while_str(t_lexer *x, t_elem **elem_head, \
+	char *str, enum e_status *status);
+void	ft_lexer_is_squote(t_lexer *x, enum e_status *status, \
+	t_elem **elem_head, char *str);
 void	ft_lexer(t_ms *ms, char *str);
-t_elem	*ft_new_elem(char *str, int len, enum e_token type, enum e_status *status);
+t_elem	*ft_new_elem(char *str, int len, enum e_token type, \
+	enum e_status *status);
 int		ft_size_list(t_elem **header);
 char	*ft_token_status(enum e_status status);
 char	*ft_token_type_else(enum e_token type);
@@ -294,7 +301,8 @@ void	ft_is_redir_double_quote(t_ms *ms, t_counters *p);
 void	ft_is_redir_single_quote(t_ms *ms, t_counters *p);
 void	ft_is_redir_type(t_ms *ms, t_counters *p);
 void	ft_parser_count_pipes(t_ms *ms, t_counters *p);
-void	ft_parser_is_not_null(t_ms *ms, t_counters *p, char *tmp_arg, char *tmp_list);
+void	ft_parser_is_not_null(t_ms *ms, t_counters *p, \
+	char *tmp_arg, char *tmp_list);
 void	ft_parser_is(t_ms *ms, t_counters *p);
 void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c);
 void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c);
@@ -340,7 +348,8 @@ void	ft_connect_pipes(t_ms *ms, t_counters *c);
 int		ft_count_cmds(t_ms *ms);
 void	ft_filter_cmd_else(t_ms *ms, t_command *cmd);
 void	ft_filter_cmd(t_ms *ms, t_command *cmd);
-void	ft_main_cycle(t_ms *ms, char *read_content, char *tmp_prompt, char *prompt);
+void	ft_main_cycle(t_ms *ms, char *read_content, \
+	char *tmp_prompt, char *prompt);
 void	ft_reset_fd_in_out(t_ms *ms);
 void	ft_run_cmds(t_ms *ms);
 void	ft_wait(t_ms *ms);
@@ -403,7 +412,8 @@ char	*ft_get_list_name(char *set);
 char	*ft_getenv(t_ms *ms, char *name);
 bool	ft_is_already_in_list(char *name, t_lst *list);
 t_lst	*ft_new_node(char *str);
-void	ft_remove_node_list_while(t_lst **head, char *name, t_lst *list, t_lst *tmp);
+bool	ft_remove_node_list_while(t_lst **head, char *name, \
+	t_lst *list, t_lst *tmp);
 void	ft_remove_node_list(t_lst **head, char *str, t_command *cmd);
 char	*ft_return_list_full_info(t_lst *lst, char *name);
 char	*ft_return_list_info(t_lst *lst, char *name);

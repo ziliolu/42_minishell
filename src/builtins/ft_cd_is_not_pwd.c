@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd_is_not_pwd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 20:33:20 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/25 10:53:110 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/07/21 20:47:53 by ialves-m          #+#    #+#             */
+/*   Updated: 2023/07/25 12:12:54 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,6 @@ void	ft_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd)
 		if (ft_strcmp(cd->path, "..") == 0)
 			cd->pwd = ft_strtrim_end_quote(cd->oldpwd, '/');
 		else
-		{
-			cd->tmp_path = ft_strtrim(cd->path, "/");
-			if(cd->oldpwd[ft_strlen(cd->oldpwd) - 1] == '/')
-				cd->tmp_path_w_slash = ft_strdup(cd->tmp_path);
-			else
-				cd->tmp_path_w_slash = ft_strjoin("/", cd->tmp_path);
-			cd->pwd = ft_strjoin(cd->oldpwd, cd->tmp_path_w_slash);
-			ft_free(cd->tmp_path);
-			ft_free(cd->tmp_path_w_slash);
-		}
+			ft_join_old_w_new_pwd(cd);
 	}
 }

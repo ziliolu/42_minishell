@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim_end.c                                   :+:      :+:    :+:   */
+/*   ft_join_old_w_new_pwd.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/07 10:52:56 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 12:18:18 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/25 12:16:21 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/minishell.h"
+#include "../../includes/minishell.h"
 
-char	*ft_strtrim_end(char *str, char set)
+void	ft_join_old_w_new_pwd(t_cd *cd)
 {
-	int		i;
-	char	*new_str;
-
-	i = ft_strlen(str);
-	if (str[i] == set)
-	{
-		new_str = ft_calloc(i - 1, sizeof(char));
-		ft_strlcpy(new_str, str, i - 1);
-		return (new_str);
-	}
-	return (ft_strdup(str));
+	cd->tmp_path = ft_strtrim(cd->path, "/");
+	if (cd->oldpwd[ft_strlen(cd->oldpwd) - 1] == '/')
+		cd->tmp_path_w_slash = ft_strdup(cd->tmp_path);
+	else
+		cd->tmp_path_w_slash = ft_strjoin("/", cd->tmp_path);
+	cd->pwd = ft_strjoin(cd->oldpwd, cd->tmp_path_w_slash);
+	ft_free(cd->tmp_path);
+	ft_free(cd->tmp_path_w_slash);
 }

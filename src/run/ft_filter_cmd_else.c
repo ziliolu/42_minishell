@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filter_cmd_else.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 11:58:55 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:16:21 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ void	ft_filter_cmd_else(t_ms *ms, t_command *cmd)
 	else if (!ft_is_executable(ms, cmd))
 	{
 		ft_reset_fd_in_out(ms);
-		if(ms->n_pipes != 0)
-		{
+		if (ms->n_pipes != 0)
 			g_exit_status = 127;
-			
-		}
 		if (ft_is_absolute_path(cmd->args[0]))
 			ft_error_var_start("No such file or directory", cmd->args[0], 2);
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_redirs_if_others.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 00:16:51 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 12:08:32 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c)
 		if (open(ms->cmds[c->i].redirs[c->k].arg, O_RDONLY, 0777) != -1)
 			ms->cmds[c->i].in = open(ms->cmds[c->i].redirs[c->k].arg, \
 				O_RDONLY, 0777);
-		else 
+		else
 		{
 			ms->cmds[c->i].err = true;
 			ft_error_var_start("No such file or directory", \
