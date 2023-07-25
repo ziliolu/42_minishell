@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_is_cmd_arg.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 21:07:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:21:17 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i)
 		else
 			ft_printf("minishell: export: `%s': not a valid identifier\n",
 				cmd->args[i + 1]);
+		g_exit_status = 1;
 		return ;
 	}
 }

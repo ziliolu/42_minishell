@@ -3,11 +3,11 @@
 
 valgrind --leak-check=full ./minishell 
 
+
 ## testados com "exit" - não com sinais
 
 - [x] exit # should return the last exit code value
 - [x] cat <<
-- [x] echo bonjour ; |
 - [x] echo bonjour | |
 - [x] |
 - [x] echo bonjour |;
@@ -26,7 +26,6 @@ valgrind --leak-check=full ./minishell
 - [x] echo bonjour > test
 - [x] echo test > file test1
 - [x] env puis export puis env # vars aren't sorted
-- [x] export var; export var=test
 - [x] /bin/echo bonjour
 - [x] not_cmd
 - [x] echo bonjour > $test # with test not defined
@@ -44,13 +43,11 @@ valgrind --leak-check=full ./minishell
 - [x] export "test=ici"=coucou
 - [x] $LESS$VAR
 - [x] minishell # binary not in path without "./" before
-- [x] echo coucou |
 - [x] echo '$HOME'
 - [x] export
 - [x] env # display is different for both commands
 - [x] echo $HOME
 - [x] ; # check exit code (return 2)
-- [x] echo hudifg d | | hugdfihd (exit status)
 - [x] cat < test # with non-existent test
 - [x] echo
 - [x] echo simple
@@ -67,25 +64,18 @@ valgrind --leak-check=full ./minishell
 - [x] # write something then press ctrl+\
 - [x] export nome=
 - [x] export LOL=lala ROR=rara
-- [x] cd
-- [x] cd ~
 - [x] cd .
 - [x] cd no_file
 - [x] cd a b c d
-- [x] pwd a
-- [x] pwd a b c d
-- [x] pwd
 - [x] echo $?
 - [x] echo hi";" hihi
 - [x] unset var1 # with undefined var1
 - [x] $bla # with bla not defined
-- [x] export var ="cat Makefile | grep >"
 - [x] var=cat
 - [x] > log echo coucou
 - [x] > a echo Hello World!
 - [x] echo > a Hello World!
 - [x] file_name_in_current_dirgit
-- [x] echo bonjour > $test w/ t
 - [x] c$var Makefile # with var=at
 - [x] > a ls > b < Makefile
 - [x] echo ;;
@@ -98,16 +88,26 @@ valgrind --leak-check=full ./minishell
 - [x] exit 1 | exit 0
 - [x] echo | (ctrl + d)
 - [x] echo oi | (completar com |) -> leaks e double free
+- [x] echo "$HOME"
+- [x] "exit retour a la ligne"
+- [x] export "HI= hi"
+- [x] echo hi " ; " hihi
+- [x] export "HI =hi"
+- [x] cd ../../../../../.. ; pwd
 
 ## ERRORS
-- [] cd ../../../../../.. ; pwd
 - [] lss | ls (ordem errada);
 - [] cd /
 - [] unset LOL ROR
-
-## double free
-- [] echo "$HOME"
-- [] "exit retour a la ligne"
-- [] export "HI= hi"
-- [] echo hi " ; " hihi
-- [] export "HI =hi"
+- [] pwd a
+- [] pwd a b c d
+- [] pwd
+- [] cd ..
+- [] echo coucou |
+- [] export var ="cat Makefile | grep >"
+- [] echo hudifg d | | hugdfihd (exit status)
+- [] echo bonjour > $test w/ t
+- [] cd
+- [] cd ~
+- [] echo bonjour ; |
+- [] export var; export var=test

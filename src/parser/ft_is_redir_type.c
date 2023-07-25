@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_redir_type.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/22 14:15:01 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:01:05 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_is_redir_type(t_ms *ms, t_counters *p)
 	ms->cmds[p->i].redirs[p->k].type = p->list->type;
 	if (!p->list->next)
 	{
-		printf("bash: syntax error near unexpected token `newline'\n");
+		printf("minishell: syntax error near unexpected token `newline'\n");
+		g_exit_status = 2;
 		return ;
 	}
 	p->list = p->list->next;
@@ -32,7 +33,7 @@ void	ft_is_redir_type(t_ms *ms, t_counters *p)
 		ms->cmds[p->i].redirs[p->k].arg = ft_strdup(p->str);
 	}
 	else
-	{	
+	{
 		ms->cmds[p->i].redirs[p->k].arg = ft_strdup(p->list->data);
 	}
 	if (p->j > 1)

@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_input_is_pipe.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 23:57:09 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/07/25 00:10:14 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/25 00:14:50 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_exit(t_ms *ms, t_command *cmd)
+bool	ft_input_is_pipe(t_ms *ms, char **tmp, char *str, t_broken_cmds *b)
 {
-	char	*tmp;
-	int		pipes;
-
-	tmp = NULL;
-	pipes = ms->n_pipes;
-	ms->atoi_tmp = 0;
-	tmp = ft_exit_is_cmd_arg(ms, cmd, tmp);
-	if (pipes == 0)
+	if (ft_strcmp(b->prompt_tmp, "") != 0)
 	{
-		ft_printf("exit\n");
-		if (tmp)
+		*tmp = ft_strtrim(b->prompt_tmp, " ");
+		if (*tmp[0] == '|' || str[b->size] == '|')
 		{
-			ft_free(tmp);
-			exit(ms->atoi_tmp);
+			ft_error(ms, "syntax error near unexpected token `|'", NULL, 2);
+			ft_free(b->prompt_tmp);
+			ft_free (*tmp);
+			return (true);
 		}
-		exit(g_exit_status);
 	}
-	if (tmp)
-	{
-		ft_free(tmp);
-		g_exit_status = ms->atoi_tmp;
-	}
+	return (false);
 }

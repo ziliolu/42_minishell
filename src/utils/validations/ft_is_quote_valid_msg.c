@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_quote_valid_msg.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:12:03 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/24 23:11:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/24 23:52:36 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool	ft_is_quote_valid_msg(char *read_content, int s_quote, int d_quote)
 		printf("> minishell: unexpected EOF while looking for matching `%c'\n", \
 			ft_choose_quotes(s_quote, d_quote));
 		printf("minishell: syntax error: unexpected end of file\n");
+		g_exit_status = 2;
 		return (false);
 	}
 	return (true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_in_double_quote.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:06:12 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 23:06:58 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:00:56 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_is_in_double_quote(t_ms *ms, t_counters *p)
 	{
 		ft_ptr_is_in_quotes(ms, p);
 		free(p->str);
-	}	
+	}
 	else if (!ms->cmds[p->i].args[p->j])
 		ms->cmds[p->i].args[p->j] = "";
 	if (p->tmp_str)

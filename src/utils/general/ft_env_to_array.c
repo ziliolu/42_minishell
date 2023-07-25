@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_to_array.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:03:14 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 22:41:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:17:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**ft_list_to_array(t_ms *ms)
 	e.size = 0;
 	e.lst = ms->ms_env;
 	while (e.lst != NULL)
-	{	
+	{
 		e.size++;
 		e.lst = e.lst->next;
 	}

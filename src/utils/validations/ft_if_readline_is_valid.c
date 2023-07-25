@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_if_readline_is_valid.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:01:50 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/24 16:47:49 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 00:18:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_if_readline_is_valid(t_ms *ms, char *read_content)
 				ft_error(ms, \
 				"minishell: syntax error near unexpected token `;'", NULL, 2);
 				ms->dot_comma_flag = false;
-			}	
+			}
 		}
 		ft_free_array(ms->ms_argv);
 		ft_free_cmds(ms);
