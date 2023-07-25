@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 12:23:49 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:26:04 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -435,5 +435,6 @@ bool	ft_is_variable(t_ms *ms);
 bool	ft_pipe_validation(t_ms *ms);
 bool	ft_redirs_validation_while(t_ms *ms, t_val_redir *r);
 bool	ft_redirs_validation(t_ms *ms);
+bool	ft_is_valid_number(char c);
 
 #endif

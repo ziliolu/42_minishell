@@ -14,6 +14,23 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - make -n "-Wall -Wextra -Werror"
 - make
 ​
+- [] exit 1 | exit a
+- [] echo "laaaaaaaaaaaaaaaaa ""ola
+- []minishell> cat << $USER
+    > ola
+    > $USER
+    > lpicoli-
+- [] unset HOME
+- [] ""ls
+- [] bash: exit: 111111111111111111111111111111: numeric argument required
+- [] minishell> $?
+    0: command not found
+    minishell> $>
+- [] export 1=a
+
+
+
+
 ## Simples Command & global variables
 - [x] /bin/ls
 - [x] /bin/pwd
@@ -119,7 +136,7 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [ ] 
 - [ ] 
 - [ ] 
-- [ ] 
+- [ ] git commit -m
 ​
 ## Pipes
 - [ ] 
