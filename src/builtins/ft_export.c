@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 12:16:50 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:45:27 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	ft_export(t_ms *ms, t_command *cmd)
 		exp.name = ft_get_list_name(exp.str);
 		exp.info = ft_get_list_info(exp.str);
 		ft_export_is_in_env_list(ms, cmd, &exp);
-		ft_free(exp.name);
 		ft_free(exp.str);
+		ft_free(exp.name);
 		ft_free(exp.info);
 		exp.i++;
 	}

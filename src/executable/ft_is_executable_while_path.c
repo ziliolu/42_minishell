@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable_while_path.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 23:06:35 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:08:02 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 	char **path_w_slash, char **total_path)
 {
+	struct stat buf;
 	if (!ft_is_absolute_path(cmd->args[0]))
 	{
 		*path_w_slash = ft_strjoin(ms->paths[ms->i], "/");
@@ -22,6 +23,17 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 	}
 	if (access(*total_path, X_OK) == 0)
 	{
+		if (stat(*total_path, &buf) == 0)
+		{
+			if (S_ISDIR(buf.st_mode))
+			{
+				ft_error_var_start("Is a directory", *total_path, 126);
+				ms->go_out = 1;
+				ft_free(*path_w_slash);
+				ft_free(*total_path);
+				return ;	
+			}
+		}
 		ft_handle_signals_loop();
 		ms->pid = fork();
 		ms->processes++;
