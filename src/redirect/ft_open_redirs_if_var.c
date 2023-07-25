@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_redirs_if_var.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 23:43:49 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/25 18:48:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg)
 {
-	if (ms->cmds[c->i].redirs[c->k].arg[0] == '$')
+	if (ms->cmds[c->i].redirs[c->k].arg[0] == '$' && ms->cmds[c->i].redirs[c->k].type != HERE_DOC)
 	{
 		tmp_arg = ft_strtrim(ms->cmds[c->i].redirs[c->k].arg, "$");
 		if (!ft_is_already_in_list(tmp_arg, *ms->vars)
