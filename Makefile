@@ -20,6 +20,7 @@ SRC =	./src/*.c			\
 		./src/print/*.c			\
 		./src/redirect/*.c		\
 		./src/executable/*.c	\
+		./src/signals/*.c		\
 
 COLOUR_RED = 		\e[31m
 COLOUR_ORANGE_B = 	\e[91m

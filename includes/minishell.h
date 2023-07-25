@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 01:03:06 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/25 09:49:20 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,6 +312,7 @@ void	ft_init_pipes(t_ms *ms);
 
 // =============== PRINT ===============
 
+void	ft_print_array(char **str);
 void	ft_print_command_nodes_while_pipe(t_ms *ms, int i, int j, int k);
 void	ft_print_command_nodes(t_ms *ms, int n_pipes);
 void	ft_print_export(t_lst *lst);
@@ -354,7 +355,7 @@ void	ft_handler(int signal);
 
 // =============== UTILS ===============
 
-// ------------ FREE MEMORY ------------
+// ------------ 1- FREE MEMORY ------------
 
 void	ft_free_array(char **array);
 void	ft_free_cmds_while(t_ms *ms, int i, int j, int k);
@@ -366,11 +367,49 @@ void	ft_free_memory(t_ms *ms);
 void	ft_free_node(t_lst *node);
 void	ft_free(char *str);
 
-// ------------ GENERAL ------------
+// ------------ 2- GENERAL ------------
 
-// ------------ LIST UTILS ------------
+char	*ft_charjoin(char *str, char c);
+void	ft_chartrim_w_dquotes_while(t_trim *t, char *str, char c);
+char	*ft_chartrim_w_dquotes(char *str, char c);
+void	ft_chartrim_wo_dquotes_while(t_trim *t, char *str, char c);
+char	*ft_chartrim_wo_dquotes(char *str, char c);
+char	ft_choose_quotes(int s_quote, int d_quote);
+bool	ft_env_to_array_while(t_ms *ms, t_env_to_array *e);
+char	**ft_list_to_array(t_ms *ms);
+char	*ft_format_slash(char *str);
+bool	ft_is_dot_comma(char *str);
+bool	ft_is_export_type(char *str);
+void	ft_is_not_read_content(t_ms *ms, char *read_content);
+bool	ft_is_there_quote(char *str);
+bool	ft_is_there_space(char *str);
+char	*ft_search_for_end(char *str, char c, int pos);
+char	*ft_strchr_vars(char *s, char c);
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_strjoin_wo_leaks(char *s1, char *s2);
+char	*ft_strndup(char *str, int n);
+char	*ft_strtrim_end_quote(char *str, char set);
+char	*ft_strtrim_end(char *str, char set);
 
-// ------------ VALIDATIONS ------------
+// ------------ 3- LIST UTILS ------------
+
+void	ft_add_export_node(t_lst **header, char *str);
+void	ft_add_node_to_list(t_ms *ms, t_lst **head, char *str);
+void	ft_add_node(t_lst **header, char *str);
+t_lst	*ft_find_last(t_lst *head);
+t_lst	*ft_find_second_to_last(t_lst **head);
+char	*ft_get_list_info(char *set);
+char	*ft_get_list_name(char *set);
+char	*ft_getenv(t_ms *ms, char *name);
+bool	ft_is_already_in_list(char *name, t_lst *list);
+t_lst	*ft_new_node(char *str);
+void	ft_remove_node_list_while(t_lst **head, char *name, t_lst *list, t_lst *tmp);
+void	ft_remove_node_list(t_lst **head, char *str);
+char	*ft_return_list_full_info(t_lst *lst, char *name);
+char	*ft_return_list_info(t_lst *lst, char *name);
+void	ft_update_list(t_lst *list, char *name, char *new_info);
+
+// ------------ 4- VALIDATIONS ------------
 
 bool	ft_arg_exist(char *arg);
 bool	ft_cmd_args_validation(t_ms *ms);
