@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 12:17:39 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 04:41:27 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i, int *err)
 {
 	char	*str;
 
-	if ((cmd->args[i + 1] && (cmd->args[i + 1][0] == '='))
-		|| !ft_is_export_type(cmd->args[i]))
+	if ((cmd->args[i + 1] && (cmd->args[i + 1][0] == '=')) || !ft_is_export_type(cmd->args[i]))
 	{
 		ft_reset_fd_in_out(ms);
 		*err += 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 17:26:04 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 05:34:55 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,6 +243,7 @@ void	ft_join_old_w_new_pwd(t_cd *cd);
 
 bool	ft_error_var_start(char *msg, char *str, int err_number);
 bool	ft_error(t_ms *ms, char *msg, char *str, int err_n);
+bool	ft_error_wo_prompt(t_ms *ms, char *msg, char *str, int err_n);
 
 // =============== EXECUTABLE ===============
 
@@ -436,5 +437,6 @@ bool	ft_pipe_validation(t_ms *ms);
 bool	ft_redirs_validation_while(t_ms *ms, t_val_redir *r);
 bool	ft_redirs_validation(t_ms *ms);
 bool	ft_is_valid_number(char c);
+bool	ft_is_valid_env_name(t_ms *ms, char *str);
 
 #endif

@@ -27,9 +27,10 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/signals/ft_handler.c\
 	./src/signals/ft_handler_loop.c\
 	./src/utils/validations/ft_if_readline_is_valid.c\
-	./src/utils/validations/ft_is_valid.c\
+	./src/utils/validations/ft_is_variable.c\
 	./src/utils/validations/ft_redirs_validation_while.c\
 	./src/utils/validations/ft_is_valid_character.c\
+	./src/utils/validations/ft_is_valid_env_name.c\
 	./src/utils/validations/ft_is_valid_info.c\
 	./src/utils/validations/ft_cmd_args_validation.c\
 	./src/utils/validations/ft_is_arg_valid.c\
@@ -109,6 +110,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/lexer/ft_valid_env.c\
 	./src/lexer/ft_count_char_env.c\
 	./src/error/ft_error_var_start.c\
+	./src/error/ft_error_wo_prompt.c\
 	./src/error/ft_error.c\
 	./src/main.c\
 	./src/builtins/ft_echo.c\
@@ -202,3 +204,5 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: clean all
+
+# find . -type f -name "*.c" | sed 's/$/\\/g' > file_names.txt

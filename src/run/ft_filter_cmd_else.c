@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filter_cmd_else.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 18:10:10 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 05:35:06 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_filter_cmd_else(t_ms *ms, t_command *cmd)
 {
-	if (ft_strchr_vars(cmd->args[0], '='))
+	if (ft_is_valid_env_name(ms, cmd->args[0]) && ft_strchr_vars(cmd->args[0], '='))
 		ft_add_node_to_list(ms, ms->vars, cmd->args[0]);
 	else if (ft_strcmp(cmd->args[0], "export") == 0)
 		ft_export(ms, cmd);
