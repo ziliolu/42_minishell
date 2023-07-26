@@ -32,6 +32,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/utils/validations/ft_is_valid_character.c\
 	./src/utils/validations/ft_is_valid_env_name.c\
 	./src/utils/validations/ft_is_valid_info.c\
+	./src/utils/validations/ft_is_valid_number.c\
 	./src/utils/validations/ft_cmd_args_validation.c\
 	./src/utils/validations/ft_is_arg_valid.c\
 	./src/utils/validations/ft_pipe_validation.c\
@@ -118,6 +119,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/builtins/ft_export_is_in_env_list.c\
 	./src/builtins/ft_cd_is_chdir.c\
 	./src/builtins/ft_exit_is_cmd_arg.c\
+	./src/builtins/ft_exit_validation.c\
 	./src/builtins/ft_exit.c\
 	./src/builtins/ft_echo_is_cmd_arg.c\
 	./src/builtins/ft_exit_free.c\

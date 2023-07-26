@@ -1,44 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_exit_validation.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 07:31:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 07:30:25 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_exit(t_ms *ms, t_command *cmd)
+bool	ft_exit_validation(t_ms *ms, t_command *cmd)
 {
-	char	*tmp;
-	int		pipes;
+	int		i;
+	long long int	nbr;
 
-	tmp = NULL;
-	pipes = ms->n_pipes;
-	ms->atoi_tmp = 0;
-	tmp = ft_exit_is_cmd_arg(ms, cmd, tmp);
-	if (cmd->args[1] && !ft_exit_validation(ms, cmd))
+	(void) ms;
+	i = 0;
+	nbr = atoll(cmd->args[1]);
+	if (nbr >= LLONG_MIN && nbr <= LLONG_MAX)
 	{
-		ft_free(tmp);
-		exit(2);
-	}
-	if (pipes == 0)
-	{
-		ft_printf("exit\n");
-		if (tmp)
+		while (cmd->args[1][i] != '\0')
 		{
-			ft_free(tmp);
-			exit(ms->atoi_tmp);
+			if (!ft_is_valid_number(cmd->args[1][i++]))
+			{
+				printf("minishell: exit: %s: numeric argument required\n", cmd->args[1]);
+				return (false);
+			}
 		}
-		exit(g_exit_status);
 	}
-	if (tmp)
+	else
 	{
-		ft_free(tmp);
-		g_exit_status = ms->atoi_tmp;
+		printf("minishell: exit: %s: numeric argument required\n", cmd->args[1]);
+		return (false);
 	}
+	return (true);
 }

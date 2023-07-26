@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 05:34:55 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 07:19:51 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <errno.h>
+# include <limits.h>
 
 extern int	g_exit_status;
 
@@ -232,6 +233,7 @@ void	ft_echo(t_command *cmd);
 void	ft_env(t_command *cmd, t_lst *lst);
 void	ft_exit_free(t_ms *ms);
 char	*ft_exit_is_cmd_arg(t_ms *ms, t_command *cmd, char *tmp);
+bool	ft_exit_validation(t_ms *ms, t_command *cmd);
 void	ft_exit(t_ms *ms, t_command *cmd);
 void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i, int *err);
 void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp);

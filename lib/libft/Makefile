@@ -6,13 +6,14 @@
 #    By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 09:29:52 by lpicoli-          #+#    #+#              #
-#    Updated: 2023/07/06 21:52:43 by ialves-m         ###   ########.fr        #
+#    Updated: 2023/07/26 06:28:10 by ialves-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 SRC =	./ft_atoi.c 		\
+		./ft_atoll.c		\
  		./ft_bzero.c		\
 		./ft_calloc.c		\
  		./ft_isalnum.c 		\
