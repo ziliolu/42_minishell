@@ -13,8 +13,17 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 ## Compile
 - make -n "-Wall -Wextra -Werror"
 - make
-​
-- [] exit 1 | exit a
+
+- [x] exit 1​	#echo $? = 1
+- [x] exit 1 | exit a	#echo $? = 2
+- [x] exit 1 | exit 0	#echo $? = 0
+- [x] exit 1 | exit 0 | exit a	#echo $? = 2
+- [x] exit 1 | exit a | exit 0 | exit b	#echo $? = 2
+- [x] exit 1 | exit a | exit 0 | exit b | exit 123	#echo $? = 123
+- [x] exit 1 | exit $var	#var=222 #export var #echo $? = 222
+- [x] exit 1 | exit $var	#var=1abc #export var #echo $? = 2
+
+
 - [] echo "laaaaaaaaaaaaaaaaa ""ola
 - [x] minishell> cat << $USER
     > ola

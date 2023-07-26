@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 12:52:12 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:49:45 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,13 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 	if (cmd->args[1] && !ft_exit_validation(ms, cmd))
 	{
 		ft_free(tmp);
-		exit(2);
+		if (pipes == 0)
+			exit(2);
+		else
+		{
+			g_exit_status = 2;
+			return ;
+		}
 	}
 	if (pipes == 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 15:54:28 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:22:40 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,8 @@ void	ft_cd(t_ms *ms, t_command *cmd);
 void	ft_create_env(t_ms *ms, char **env);
 void	ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo);
 void	ft_echo(t_command *cmd);
-void	ft_env(t_command *cmd, t_lst *lst);
+void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst);
+bool ft_find_in_array(char *str, char **array);
 void	ft_exit_free(t_ms *ms);
 char	*ft_exit_is_cmd_arg(t_ms *ms, t_command *cmd, char *tmp);
 bool	ft_exit_validation(t_ms *ms, t_command *cmd);

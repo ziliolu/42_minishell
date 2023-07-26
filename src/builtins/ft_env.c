@@ -12,16 +12,13 @@
 
 #include "../../includes/minishell.h"
 
-void	ft_env(t_command *cmd, t_lst *lst)
+void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst)
 {
 	if(ms->paths)
 	{
 		if(!ft_find_in_array("/bin", ms->paths) || !ft_find_in_array("/usr/bin", ms->paths))
 		{
-			printf("Comando 'env' está disponível nos seguintes locais\n * /bin/env\n
- 					* /usr/bin/env\n
-					O comando não foi localizado porque '/bin:/usr/bin' não está 
-					incluído na variável de ambiente PATH.");
+			printf("Comando 'env' está disponível nos seguintes locais\n * /bin/env\n * /usr/bin/env\n O comando não foi localizado porque '/bin:/usr/bin' não está incluído na variável de ambiente PATH.");
 		}
 	}
 	if (cmd->args[1])
@@ -44,5 +41,5 @@ bool ft_find_in_array(char *str, char **array)
 			return (true);
 		i++;
 	}
-	return (facse)
+	return (false);
 }
