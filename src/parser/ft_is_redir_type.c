@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_redir_type.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:22:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/25 16:50:48 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:15:22 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ void	ft_is_redir_type(t_ms *ms, t_counters *p)
 		ft_free(p->str);
 	}
 	else
-	{
 		ms->cmds[p->i].redirs[p->k].arg = ft_strdup(p->list->data);
-	}
 	if (p->j > 1)
 		p->j--;
 	p->k++;

@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 16:22:40 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:31:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,7 +231,7 @@ void	ft_create_env(t_ms *ms, char **env);
 void	ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo);
 void	ft_echo(t_command *cmd);
 void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst);
-bool ft_find_in_array(char *str, char **array);
+bool	ft_find_in_array(char *str, char **array);
 void	ft_exit_free(t_ms *ms);
 char	*ft_exit_is_cmd_arg(t_ms *ms, t_command *cmd, char *tmp);
 bool	ft_exit_validation(t_ms *ms, t_command *cmd);
@@ -241,6 +241,8 @@ void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp);
 void	ft_export(t_ms *ms, t_command *cmd);
 void	ft_unset(t_ms *ms, t_command *cmd);
 void	ft_join_old_w_new_pwd(t_cd *cd);
+void	ft_is_not_export_cmd(t_ms *ms, t_command *cmd);
+void	ft_exit_is_not_pipe(t_ms *ms, char *tmp, int pipes);
 
 // =============== ERROR ===============
 
@@ -255,6 +257,7 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 	char **path_w_slash, char **total_path);
 bool	ft_is_executable(t_ms *ms, t_command *cmd);
 bool	ft_is_home_path(char *str);
+void	ft_start_fork(t_ms *ms, t_command *cmd, char **total_path);
 
 // =============== LEXER ===============
 
@@ -312,6 +315,7 @@ void	ft_parser_while_dif_null(t_ms *ms, t_counters *p, int c);
 void	ft_parser_while_dif_pipe(t_ms *ms, t_counters *p, int c);
 void	ft_parser(t_ms *ms, t_elem *list);
 void	ft_ptr_is_in_quotes(t_ms *ms, t_counters *p);
+void	ft_list_type_env(t_ms *ms, t_counters *p);
 
 // =============== PIPES ===============
 

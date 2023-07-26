@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 16:45:01 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:19:09 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ bool	ft_exit_validation(t_ms *ms, t_command *cmd)
 
 	(void) ms;
 	nbr = ft_atoll(cmd->args[1]);
-	if ((nbr == 0 && ft_strcmp(cmd->args[1], "0") != 0) || (!ft_is_in_llong_range(cmd->args[1])))
+	if ((nbr == 0 && ft_strcmp(cmd->args[1], "0") != 0)
+		|| (!ft_is_in_llong_range(cmd->args[1])))
 	{
 		if (ms->n_pipes == 0)
 			ft_printf("exit\n");

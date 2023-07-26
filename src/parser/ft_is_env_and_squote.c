@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_env_and_squote.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:06:12 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:26:07 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:15:50 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_is_env_and_squote(t_ms *ms, t_counters *p)
 	char	*tmp_arg;
 
 	str_expanded = NULL;
-	if(ft_strcmp(ms->cmds[p->i].args[0], "unset") == 0)
+	if (ft_strcmp(ms->cmds[p->i].args[0], "unset") == 0)
 		str_expanded = ft_strtrim(p->list->data, "$");
 	else
 		str_expanded = ft_expand(ms->ms_env, *ms->vars, p->list->data);

@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 16:49:45 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:31:33 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 			return ;
 		}
 	}
+	ft_exit_is_not_pipe(ms, tmp, pipes);
+	if (tmp)
+	{
+		ft_free(tmp);
+		g_exit_status = ms->atoi_tmp;
+	}
+}
+
+void	ft_exit_is_not_pipe(t_ms *ms, char *tmp, int pipes)
+{
 	if (pipes == 0)
 	{
 		ft_printf("exit\n");
@@ -41,10 +51,5 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 			exit(ms->atoi_tmp);
 		}
 		exit(g_exit_status);
-	}
-	if (tmp)
-	{
-		ft_free(tmp);
-		g_exit_status = ms->atoi_tmp;
 	}
 }

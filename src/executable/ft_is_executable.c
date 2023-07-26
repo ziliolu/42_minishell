@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 17:54:33 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:08:50 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ bool	ft_is_executable(t_ms *ms, t_command *cmd)
 	if (cmd->err)
 		return (true);
 	if (ft_is_absolute_path(cmd->args[0]))
-	{
-		//ft_free(total_path);
 		total_path = ft_strdup(cmd->args[0]);
-	}
 	while (ms->paths && ms->paths[ms->i])
 	{
 		ft_is_executable_while_path(ms, cmd, &path_w_slash, &total_path);
@@ -35,7 +32,7 @@ bool	ft_is_executable(t_ms *ms, t_command *cmd)
 		ft_free(path_w_slash);
 		if (ms->go_out == 1)
 			return (true);
-		else if(ms->go_out == -1)
+		else if (ms->go_out == -1)
 			return (false);
 		ms->i++;
 	}

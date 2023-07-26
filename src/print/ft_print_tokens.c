@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 18:13:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:34:42 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	ft_print_tokens(t_ms *ms, t_elem *list)
 
 	additional = list;
 	printf("-----------------------------------------------------\
-		------------------------------------\n");
+------------------------------------\n");
 	printf("|\tdata\t\t|\tlen\t|\tstatus  \t|\ttype    \t|\t\n");
 	printf("-----------------------------------------------------\
-		------------------------------------\n");
+------------------------------------\n");
 	while (list != NULL)
 	{
 		printf("|\t'%s'\t\t|\t%d\t|\t%s  \t|\t%s    \t|\t", \
@@ -31,11 +31,11 @@ void	ft_print_tokens(t_ms *ms, t_elem *list)
 		printf("\n");
 	}
 	printf("-----------------------------------------------------\
-		------------------------------------\n");
+------------------------------------\n");
 	printf("|\t%d Pipes\t\t|\t%d total number of arguments in the \
-		element list.\t|\n", ft_count_pipes(additional), \
+element list.\t|\n", ft_count_pipes(additional), \
 			ft_count_tokens(additional));
 	printf("-------------------------------------------------------\
-		----------------------------------\n");
+----------------------------------\n");
 	ft_print_command_nodes(ms, ms->n_pipes);
 }

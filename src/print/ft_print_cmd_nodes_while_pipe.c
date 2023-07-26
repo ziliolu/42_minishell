@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:49:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 19:52:56 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:52:27 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 void	ft_print_command_nodes_while_pipe(t_ms *ms, int i, int j, int k)
 {
 	j = 0;
-	printf("\nCOMMAND %i\n", i);
+	printf("\n|\t\tCOMMAND %i\t\t|\n", i);
 	while (ms->cmds[i].args[j] != NULL)
 	{
-		printf("%s\n", ms->cmds[i].args[j]);
+		printf("|\t\t%s\t\t\t|\n", ms->cmds[i].args[j]);
 		j++;
 	}
+	printf("|\t\t\t\t\t|");
 	if (ms->cmds[i].redirs != NULL)
 	{
 		while (ms->cmds[i].redirs[k].type)

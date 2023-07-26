@@ -12,14 +12,14 @@
 
 #include "../../includes/minishell.h"
 
-bool ft_find_in_array(char *str, char **array)
+bool	ft_find_in_array(char *str, char **array)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(array[i])
+	while (array[i])
 	{
-		if(ft_strcmp(str, array[i]) == 0)
+		if (ft_strcmp(str, array[i]) == 0)
 			return (true);
 		i++;
 	}
@@ -28,20 +28,22 @@ bool ft_find_in_array(char *str, char **array)
 
 void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst)
 {
-	if(!ms->paths)
+	if (!ms->paths)
 	{
-		ft_printf("The command could not be located because '/bin:/usr/bin' is not included in the PATH environment variable.\n");
+		ft_printf("The command could not be located because \
+			'/bin:/usr/bin' is not included in the PATH \
+			environment variable.\n");
 		ft_printf("env: command not found\n");
 		g_exit_status = 127;
-		return ; 
+		return ;
 	}
-	else if(!ft_find_in_array("/bin", ms->paths) && !ft_find_in_array("/usr/bin", ms->paths))
+	else if (!ft_find_in_array("/bin", ms->paths)
+		&& !ft_find_in_array("/usr/bin", ms->paths))
 	{
 		ft_printf("cd: command not found\n");
 		g_exit_status = 127;
-		return ; 
+		return ;
 	}
-
 	if (cmd->args[1])
 	{
 		printf("env: '%s': No such file or directory\n", cmd->args[1]);
@@ -50,4 +52,3 @@ void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst)
 	}
 	ft_print_list(lst);
 }
-
