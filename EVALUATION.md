@@ -22,20 +22,21 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] exit 1 | exit a | exit 0 | exit b | exit 123	#echo $? = 123
 - [x] exit 1 | exit $var	#var=222 #export var #echo $? = 222
 - [x] exit 1 | exit $var	#var=1abc #export var #echo $? = 2
+- [x] export 1=a
+- [x] minishell> cat << $USER
+- [x] minishell> $?
+- [x] bash: exit: 111111111111111111111111111111: numeric argument required
+- [x] unset HOME
 
 
 - [] echo "laaaaaaaaaaaaaaaaa ""ola
-- [x] minishell> cat << $USER
     > ola
     > $USER
     > lpicoli-
-- [] unset HOME
 - [] ""ls
-- [x] bash: exit: 111111111111111111111111111111: numeric argument required
-- [x] minishell> $?
+- [] unset $HOME
     0: command not found
     minishell> $>
-- [x] export 1=a
 
 
 

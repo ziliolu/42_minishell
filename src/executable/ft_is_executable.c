@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 15:48:20 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:54:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	ft_is_executable(t_ms *ms, t_command *cmd)
 		//ft_free(total_path);
 		total_path = ft_strdup(cmd->args[0]);
 	}
-	while (ms->paths[ms->i])
+	while (ms->paths && ms->paths[ms->i])
 	{
 		ft_is_executable_while_path(ms, cmd, &path_w_slash, &total_path);
 		ft_free(total_path);

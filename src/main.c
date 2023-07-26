@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 18:16:19 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:22:02 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv, char **system_env)
 	(void) argc;
 	(void) argv;
 	prompt = "minishell> ";
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	ms.status = 0;
 	ms.pid = 0;
