@@ -63,6 +63,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/utils/general/ft_search_for_end.c\
 	./src/utils/general/ft_chartrim_w_dquotes_while.c\
 	./src/utils/general/ft_strcmp.c\
+	./src/utils/general/ft_is_in_llong_range.c\
 	./src/utils/list_utils/ft_add_node.c\
 	./src/utils/list_utils/ft_getenv.c\
 	./src/utils/list_utils/ft_remove_node_list_while.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_remove_node_list_while.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:27:55 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 15:40:22 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:39:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	ft_remove_node_list_while(t_lst **head, char *name, \
 			tmp = list->next;
 			list->next = tmp->next;
 			ft_free_node(tmp);
-			ft_free(name);
+			//ft_free(name);
 			return (true);
 		}
 		list = list->next;

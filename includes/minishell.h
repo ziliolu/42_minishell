@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 07:19:51 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:54:28 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,6 +402,7 @@ char	*ft_strjoin_wo_leaks(char *s1, char *s2);
 char	*ft_strndup(char *str, int n);
 char	*ft_strtrim_end_quote(char *str, char set);
 char	*ft_strtrim_end(char *str, char set);
+bool	ft_is_in_llong_range(char *nptr);
 
 // ------------ 3- LIST UTILS ------------
 

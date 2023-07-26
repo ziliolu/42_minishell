@@ -1,14 +1,1 @@
-ALPHABETIC.TXT
-EVALUATION.md
-includes
-LEAKS.md
-lib
-Makefile
-minishell
-readline.supp
-README.md
-src
-subject
-_tester.sh
-'txt'
-txt
+4

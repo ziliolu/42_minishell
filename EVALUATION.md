@@ -16,17 +16,17 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 ​
 - [] exit 1 | exit a
 - [] echo "laaaaaaaaaaaaaaaaa ""ola
-- []minishell> cat << $USER
+- [x] minishell> cat << $USER
     > ola
     > $USER
     > lpicoli-
 - [] unset HOME
 - [] ""ls
-- [] bash: exit: 111111111111111111111111111111: numeric argument required
-- [] minishell> $?
+- [x] bash: exit: 111111111111111111111111111111: numeric argument required
+- [x] minishell> $?
     0: command not found
     minishell> $>
-- [] export 1=a
+- [x] export 1=a
 
 
 
@@ -151,8 +151,8 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [ ] 'cat | cat | ls' should behave in "normal way".
 - [ ] Try to execute a long command with a ton of arguments.
 - [ ] Have fun with that beautiful minishell and enjoy it!
-- [ ] ls -l -a -F | grep a | wc -l > txt
-- [ ] ls -l -a -F | grep a | grep o | wc -l > new >> eof
+- [x] ls -l -a -F | grep a | wc -l > txt
+- [x] ls -l -a -F | grep a | grep o | wc -l > new >> eof
 ​
 ​
 ## Environment variables

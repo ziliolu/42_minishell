@@ -14,6 +14,16 @@
 
 void	ft_env(t_command *cmd, t_lst *lst)
 {
+	if(ms->paths)
+	{
+		if(!ft_find_in_array("/bin", ms->paths) || !ft_find_in_array("/usr/bin", ms->paths))
+		{
+			printf("Comando 'env' está disponível nos seguintes locais\n * /bin/env\n
+ 					* /usr/bin/env\n
+					O comando não foi localizado porque '/bin:/usr/bin' não está 
+					incluído na variável de ambiente PATH.");
+		}
+	}
 	if (cmd->args[1])
 	{
 		printf("env: '%s': No such file or directory\n", cmd->args[1]);
@@ -21,4 +31,18 @@ void	ft_env(t_command *cmd, t_lst *lst)
 		return ;
 	}
 	ft_print_list(lst);
+}
+
+bool ft_find_in_array(char *str, char **array)
+{
+	int i;
+	
+	i = 0;
+	while(array[i])
+	{
+		if(ft_strcmp(str, array[i]) == 0)
+			return (true);
+		i++;
+	}
+	return (facse)
 }

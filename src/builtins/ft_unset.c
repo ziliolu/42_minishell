@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:20:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 12:17:17 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:43:19 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	ft_unset(t_ms *ms, t_command *cmd)
 		i++;
 	}
 	if (ft_strcmp(cmd->args[1], "PATH") == 0)
-		free (ms->paths);
+		ft_free_array(ms->paths);
 }
