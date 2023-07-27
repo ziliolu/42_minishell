@@ -16,6 +16,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/run/ft_main_cycle.c\
 	./src/run/ft_reset_fd_in_out.c\
 	./src/run/ft_connect_pipes.c\
+	./src/run/ft_main_cycle_read.c\
 	./src/pipes/ft_init_pipes.c\
 	./src/pipes/ft_broken_cmds.c\
 	./src/pipes/ft_input_is_pipe.c\

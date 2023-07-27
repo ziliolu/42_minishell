@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 10:37:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:48:44 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int	g_exit_status;
 
 int	main(int argc, char **argv, char **system_env)
 {
-	char	*prompt;
 	char	*tmp_prompt;
+	char	*prompt;
 	char	*read_content;
 	t_ms	ms;
 
 	(void) argc;
 	(void) argv;
-	prompt = "minishell> ";
 	ms.is_print = 0;
 	ms.print_cmd = 0;
 	ms.status = 0;
+	prompt = "\e[31mmi\e[93mni\e[32ms\e[92mh\e[34me\e[94mll\e[93m$\033[0m ";
 	ms.pid = 0;
 	tmp_prompt = NULL;
 	read_content = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_cycle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/27 13:01:07 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:48:17 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 void	ft_main_cycle(t_ms *ms, char *read_content, \
 	char *tmp_prompt, char *prompt)
 {
-	ft_main_cycle_read(ms, read_content, tmp_prompt, prompt);
+	if (!ft_main_cycle_read(ms, read_content, prompt))
+		return ;
 	tmp_prompt = ft_strtrim(read_content, " ");
 	if (ft_strcmp(tmp_prompt, "") != 0)
 	{

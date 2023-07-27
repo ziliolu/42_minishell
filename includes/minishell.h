@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 13:01:38 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:47:42 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,8 +358,7 @@ void	ft_filter_cmd_else(t_ms *ms, t_command *cmd);
 void	ft_filter_cmd(t_ms *ms, t_command *cmd);
 void	ft_main_cycle(t_ms *ms, char *read_content, \
 	char *tmp_prompt, char *prompt);
-void	ft_main_cycle_read(t_ms *ms, char *read_content, \
-	char *tmp_prompt, char *prompt);
+bool	ft_main_cycle_read(t_ms *ms, char *read_content, char *prompt);
 void	ft_reset_fd_in_out(t_ms *ms);
 void	ft_run_cmds(t_ms *ms);
 void	ft_wait(t_ms *ms);
