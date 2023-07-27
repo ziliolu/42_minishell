@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:44:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/25 11:59:00 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:13:32 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_lexer(t_ms *ms, char *str)
 	status = GENERAL;
 	x.squote_flag = 0;
 	x.dquote_flag = 0;
+	x.ms = ms; 
 	elem_head = (t_elem **)ft_calloc(1, sizeof(t_elem *));
 	x.i = 0;
 	while (str[x.i])
