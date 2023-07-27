@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 19:31:33 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:15:26 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,19 @@
 
 void	ft_exit(t_ms *ms, t_command *cmd)
 {
-	char	*tmp;
-	int		pipes;
-
-	tmp = NULL;
-	pipes = ms->n_pipes;
-	ms->atoi_tmp = 0;
-	tmp = ft_exit_is_cmd_arg(ms, cmd, tmp);
-	if (cmd->args[1] && !ft_exit_validation(ms, cmd))
+	if (cmd->args[1] && ft_exit_validation(ms, cmd))
 	{
-		ft_free(tmp);
-		if (pipes == 0)
-			exit(2);
-		else
-		{
-			g_exit_status = 2;
-			return ;
+		if (ms->n_pipes == 0)
+		{	
+			ft_printf("exit\n");
+			exit(ft_atoi(cmd->args[1]));
 		}
+		else
+			g_exit_status = ft_atoi(cmd->args[1]);
 	}
-	ft_exit_is_not_pipe(ms, tmp, pipes);
-	if (tmp)
-	{
-		ft_free(tmp);
-		g_exit_status = ms->atoi_tmp;
-	}
-}
-
-void	ft_exit_is_not_pipe(t_ms *ms, char *tmp, int pipes)
-{
-	if (pipes == 0)
+	else if (!cmd->args[1] && ms->n_pipes == 0)
 	{
 		ft_printf("exit\n");
-		if (tmp)
-		{
-			ft_free(tmp);
-			exit(ms->atoi_tmp);
-		}
-		exit(g_exit_status);
+		exit (g_exit_status);
 	}
 }
