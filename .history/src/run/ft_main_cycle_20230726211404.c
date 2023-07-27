@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/26 21:20:27 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 21:14:05 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 		ft_free(read_content);
 		return ;
 	}
+	
 	tmp_prompt = ft_strtrim(read_content, " ");
 	if (ft_strcmp(tmp_prompt, "") != 0)
 	{

@@ -30,17 +30,19 @@ void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst)
 {
 	if (!ms->paths)
 	{
-		ft_printf("minishell: env: No such file or directory\n");
+		ft_printf("Command 'env' is available in the following places\n
+* /bin/env\n
+* /usr/bin/env\n The command could not be located because \
+'/bin:/usr/bin' is not included in the PATH \
+environment variable.\n");
+		ft_printf("env: command not found\n");
 		g_exit_status = 127;
 		return ;
 	}
 	else if (!ft_find_in_array("/bin", ms->paths)
 		&& !ft_find_in_array("/usr/bin", ms->paths))
 	{
-		ft_printf("Command 'env' is available in the following places\n \
-* /bin/env\n * /usr/bin/env\nThe command could not be located because \
-'/bin:/usr/bin' is not included in the PATH environment variable.\n");
-		ft_printf("env: command not found\n");
+		ft_printf("cd: command not found\n");
 		g_exit_status = 127;
 		return ;
 	}

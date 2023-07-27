@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:51 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 19:34:42 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 20:44:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ element list.\t|\n", ft_count_pipes(additional), \
 			ft_count_tokens(additional));
 	printf("-------------------------------------------------------\
 ----------------------------------\n");
-	ft_print_command_nodes(ms, ms->n_pipes);
+	if (ms->print_cmd)
+		ft_print_command_nodes(ms, ms->n_pipes);
 }

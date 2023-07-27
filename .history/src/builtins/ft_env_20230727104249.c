@@ -30,7 +30,7 @@ void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst)
 {
 	if (!ms->paths)
 	{
-		ft_printf("minishell: env: No such file or directory\n");
+		ft_printf("env: No such file or directory\n");
 		g_exit_status = 127;
 		return ;
 	}

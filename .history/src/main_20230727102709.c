@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 10:37:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:27:09 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	main(int argc, char **argv, char **system_env)
 	(void) argc;
 	(void) argv;
 	prompt = "minishell> ";
-	ms.is_print = 0;
-	ms.print_cmd = 0;
+	ms.is_print = 1;
+	ms.print_cmd = 1;
 	ms.status = 0;
 	ms.pid = 0;
 	tmp_prompt = NULL;

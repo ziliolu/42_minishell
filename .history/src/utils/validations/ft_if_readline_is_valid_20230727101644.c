@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:01:50 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/27 10:25:54 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/27 10:16:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_if_readline_is_valid(t_ms *ms, char *read_content)
 {
-	if (read_content[0] != '\0' && ft_is_arg_valid(ms, read_content))
+	if (read_content[0] != '\0' && ft_is_arg_valid(ms,  6read_content)) // antes do lexer
 	{
 		ft_lexer(ms, read_content);
 		ms->ms_argv = ft_split(read_content, ' ');
@@ -40,3 +40,5 @@ void	ft_if_readline_is_valid(t_ms *ms, char *read_content)
 		free(ms->lexed_list);
 	}
 }
+
+// && ft_is_arg_valid(ms, read_content)
