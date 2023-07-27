@@ -33,7 +33,7 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] echo "laaaaaaaaaaaaaaaaa ""ola
 
 
-- [] ""ls
+- [x] ""ls
 - [x] unset $HOME
 
 

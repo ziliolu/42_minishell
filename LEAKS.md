@@ -3,7 +3,7 @@
 
 valgrind --leak-check=full ./minishell 
 
-
+- [] echo ""oi 
 ## testados com "exit" - não com sinais
 
 - [x] exit # should return the last exit code value
