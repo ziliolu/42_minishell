@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_main_cycle_read.c                               :+:      :+:    :+:   */
+/*   ft_is_in_double_quote_while.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/27 13:53:15 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/07/25 00:00:26 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/25 00:00:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool ft_main_cycle_read(t_ms *ms, char **read_content, char *prompt)
+void	ft_is_in_double_quote_while(t_ms *ms, t_counters *p, char *data)
 {
-	ms->processes = 0;
-	ft_handle_signals();
-	*read_content = readline(prompt);
-	ft_is_not_read_content(ms, *read_content);
-	if (ft_strcmp(*read_content, "") == 0)
+	if (p->list->type == ENV)
 	{
-		ft_free(*read_content);
-		return (false);
+		data = ft_expand(ms->ms_env, *ms->vars, p->list->data);
+		ft_is_env_in_quotes(p, data);
 	}
-	return (true);
+	else
+	{
+		data = ft_strdup(p->list->data);
+		ft_is_env_in_quotes(p, data);
+	}
+	ft_free(data);
 }

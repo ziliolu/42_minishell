@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:54:35 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 14:05:23 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:03:26 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ char	*ft_expand(t_lst *env, t_lst *vars, char *variable)
 	char	*str;
 
 	str = NULL;
-	if (ft_strcmp(variable, "$") == 0)
-		return (ft_strdup(variable));
 	str = ft_strtrim(variable, "$");
+	if (str)
 	if (ft_strcmp(str, "?") == 0)
 	{
 		ft_free(str);
