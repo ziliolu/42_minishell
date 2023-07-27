@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 15:15:38 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:39:32 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,7 @@ t_elem	*ft_count_args_is_pipe(t_ms *ms, t_elem *list);
 t_elem	*ft_count_args_is_squote(t_ms *ms, t_elem *list);
 t_elem	*ft_count_args_is_word(t_ms *ms, t_elem *list);
 void	ft_count_args(t_ms *ms, t_elem *list);
-int		ft_count_char_env(t_ms *ms, char *str);
+int		ft_count_char_env(char *str);
 int		ft_count_char(char *str);
 t_elem	*ft_find_last_elem(t_elem *list);
 void	ft_lexer_if_str_dquote(t_lexer *x, t_elem **elem_head, \
