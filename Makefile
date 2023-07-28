@@ -174,6 +174,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/redirect/ft_open_redirs_if_var.c\
 	./src/redirect/ft_is_arg_redir.c\
 
+
 COLOUR_RED = 		\e[31m
 COLOUR_ORANGE_B = 	\e[91m
 COLOUR_ORANGE_L = 	\e[33m
@@ -198,8 +199,7 @@ $(NAME): $(OBJ) $(LIB)
 
 $(LIB):
 	make -C lib
-
-
+	
 clean: 
 	make clean -C lib
 	$(RM) $(OBJ)

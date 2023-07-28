@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token_type_else.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:50:57 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/21 21:58:11 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:33:21 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ char	*ft_token_type_else(enum e_token type)
 		return ("here_doc");
 	else if (type == CMD)
 		return ("command");
+	else if(type == AND)
+		return ("and");
+	else if(type == OR)
+		return ("or");
+	else if(type == P_CLOSE)
+		return (")");
+	else if(type == P_OPEN)
+		return (")");
 	else
 		return (NULL);
 }
