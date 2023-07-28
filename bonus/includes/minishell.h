@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 23:13:07 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:45:03 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,17 @@ enum e_token
 	HERE_DOC,
 	D_REDIR_OUT,
 	CMD,
+	OR,
+	AND,
+	P_OPEN = '(',
+	P_CLOSE = ')',
 };
 
 enum e_status
 {
 	IN_DQUOTE,
 	IN_SQUOTE,
+	IN_P,
 	GENERAL,
 };
 

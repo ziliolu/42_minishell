@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bonus.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:41:39 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/28 01:09:47 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:19:44 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/bonus.h"
+#include "includes/minishell.h"
+#include <stdbool.h>
 
 int	ft_and_operator(char *read_content)
 {
@@ -65,10 +67,91 @@ int	ft_or_operator(char *read_content)
 	return (o.op_or);
 }
 
-int	ft_get_next_operator()
+int	ft_recursive()
 {
 	
 }
+
+bool	ft_find_op(char *str, int i, char c)
+{
+	if (str[i + i] && str[i + i] == c)
+		return (true);
+	return (false);
+}
+
+typedef struct s_cmd
+{
+	char			*str; // &&			// echo a
+	enum e_status status; // GENERAL	// GENERAL
+	enum e_token	type; // AND		// CMD
+}	t_cmd;
+
+
+
+void	ft_bonus_parser(char *str)
+{
+	int		i;
+	int		j;
+	int		k;
+	t_cmd	*cmd;
+	enum e_status status;
+
+	status = GENERAL;
+	i = 0;
+
+	//echo a && (echo b || echo c)
+	while (str[i])
+	{
+		if(str[i] == P_OPEN || str[i] == P_CLOSE)
+		{
+			k++;
+			if(str[i] == P_OPEN)
+			{
+				cmd[k].str = "(";
+				cmd[k].type = P_OPEN;
+			}
+			if(str[i] == P_CLOSE)
+			{
+				cmd[k].str = ")";
+				cmd[k].type = P_CLOSE;
+			}
+			cmd[k].status = status;
+			status = IN_P;
+		}
+		if (ft_find_op(str, i, '&'))
+		{
+			i += 2;
+			k++;
+			cmd[k].str = "&&";
+			cmd[k].type = AND;
+			cmd[k].status = status;
+		}
+		else if (ft_find_op(str, i, '|'))
+		{
+			i += 2;
+			k++;
+			cmd[k].str = "||";
+			cmd[k].type = OR;
+			cmd[k].status = status;
+		}
+		cmd[k].str = ft_charjoin(cmd[k].str, str[i]);
+		cmd[k].status = status;
+		cmd[k].
+		i++;
+	}
+}
+
+// void	ft_resolve()
+// {
+// 	ft_find_next_op()
+// 	{
+// 		if (parentisses -> ft_recursive())
+// 		return (comando -> minishell)
+// 	}
+// }
+
+
+
 
 int	main(int argc, char **argv, char **system_env)
 {
