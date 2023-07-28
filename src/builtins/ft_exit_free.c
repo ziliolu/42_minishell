@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 23:56:47 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/28 18:54:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	ft_exit_free(t_ms *ms)
 {
-	ft_free_env(ms);
+	ft_free_env(ms->ms_env);
+	ft_free_env(ms->export_list);
 	ft_free_array(ms->paths);
 	ft_free_cmds(ms);
 }

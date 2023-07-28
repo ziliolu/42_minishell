@@ -1,34 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free copy 5.c                                   :+:      :+:    :+:   */
+/*   ft_free_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 10:14:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 19:52:15 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-void	ft_free_env(t_ms *ms)
+// void	ft_free_env(t_lst *list)
+// {
+// 	t_lst *tmp;
+	
+// 	while (list)
+// 	{
+// 		if (list)
+// 		{
+// 			tmp = list;
+// 			free (tmp->name);
+// 			free (tmp->info);
+// 			free (tmp->full_info);
+// 			free (tmp);
+// 		}
+// 		if(list->next)
+// 			list = list->next;
+// 		//list->next = list->next;
+// 	}
+// 	//free(ms.ms_env);
+// }
+
+void	ft_free_env(t_lst *ms_lst)
 {
 	t_lst	*list;
 
 	list = NULL;
-	list = ms->ms_env;
-	while (ms->ms_env)
+	list = ms_lst;
+	while (ms_lst)
 	{
-		if (ms->ms_env)
+		if (ms_lst)
 		{
-			list = ms->ms_env->next;
-			free (ms->ms_env->name);
-			free (ms->ms_env->info);
-			free (ms->ms_env->full_info);
-			free (ms->ms_env);
+			list = ms_lst->next;
+			free (ms_lst->name);
+			free (ms_lst->info);
+			free (ms_lst->full_info);
+			free (ms_lst);
 		}
-		ms->ms_env = list;
+		ms_lst = list;
 	}
 	if (list)
 		free (list);

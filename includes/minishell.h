@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/28 16:36:07 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:00:40 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -382,7 +382,7 @@ void	ft_free_cmds_while(t_ms *ms, int i, int j, int k);
 void	ft_free_cmds(t_ms *ms);
 void	ft_free_counters(t_counters *c);
 void	ft_free_elem_list(t_elem *head);
-void	ft_free_env(t_ms *ms);
+void	ft_free_env(t_lst *ms_lst);
 void	ft_free_memory(t_ms *ms);
 void	ft_free_node(t_lst *node);
 void	ft_free(char *str);
