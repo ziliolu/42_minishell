@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 23:13:07 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:36:07 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_counters
 typedef struct s_ms
 {
 	t_lst		*ms_env;
+	t_lst		*export_list;
 	t_elem		**lexed_list;
 	t_lst		**vars;
 	t_command	*cmds;
@@ -228,7 +229,7 @@ void	ft_cd_is_chdir(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_cd_while_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_cd(t_ms *ms, t_command *cmd);
-void	ft_create_env(t_ms *ms, char **env);
+t_lst	*ft_create_env(t_ms *ms, char **env);
 void	ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo);
 void	ft_echo(t_command *cmd);
 void	ft_env(t_ms *ms, t_command *cmd, t_lst *lst);

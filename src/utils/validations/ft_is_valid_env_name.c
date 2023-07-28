@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_valid_env_name.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:41:22 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/27 13:02:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:51:34 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ bool	ft_is_valid_env_name(t_ms *ms, char *str)
 
 	(void) ms;
 	i = 0;
+
+	if(!str)
+		return (false);
 	if (!((str[i] >= 'a' && str[i] <= 'z')
 			|| (str[i] >= 'A' && str[i] <= 'Z') || (str[i] == '_')))
 		return (false);

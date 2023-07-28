@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 23:41:39 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/28 15:50:47 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/28 15:55:24 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ typedef struct s_cmd
 	enum e_status status; // GENERAL	// GENERAL
 	enum e_token	type; // AND		// CMD
 }	t_cmd;
-
-
 
 t_cmd *ft_bonus_parser(char *str)
 {

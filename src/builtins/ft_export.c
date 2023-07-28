@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 19:29:22 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:40:07 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_is_not_export_cmd(t_ms *ms, t_command *cmd)
 {
 	if (!cmd->args[1])
 	{
-		ft_print_export(ms->ms_env);
+		ft_print_export(ms->export_list);
 		return ;
 	}
 	else if (!ft_is_valid_env_name(ms, cmd->args[1]))

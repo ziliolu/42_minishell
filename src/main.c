@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 18:17:12 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:00:36 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ int	main(int argc, char **argv, char **system_env)
 	ms.std_in = dup(STDIN_FILENO);
 	ms.std_out = dup(STDOUT_FILENO);
 	ms.dot_comma_flag = false;
-	ft_create_env(&ms, system_env);
+	ms.ms_env = ft_create_env(&ms, system_env); 
+	ms.export_list = ft_create_env(&ms, system_env); 
 	ft_init_ms(&ms, system_env);
 	ms.ms_env_array = NULL;
 	ms.vars = (t_lst **)ft_calloc(1, sizeof(t_lst *));
+	
 	while (1)
 		ft_main_cycle(&ms, read_content, tmp_prompt, prompt);
 	return (0);

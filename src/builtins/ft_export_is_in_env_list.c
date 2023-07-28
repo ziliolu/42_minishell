@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_is_in_env_list.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 12:20:54 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:11:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp)
 
 	(void) cmd;
 	tmp = NULL;
-	if (ft_is_already_in_list(exp->name, ms->ms_env))
+	if (ft_is_already_in_list(exp->name, ms->ms_env) && ft_strcmp(exp->info, "") != 0)
+	{
 		ft_update_list(ms->ms_env, exp->name, exp->info);
+		ft_update_list(ms->export_list, exp->name, exp->info);
+	}
 	else if (ft_is_already_in_list(exp->name, *ms->vars))
 	{
 		if (!ft_strchr_vars(exp->str, '='))
@@ -30,11 +33,19 @@ void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp)
 			ft_free (tmp);
 		}
 		ft_add_export_node(&ms->ms_env, exp->str);
+		ft_add_export_node(&ms->export_list, exp->str);
 		ft_remove_node_list(ms->vars, exp->str, cmd);
 	}
 	else
 	{
 		if (ft_strchr_vars(exp->str, '='))
+		{
 			ft_add_export_node(&ms->ms_env, exp->str);
+			if (ft_is_already_in_list(exp->name, ms->export_list))
+				ft_update_list(ms->export_list, exp->name, exp->info);
+			else
+				ft_add_export_node(&ms->export_list, exp->str);
+		}
+			
 	}
 }
