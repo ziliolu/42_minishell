@@ -14,6 +14,21 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - make -n "-Wall -Wextra -Werror"
 - make
 
+
+## NEW TESTS
+- [] ""ls""
+- [] <>
+- [] <<
+- [] /bin/echo ola
+- [] /bin/ls
+- [] export A= depois export A= de novo (env guarda repetido)
+- [] cat << ola (nao esta printando apos ctrl + D)
+- [] cat << ola (com ctr+ c precisa sair -> fazer fork e child process com exit dentro)
+- [] echo '"$USER'" (invalid read)
+- [] exit a (invalid free)
+- exit (leaks na main:40)
+
+
 - [x] exit 1​	#echo $? = 1
 - [x] exit 1 | exit a	#echo $? = 2
 - [x] exit 1 | exit 0	#echo $? = 0

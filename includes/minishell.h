@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/29 10:46:10 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/30 23:36:33 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -374,6 +374,8 @@ void	ft_handle_signals_loop(void);
 void	ft_handle_signals(void);
 void	ft_handler_loop(int signal);
 void	ft_handler(int signal);
+void	ft_handler_broken_pipes(int signal);
+void	ft_signals_broken_pipes(void);
 
 // =============== UTILS ===============
 
