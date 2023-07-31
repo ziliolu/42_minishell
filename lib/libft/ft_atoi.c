@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 12:43:55 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/01/18 15:45:26 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:50:28 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_atoi(const char *nptr)
 	if (ft_isnegative(nptr[i]) || ft_ispositive(nptr[i]))
 	{
 		if (ft_isnegative(nptr[i++]))
-		signal = -1;
+			signal = -1;
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{

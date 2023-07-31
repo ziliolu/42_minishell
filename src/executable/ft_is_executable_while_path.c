@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 11:47:38 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:51:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,17 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 	{
 		*path_w_slash = ft_strjoin(ms->paths[ms->i], "/");
 		*total_path = ft_strjoin(*path_w_slash, cmd->args[0]);
-		if(!ms->paths[ms->i])
+		if (!ms->paths[ms->i])
 			ms->go_out = -1;
 	}
-	if (access(*total_path, X_OK) == 0)
+	if (access(*total_path, X_OK) == 0 
+		&& ft_strcmp(cmd->args[0], "") != 0)
 	{
-		if (stat(cmd->args[0], &buf) == 0)
+		if (stat(cmd->args[0], &buf) == 0 && S_ISDIR(buf.st_mode))
 		{
-			if (S_ISDIR(buf.st_mode))
-			{
-				ft_error_var_start("Is a directory", cmd->args[0], 126);
-				ms->go_out = 1;
-				return ;
-			}
+			ft_error_var_start("Is a directory", cmd->args[0], 126);
+			ms->go_out = 1;
+			return ;
 		}
 		ft_handle_signals_loop();
 		ft_start_fork(ms, cmd, total_path);

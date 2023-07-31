@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/31 09:55:52 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:42:49 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_main_cycle(t_ms *ms, char *read_content, \
 	char *tmp_prompt, char *prompt)
 {
+	ft_handle_signals();
 	read_content = NULL;
 	if (!ft_main_cycle_read(ms, &read_content, prompt))
 		return ;
@@ -28,6 +29,7 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 		ft_free(tmp_prompt);
 		if (!read_content)
 			return ;
+		ms->ms_env_array = ft_list_to_array(ms);
 		ft_if_readline_is_valid(ms, read_content);
 		ft_wait(ms);
 		ft_free_array(ms->ms_env_array);

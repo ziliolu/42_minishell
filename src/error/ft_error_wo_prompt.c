@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error_wo_prompt.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 10:33:52 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 05:53:29 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:16:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	ft_error_wo_prompt(t_ms *ms, char *msg, char *str, int err_n)
 	if (!str)
 		ft_printf("%s\n", msg);
 	else
-		ft_printf("minishell: export: %s: %s\n", msg, str);
+		ft_printf("minishell: export %s: `%s'\n", msg, str);
 	g_exit_status = err_n;
 	return (false);
 }

@@ -22,12 +22,28 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] /bin/echo ola
 - [x] /bin/ls
 - [x] export A= depois export A= de novo (env guarda repetido)
-- [] cat << ola (nao esta printando apos ctrl + D)
-- [] cat << ola (com ctr+ c precisa sair -> fazer fork e child process com exit dentro)
+- [x] cat << ola (nao esta printando apos ctrl + D)
+- [x] cat << ola (com ctr+ c precisa sair -> fazer fork e child process com exit dentro)
 - [] echo '"$USER'" (invalid read)
 - [x] exit a (invalid free)
 - exit (leaks na main:40)
-
+- [] define ERROR_CD_NO_HOME		"cd: HOME not set"
+- [x] echo -n
+- [x] unset PATH / unset USER
+- [x] ""
+- [] ls -l>
+- [] ls a>b 
+- [] ls -l>b
+- [] verificar cd/unset HOME etc
+- [] cat << a
+- [] unset HOME -> testar cd 
+- [] unset "$PATH" com aspas
+> $USER
+> 
+> 
+> 
+> A
+> a
 
 - [x] exit 1​	#echo $? = 1
 - [x] exit 1 | exit a	#echo $? = 2

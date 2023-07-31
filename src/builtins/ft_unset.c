@@ -6,13 +6,13 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:20:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 10:40:39 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:21:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool ft_is_valid_identifier(t_ms *ms, t_command *cmd, int i)
+bool	ft_is_valid_identifier(t_ms *ms, t_command *cmd, int i)
 {
 	char *str;
 	int err;
@@ -46,14 +46,18 @@ void	ft_unset(t_ms *ms, t_command *cmd)
 		{
 			ft_free_array(ms->paths);
 			ms->paths = NULL;
-		}	
+		}
+		if ((cmd->args[i] && ft_strchr(cmd->args[i], '=')) || !ft_is_valid_env_name(ms, cmd->args[i]))
+		{
+			ft_reset_fd_in_out(ms);
+			printf("minishell: unset: `%s': not a valid identifier\n", cmd->args[i]);
+			g_exit_status = 1;
+	}
 		if(ft_is_valid_env_name(ms, cmd->args[i]))
 		{
 			ft_remove_node_list(&ms->ms_env, cmd->args[i], cmd);
 			ft_remove_node_list(&ms->export_list, cmd->args[i], cmd);
 		}
-		else
-
 		i++;
 	}
 }

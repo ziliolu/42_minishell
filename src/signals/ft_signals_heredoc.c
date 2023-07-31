@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_char.c                                    :+:      :+:    :+:   */
+/*   ft_signals_heredoc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 11:50:18 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 20:21:18 by lpicoli-         ###   ########.fr       */
+/*   Created: 2023/07/25 00:55:09 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/07/31 20:54:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_count_char(char *str)
+void	ft_handler_heredoc(int signal)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != WHITE_SPACE && str[i] != PIPE_LINE
-		&& str[i] != SINGLE_QUOTE && str[i] != DOUBLE_QUOTE
-		&& str[i] != '$' && str[i] != '\0' && ft_is_not_redir(str[i]))
+	if (signal == SIGINT)
 	{
-		i++;
+		printf("\n");
+		g_exit_status = 130;
+		exit(g_exit_status);
 	}
-	return (i);
+}
+
+void	ft_signals_heredoc(void)
+{
+	signal(SIGINT, ft_handler_heredoc);
+	signal(SIGQUIT, SIG_IGN);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 12:07:52 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/11/25 10:12:24 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:50:10 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *s, int c)
 	{
 		s++;
 		i++;
-	}	
+	}
 	if ((char)c == '\0')
 		return ((char *)s);
 	while (--i >= 0)

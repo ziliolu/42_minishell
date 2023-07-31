@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 10:28:11 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 13:01:55 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <limits.h>
+# include <signal.h>
 
 extern int	g_exit_status;
 
@@ -347,8 +348,8 @@ int		ft_count_redirs(t_elem *list);
 bool	ft_is_arg_redir(char *arg);
 bool	ft_is_not_redir(enum e_token type);
 bool	ft_is_redir(enum e_token type);
-char	*ft_is_heredoc_read_content(t_command *cmd, t_heredoc *h);
-void	ft_is_heredoc(t_command *cmd, t_redirect *redir);
+char	*ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h);
+void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir);
 bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c);
 bool	ft_open_redirs(t_ms *ms, t_counters *c);
 bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg);
@@ -374,7 +375,9 @@ void	ft_handle_signals_loop(void);
 void	ft_handle_signals(void);
 void	ft_handler_loop(int signal);
 void	ft_handler(int signal);
-void	ft_signals_broken_cmds(void);
+void	ft_signals_heredoc(void);
+void	ft_signals_ignore(void);
+
 // =============== UTILS ===============
 
 // ------------ 1- FREE MEMORY ------------

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 18:39:34 by lpicoli-          #+#    #+#             */
-/*   Updated: 2022/12/10 18:44:49 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:49:40 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	ft_puthexa(unsigned long n, char *base)
 			ft_puthexa(n % 16, base);
 		}
 		return (ft_hexlen(n));
-	}	
+	}
 }
