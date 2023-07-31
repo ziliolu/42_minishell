@@ -16,16 +16,16 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 
 
 ## NEW TESTS
-- [] ""ls""
+- [x] ""ls""
 - [] <>
-- [] <<
-- [] /bin/echo ola
-- [] /bin/ls
+- [x] <<
+- [x] /bin/echo ola
+- [x] /bin/ls
 - [] export A= depois export A= de novo (env guarda repetido)
 - [] cat << ola (nao esta printando apos ctrl + D)
 - [] cat << ola (com ctr+ c precisa sair -> fazer fork e child process com exit dentro)
 - [] echo '"$USER'" (invalid read)
-- [] exit a (invalid free)
+- [x] exit a (invalid free)
 - exit (leaks na main:40)
 
 
