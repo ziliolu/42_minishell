@@ -27,6 +27,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/signals/ft_handle_signals_loop.c\
 	./src/signals/ft_handler.c\
 	./src/signals/ft_handler_loop.c\
+	./src/signals/ft_signals_broken_cmds.c\
 	./src/utils/validations/ft_if_readline_is_valid.c\
 	./src/utils/validations/ft_is_variable.c\
 	./src/utils/validations/ft_redirs_validation_while.c\

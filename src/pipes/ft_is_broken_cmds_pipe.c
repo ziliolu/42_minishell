@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 00:01:54 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 00:43:56 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 08:27:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*ft_is_broken_cmds_pipe(t_ms *ms, char *str, t_broken_cmds *b)
 		ft_free(b->prompt_tmp);
 		printf("aqui 1\n");
 		b->prompt_tmp = readline(b->prompt);
-		ft_signals_broken_pipes();
 		if (!b->prompt_tmp)
 		{
 			printf("minishell: syntax error: unexpected end of file\n");
