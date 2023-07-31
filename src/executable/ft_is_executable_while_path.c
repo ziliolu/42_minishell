@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 10:04:14 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:47:38 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 	{
 		*path_w_slash = ft_strjoin(ms->paths[ms->i], "/");
 		*total_path = ft_strjoin(*path_w_slash, cmd->args[0]);
+		if(!ms->paths[ms->i])
+			ms->go_out = -1;
 	}
 	if (access(*total_path, X_OK) == 0)
 	{

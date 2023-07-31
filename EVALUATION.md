@@ -21,7 +21,7 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] <<
 - [x] /bin/echo ola
 - [x] /bin/ls
-- [] export A= depois export A= de novo (env guarda repetido)
+- [x] export A= depois export A= de novo (env guarda repetido)
 - [] cat << ola (nao esta printando apos ctrl + D)
 - [] cat << ola (com ctr+ c precisa sair -> fazer fork e child process com exit dentro)
 - [] echo '"$USER'" (invalid read)

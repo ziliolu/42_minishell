@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 08:27:58 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:28:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -451,5 +451,6 @@ bool	ft_redirs_validation_while(t_ms *ms, t_val_redir *r);
 bool	ft_redirs_validation(t_ms *ms);
 bool	ft_is_valid_number(char c);
 bool	ft_is_valid_env_name(t_ms *ms, char *str);
+bool	ft_is_not_valid_identifier(t_ms *ms, t_command *cmd, int i, int *err);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 09:30:41 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 11:42:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_is_heredoc_read_content(t_command *cmd, t_heredoc *h)
 {
-	int pid;
-	int status;
+	//int pid;
+	//int status;
 
-	status = 0;
+	//status = 0;
 	
 	//ft_signals_broken_cmds();
-	ft_signals_broken_cmds();
-	pid = fork();
-	if(pid == 0)
-	{
+	//ft_signals_broken_cmds();
+	//pid = fork();
+	// if(pid == 0)
+	// {
 		g_exit_status = 0;
 		while (ft_strcmp(h->read_content, h->eof) != 0 || g_exit_status != 130)
 		{
@@ -45,14 +45,14 @@ char	*ft_is_heredoc_read_content(t_command *cmd, t_heredoc *h)
 				h->str = ft_strjoin(h->str, "\n");
 			}
 		}
-		exit(0);
-	}
-	else
-	{
-		printf("teste\n");
-		waitpid(pid, &status, 0);
+		//exit(0);
+	///}
+	// else
+	// {
+		//printf("teste\n");
+		//waitpid(pid, &status, 0);
 		//ft_handle_signals();
 		
-	}
+	//}
 	return (h->str);
 }
