@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/31 00:45:07 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 09:55:52 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_main_cycle(t_ms *ms, char *read_content, \
 	char *tmp_prompt, char *prompt)
 {
+	read_content = NULL;
 	if (!ft_main_cycle_read(ms, &read_content, prompt))
 		return ;
 	tmp_prompt = ft_strtrim(read_content, " ");

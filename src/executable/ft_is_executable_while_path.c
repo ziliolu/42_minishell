@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_executable_while_path.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 19:07:22 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/31 10:04:14 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 {
 	struct stat	buf;
 
-	if (!ft_is_absolute_path(cmd->args[0]))
+	if (ms->paths && !ft_is_absolute_path(cmd->args[0]))
 	{
 		*path_w_slash = ft_strjoin(ms->paths[ms->i], "/");
 		*total_path = ft_strjoin(*path_w_slash, cmd->args[0]);
