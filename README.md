@@ -43,7 +43,7 @@ Lexer looks for specific patterns or special characters that help identify diffe
 | Token Type  | Description                                             | Example      |
 |-------------|---------------------------------------------------------|--------------|
 | `word`        | Represents command names, options, and file names      | 'ls', '-l', 'wc', 'eof' |
-| `env`         | Represents environment or local variables              | '$USER', '$HOME', $name | 
+| `env`         | Represents environment or local variables              | '$USER', '$HOME', '$name' | 
 | `w_space`     | Represents white spaces used for command separation    | N/A          |
 | `pipeline`    | Represents the pipe symbol used to connect commands    | ' \| '       |
 | `redir_out`   | Represents the output redirection                      | '>'          |
@@ -54,8 +54,8 @@ Lexer looks for specific patterns or special characters that help identify diffe
 | Status         | Description                                                                                     | Example                                               |
 |----------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------|
 | general        | Represents the general/default parsing mode outside any quotes.                                 | Parsing a regular command or options.                |
-| in_d_quotes    | Represents the parsing mode when inside double quotes (").                                      | Parsing a string where variables are expanded: "Hello, $name!"  |
-| in_s_quotes    | Represents the parsing mode when inside single quotes (').                                      | Parsing a string as-is, where variables are not expanded: 'Hello, $name!' |
+| in_dquote    | Represents the parsing mode when inside double quotes (").                                      | Parsing a string where variables are expanded: "Hello, $name!"  |
+| in_squote    | Represents the parsing mode when inside single quotes (').                                      | Parsing a string as-is, where variables are not expanded: 'Hello, $name!' |
 
   
 
