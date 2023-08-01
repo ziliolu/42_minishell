@@ -46,13 +46,13 @@ Example command:
 ```bash
 ls -l | wc > "file1" >> 'file2' << eof
 ```
-#### Identifying Tokens
+### Identifying Tokens
 
 Lexer looks for specific patterns or special characters that help identify different parts of your command. It groups these parts together to create individual tokens. Let's see how it breaks down the example command:
 
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
 
-#### How does tokenization work? 🤔
+### How does tokenization work? 🤔
 
 | Status         | Description                                                                                     | Example                                               |
 |----------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------|
