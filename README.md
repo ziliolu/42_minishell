@@ -24,7 +24,9 @@ This Minishell project was done in collaboration with my colleague [Ivo Marques]
 
 The Minishell project is a minimalistic shell implementation developed as part of the 42 curriculum. It aims to provide a basic shell environment capable of executing commands, handling environment variables, and supporting various shell features. The project is implemented using the C programming language and adheres to POSIX standards.
 
-## Features
+## Execution 
+
+### Features
 
 - Command execution and handling of basic shell commands.
 - Support for environment variables and variable expansion.
