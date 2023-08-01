@@ -39,6 +39,7 @@ Example command:
 ##### Step 2. Understanding the Tokens
 
 ####### Token type
+
 `word`: represents command names, options, and file names like 'ls', '-l', 'wc', 'eof'.
 
 `w_space`: represents white spaces used for separating parts of the command.
