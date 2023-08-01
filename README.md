@@ -26,12 +26,12 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 ## Features
 
-  - Command execution and handling of basic shell commands.
-  - Support for environment variables and variable expansion.
-  - Basic signal handling and built-in signal commands.
-  - Redirection and pipes for input/output redirection and command chaining.
-  - Background process execution and management.
-  - Error handling and graceful error reporting.
+- Command execution and handling of basic shell commands.
+- Support for environment variables and variable expansion.
+- Basic signal handling and built-in signal commands.
+- Redirection and pipes for input/output redirection and command chaining.
+- Background process execution and management.
+- Error handling and graceful error reporting.
 
 
 [Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
