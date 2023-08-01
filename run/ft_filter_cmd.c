@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_join_heredoc_inputs.c                           :+:      :+:    :+:   */
+/*   ft_filter_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/01 11:22:12 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:25:10 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	ft_join_heredoc_inputs(t_ms *ms, t_heredoc *h, char **tmp)
+void	ft_filter_cmd(t_ms *ms, t_command *cmd)
 {
-	char	*tmp_expand;
+	char	*tmp_list;
 
-	tmp_expand = NULL;
-	if (!*tmp)
+	if (!cmd->args[0])
+		return ;
+	if (ft_strcmp(cmd->args[0], "echo") == 0)
+		ft_echo(cmd);
+	else if (ft_strcmp(cmd->args[0], "cd") == 0)
+		ft_cd(ms, cmd);
+	else if (ft_strcmp(cmd->args[0], "env") == 0)
+		ft_env(ms, cmd, ms->ms_env);
+	else if (ft_strcmp(cmd->args[0], "pwd") == 0)
 	{
-		*tmp = ft_expand_heredoc(ms->ms_env, *ms->vars, h->read_content);
-		h->str = ft_expand_heredoc(ms->ms_env, *ms->vars, h->read_content);
+		tmp_list = ft_return_list_info(ms->ms_env, "PWD");
+		printf("%s\n", tmp_list);
+		ft_free(tmp_list);
 	}
 	else
-	{
-		ft_free(h->str);
-		h->str = ft_strjoin(*tmp, "\n");
-		ft_free(*tmp);
-		tmp_expand = ft_expand_heredoc(ms->ms_env, *ms->vars, h->read_content);
-		*tmp = ft_strjoin(h->str, tmp_expand);
-		ft_free(tmp_expand);
-		ft_free(h->str);
-		h->str = ft_strdup(*tmp);
-	}
+		ft_filter_cmd_else(ms, cmd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/01 08:59:50 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:25:35 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,6 +344,8 @@ void	ft_print_export(t_lst *lst);
 void	ft_print_list(t_lst *lst);
 void	ft_print_local_variables(t_lst **head);
 void	ft_print_tokens(t_ms *ms, t_elem *list);
+bool	ft_is_ctrld(t_command *cmd, t_heredoc *h, char **tmp);
+void	ft_join_heredoc_inputs(t_ms *ms, t_heredoc *h, char **tmp);
 
 // =============== REDIRECT ===============
 
@@ -357,6 +359,7 @@ void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir);
 bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c);
 bool	ft_open_redirs(t_ms *ms, t_counters *c);
 bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg);
+char	*ft_expand_heredoc(t_lst *env, t_lst *vars, char *variable);
 
 // =============== RUN ===============
 

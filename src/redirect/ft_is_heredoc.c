@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/01 11:10:42 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/01 11:22:32 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir)
 		exit(0);
 	waitpid(0, NULL, 0);
 	ft_handle_signals();
-	//open(HEREDOC, O_RDONLY | O_EXCL);
+	open(HEREDOC, O_RDONLY);
 }

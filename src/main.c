@@ -41,5 +41,4 @@ int	main(int argc, char **argv, char **system_env)
 	ms.vars = (t_lst **)ft_calloc(1, sizeof(t_lst *));
 	while (1)
 		ft_main_cycle(&ms, read_content, tmp_prompt, prompt);
-	return (0);
 }

@@ -165,16 +165,20 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/executable/ft_is_executable_while_path.c\
 	./src/executable/ft_is_absolute_path.c\
 	./src/executable/ft_is_home_path.c\
-	./src/redirect/ft_is_redir.c\
-	./src/redirect/ft_is_heredoc.c\
-	./src/redirect/ft_open_redirs.c\
-	./src/redirect/ft_is_heredoc_read_content.c\
 	./src/redirect/ft_count_redirs_cmd.c\
 	./src/redirect/ft_count_redirs.c\
-	./src/redirect/ft_open_redirs_if_others.c\
-	./src/redirect/ft_is_not_redir.c\
-	./src/redirect/ft_open_redirs_if_var.c\
+	./src/redirect/ft_expand_heredoc.c\
 	./src/redirect/ft_is_arg_redir.c\
+	./src/redirect/ft_is_ctrld.c\
+	./src/redirect/ft_is_heredoc_read_content.c\
+	./src/redirect/ft_is_heredoc.c\
+	./src/redirect/ft_is_not_redir.c\
+	./src/redirect/ft_is_redir.c\
+	./src/redirect/ft_join_heredoc_inputs.c\
+	./src/redirect/ft_open_redirs_if_others.c\
+	./src/redirect/ft_open_redirs_if_var.c\
+	./src/redirect/ft_open_redirs.c\
+
 
 
 COLOUR_RED = 		\e[31m
