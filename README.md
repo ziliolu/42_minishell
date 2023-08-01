@@ -24,6 +24,8 @@ This Minishell project was done in collaboration with my colleague [Ivo Marques]
 
 The Minishell project is a minimalistic shell implementation developed as part of the 42 curriculum. It aims to provide a basic shell environment capable of executing commands, handling environment variables, and supporting various shell features. The project is implemented using the C programming language and adheres to POSIX standards.
 
+[Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
+
 ## Execution 
 
 ### Features
@@ -36,7 +38,6 @@ The Minishell project is a minimalistic shell implementation developed as part o
 - Error handling and graceful error reporting.
 
 
-[Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
 
 ### 1. Lexer - Tokenization Overview
 In Minishell, building a lexer is a powerful strategy that helps break down your input commands into smaller meaningful units called `tokens.` Tokens are like the individual pieces of a puzzle that Minishell uses to understand and execute your commands correctly. Let's go through an example to understand tokenization better:
