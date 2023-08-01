@@ -38,13 +38,20 @@ Example command:
 
 ##### Step 2. Understanding Token Type
 
-`word`: represents command names, options, and file names like 'ls', '-l', 'wc', 'eof'.
+`word:` Represents command names, options, and file names like 'ls', '-l', 'wc', 'eof'
 
-`w_space`: represents white spaces used for separating parts of the command.
+`w_space:` Represents white spaces used for separating parts of the command
 
-`pipeline`: Represents the pipe symbol ' | ' used to connect commands together.
+`pipeline:` Represents the pipe symbol ' | ' used to connect commands together
 
-`redir_out:` Represents the output redirection symbol '>'.
+`redir_out:` Represents the output redirection symbol '>'
+
+`d_redir_out:` Represents the double output redirection symbol '>>'
+
+`redir_in:` Represents the input redirection symbol '<'
+
+`heredoc:` Represents the heredoc symbol '<<'
+
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
   
 
