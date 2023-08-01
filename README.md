@@ -75,7 +75,7 @@ Lexer looks for specific patterns or special characters that help identify diffe
 ### 2. Parser
 Once the input is tokenized, the parser's job is to recognize the boundaries between separate commands. In our example, we have three commands: `ls -l`, `grep Make`, `wc`, and the redirects associated with wc.
 
-The parser identifies each command based on the presence of the pipe symbol '|'. It groups the tokens before and after each pipe to form individual commands.
+The parser identifies each command based on the presence of the `pipe symbol '|'`. It groups the tokens before and after each pipe to form individual commands.
 
 For each command, the parser creates a data structure to represent it. In our case, we use a `t_command` structure. Take a look at the table below:
 
