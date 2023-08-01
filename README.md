@@ -23,14 +23,15 @@ This Minishell project was done in collaboration with my colleague [Ivo Marques]
 ## About
 
 The Minishell project is a minimalistic shell implementation developed as part of the 42 curriculum. It aims to provide a basic shell environment capable of executing commands, handling environment variables, and supporting various shell features. The project is implemented using the C programming language and adheres to POSIX standards.
-Features
 
-    Command execution and handling of basic shell commands.
-    Support for environment variables and variable expansion.
-    Basic signal handling and built-in signal commands.
-    Redirection and pipes for input/output redirection and command chaining.
-    Background process execution and management.
-    Error handling and graceful error reporting.
+## Features
+
+  - Command execution and handling of basic shell commands.
+  - Support for environment variables and variable expansion.
+  - Basic signal handling and built-in signal commands.
+  - Redirection and pipes for input/output redirection and command chaining.
+  - Background process execution and management.
+  - Error handling and graceful error reporting.
 
 
 [Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
