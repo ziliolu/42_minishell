@@ -51,13 +51,13 @@ To use Minishell, follow these steps:
    ./minishell
 2. Now you can use as a normal shell and execute the commands you want :) For example: 
    ```bash
-  ls -l
+    ls -l
   ```
    ```bash
   mkdir test_folder 
   ```
-   ```bash
-   echo "Hello World!" 
+    ```bash
+  echo "Hello World!" 
    ```
     ```bash
  ./42_so_long maps/valid1.ber
