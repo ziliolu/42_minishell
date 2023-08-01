@@ -58,9 +58,6 @@ Lexer looks for specific patterns or special characters that help identify diffe
 | `heredoc`     | Represents heredoc symbol                              | '<<'         |
 
 
-  
-
-
 ## Parser
 
 ## Installation
