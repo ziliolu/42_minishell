@@ -40,13 +40,13 @@ Example command:
 
 | Token Type  | Description                                             | Example      |
 |-------------|---------------------------------------------------------|--------------|
-| `word`        | Represents command names, options, and file names.     | 'ls', '-l', 'wc', 'eof' |
-| `w_space`     | Represents white spaces used for command separation.   | N/A          |
-| `pipeline`    | Represents the pipe symbol used to connect commands.   | ' \| '       |
-| `redir_out`   | Represents the output redirection symbol '>'.          | '>'          |
-| `d_redir_out` | Represents the double output redirection symbol '>>'.  | '>>'         |
-| `redir_in`    | Represents the input redirection symbol '<'.           | '<'          |
-| `heredoc`     | Represents the heredoc symbol '<<' used for input.     | '<<'         |
+| `word`        | Represents command names, options, and file names      | 'ls', '-l', 'wc', 'eof' |
+| `w_space`     | Represents white spaces used for command separation    | N/A          |
+| `pipeline`    | Represents the pipe symbol used to connect commands    | ' \| '       |
+| `redir_out`   | Represents the output redirection                      | '>'          |
+| `d_redir_out` | Represents the double output redirection               | '>>'         |
+| `redir_in`    | Represents the input redirection                       | '<'          |
+| `heredoc`     | Represents heredoc symbol                              | '<<'         |
 
 
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
