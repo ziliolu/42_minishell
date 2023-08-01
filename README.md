@@ -17,6 +17,9 @@
 - [Testers](#testers)
 - [Disclaimer](#disclaimer)
 
+### 🤝 Collaborative Work
+This Minishell project was done in collaboration with my colleague [Ivo Marques](https://github.com/Pastilhex). We worked together to develop and enhance this project, sharing knowledge and experiences throughout the process.
+
 ## About
 
 This project is part of the curriculum at 42 school and aims to sort a stack of integers using a limited set of operations. The goal is to develop an efficient sorting algorithm that can arrange the stack in ascending order using the fewest number of moves possible.
