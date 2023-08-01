@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_main_cycle_read.c                               :+:      :+:    :+:   */
+/*   ft_is_heredoc_read_content copy 3.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/01 10:28:20 by ialves-m         ###   ########.fr       */
+/*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
+/*   Updated: 2023/08/01 10:29:36 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-bool	ft_main_cycle_read(t_ms *ms, char **read_content, char *prompt)
+bool	ft_is_ctrld(t_command *cmd, t_heredoc *h, char **tmp)
 {
-	ms->processes = 0;
-	*read_content = readline(prompt);
-	ft_is_not_read_content(ms, *read_content);
-	if (ft_strcmp(*read_content, "") == 0)
+	if (!h->read_content)
 	{
-		ft_free(*read_content);
-		return (false);
+		cmd->err = true;
+		printf("minishell: warning:");
+		printf("here-document delimited by end-of-file (wanted `%s')\n", h->eof);
+		ft_free(*tmp);
+		return (true);
 	}
-	return (true);
+	return (false);
 }
