@@ -77,9 +77,8 @@ For each command, the parser creates a data structure to represent it. In our ca
 |                |                        | d_redir_out - 'file2'                 |
 |                |                        | redir_in - "eof"                      |
 
->! **⚠️ Nota:** Este é um aviso importante. Preste atenção nesta informação.
+>! **⚠️** Redirects are elements that belong to the specific command in which they are found. In the given example, the redirects 'redir_out - "file1"', 'd_redir_out - 'file2'', and 'redir_in - "eof"' are associated with the 'wc' command. They are not new commands and will be represented by the structure's array of `t_redirs` found inside `t_command`.
 
-⚠️
 ## Installation
 
 To install and run Minishell, follow these steps:
