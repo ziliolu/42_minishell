@@ -25,8 +25,15 @@ This README file will guide you through the project, explaining the algorithm us
 
 [Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
 
-## Lexer
-  <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
+## Lexer - Tokenization Overview
+In Minishell, building a lexer is a powerful strategy that helps break down your input commands into smaller meaningful units called "tokens." Tokens are like the individual pieces of a puzzle that Minishell uses to understand and execute your commands correctly. Let's go through an example to understand tokenization better:
+
+Example Command:
+```bash
+   minishell$ ls -l | wc > "file1" >> 'file2' << eof
+```
+<img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
+  
   
 ## Parser
 
