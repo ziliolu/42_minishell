@@ -38,7 +38,7 @@ Lexer looks for specific patterns or special characters that help identify diffe
 
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
 
-### Step 2. Understanding Tokens
+#### -> Understanding Tokens <-
 
 | Status         | Description                                                                                     | Example                                               |
 |----------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------|
