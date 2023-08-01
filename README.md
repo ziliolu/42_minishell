@@ -70,7 +70,7 @@ For each command, the parser creates a data structure to represent it. In our ca
 | 0              | CMD        | cmd->args[0] = "ls"    | No redirects                          |
 |                |            | cmd->args[1] = "-l"    |                                       |
 |                |            |                        |                                       |
-| 2              | CMD        | cmd->args[0] = "    "  | No redirects                          |
+| 2              | PIPELINE        | cmd->args[0] = "    "  | No redirects                          |
 |                |            |                        |                                       |
 | 2              | CMD        | cmd->args[0] = "grep"  | No redirects                          |
 |                |            | cmd->args[1] = "Make"  |                                       |
