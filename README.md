@@ -26,7 +26,8 @@ This README file will guide you through the project, explaining the algorithm us
 [Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
 
 ## Lexer
-
+  <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png"/>
+  
 ## Parser
 
 ## Installation
