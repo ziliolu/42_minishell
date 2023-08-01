@@ -49,21 +49,7 @@ To use Minishell, follow these steps:
 1. Execute the program
    ```bash
    ./minishell
-2. Now you can use as a normal shell and execute the commands you want :) For example: 
-  ```bash
-    ls -l
-  ```bash
-  mkdir test_folder 
-  ```
-    ```bash
-  echo "Hello World!" 
-   ```
-    ```bash
- ./42_so_long maps/valid1.ber
-  ```
-  ```bash
-  ./42_so_long path_to_your_own_map
-  ```
+2. Now you can use as a normal shell and execute the commands you want such as `ls`, `mkdir`, `touch`, `cd`, `pwd` :) 
 ## Testers 
 
 1. [Push Swap Visualizer](https://github.com/o-reo/push_swap_visualizer) provides a graphical representation of the sorting process performed by the push_swap program. It helps to visualize and understand the sorting algorithm in action.
