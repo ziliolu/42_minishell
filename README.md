@@ -36,13 +36,15 @@ Example command:
 
 - Lexer looks for specific patterns or special characters that help identify different parts of your command. It groups these parts together to create individual tokens. Let's see how it breaks down the example command:
 
-<img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
-  
 ##### Step 2. Understanding the Tokens
 
 ###### Token type
 `word`: represents command names, options, and file names like 'ls', '-l', 'wc', 'eof'.
 `w_space`: represents white spaces used for separating parts of the command.
+
+<img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
+  
+
 
 ## Parser
 
