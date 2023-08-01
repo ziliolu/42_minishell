@@ -52,7 +52,7 @@ Lexer looks for specific patterns or special characters that help identify diffe
 
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
 
-#### -> Understanding Tokens <-
+#### How does tokenization work? 🤔
 
 | Status         | Description                                                                                     | Example                                               |
 |----------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------|
