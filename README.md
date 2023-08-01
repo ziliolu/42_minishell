@@ -52,13 +52,13 @@ To use Minishell, follow these steps:
 2. Now you can use as a normal shell and execute the commands you want :) For example: 
    ```bash
    ls -l
-   ...
+    ```
    ```bash
    mkdir test_folder 
-   ...
+   ```
    ```bash
    echo "Hello World!" 
-   ...
+   ```
 ## Testers 
 
 1. [Push Swap Visualizer](https://github.com/o-reo/push_swap_visualizer) provides a graphical representation of the sorting process performed by the push_swap program. It helps to visualize and understand the sorting algorithm in action.
