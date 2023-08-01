@@ -50,9 +50,10 @@ To use Minishell, follow these steps:
    ```bash
    ./minishell
 2. Now you can use as a normal shell and execute the commands you want such as `ls`, `mkdir`, `cd`, `pwd`, `cat`, `echo` and much more :) 
+
 ## Testers 
 
-1. [Push Swap Visualizer](https://github.com/o-reo/push_swap_visualizer) provides a graphical representation of the sorting process performed by the push_swap program. It helps to visualize and understand the sorting algorithm in action.
+1. [Minishell Test List](https://github.com/o-reo/push_swap_visualizer) provides a detailed list for testing the program with different commands, pipes and redirections usage.
 
 ## Disclaimer
 
