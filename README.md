@@ -1,4 +1,4 @@
-# Push Swap
+# Minishell
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/ziliolu/42_push_swap?color=#FFFFFF&style=flat-square" />
@@ -59,7 +59,27 @@ Lexer looks for specific patterns or special characters that help identify diffe
 
 
 ## Parser
+Once the input is tokenized, the parser's job is to recognize the boundaries between separate commands. In our example, we have four commands: `ls -l`, `grep Make`, `wc`, and the redirects associated with wc.
 
+The parser identifies each command based on the presence of the pipe symbol '|'. It groups the tokens before and after each pipe to form individual commands.
+
+For each command, the parser creates a data structure to represent it. In our case, we use a `t_command` structure. Take a look at the table below:
+
+| Command Number | Command Arguments      | Redirects                             |
+|----------------|------------------------|---------------------------------------|
+| 0              | cmd->args[0] = "ls"    | No redirects                          |
+|                | cmd->args[1] = "-l"    |                                       |
+|                |                        |                                       |
+| 1              | cmd->args[0] = "grep"  | No redirects                          |
+|                | cmd->args[1] = "Make"  |                                       |
+|                |                        |                                       |
+| 2              | cmd->args[0] = "wc"    | redir_out - "file1"                   |
+|                |                        | d_redir_out - 'file2'                 |
+|                |                        | redir_in - "eof"                      |
+
+>! **⚠️ Nota:** Este é um aviso importante. Preste atenção nesta informação.
+
+⚠️
 ## Installation
 
 To install and run Minishell, follow these steps:
