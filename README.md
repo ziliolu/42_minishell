@@ -22,9 +22,16 @@ This Minishell project was done in collaboration with my colleague [Ivo Marques]
 
 ## About
 
-This project is part of the curriculum at 42 school and aims to sort a stack of integers using a limited set of operations. The goal is to develop an efficient sorting algorithm that can arrange the stack in ascending order using the fewest number of moves possible.
+The Minishell project is a minimalistic shell implementation developed as part of the 42 curriculum. It aims to provide a basic shell environment capable of executing commands, handling environment variables, and supporting various shell features. The project is implemented using the C programming language and adheres to POSIX standards.
+Features
 
-This README file will guide you through the project, explaining the algorithm used, how to install and run the program, and how to contribute to its development.
+    Command execution and handling of basic shell commands.
+    Support for environment variables and variable expansion.
+    Basic signal handling and built-in signal commands.
+    Redirection and pipes for input/output redirection and command chaining.
+    Background process execution and management.
+    Error handling and graceful error reporting.
+
 
 [Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
 
