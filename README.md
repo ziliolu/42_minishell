@@ -43,6 +43,7 @@ Lexer looks for specific patterns or special characters that help identify diffe
 | Token Type  | Description                                             | Example      |
 |-------------|---------------------------------------------------------|--------------|
 | `word`        | Represents command names, options, and file names      | 'ls', '-l', 'wc', 'eof' |
+| `env`         | Represents environment or local variables              | '$USER', '$HOME', $name | 
 | `w_space`     | Represents white spaces used for command separation    | N/A          |
 | `pipeline`    | Represents the pipe symbol used to connect commands    | ' \| '       |
 | `redir_out`   | Represents the output redirection                      | '>'          |
