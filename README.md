@@ -70,16 +70,16 @@ For each command, the parser creates a data structure to represent it. In our ca
 | 0              | CMD        | cmd->args[0] = "ls"    | No redirects                          |
 |                |            | cmd->args[1] = "-l"    |                                       |
 |                |            |                        |                                       |
-| 1              | CMD        | cmd->args[0] = "|"     | No redirects                          |
+| 1              | PIPELINE        | cmd->args[0] = "|"     | No redirects                          |
 |                |            |                        |                                       |
 | 2              | CMD        | cmd->args[0] = "grep"  | No redirects                          |
 |                |            | cmd->args[1] = "Make"  |                                       |
 |                |            |                        |                                       |
-| 3              | CMD        | cmd->args[0] = "|"     | No redirects                          |
+| 3              | PIPELINE       | cmd->args[0] = "|"     | No redirects                          |
 |                |            |                        |                                       |
 | 4              | CMD        | cmd->args[0] = "wc"    | redir_out - "file1"                   |
 |                |            |                        | d_redir_out - 'file2'                 |
-|                |            |                        | redir_in - "eof"                      |
+|                |            |     
 
 > **⚠️** Redirects are elements that belong to the specific command in
 > which they are found. In the given example, the redirects are associated
