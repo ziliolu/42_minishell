@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 18:36:45 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/07/31 23:33:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 char	*ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 {
-	// ft_signals_heredoc();
 	char *tmp;
 
 	tmp = NULL;
@@ -24,6 +23,7 @@ char	*ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 		g_exit_status = 0;
 		while (ft_strcmp(h->read_content, h->eof) != 0)
 		{
+			ft_free(h->read_content);
 			h->read_content = readline(h->prompt);
 			if (!h->read_content)
 			{
@@ -44,7 +44,6 @@ char	*ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 				else
 				{
 					ft_free(h->str);
-					//h->str = ft_strjoin(tmp, h->read_content);
 					h->str = ft_strjoin(tmp, "\n");
 					ft_free(tmp);
 					tmp = ft_strjoin(h->str, h->read_content);
@@ -54,6 +53,7 @@ char	*ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 			}
 		}
 	}
+	ft_free(h->read_content);
 	ft_free(tmp);
 	return (h->str);
 }

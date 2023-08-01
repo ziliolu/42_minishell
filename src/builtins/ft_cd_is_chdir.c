@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 20:51:00 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/25 00:23:53 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 00:40:43 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_cd_is_chdir(t_ms *ms, t_command *cmd, t_cd *cd)
 		ft_update_list(ms->ms_env, "PWD", cd->pwd);
 		ft_update_list(ms->ms_env, "OLDPWD", cd->oldpwd);
 	}
-	else if (cd->path[0] == '$' && ms->spaces_flag == 1)
+	else if (cd->path && cd->path[0] == '$' && ms->spaces_flag == 1)
 		chdir(ft_return_list_info(ms->ms_env, "HOME"));
 	else if (ms->spaces_flag > 1)
 		ft_error(ms, "cd: too many arguments", NULL, 1);

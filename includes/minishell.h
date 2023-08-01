@@ -6,12 +6,13 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 13:01:55 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 01:19:48 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 # include "../lib/libft/libft.h"
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -26,6 +27,8 @@
 # include <errno.h>
 # include <limits.h>
 # include <signal.h>
+
+#define HEREDOC "heredoc.tmp"
 
 extern int	g_exit_status;
 
@@ -136,6 +139,7 @@ typedef struct s_ms
 	int			i;
 	int			j;
 	int			go_out;
+	char 		*home_dir;
 }	t_ms;
 
 typedef struct s_cd

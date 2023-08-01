@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 20:25:14 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 00:45:12 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv, char **system_env)
 	ms.std_in = dup(STDIN_FILENO);
 	ms.std_out = dup(STDOUT_FILENO);
 	ms.dot_comma_flag = false;
+	ms.home_dir = NULL;
 	ft_create_env(&ms, system_env);
 	ft_create_exp(&ms, system_env);
 	ft_init_ms(&ms, system_env);

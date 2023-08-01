@@ -14,10 +14,16 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - make -n "-Wall -Wextra -Werror"
 - make
 
+# IMPORTANTE -> A TRATAR 
+-[] cat << eof (suposto printar a variavec expandida)
+> $USER
+> eof
+
 
 ## NEW TESTS
+- [] cat > a > b > c > d
 - [x] ""ls""
-- [] <>
+- [x] <>
 - [x] <<
 - [x] /bin/echo ola
 - [x] /bin/ls
@@ -31,13 +37,13 @@ Partner: [Ivo Marques](https://github.com/Pastilhex)
 - [x] echo -n
 - [x] unset PATH / unset USER
 - [x] ""
-- [] ls -l>
-- [] ls a>b 
-- [] ls -l>b
-- [] verificar cd/unset HOME etc
-- [] cat << a
+- [x] ls -l>
+- [x] ls a>b 
+- [x] ls -l>b
+- [x] verificar cd/unset HOME etc
+- [x] cat << a
 - [] unset HOME -> testar cd 
-- [] unset "$PATH" com aspas
+- [x] unset "$PATH" com aspas
 > $USER
 > 
 > 

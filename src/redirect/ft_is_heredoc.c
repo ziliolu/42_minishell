@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 17:40:13 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 01:22:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir)
 
 	h.prompt = "> ";
 	h.eof = redir->arg;
-	h.str = ft_calloc(1, sizeof(char));
+	h.str = NULL;
 	h.read_content = ft_calloc(1, sizeof(char));
 	ft_signals_heredoc();
 	h.str = ft_is_heredoc_read_content(ms, cmd, &h);
-	h.fd = open("temp.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
+	h.fd = open(HEREDOC, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	write(h.fd, h.str, ft_strlen(h.str));
 	write(h.fd, "\n", 1);
 	ft_free(h.str);
@@ -33,5 +33,5 @@ void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir)
 		exit(0);
 	waitpid(0, NULL, 0);
 	ft_handle_signals();
-	open("temp.txt", O_RDONLY);
+	open(HEREDOC, O_RDONLY);
 }
