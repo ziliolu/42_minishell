@@ -30,7 +30,7 @@ In Minishell, building a lexer is a powerful strategy that helps break down your
 
 Example command:
 ```bash
-   minishell$ ls -l | wc > "file1" >> 'file2' << eof
+ls -l | wc > "file1" >> 'file2' << eof
 ```
 #### Step 1. Identifying Tokens
 
