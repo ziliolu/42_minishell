@@ -6,13 +6,13 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 21:11:50 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/07/31 19:10:25 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 09:14:16 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void ft_join_echo_args(t_command *cmd, t_echo *echo)
+void	ft_join_echo_args(t_command *cmd, t_echo *echo)
 {
 	if (!echo->tmp)
 	{
@@ -35,14 +35,14 @@ void ft_join_echo_args(t_command *cmd, t_echo *echo)
 
 void	ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo)
 {
-	int j;
-	
+	int	j;
+
 	j = 0;
 	if (!cmd->args[1])
 		return ;
-	while(cmd->args[j])
+	while (cmd->args[j])
 	{
-		if(ft_strcmp(cmd->args[echo->i], "-n") == 0)
+		if (ft_strcmp(cmd->args[echo->i], "-n") == 0)
 			echo->i++;
 		j++;
 	}
@@ -52,4 +52,3 @@ void	ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo)
 		echo->i++;
 	}
 }
-

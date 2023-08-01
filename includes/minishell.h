@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/01 01:19:48 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 08:59:50 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <limits.h>
 # include <signal.h>
 
-#define HEREDOC "heredoc.tmp"
+# define HEREDOC "heredoc.tmp"
 
 extern int	g_exit_status;
 
@@ -139,7 +139,7 @@ typedef struct s_ms
 	int			i;
 	int			j;
 	int			go_out;
-	char 		*home_dir;
+	char		*home_dir;
 }	t_ms;
 
 typedef struct s_cd

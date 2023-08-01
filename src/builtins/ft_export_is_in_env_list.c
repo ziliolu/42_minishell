@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:20:33 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 10:19:50 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 09:15:25 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp)
 
 	(void) cmd;
 	tmp = NULL;
-	// if (ft_is_already_in_list(exp->name, ms->ms_env)
-	// 	&& ft_strcmp(exp->info, "") != 0)
 	if (ft_is_already_in_list(exp->name, ms->ms_env)
 		&& ft_strchr(exp->str, '='))
 	{

@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 15:45:13 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 19:05:32 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 09:16:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_echo(t_command *cmd)
 		free(echo.tmp);
 	if (!cmd->args[1])
 		ft_printf("\n");
-	else if(echo.str)
+	else if (echo.str)
 	{
 		if (cmd->args[1] && ft_strcmp(cmd->args[1], "-n") == 0)
 			ft_printf("%s", echo.str);
@@ -35,4 +35,3 @@ void	ft_echo(t_command *cmd)
 		free (echo.str);
 	g_exit_status = 0;
 }
-

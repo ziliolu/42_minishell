@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/01 01:22:22 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 09:10:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir)
 	close(h.fd);
 	cmd->in = h.fd;
 	ft_signals_ignore();
-	if(ms->pid == 0)
+	if (ms->pid == 0)
 		exit(0);
 	waitpid(0, NULL, 0);
 	ft_handle_signals();

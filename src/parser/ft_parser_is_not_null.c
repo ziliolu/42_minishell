@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 12:06:12 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 09:52:15 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/01 09:17:01 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_parser_is_not_null(t_ms *ms, t_counters *p, \
 {
 	tmp_arg = ft_strdup(ms->cmds[p->i].args[p->j]);
 	tmp_list = ft_strdup(p->list->data);
-	if(ft_strcmp(ms->cmds[p->i].args[p->j], "") != 0)
+	if (ft_strcmp(ms->cmds[p->i].args[p->j], "") != 0)
 		ft_free(ms->cmds[p->i].args[p->j]);
 	ms->cmds[p->i].args[p->j] = ft_strjoin(tmp_arg, tmp_list);
 	ft_free(tmp_arg);
