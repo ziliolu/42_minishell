@@ -38,7 +38,13 @@ Lexer looks for specific patterns or special characters that help identify diffe
 
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
 
-#### Step 2. Understanding Token Type
+#### Step 2. Understanding Tokens
+
+| Status         | Description                                                                                     | Example                                               |
+|----------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| general        | Represents the general/default parsing mode outside any quotes.                                 | Parsing a regular command or options.                |
+| in_dquote    | Represents the parsing mode when inside double quotes (").                                      | Parsing a string where variables are expanded: "Hello, $name!"  |
+| in_squote    | Represents the parsing mode when inside single quotes (').                                      | Parsing a string as-is, where variables are not expanded: 'Hello, $name!' |
 
 | Token Type  | Description                                             | Example      |
 |-------------|---------------------------------------------------------|--------------|
@@ -51,11 +57,6 @@ Lexer looks for specific patterns or special characters that help identify diffe
 | `redir_in`    | Represents the input redirection                       | '<'          |
 | `heredoc`     | Represents heredoc symbol                              | '<<'         |
 
-| Status         | Description                                                                                     | Example                                               |
-|----------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------|
-| general        | Represents the general/default parsing mode outside any quotes.                                 | Parsing a regular command or options.                |
-| in_dquote    | Represents the parsing mode when inside double quotes (").                                      | Parsing a string where variables are expanded: "Hello, $name!"  |
-| in_squote    | Represents the parsing mode when inside single quotes (').                                      | Parsing a string as-is, where variables are not expanded: 'Hello, $name!' |
 
   
 
