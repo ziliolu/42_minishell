@@ -39,7 +39,7 @@ Example command:
 ##### Step 2. Understanding the Tokens
 
 ###### Token type
-`word`: represents command names, options, and file names like 'ls', '-l', 'wc', 'eof'\n.
+`word`: represents command names, options, and file names like 'ls', '-l', 'wc', 'eof'.
 `w_space`: represents white spaces used for separating parts of the command.
 
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
