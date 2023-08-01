@@ -26,15 +26,24 @@ This README file will guide you through the project, explaining the algorithm us
 [Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
 
 ## Lexer - Tokenization Overview
-In Minishell, building a lexer is a powerful strategy that helps break down your input commands into smaller meaningful units called "tokens." Tokens are like the individual pieces of a puzzle that Minishell uses to understand and execute your commands correctly. Let's go through an example to understand tokenization better:
+In Minishell, building a lexer is a powerful strategy that helps break down your input commands into smaller meaningful units called `tokens.` Tokens are like the individual pieces of a puzzle that Minishell uses to understand and execute your commands correctly. Let's go through an example to understand tokenization better:
 
-Example Command:
+Example command:
 ```bash
    minishell$ ls -l | wc > "file1" >> 'file2' << eof
 ```
+##### Step 1. Identifying Tokens
+
+- Lexer looks for specific patterns or special characters that help identify different parts of your command. It groups these parts together to create individual tokens. Let's see how it breaks down the example command:
+
 <img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
   
-  
+##### Step 2. Understanding the Tokens
+
+###### Token type
+`word`: represents command names, options, and file names like 'ls', '-l', 'wc', 'eof'.
+`w_space`: represents white spaces used for separating parts of the command.
+
 ## Parser
 
 ## Installation
