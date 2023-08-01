@@ -32,11 +32,13 @@ Example command:
 ```bash
    minishell$ ls -l | wc > "file1" >> 'file2' << eof
 ```
-##### Step 1. Identifying Tokens
+#### Step 1. Identifying Tokens
 
-- Lexer looks for specific patterns or special characters that help identify different parts of your command. It groups these parts together to create individual tokens. Let's see how it breaks down the example command:
+Lexer looks for specific patterns or special characters that help identify different parts of your command. It groups these parts together to create individual tokens. Let's see how it breaks down the example command:
 
-##### Step 2. Understanding Token Type
+<img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
+
+#### Step 2. Understanding Token Type
 
 | Token Type  | Description                                             | Example      |
 |-------------|---------------------------------------------------------|--------------|
@@ -48,8 +50,12 @@ Example command:
 | `redir_in`    | Represents the input redirection                       | '<'          |
 | `heredoc`     | Represents heredoc symbol                              | '<<'         |
 
+| Status         | Description                                                                                     | Example                                               |
+|----------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| general        | Represents the general/default parsing mode outside any quotes.                                 | Parsing a regular command or options.                |
+| in_d_quotes    | Represents the parsing mode when inside double quotes (").                                      | Parsing a string where variables are expanded: "Hello, $name!"  |
+| in_s_quotes    | Represents the parsing mode when inside single quotes (').                                      | Parsing a string as-is, where variables are not expanded: 'Hello, $name!' |
 
-<img src="https://github.com/ziliolu/42_minishell/blob/main/info/lexer.png?raw=true"/>
   
 
 
