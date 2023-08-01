@@ -50,10 +50,9 @@ To use Minishell, follow these steps:
    ```bash
    ./minishell
 2. Now you can use as a normal shell and execute the commands you want :) For example: 
-   ```bash
+  ```bash
     ls -l
-  ```
-   ```bash
+  ```bash
   mkdir test_folder 
   ```
     ```bash
