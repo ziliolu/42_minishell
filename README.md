@@ -125,7 +125,7 @@ To use Minishell, follow these steps:
 
 ## Testers 
 
-1. [Minishell Test List](https://github.com/o-reo/push_swap_visualizer) provides a detailed list for testing the program with different number of commands, quotes, pipes and redirections.
+1. [Minishell Test List]([https://github.com/o-reo/push_swap_visualizer](https://github.com/ziliolu/42_minishell/blob/main/TESTS.md)) provides a detailed list for testing the program with different number of commands, quotes, pipes and redirections.
 
 ## Disclaimer
 
