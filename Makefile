@@ -200,7 +200,8 @@ all: $(NAME)
 	@echo "$(COLOUR_BLUE_B)******* Project made by: lpicoli && ialves-i *******";
 
 
-$(NAME): $(OBJ) $(LIB)
+	
+$(NAME): 
 	$(CC) $(CFLAGS) $(SRC) $(LIBDIR)$(LIB) -lreadline -o $(NAME) 
 
 $(LIB):
@@ -208,7 +209,6 @@ $(LIB):
 	
 clean: 
 	make clean -C lib
-	$(RM) $(OBJ)
 
 fclean: clean 
 	$(RM) $(NAME)

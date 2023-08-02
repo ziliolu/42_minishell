@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- < lpicoli-@student.42porto.com    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:02:39 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/02/08 19:04:40 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:22:51 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,4 @@ int		ft_find_newline(char *ptr);
 // size_t	ft_strlen(const char *s);
 char	*ft_join_stash(char *stash, char *buffer);
 char	*get_next_line(int fd);
-
 #endif

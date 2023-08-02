@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/01 11:25:35 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/02 13:29:58 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,7 @@ void	ft_exit_free(t_ms *ms);
 char	*ft_exit_is_cmd_arg(t_ms *ms, t_command *cmd, char *tmp);
 bool	ft_exit_validation(t_ms *ms, t_command *cmd);
 void	ft_exit(t_ms *ms, t_command *cmd);
-void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i, int *err);
+void	ft_export_is_cmd_arg(t_ms *ms, t_command *cmd, int i);
 void	ft_export_is_in_env_list(t_ms *ms, t_command *cmd, t_export *exp);
 void	ft_export_is_in_env_list_else(t_ms *ms, t_command *cmd, t_export *exp);
 void	ft_export(t_ms *ms, t_command *cmd);

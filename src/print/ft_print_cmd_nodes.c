@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_cmd_nodes.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:49:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 20:39:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:38:11 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ void	ft_print_command_nodes(t_ms *ms, int n_pipes)
 	i = 0;
 	j = 0;
 	k = 0;
-	printf("\n|--------> PRINTING COMMANDS <----------|\n");
+	printf("\n|-------------> PARSER <---------------|\n");
 	while (i < (n_pipes * 2 + 1))
 	{
 		ft_print_command_nodes_while_pipe(ms, i, j, k);
 		k = 0;
 		i++;
 	}
+	printf("|                                       |\n");
 	printf("|---------------------------------------|\n");
 }
