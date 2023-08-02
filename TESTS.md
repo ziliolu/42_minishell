@@ -89,5 +89,22 @@
 - [ ] `cat << EOF > new_file.txt` # Test creating a new file new_file.txt with input from the Here Document
 - [ ] `grep "pattern" << EOD > result.txt` - Check if the grep command filters input from the Here Document and saves the output to result.txt
 
+Pipes 
 
-
+- [ ] `ls | grep "file.txt"` # Basic Pipe Test
+- [ ] `ls | grep "file.txt" > output.txt` # Pipe Test with Output Redirection
+- [ ] `grep "keyword" < input.txt | sort > output.txt` # Pipe Test with Input and Output Redirection
+- [ ] `ls | grep "file.txt" | wc -l` # Multiple Pipes Test
+- [ ] `echo "Hello, world!" | grep "Hello"` # Pipe Test with "echo" Command
+- [ ] `ls file.txt 2> error.txt` # Error Redirection Test
+- [ ] `ls file.txt > output_and_error.txt 2>&1` # Output and Error Redirection to the Same File Test
+- [ ] `ls file.txt > output.txt | grep "file"` # Output Redirection to File and Console Test
+- [ ] `grep "keyword" < input.txt | grep "another" | grep "final" > output.txt` # Input from File and Output to Console Test
+- [ ] `sort < input.txt > sorted.txt | uniq > unique_lines.txt` # Input and Output Redirection Followed by Pipe Test
+- [ ] `grep "keyword" < input.txt > output.txt | grep "another" >> output.txt` # Input and Output Redirection to the Same File Followed by Pipe Test
+- [ ] `echo -n "This is a test." > text.txt | cat < text.txt` # Input and Output Redirection to the Same File with "echo" Command Test
+- [ ] `cd ../test_folder` # "cd" Command Test with Relative Path
+- [ ] `cd /home/user/documents` # "cd" Command Test with Absolute Path
+- [ ] `pwd` # "pwd" Command Test
+- [ ] `export MY_VARIABLE="Hello, world!"` # "export" Command Test with Environment Variable
+- [ ] `unset MY_VARIABLE` # "unset" Command Test with Environment Variable
