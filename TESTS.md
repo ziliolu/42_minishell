@@ -24,9 +24,8 @@
 ## Testes do Comando "pwd"
 
 - [ ] `pwd` # Show current working directory
-- [ ] `pwd -L` # Resolve symbolic links (default behavior)
-- [ ] `pwd -P` # Do not resolve symbolic links
-
+- [ ] `cd /path/to/some/directory` \ `pwd` - Verify if pwd displays the correct path after changing the directory.
+- [ ] `mkdir temp_directory` \ `cd temp_directory` \ `pwd` - Verify if pwd displays the correct path after creating a new directory and changing to it.
 ## Testes do Comando "export"
 
 - [ ] `export` # List all environment variables
