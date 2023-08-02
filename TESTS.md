@@ -1,6 +1,8 @@
 # Minishell Test List
 
-## echo
+## Builtins
+
+### echo
 
 - [ ] `echo "Hello, World!"` # echo a simple message
 - [ ] `echo "Hello, World!" > output.txt` # echo a message and redirect output to a file
@@ -10,7 +12,7 @@
 - [ ] `echo \`date\`` # echo the result of a command substitution
 - [ ] `echo *` # echo files in the current directory (wildcard expansion)
 
-## cd
+### cd
 
 - [ ] `cd /` # Change to the root directory
 - [ ] `cd /path/to/directory` # Change to an absolute path
