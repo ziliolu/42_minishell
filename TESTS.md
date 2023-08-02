@@ -89,7 +89,7 @@
 - [ ] `cat << EOF > new_file.txt` # Test creating a new file new_file.txt with input from the Here Document
 - [ ] `grep "pattern" << EOD > result.txt` - Check if the grep command filters input from the Here Document and saves the output to result.txt
 
-Pipes 
+## Pipes
 
 - [ ] `ls | grep "file.txt"` # Basic Pipe Test
 - [ ] `ls | grep "file.txt" > output.txt` # Pipe Test with Output Redirection
