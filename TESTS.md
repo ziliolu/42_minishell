@@ -64,16 +64,30 @@
 
 ## Redirections 
 
-### Output redirection '>'
+### Output Redirection '>'
 
 - [ ] `echo "Hello, World!" > output.txt` # Verify if the text "Hello, World!" is written to the file output.txt
 - [ ] `ls /path/to/some/directory > directory_list.txt` # Check if the output of the ls command is saved to the file directory_list.txt.
 - [ ] `cat < input.txt > output.txt` # Test redirecting the contents of input.txt to output.txt using the > operator
+- [ ] `echo "This will overwrite the file."` > existing_file.txt - Check if the contents of existing_file.txt are overwritten with the new text
 
+### Input Redirection '<' 
 
+- [ ] `wc -l < input_file.txt` # Verify if the wc command correctly reads the input from input_file.txt
+- [ ] `sort < unsorted_list.txt > sorted_list.txt` # Check if the sort command reads from unsorted_list.txt and saves the sorted output to sorted_list.txt.
+- [ ] `grep "keyword" < text_file.txt` # Verify if the grep command can search for the keyword in text_file.txt.
 
+### Append Output '>>'
 
+- [ ] `echo "This will be appended." >> existing_file.txt` # Verify if the text "This will be appended." is added to existing_file.txt.
+- [ ] `echo "Append this line." >> output.txt` # Check if the new line is appended to output.txt.
+- [ ] `ls >> dir_list.txt` # Test appending the output of the ls command to dir_list.txt.
+- [ ] `echo "Another line to append." >> existing_file.txt` # Check if the new line is appended to the existing content in existing_file.txt.
 
+### Heredoc '<<'
+- [ ] `wc -l << END` - Verify if the wc command reads input from the Here Document (input provided interactively)
+- [ ] `cat << EOF > new_file.txt` # Test creating a new file new_file.txt with input from the Here Document
+- [ ] `grep "pattern" << EOD > result.txt` - Check if the grep command filters input from the Here Document and saves the output to result.txt
 
 
 
