@@ -45,8 +45,7 @@
 ## env
 
 - [ ] `env` # Show current environment variables
-- [ ] `env -i` # Run with an empty environment, should display nothing
-- [ ] `env -u VAR` # Unset a specific environment variable
+- [ ] `unset PATH ` `env ` # By unsetting path, the shell will no longer know where to look for commands and will not be able to display env
 
 ## exit
 
