@@ -1,6 +1,6 @@
 # Minishell Test List
 
-## Testes do Comando "echo"
+## echo
 
 - [ ] `echo "Hello, World!"` # echo a simple message
 - [ ] `echo "Hello, World!" > output.txt` # echo a message and redirect output to a file
@@ -11,7 +11,7 @@
 - [ ] `echo \`date\`` # echo the result of a command substitution
 - [ ] `echo *` # echo files in the current directory (wildcard expansion)
 
-## Testes do Comando "cd"
+## cd
 
 - [ ] `cd /` # Change to the root directory
 - [ ] `cd /path/to/directory` # Change to an absolute path
@@ -21,13 +21,13 @@
 - [ ] `cd ..` # Change to the parent directory
 - [ ] `cd non_existent_directory` # Try to change to a non-existent directory
 
-## Testes do Comando "pwd"
+## pwd
 
 - [ ] `pwd` # Show current working directory
 - [ ] `pwd -L` # Resolve symbolic links (default behavior)
 - [ ] `pwd -P` # Do not resolve symbolic links
 
-## Testes do Comando "export"
+## export
 
 - [ ] `export` # List all environment variables
 - [ ] `export VAR=value` # Export a new variable
@@ -36,20 +36,20 @@
 - [ ] `export $VAR` # Invalid syntax (starting with $)
 - [ ] `export -p` # Display all exported variables in a format that can be reused as input
 
-## Testes do Comando "unset"
+## unset
 
 - [ ] `unset VAR` # Unset an existing variable
 - [ ] `unset NON_EXISTENT_VAR` # Unset a non-existent variable
 - [ ] `unset $VAR` # Invalid syntax (starting with $)
 - [ ] `unset -v VAR` # Unset the variable VAR (same as unset VAR)
 
-## Testes do Comando "env"
+## env
 
 - [ ] `env` # Show current environment variables
 - [ ] `env -i` # Run with an empty environment, should display nothing
 - [ ] `env -u VAR` # Unset a specific environment variable
 
-## Testes do Comando "exit"
+## exit
 
 - [ ] `exit` # Exit the shell without any exit status
 - [ ] `exit 0` # Exit the shell with exit status 0
