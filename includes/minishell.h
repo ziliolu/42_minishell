@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/02 13:29:58 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:26:35 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,7 +345,6 @@ void	ft_print_list(t_lst *lst);
 void	ft_print_local_variables(t_lst **head);
 void	ft_print_tokens(t_ms *ms, t_elem *list);
 bool	ft_is_ctrld(t_command *cmd, t_heredoc *h, char **tmp);
-void	ft_join_heredoc_inputs(t_ms *ms, t_heredoc *h, char **tmp);
 
 // =============== REDIRECT ===============
 
@@ -360,6 +359,7 @@ bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c);
 bool	ft_open_redirs(t_ms *ms, t_counters *c);
 bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg);
 char	*ft_expand_heredoc(t_lst *env, t_lst *vars, char *variable);
+void	ft_join_heredoc_inputs(t_ms *ms, t_heredoc *h, char **tmp);
 
 // =============== RUN ===============
 

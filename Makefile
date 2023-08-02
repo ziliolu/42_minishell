@@ -201,7 +201,7 @@ all: $(NAME)
 
 
 	
-$(NAME): 
+$(NAME): $(LIB)
 	$(CC) $(CFLAGS) $(SRC) $(LIBDIR)$(LIB) -lreadline -o $(NAME) 
 
 $(LIB):
