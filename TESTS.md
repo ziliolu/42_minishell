@@ -23,8 +23,8 @@
 ## pwd
 
 - [ ] `pwd` # Show current working directory
-- [ ] `cd /path/to/some/directory` \ `pwd` - Verify if pwd displays the correct path after changing the directory.
-- [ ] `mkdir temp_directory` \ `cd temp_directory` \ `pwd` - Verify if pwd displays the correct path after creating a new directory and changing to it.
+- [ ] `cd /path/to/some/directory` \ `pwd` # Verify if pwd displays the correct path after changing the directory.
+- [ ] `mkdir temp_directory` \ `cd temp_directory` \ `pwd` # Verify if pwd displays the correct path after creating a new directory and changing to it.
 
 ## export
 
