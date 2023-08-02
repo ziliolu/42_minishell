@@ -24,7 +24,7 @@
 
 - [ ] `pwd` # Show current working directory
 - [ ] `1. cd /path/to/some/directory` \ `2. pwd` # Verify if pwd displays the correct path after changing the directory.
-- [ ] `1. mkdir temp_directory` \ `2. cd temp_directory` \ `3. pwd` # Verify if pwd displays the correct path after creating a new directory and changing to it.
+- [ ] `mkdir temp_directory` \ `cd temp_directory` \ `pwd` # Verify if pwd displays the correct path after creating a new directory and changing to it.
 
 ## export
 
@@ -44,7 +44,7 @@
 ## env
 
 - [ ] `env` # Show current environment variables
-- [ ] `1. unset PATH ` `2. env ` # By unsetting path, the shell will no longer know where to look for commands and will not be able to display env
+- [ ] `unset PATH ` \ `env ` # By unsetting path, the shell will no longer know where to look for commands and will not be able to display env
 
 ## exit
 
@@ -52,7 +52,7 @@
 - [ ] `exit 0` # Exit the shell with exit status 0
 - [ ] `exit 42` # Exit the shell with exit status 42
 - [ ] `exit 999` # Exit the shell with an exit status out of range
-- [ ] `exit "non_numeric_value"` # Exit with a non-numeric value
+- [ ] `exit "721841284978472827829"` # Exit minishell with an alert (numeric argument required)
 - [ ] `exit --` # Double dash should stop option parsing
 - [ ] `exit -` # Should exit with '-'
 - [ ] `exit -10` # Negative exit status
