@@ -103,8 +103,3 @@
 - [ ] `sort < input.txt > sorted.txt | uniq > unique_lines.txt` # Input and Output Redirection Followed by Pipe Test
 - [ ] `grep "keyword" < input.txt > output.txt | grep "another" >> output.txt` # Input and Output Redirection to the Same File Followed by Pipe Test
 - [ ] `echo -n "This is a test." > text.txt | cat < text.txt` # Input and Output Redirection to the Same File with "echo" Command Test
-- [ ] `cd ../test_folder` # "cd" Command Test with Relative Path
-- [ ] `cd /home/user/documents` # "cd" Command Test with Absolute Path
-- [ ] `pwd` # "pwd" Command Test
-- [ ] `export MY_VARIABLE="Hello, world!"` # "export" Command Test with Environment Variable
-- [ ] `unset MY_VARIABLE` # "unset" Command Test with Environment Variable
