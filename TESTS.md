@@ -2,10 +2,9 @@
 
 ## echo
 
-- [x] `echo "Hello, World!"` # echo a simple message
+- [ ] `echo "Hello, World!"` # echo a simple message
 - [ ] `echo "Hello, World!" > output.txt` # echo a message and redirect output to a file
 - [ ] `echo -n "Hello, World!"` # echo with the -n option to suppress the newline
-- [ ] `echo -e "Line1\nLine2"` # echo with the -e option to interpret escape characters
 - [ ] `echo "$HOME"` # echo the value of the HOME environment variable
 - [ ] `echo '$HOME'` # echo the literal string '$HOME'
 - [ ] `echo \`date\`` # echo the result of a command substitution
