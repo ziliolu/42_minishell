@@ -68,6 +68,7 @@
 
 - [ ] `echo "Hello, World!" > output.txt` # Verify if the text "Hello, World!" is written to the file output.txt
 - [ ] `ls /path/to/some/directory > directory_list.txt` # Check if the output of the ls command is saved to the file directory_list.txt.
+- [ ] `cat < input.txt > output.txt` # Test redirecting the contents of input.txt to output.txt using the > operator
 
 
 
