@@ -57,6 +57,6 @@
 - [ ] `exit -` # Should exit with '-'
 - [ ] `exit -10` # Negative exit status
 - [ ] `exit +10` # Positive exit status
-- [ ] `exit 0 | exit 1` # Test exit status with pipes
-- [ ] `exit 1 | exit 0` # Test exit status with pipes
+- [ ] `exit 0 | exit 1` # Should not exit and return 1 to exit_status
+- [ ] `exit 1 | exit 0` # Should not exit and return 0 to exit_status
 
