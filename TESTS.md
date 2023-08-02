@@ -23,8 +23,8 @@
 ## pwd
 
 - [ ] `pwd` # Show current working directory
-- [ ] `cd /path/to/some/directory` \ `pwd` # Verify if pwd displays the correct path after changing the directory.
-- [ ] `mkdir temp_directory` \ `cd temp_directory` \ `pwd` # Verify if pwd displays the correct path after creating a new directory and changing to it.
+- [ ] `1. cd /path/to/some/directory` \ `2. pwd` # Verify if pwd displays the correct path after changing the directory.
+- [ ] `1. mkdir temp_directory` \ `2. cd temp_directory` \ `3. pwd` # Verify if pwd displays the correct path after creating a new directory and changing to it.
 
 ## export
 
@@ -40,12 +40,11 @@
 - [ ] `unset VAR` # Unset an existing variable
 - [ ] `unset NON_EXISTENT_VAR` # Unset a non-existent variable
 - [ ] `unset $VAR` # Invalid syntax (starting with $)
-- [ ] `unset -v VAR` # Unset the variable VAR (same as unset VAR)
 
 ## env
 
 - [ ] `env` # Show current environment variables
-- [ ] `unset PATH ` `env ` # By unsetting path, the shell will no longer know where to look for commands and will not be able to display env
+- [ ] `1. unset PATH ` `2. env ` # By unsetting path, the shell will no longer know where to look for commands and will not be able to display env
 
 ## exit
 
