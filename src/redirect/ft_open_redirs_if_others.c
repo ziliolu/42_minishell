@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/01 01:00:55 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:27:49 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c)
 		}
 	}
 	else if (ms->cmds[c->i].redirs[c->k].type == HERE_DOC)
-		ft_is_heredoc(ms, &ms->cmds[c->i], &ms->cmds[c->i].redirs[c->k]);
+		ft_is_heredoc(ms, &ms->cmds[c->i], &ms->cmds[c->i].redirs[c->k], c->i);
 	c->k++;
 	return (true);
 }

@@ -1,7 +1,7 @@
 NAME = minishell
 LIB = lib.a
 
-CC = cc 
+CC = clang
 CFLAGS = -Wextra -Werror -Wall -g -I./includes #-fsanitize=address
 RM = rm -f 
 
