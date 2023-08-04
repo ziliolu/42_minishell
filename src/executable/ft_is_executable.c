@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 20:50:46 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:54:14 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ bool	ft_is_executable(t_ms *ms, t_command *cmd)
 	ms->go_out = 0;
 	path_w_slash = NULL;
 	total_path = NULL;
+	printf("in: %d\n", cmd->in);
+	printf("out: %d\n", cmd->out);
+	printf("cmd arg: %s\n", cmd->redirs->arg);
 	if (cmd->err)
 		return (true);
 	if (ft_is_absolute_path(cmd->args[0]))
@@ -28,12 +31,12 @@ bool	ft_is_executable(t_ms *ms, t_command *cmd)
 	while ((ms->paths && ms->paths[ms->i]) || total_path)
 	{
 		ft_is_executable_while_path(ms, cmd, &path_w_slash, &total_path);
+		if (ms->go_out == -1)
+			return (false);
 		ft_free(total_path);
 		ft_free(path_w_slash);
 		if (ms->go_out == 1)
 			return (true);
-		else if (ms->go_out == -1)
-			return (false);
 		ms->i++;
 	}
 	return (false);

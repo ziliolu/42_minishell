@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_connect_pipes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 23:48:52 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:43:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_connect_pipes(t_ms *ms, t_counters *c)
 		else
 		{
 			close(ms->cmds[c->i - 1].fd[0]);
-			close(ms->cmds[c->i - 1].fd[1]);
+			//close(ms->cmds[c->i - 1].fd[1]);
 		}
 	}
 }

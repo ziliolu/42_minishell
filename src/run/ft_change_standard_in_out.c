@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/03 17:55:49 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/04 10:02:12 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ bool	ft_change_standard_in_out(t_command *cmd)
 	{
 		if (dup2(cmd->in, STDIN_FILENO) == -1)
 		{
-			printf("dup error 1 %d, %d\n", cmd->in, STDIN_FILENO);
-			printf("cmd arg %s\n", cmd->redirs->arg);
+			printf("dup error in cmd->in, STDIN_FILENO (in: %d), (STDIN: %d)\n", cmd->in, STDIN_FILENO);
+			printf("cmd arg = %s\n", cmd->redirs->arg);
 			return (false);
 		}
 		else

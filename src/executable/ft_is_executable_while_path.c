@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/03 16:26:12 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/04 09:57:29 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 {
 	struct stat	buf;
 
-	if (ms->paths && !ft_is_absolute_path(cmd->args[0]))
+	
+	if (!ms->paths[ms->i])
+	{
+		ms->go_out = -1;
+		return ;
+	}
+	else if(ms->paths && !ft_is_absolute_path(cmd->args[0]))
 	{
 		*path_w_slash = ft_strjoin(ms->paths[ms->i], "/");
 		*total_path = ft_strjoin(*path_w_slash, cmd->args[0]);
-		if (!ms->paths[ms->i])
-			ms->go_out = -1;
 	}
 	if (access(*total_path, X_OK) == 0 
 		&& ft_strcmp(cmd->args[0], "") != 0)
