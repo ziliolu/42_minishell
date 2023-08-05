@@ -67,6 +67,7 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/utils/general/ft_chartrim_w_dquotes_while.c\
 	./src/utils/general/ft_strcmp.c\
 	./src/utils/general/ft_is_in_llong_range.c\
+	./src/utils/general/ft_getcwd.c\
 	./src/utils/list_utils/ft_add_node.c\
 	./src/utils/list_utils/ft_getenv.c\
 	./src/utils/list_utils/ft_remove_node_list_while.c\
@@ -118,23 +119,22 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/error/ft_error_wo_prompt.c\
 	./src/error/ft_error.c\
 	./src/main.c\
-	./src/builtins/ft_echo.c\
-	./src/builtins/ft_create_env_exp.c\
-	./src/builtins/ft_export_is_in_env_list.c\
-	./src/builtins/ft_cd_is_chdir.c\
-	./src/builtins/ft_exit_is_cmd_arg.c\
-	./src/builtins/ft_exit_validation.c\
-	./src/builtins/ft_exit.c\
-	./src/builtins/ft_echo_is_cmd_arg.c\
-	./src/builtins/ft_exit_free.c\
-	./src/builtins/ft_join_old_w_new_pwd.c\
-	./src/builtins/ft_export.c\
+	./src/builtins/cd/ft_cd_is_chdir.c\
+	./src/builtins/cd/ft_cd_is_not_pwd.c\
+	./src/builtins/cd/ft_cd_while_is_not_pwd.c\
+	./src/builtins/cd/ft_cd.c\
+	./src/builtins/export/ft_create_env_exp.c\
+	./src/builtins/export/ft_export_is_cmd_arg.c\
+	./src/builtins/export/ft_export_is_in_env_list.c\
+	./src/builtins/export/ft_export.c\
+	./src/builtins/echo/ft_echo.c\
+	./src/builtins/echo/ft_echo_is_cmd_arg.c\
+	./src/builtins/exit/ft_exit_is_cmd_arg.c\
+	./src/builtins/exit/ft_exit_validation.c\
+	./src/builtins/exit/ft_exit.c\
+	./src/builtins/exit/ft_exit_free.c\
 	./src/builtins/ft_unset.c\
-	./src/builtins/ft_export_is_cmd_arg.c\
-	./src/builtins/ft_cd.c\
 	./src/builtins/ft_env.c\
-	./src/builtins/ft_cd_while_is_not_pwd.c\
-	./src/builtins/ft_cd_is_not_pwd.c\
 	./src/parser/ft_parser_while_dif_null.c\
 	./src/parser/ft_is_in_double_quote_while.c\
 	./src/parser/ft_parser_while_dif_pipe.c\
@@ -165,11 +165,12 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/executable/ft_is_executable_while_path.c\
 	./src/executable/ft_is_absolute_path.c\
 	./src/executable/ft_is_home_path.c\
+	./src/executable/ft_join_old_w_new_pwd.c\
 	./src/redirect/ft_count_redirs_cmd.c\
 	./src/redirect/ft_count_redirs.c\
 	./src/redirect/ft_expand_heredoc.c\
 	./src/redirect/ft_is_arg_redir.c\
-	./src/redirect/ft_is_ctrld.c\
+	./src/redirect/ft_is_ctrld_heredoc.c\
 	./src/redirect/ft_is_heredoc_read_content.c\
 	./src/redirect/ft_is_heredoc.c\
 	./src/redirect/ft_is_not_redir.c\
@@ -212,6 +213,7 @@ endif
 
 clean: 
 	make clean -C $(LIBDIR)
+	rm $(OBJ)
 
 fclean: clean 
 	$(RM) $(NAME)

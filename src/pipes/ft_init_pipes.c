@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_pipes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 23:47:21 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:37:27 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ void	ft_init_pipes(t_ms *ms)
 	int	i;
 
 	i = 0;
+	ms->std_in_arr = ft_calloc(ms->n_pipes * 2 + 1, sizeof(int));
+	ms->std_out_arr = ft_calloc(ms->n_pipes * 2 + 1, sizeof(int));
 	while (ms->cmds[i].type)
 	{
 		if (ms->cmds[i].type == PIPE_LINE)
 			pipe(ms->cmds[i].fd);
+		ms->std_in_arr[i] = dup(STDIN_FILENO);
+		ms->std_out_arr[i] = dup(STDOUT_FILENO);
 		i++;
 	}
 }

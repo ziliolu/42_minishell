@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/04 10:43:00 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:44:18 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void	ft_connect_pipes(t_ms *ms, t_counters *c)
 			close(ms->cmds[c->i - 1].fd[0]);
 		}
 		else
-		{
 			close(ms->cmds[c->i - 1].fd[0]);
-			//close(ms->cmds[c->i - 1].fd[1]);
-		}
 	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_local_variables.c                           :+:      :+:    :+:   */
+/*   ft_add_node_to_list.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/04 14:28:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 21:50:42 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:46:25 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	ft_add_node_to_list(t_ms *ms, t_lst **head, char *str)
 		return ;
 	}
 	else if (ft_is_already_in_list(name, ms->ms_env))
-	{
 		ft_update_list(ms->ms_env, name, ft_get_list_info(str));
-		return ;
-	}
 	ft_add_node(head, str);
 	ft_free(name);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filter_cmd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/26 16:25:10 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/05 15:50:26 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_filter_cmd(t_ms *ms, t_command *cmd)
 		ft_env(ms, cmd, ms->ms_env);
 	else if (ft_strcmp(cmd->args[0], "pwd") == 0)
 	{
-		tmp_list = ft_return_list_info(ms->ms_env, "PWD");
+		tmp_list = ft_getcwd();
 		printf("%s\n", tmp_list);
 		ft_free(tmp_list);
 	}

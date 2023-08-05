@@ -6,11 +6,12 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 22:03:17 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/02 14:23:04 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:58:00 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	char	*ptr;

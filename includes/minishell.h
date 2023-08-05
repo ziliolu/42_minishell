@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/03 16:27:30 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:58:14 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ typedef struct s_ms
 	int			n_pipes;
 	int			std_in;
 	int			std_out;
+	int			*std_in_arr;
+	int			*std_out_arr;
 	int			is_print;
 	int			print_cmd;
 	int			exit_status;
@@ -158,6 +160,9 @@ typedef struct s_export
 	char	*name;
 	char	*info;
 	char	*str;
+	char	upper_case;
+	char	lower_case;
+	char	underscore;
 	int		i;
 }	t_export;
 
@@ -344,10 +349,10 @@ void	ft_print_export(t_lst *lst);
 void	ft_print_list(t_lst *lst);
 void	ft_print_local_variables(t_lst **head);
 void	ft_print_tokens(t_ms *ms, t_elem *list);
-bool	ft_is_ctrld(t_command *cmd, t_heredoc *h, char **tmp);
 
 // =============== REDIRECT ===============
 
+bool	ft_is_ctrld_heredoc(t_command *cmd, t_heredoc *h);
 int		ft_count_redirs_cmd(t_command *cmd);
 int		ft_count_redirs(t_elem *list);
 bool	ft_is_arg_redir(char *arg);
@@ -372,6 +377,7 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 	char *tmp_prompt, char *prompt);
 bool	ft_main_cycle_read(t_ms *ms, char **read_content, char *prompt);
 void	ft_reset_fd_in_out(t_ms *ms);
+void	ft_reset_heredoc(t_ms *ms, int i);
 void	ft_run_cmds(t_ms *ms);
 void	ft_wait(t_ms *ms);
 void	ft_init_ms(t_ms *ms, char **system_env);
@@ -423,6 +429,7 @@ char	*ft_strndup(char *str, int n);
 char	*ft_strtrim_end_quote(char *str, char set);
 char	*ft_strtrim_end(char *str, char set);
 bool	ft_is_in_llong_range(char *nptr);
+char	*ft_getcwd(void);
 
 // ------------ 3- LIST UTILS ------------
 
