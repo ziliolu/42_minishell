@@ -22,7 +22,7 @@ $(NAME): $(OBJ)
 	ar rcs	$(NAME) $(OBJ)
 
 clean:
-	rm -rf $(OBJ) $(OBJ_BONUS)
+	rm -rf $(OBJ) $(NAME)
 
 fclean: clean
 	rm -rf $(NAME)

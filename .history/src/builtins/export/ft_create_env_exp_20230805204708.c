@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_env_exp.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 16:18:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/05 21:00:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:32:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_export	*ft_init_export_variables(void)
 {
 	t_export	*exp;
 
-	exp = ft_calloc(1, sizeof(t_export));
+	exp = ft_calloc(1, sizeof(t_export)); 
 	exp->upper_case = 'A';
 	exp->lower_case = 'a';
 	exp->underscore = '_';

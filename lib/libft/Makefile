@@ -47,7 +47,7 @@ $(NAME):	$(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(NAME)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:10:02 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/05 20:59:18 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:59:12 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_is_executable_while_path(t_ms *ms, t_command *cmd, \
 
 void	ft_start_fork(t_ms *ms, t_command *cmd, char **total_path)
 {
-	ft_handle_signals_loop();
 	ms->pid = fork();
 	ms->processes++;
 	if (ms->pid == 0)

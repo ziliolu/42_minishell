@@ -215,7 +215,7 @@ clean:
 	make clean -C $(LIBDIR)
 
 fclean: clean 
-	$(RM) $(NAME) $(OBJ)
+	$(RM) $(NAME)
 
 re: clean all
 

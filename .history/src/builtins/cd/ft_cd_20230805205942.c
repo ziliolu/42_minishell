@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 11:46:53 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/05 20:59:51 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:59:42 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_cd(t_ms *ms, t_command *cmd)
 		if (!ft_cd_minus_option(ms, &cd))
 			return ;
 	}
-	else if (ft_strcmp(cmd->args[1], ".") == 0
+	else if (ft_strcmp(cmd->args[1], ".") == 0 
 		|| !ft_cd_home_path(ms, cmd, &cd))
 		return ;
 	cd.oldpwd = ft_getcwd();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:20:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/05 21:00:21 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/05 16:00:56 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_unset(t_ms *ms, t_command *cmd)
 	while (cmd->args[i])
 	{
 		ft_verify_if_is_unset_env_vars(ms, cmd, i);
-		if ((cmd->args[i] && ft_strchr(cmd->args[i], '='))
+		if ((cmd->args[i] && ft_strchr(cmd->args[i], '=')) 
 			|| !ft_is_valid_env_name(ms, cmd->args[i]))
 		{
 			ft_reset_fd_in_out(ms);

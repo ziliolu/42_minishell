@@ -6,7 +6,7 @@ CC = cc
 CFLAGS = -Wextra -Werror -Wall -g -I./includes #-fsanitize=address
 RM = rm -f 
 
-SRC = ./src/run/ft_filter_cmd_else.c\
+SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/run/ft_count_cmds.c\
 	./src/run/init_ms.c\
 	./src/run/ft_change_standard_in_out.c\
@@ -24,24 +24,24 @@ SRC = ./src/run/ft_filter_cmd_else.c\
 	./src/pipes/ft_count_pipes.c\
 	./src/pipes/ft_is_broken_cmds_pipe.c\
 	./src/signals/ft_handle_signals.c\
-	./src/signals/ft_signals_heredoc.c\
 	./src/signals/ft_handle_signals_loop.c\
 	./src/signals/ft_handler.c\
 	./src/signals/ft_handler_loop.c\
+	./src/signals/ft_signals_heredoc.c\
 	./src/signals/ft_signals_ignore.c\
-	./src/utils/validations/ft_is_variable.c\
 	./src/utils/validations/ft_if_readline_is_valid.c\
+	./src/utils/validations/ft_is_variable.c\
 	./src/utils/validations/ft_redirs_validation_while.c\
 	./src/utils/validations/ft_is_valid_character.c\
+	./src/utils/validations/ft_is_valid_env_name.c\
 	./src/utils/validations/ft_is_valid_info.c\
+	./src/utils/validations/ft_is_valid_number.c\
 	./src/utils/validations/ft_cmd_args_validation.c\
 	./src/utils/validations/ft_is_arg_valid.c\
 	./src/utils/validations/ft_pipe_validation.c\
-	./src/utils/validations/ft_is_valid_number.c\
 	./src/utils/validations/ft_arg_exist.c\
 	./src/utils/validations/ft_is_quote_valid.c\
 	./src/utils/validations/ft_is_quote_valid_msg.c\
-	./src/utils/validations/ft_is_valid_env_name.c\
 	./src/utils/validations/ft_if_valid_info_is_squote.c\
 	./src/utils/validations/ft_if_valid_info_is_dquote.c\
 	./src/utils/validations/ft_redirs_validation.c\
@@ -62,12 +62,11 @@ SRC = ./src/run/ft_filter_cmd_else.c\
 	./src/utils/general/ft_is_there_quote.c\
 	./src/utils/general/ft_is_there_space.c\
 	./src/utils/general/ft_env_to_array_while.c\
-	./src/utils/general/ft_getcwd.c\
-	./src/utils/general/ft_is_in_llong_range.c\
 	./src/utils/general/ft_chartrim_wo_dquotes_while.c\
 	./src/utils/general/ft_search_for_end.c\
 	./src/utils/general/ft_chartrim_w_dquotes_while.c\
 	./src/utils/general/ft_strcmp.c\
+	./src/utils/general/ft_is_in_llong_range.c\
 	./src/utils/list_utils/ft_add_node.c\
 	./src/utils/list_utils/ft_getenv.c\
 	./src/utils/list_utils/ft_remove_node_list_while.c\
@@ -119,22 +118,23 @@ SRC = ./src/run/ft_filter_cmd_else.c\
 	./src/error/ft_error_wo_prompt.c\
 	./src/error/ft_error.c\
 	./src/main.c\
-	./src/builtins/exit/ft_exit_is_cmd_arg.c\
-	./src/builtins/exit/ft_exit.c\
-	./src/builtins/exit/ft_exit_free.c\
-	./src/builtins/exit/ft_exit_validation.c\
-	./src/builtins/export/ft_export_is_in_env_list.c\
-	./src/builtins/export/ft_export.c\
-	./src/builtins/export/ft_export_is_cmd_arg.c\
-	./src/builtins/export/ft_create_env_exp.c\
+	./src/builtins/ft_echo.c\
+	./src/builtins/ft_create_env_exp.c\
+	./src/builtins/ft_export_is_in_env_list.c\
+	./src/builtins/ft_cd_is_chdir.c\
+	./src/builtins/ft_exit_is_cmd_arg.c\
+	./src/builtins/ft_exit_validation.c\
+	./src/builtins/ft_exit.c\
+	./src/builtins/ft_echo_is_cmd_arg.c\
+	./src/builtins/ft_exit_free.c\
+	./src/builtins/ft_join_old_w_new_pwd.c\
+	./src/builtins/ft_export.c\
 	./src/builtins/ft_unset.c\
+	./src/builtins/ft_export_is_cmd_arg.c\
+	./src/builtins/ft_cd.c\
 	./src/builtins/ft_env.c\
-	./src/builtins/cd/ft_cd_is_chdir.c\
-	./src/builtins/cd/ft_cd.c\
-	./src/builtins/cd/ft_cd_while_is_not_pwd.c\
-	./src/builtins/cd/ft_cd_is_not_pwd.c\
-	./src/builtins/echo/ft_echo.c\
-	./src/builtins/echo/ft_echo_is_cmd_arg.c\
+	./src/builtins/ft_cd_while_is_not_pwd.c\
+	./src/builtins/ft_cd_is_not_pwd.c\
 	./src/parser/ft_parser_while_dif_null.c\
 	./src/parser/ft_is_in_double_quote_while.c\
 	./src/parser/ft_parser_while_dif_pipe.c\
@@ -162,23 +162,22 @@ SRC = ./src/run/ft_filter_cmd_else.c\
 	./src/print/ft_print_cmd_nodes.c\
 	./src/print/ft_print_array.c\
 	./src/executable/ft_is_executable.c\
-	./src/executable/ft_join_old_w_new_pwd.c\
 	./src/executable/ft_is_executable_while_path.c\
 	./src/executable/ft_is_absolute_path.c\
 	./src/executable/ft_is_home_path.c\
-	./src/redirect/ft_is_ctrld_heredoc.c\
-	./src/redirect/ft_is_redir.c\
-	./src/redirect/ft_is_heredoc.c\
-	./src/redirect/ft_open_redirs.c\
-	./src/redirect/ft_is_heredoc_read_content.c\
 	./src/redirect/ft_count_redirs_cmd.c\
 	./src/redirect/ft_count_redirs.c\
 	./src/redirect/ft_expand_heredoc.c\
-	./src/redirect/ft_open_redirs_if_others.c\
-	./src/redirect/ft_is_not_redir.c\
-	./src/redirect/ft_join_heredoc_inputs.c\
-	./src/redirect/ft_open_redirs_if_var.c\
 	./src/redirect/ft_is_arg_redir.c\
+	./src/redirect/ft_is_ctrld.c\
+	./src/redirect/ft_is_heredoc_read_content.c\
+	./src/redirect/ft_is_heredoc.c\
+	./src/redirect/ft_is_not_redir.c\
+	./src/redirect/ft_is_redir.c\
+	./src/redirect/ft_join_heredoc_inputs.c\
+	./src/redirect/ft_open_redirs_if_others.c\
+	./src/redirect/ft_open_redirs_if_var.c\
+	./src/redirect/ft_open_redirs.c\
 
 COLOUR_RED = 		\e[31m
 COLOUR_ORANGE_B = 	\e[91m
@@ -214,7 +213,7 @@ endif
 clean: 
 	make clean -C $(LIBDIR)
 
-fclean: clean 
+fclean: clean
 	$(RM) $(NAME) $(OBJ)
 
 re: clean all

@@ -6,7 +6,7 @@ CC = cc
 CFLAGS = -Wextra -Werror -Wall -g -I./includes #-fsanitize=address
 RM = rm -f 
 
-SRC = ./src/run/ft_filter_cmd_else.c\
+SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/run/ft_count_cmds.c\
 	./src/run/init_ms.c\
 	./src/run/ft_change_standard_in_out.c\
@@ -215,7 +215,7 @@ clean:
 	make clean -C $(LIBDIR)
 
 fclean: clean 
-	$(RM) $(NAME) $(OBJ)
+	$(RM) $(NAME)
 
 re: clean all
 
