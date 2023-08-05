@@ -1,32 +1,30 @@
-NAME = libftprintf.a
-
-SRC =	./ft_filter_format.c	\
-		./ft_hexlen.c			\
-		./ft_printf.c			\
-		./ft_putchar.c			\
-		./ft_puthexa.c			\
-		./ft_putnbr.c			\
-		./ft_putstr.c			\
-		./ft_putptr.c			\
-		./ft_put_unsigned.c		\
-		./ft_counter.c		\
-
-
+NAME = libftprintf
 OBJ = $(SRC:.c=.o)
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror
 
+SRC =	./ft_filter_format.c\
+		./ft_hexlen.c\
+		./ft_printf.c\
+		./ft_putchar.c\
+		./ft_puthexa.c\
+		./ft_putnbr.c\
+		./ft_putstr.c\
+		./ft_putptr.c\
+		./ft_put_unsigned.c\
+		./ft_counter.c\
+
 all: $(NAME)
 
-$(NAME):	$(OBJ)
-			ar rcs	$(NAME) $(OBJ)	 
+vpath %.c ./libft ./get_next_line ./printf
 
-clean:                                                                                                                                                                                                             
-		rm -rf $(OBJ) $(OBJ_BONUS)                                                                                                                                                                                             
-                                                                                                                                                                                                                   
-fclean: clean                                                                                                                                                                                                      
-		rm -rf $(NAME) 
+$(NAME): $(OBJ)
+	ar rcs	$(NAME) $(OBJ)
 
+clean:
+	rm -rf $(OBJ) $(OBJ_BONUS)
 
-re: fclean all                                                                                                                                                                                                     
-                  
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all

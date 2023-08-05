@@ -1,11 +1,11 @@
 NAME = minishell
+LIBDIR = ./lib/
 LIB = lib.a
-
-CC = clang
+OBJ = $(SRC:.c=.o)
+CC = cc
 CFLAGS = -Wextra -Werror -Wall -g -I./includes #-fsanitize=address
 RM = rm -f 
 
-LIBDIR = ./lib/
 SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/run/ft_count_cmds.c\
 	./src/run/init_ms.c\
@@ -179,8 +179,6 @@ SRC =	./src/run/ft_filter_cmd_else.c\
 	./src/redirect/ft_open_redirs_if_var.c\
 	./src/redirect/ft_open_redirs.c\
 
-
-
 COLOUR_RED = 		\e[31m
 COLOUR_ORANGE_B = 	\e[91m
 COLOUR_ORANGE_L = 	\e[33m
@@ -190,8 +188,7 @@ COLOUR_GREEN_L = 	\e[92m
 COLOUR_BLUE_B =		\e[34m
 COLOUR_BLUE_L =		\e[94m
 
-
-all: $(NAME) 
+all: $(LIB) $(NAME) 
 	@echo "$(COLOUR_RED)    __  ________   ___________ __  __________    __ ";
 	@echo "$(COLOUR_ORANGE_B)   /  |/  /  _/ | / /  _/ ___// / / / ____/ /   / / ";
 	@echo "$(COLOUR_YELLOW)  / /|_/ // //  |/ // / \__  / /_/ / __/ / /   / /  ";
@@ -199,20 +196,26 @@ all: $(NAME)
 	@echo "$(COLOUR_BLUE_L)/_/  /_/___/_/ |_/___//____/_/ /_/_____/_____/_____/";
 	@echo "$(COLOUR_BLUE_B)******* Project made by: lpicoli && ialves-i *******";
 
-
-	
-$(NAME): $(LIB)
-	$(CC) $(CFLAGS) $(SRC) $(LIBDIR)$(LIB) -lreadline -o $(NAME) 
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -L$(LIBDIR) -l:$(LIB) -lreadline -o $(NAME)
 
 $(LIB):
-	make -C lib
-	
+	@make -s -C $(LIBDIR)
+
+ifeq ($(wildcard $(LIBDIR)$(LIB)),)
+$(LIBDIR)$(LIB):
+	make -s -C $(LIBDIR)
+else ifeq ($(shell find $(LIBDIR)$(LIB) -newer $(NAME) -print -quit),)
+$(LIBDIR)$(LIB):
+	make -s -C $(LIBDIR)
+endif
+
 clean: 
-	make clean -C lib
+	make clean -C $(LIBDIR)
 
 fclean: clean 
 	$(RM) $(NAME)
 
 re: clean all
 
-# find . -type f -name "*.c" | sed 's/$/\\/g' > file_names.txt
+.PHONY: clean fclean re

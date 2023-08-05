@@ -1,30 +1,24 @@
 NAME = get_next_line.a
-
-SRC =			./get_next_line.c				\
-				./get_next_line_utils.c 		\
-
-SRC_BONUS = 	./get_next_line_bonus.c			\
-				./get_next_line_utils_bonus.c	\
-
 OBJ = $(SRC:.c=.o)
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 AR = ar rcs 
 RM = rm -f
 
+SRC = ./get_next_line.c\
+	./get_next_line_utils.c\
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJ_BONUS)
-	$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ)
 
-bonus: $(OBJ_BONUS)
-	$(AR) $(NAME) $(OBJ_BONUS)
-	
 clean: 
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	$(RM) $(OBJ)
 
 fclean: clean 
 	$(RM) $(NAME)
 	
-re: fclean all 
+re: fclean all
+
+.PHONY: clean fclean re
