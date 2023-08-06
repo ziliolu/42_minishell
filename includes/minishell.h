@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/06 11:04:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:27:13 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ typedef struct s_ms
 	int			n_pipes;
 	int			std_in;
 	int			std_out;
-	int			*std_in_arr;
-	int			*std_out_arr;
 	int			is_print;
 	int			print_cmd;
 	int			exit_status;
@@ -361,7 +359,7 @@ bool	ft_is_arg_redir(char *arg);
 bool	ft_is_not_redir(enum e_token type);
 bool	ft_is_redir(enum e_token type);
 void	ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h);
-void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir, int i);
+bool	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir, int i);
 bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c);
 bool	ft_open_redirs(t_ms *ms, t_counters *c);
 bool	ft_open_redirs_if_var(t_ms *ms, t_counters *c, char *tmp_arg);

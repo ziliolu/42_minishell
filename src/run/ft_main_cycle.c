@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_cycle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/06 09:19:02 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/06 14:56:47 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 	char *tmp_prompt, char *prompt)
 {
 	read_content = NULL;
+	ft_handle_signals();
 	if (!ft_main_cycle_read(ms, &read_content, prompt))
+		return ;
+	if (!read_content)
 		return ;
 	tmp_prompt = ft_trimmed(read_content);
 	if (ft_strcmp(tmp_prompt, "") != 0)
@@ -25,20 +28,16 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 		ms->read_size = ft_strlen(read_content);
 		ft_free(read_content);
 		read_content = ft_broken_cmds(ms, tmp_prompt);
-		ft_free(tmp_prompt);
-		if (!read_content)
-			return ;
-		ms->ms_env_array = ft_list_to_array(ms);
-		ft_if_readline_is_valid(ms, read_content);
-		ft_wait(ms);
-		ft_free_array(ms->ms_env_array);
-		ft_free(read_content);
+		if (read_content)
+		{
+			ms->ms_env_array = ft_list_to_array(ms);
+			ft_if_readline_is_valid(ms, read_content);
+			ft_wait(ms);
+			ft_free_array(ms->ms_env_array);
+		}
 	}
-	else
-	{
-		ft_free(read_content);
-		ft_free(tmp_prompt);
-	}
+	ft_free(read_content);
+	ft_free(tmp_prompt);
 }
 
 char	*ft_trimmed(char *str)

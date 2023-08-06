@@ -37,7 +37,6 @@
 - [x] `export VAR="Hello, World!"` # Export a variable with spaces
 - [x] `export $VAR=value` # Invalid syntax (starting with $)
 - [x] `export $VAR` # Invalid syntax (starting with $)
-- [ ] `export -p` # Display all exported variables in a format that can be reused as input
 
 ### unset
 
@@ -75,35 +74,34 @@
 
 ### input redirection '<' 
 
-- [ ] `wc -l < input_file.txt` # Verify if the wc command correctly reads the input from input_file.txt
-- [ ] `sort < unsorted_list.txt > sorted_list.txt` # Check if the sort command reads from unsorted_list.txt and saves the sorted output to sorted_list.txt.
-- [ ] `grep "keyword" < text_file.txt` # Verify if the grep command can search for the keyword in text_file.txt.
+- [x] `wc -l < input_file.txt` # Verify if the wc command correctly reads the input from input_file.txt
+- [x] `sort < unsorted_list.txt > sorted_list.txt` # Check if the sort command reads from unsorted_list.txt and saves the sorted output to sorted_list.txt.
+- [x] `grep "keyword" < text_file.txt` # Verify if the grep command can search for the keyword in text_file.txt.
 
 ### append output '>>'
 
-- [ ] `echo "This will be appended." >> existing_file.txt` # Verify if the text "This will be appended." is added to existing_file.txt.
-- [ ] `echo "Append this line." >> output.txt` # Check if the new line is appended to output.txt.
-- [ ] `ls >> dir_list.txt` # Test appending the output of the ls command to dir_list.txt.
-- [ ] `echo "Another line to append." >> existing_file.txt` # Check if the new line is appended to the existing content in existing_file.txt.
+- [x] `echo "This will be appended." >> existing_file.txt` # Verify if the text "This will be appended." is added to existing_file.txt.
+- [x] `echo "Append this line." >> output.txt` # Check if the new line is appended to output.txt.
+- [x] `ls >> dir_list.txt` # Test appending the output of the ls command to dir_list.txt.
+- [x] `echo "Another line to append." >> existing_file.txt` # Check if the new line is appended to the existing content in existing_file.txt.
 
 ### heredoc '<<'
-- [ ] `wc -l << END` - Verify if the wc command reads input from the Here Document (input provided interactively)
-- [ ] `cat << EOF > new_file.txt` # Test creating a new file new_file.txt with input from the Here Document
-- [ ] `grep "pattern" << EOD > result.txt` - Check if the grep command filters input from the Here Document and saves the output to result.txt
+- [x] `wc -l << END` - Verify if the wc command reads input from the Here Document (input provided interactively)
+- [x] `cat << EOF > new_file.txt` # Test creating a new file new_file.txt with input from the Here Document
+- [x] `grep "pattern" << EOD > result.txt` - Check if the grep command filters input from the Here Document and saves the output to result.txt
 
 ## Pipes
 
-- [ ] `ls | grep "file.txt"` # Basic Pipe Test
-- [ ] `ls | grep "file.txt" > output.txt` # Pipe Test with Output Redirection
-- [ ] `grep "keyword" < input.txt | sort > output.txt` # Pipe Test with Input and Output Redirection
-- [ ] `ls | grep "file.txt" | wc -l` # Multiple Pipes Test
-- [ ] `echo "Hello, world!" | grep "Hello"` # Pipe Test with "echo" Command
+- [x] `ls | grep "file.txt"` # Basic Pipe Test
+- [x] `ls | grep "file.txt" > output.txt` # Pipe Test with Output Redirection
+- [x] `grep "keyword" < input.txt | sort > output.txt` # Pipe Test with Input and Output Redirection
+- [x] `ls | grep "file.txt" | wc -l` # Multiple Pipes Test
+- [x] `echo "Hello, world!" | grep "Hello"` # Pipe Test with "echo" Command
 - [ ] `ls file.txt 2> error.txt` # Error Redirection Test
 - [ ] `ls file.txt > output_and_error.txt 2>&1` # Output and Error Redirection to the Same File Test
-- [ ] `ls file.txt > output.txt | grep "file"` # Output Redirection to File and Console Test
-- [ ] `grep "keyword" < input.txt | grep "another" | grep "final" > output.txt` # Input from File and Output to Console Test
-- [ ] `sort < input.txt > sorted.txt | uniq > unique_lines.txt` # Input and Output Redirection Followed by Pipe Test
-- [ ] `grep "keyword" < input.txt > output.txt | grep "another" >> output.txt` # Input and Output Redirection to the Same File Followed by Pipe Test
-- [ ] `echo -n "This is a test." > text.txt | cat < text.txt` # Input and Output Redirection to the Same File with "echo" Command Test
+- [x] `ls > output.txt | grep "file"` # Output Redirection to File and Console Test
+- [x] `grep "keyword" < input.txt | grep "another" | grep "final" > output.txt` # Input from File and Output to Console Test
+- [x] `echo -n "This is a test." > text.txt | cat < text.txt` # Input and Output Redirection to the Same File with "echo" Command Test
+- [ ] `cat | cat | cat | ls`
 
 ## Double and single quotes 

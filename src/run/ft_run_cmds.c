@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/04 11:58:02 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:29:56 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_run_cmds(t_ms *ms)
 			if (ft_change_standard_in_out(&ms->cmds[c->i]))
 			{
 				ft_filter_cmd(ms, &ms->cmds[c->i]);
-				ft_reset_heredoc(ms, c->i);
 				ft_reset_fd_in_out(ms);
 			}
 		}
