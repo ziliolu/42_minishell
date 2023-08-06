@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/06 11:16:00 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:15:56 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **system_env)
 
 	(void) argc;
 	(void) argv;
-	ms.is_print = 0;
+	ms.is_print = 1;
 	ms.print_cmd = 0;
 	ms.status = 0;
 	prompt = "\e[31mmi\e[93mni\e[32ms\e[92mh\e[34me\e[94mll\e[93m$\033[0m ";

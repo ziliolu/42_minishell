@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/06 11:33:33 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/06 11:30:05 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir, int i)
 {
 	t_heredoc	h;
-	char		*itoa_tmp;
-
-	itoa_tmp = ft_itoa(i);
+	char		*tmp;
 	h.prompt = "> ";
 	h.eof = redir->arg;
-	h.str = ft_strjoin("heredoc", itoa_tmp);
+	h.str = ft_strjoin("heredoc", ft_itoa(i));
 	h.read_content = ft_calloc(1, sizeof(char));
 	ft_signals_heredoc();
 	h.fd = open(h.str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -30,6 +28,5 @@ void	ft_is_heredoc(t_ms *ms, t_command *cmd, t_redirect *redir, int i)
 	open(h.str, O_RDONLY);
 	ft_handle_signals();
 	free (h.str);
-	free (itoa_tmp);
 	free (h.read_content);
 }
