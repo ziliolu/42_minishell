@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/07 05:56:18 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/07 05:48:11 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ char	*ft_trimmed(char *str)
 		tmp_content = ft_strtrim(read_content, "	");
 		free (read_content);
 		read_content = ft_strdup(tmp_content);
+		free (tmp_content);
+		tmp_content = ft_strdup(read_content);
 		size = strlen(read_content);
 	}
 	return (read_content);
 }
+
+// 		 oi	 	
