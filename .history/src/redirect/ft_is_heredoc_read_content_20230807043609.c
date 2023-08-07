@@ -6,22 +6,11 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/07 04:38:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/07 04:36:09 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-void	signals_continue(t_ms *ms, t_command *cmd, t_heredoc *h)
-{
-	ft_signals_ignore();
-	waitpid(ms->pid, &ms->status, 0);
-	if (WIFSIGNALED(ms->status) && g_exit_status == 0)
-		g_exit_status = 128 + WTERMSIG(ms->status);
-	else if (WIFEXITED(ms->status))
-		g_exit_status = WEXITSTATUS(ms->status);
-	cmd->in = h->fd;
-}
 
 void	ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 {
@@ -46,6 +35,14 @@ void	ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 		close(h->fd);
 		open(h->str, O_RDONLY);
 		exit(g_exit_status);
-		signals_continue(ms, cmd, h);
 	}
+	ft_signals_ignore();
+	waitpid(ms->pid, &ms->status, 0);
+	if (WIFSIGNALED(ms->status) && g_exit_status == 0)
+		g_exit_status = 128 + WTERMSIG(ms->status);
+	else if (WIFEXITED(ms->status))
+		g_exit_status = WEXITSTATUS(ms->status);
+	cmd->in = h->fd;
 }
+
+void	signals_continue(t_ms *ms, t_command *cmd, )

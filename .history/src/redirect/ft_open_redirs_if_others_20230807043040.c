@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_redirs_if_others.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/07 04:33:52 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/06 16:29:36 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ bool	ft_open_redirs_if_others(t_ms *ms, t_counters *c)
 		}
 	}
 	else if (ms->cmds[c->i].redirs[c->k].type == HERE_DOC)
-		if (!ft_is_heredoc(ms, &ms->cmds[c->i], \
-		&ms->cmds[c->i].redirs[c->k], c->i))
+		if (!ft_is_heredoc(ms, &ms->cmds[c->i], &ms->cmds[c->i].redirs[c->k], c->i))
 			return (false);
 	c->k++;
 	return (true);

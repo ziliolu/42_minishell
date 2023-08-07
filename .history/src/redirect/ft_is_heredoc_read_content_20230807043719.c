@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/07 04:38:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/07 04:37:19 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	signals_continue(t_ms *ms, t_command *cmd, t_heredoc *h)
 		g_exit_status = 128 + WTERMSIG(ms->status);
 	else if (WIFEXITED(ms->status))
 		g_exit_status = WEXITSTATUS(ms->status);
-	cmd->in = h->fd;
+	cmd->in = h->fd;	
 }
-
 void	ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 {
 	ms->pid = fork();
