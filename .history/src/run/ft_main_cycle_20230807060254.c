@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/07 06:04:28 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/07 06:02:54 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ char	*ft_trimmed(char *str)
 	size_t	read_size;
 
 	size = 0;
-	read_content = ft_strdup(str);
 	tmp_content = ft_strdup(str);
 	read_size = ft_strlen(str);
 	while (read_size != size)
@@ -63,6 +62,5 @@ char	*ft_trimmed(char *str)
 		read_content = ft_strdup(tmp_content);
 		size = strlen(read_content);
 	}
-	ft_free(tmp_content);
 	return (read_content);
 }
