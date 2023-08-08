@@ -102,6 +102,6 @@
 - [x] `ls > output.txt | grep "file"` # Output Redirection to File and Console Test
 - [x] `grep "keyword" < input.txt | grep "another" | grep "final" > output.txt` # Input from File and Output to Console Test
 - [x] `echo -n "This is a test." > text.txt | cat < text.txt` # Input and Output Redirection to the Same File with "echo" Command Test
-- [ ] `cat | cat | cat | ls`
+- [x] `cat | cat | cat | ls`
 
 ## Double and single quotes 

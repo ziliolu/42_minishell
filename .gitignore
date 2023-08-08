@@ -1,2 +1,5 @@
 .vscode/
 .history/
+.vscode
+.history
+*.o

@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/07 04:38:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/08 04:40:24 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ void	ft_is_heredoc_read_content(t_ms *ms, t_command *cmd, t_heredoc *h)
 		close(h->fd);
 		open(h->str, O_RDONLY);
 		exit(g_exit_status);
-		signals_continue(ms, cmd, h);
 	}
+	signals_continue(ms, cmd, h);
 }
