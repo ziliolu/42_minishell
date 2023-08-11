@@ -3,7 +3,7 @@ LIBDIR = ./lib/
 LIB = lib.a
 OBJ = $(SRC:.c=.o)
 CC = cc
-CFLAGS = -Wextra -Werror -Wall -g -I./includes -fsanitize=address
+CFLAGS = -Wextra -Werror -Wall -g -I./includes
 RM = rm -f 
 
 SRC = ./src/run/ft_filter_cmd_else.c\

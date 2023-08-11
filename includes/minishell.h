@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/06 16:27:13 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:32:06 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@
 # include <signal.h>
 
 # define HEREDOC "heredoc.tmp"
+
+# define HEREDOC "heredoc.tmp"
+# define RED "\001\e[0;31m\002"
+# define ORG "\001\e[93m\002"
+# define GRN "\001\e[32m\002"
+# define LGRN "\001\e[92m\002"
+# define BLU "\001\e[34m\002"
+# define LBLU "\001\e[94m\002"
+# define RESET "\001\e[0m\002"
 
 extern int	g_exit_status;
 
@@ -140,6 +149,7 @@ typedef struct s_ms
 	int			j;
 	int			go_out;
 	char		*home_dir;
+	t_counters	*clean;
 }	t_ms;
 
 typedef struct s_cd

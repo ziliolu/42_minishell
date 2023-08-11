@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_run_cmds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/06 16:29:56 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:32:49 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_run_cmds(t_ms *ms)
 	t_counters	*c;
 
 	c = ft_calloc(1, sizeof(t_counters));
+	ms->clean = c;
 	ft_init_pipes(ms);
 	while (ms->cmds[c->i].type)
 	{

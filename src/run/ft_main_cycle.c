@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_cycle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/07 06:04:28 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:41:49 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 	ft_free(tmp_prompt);
 }
 
+char	*ft_trimmed_read(char *read_, char *tmp_)
+{
+	if (ft_strlen(tmp_) > 0)
+		read_ = ft_strtrim(tmp_, " ");
+	else
+		read_ = ft_strdup("");	
+	return (read_);
+}
+
+char	*ft_trimmed_tmp(char *read_, char *tmp_)
+{
+	if (ft_strlen(read_) > 0)
+		tmp_ = ft_strtrim(read_, " ");
+	else
+		tmp_ = ft_strdup("");	
+	return (tmp_);
+}
+
 char	*ft_trimmed(char *str)
 {
 	char	*read_content;
@@ -56,9 +74,9 @@ char	*ft_trimmed(char *str)
 		if (read_content)
 			read_size = strlen(read_content);
 		free (read_content);
-		read_content = ft_strtrim(tmp_content, " ");
+		read_content = ft_trimmed_read(read_content, tmp_content);
 		free (tmp_content);
-		tmp_content = ft_strtrim(read_content, "	");
+		tmp_content = ft_trimmed_tmp(read_content, tmp_content);
 		free (read_content);
 		read_content = ft_strdup(tmp_content);
 		size = strlen(read_content);
