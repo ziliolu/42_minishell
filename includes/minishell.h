@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/11 20:32:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:50:42 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ typedef struct s_ms
 	int			j;
 	int			go_out;
 	char		*home_dir;
+	char		*clean_read_content;
 	t_counters	*clean;
 }	t_ms;
 

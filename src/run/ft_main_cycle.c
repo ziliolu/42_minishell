@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/11 20:41:49 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/11 20:53:02 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 		ms->read_size = ft_strlen(read_content);
 		ft_free(read_content);
 		read_content = ft_broken_cmds(ms, tmp_prompt);
+		ms->clean_read_content = read_content;
+		ft_free(tmp_prompt);
 		if (read_content)
 		{
 			ms->ms_env_array = ft_list_to_array(ms);

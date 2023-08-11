@@ -6,7 +6,7 @@
 /*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/11 20:33:57 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/11 21:04:13 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 		if (ms->n_pipes == 0)
 		{
 			printf("exit\n");
+			ft_free_env(ms->ms_env);
+			ft_free_env(ms->export_list);
+			free(ms->vars);
+			ft_free_array(ms->paths);
+			ft_free_array(ms->ms_env_array);
+			ft_free_array(ms->ms_argv);
+			free(ms->count_args);
+			ft_free_elem_list(*ms->lexed_list);
+			free(ms->lexed_list);
+			free(ms->clean_read_content);
+			// ft_free_cmds(ms);
 			exit(ft_atoi(cmd->args[1]));
 		}
 		else
@@ -27,7 +38,6 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 	else if (!cmd->args[1] && ms->n_pipes == 0)
 	{
 		printf("exit\n");
-
 		ft_free_env(ms->ms_env);
 		ft_free_env(ms->export_list);
 		free(ms->vars);
@@ -37,8 +47,7 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 		free(ms->count_args);
 		ft_free_elem_list(*ms->lexed_list);
 		free(ms->lexed_list);
-		free(ms->clean);
-
+		free(ms->clean_read_content);
 		ft_free_cmds(ms);
 		exit (g_exit_status);
 	}
