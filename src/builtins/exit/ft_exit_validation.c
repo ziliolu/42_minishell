@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/12 07:31:37 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 07:40:09 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ bool	ft_cmd_has_pipes(t_ms *ms, t_command *cmd)
 		printf("exit\n");
 		printf("minishell: exit: %s: numeric argument required\n", \
 		cmd->args[1]);
+		ft_exit_local_free(ms);
 		exit (2);
 	}
 	else

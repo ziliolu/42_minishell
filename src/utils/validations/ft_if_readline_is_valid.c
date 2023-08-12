@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_if_readline_is_valid.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:01:50 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/11 20:57:34 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 07:41:57 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_if_readline_is_valid(t_ms *ms, char *read_content)
 	{
 		ft_lexer(ms, read_content);
 		ms->ms_argv = ft_split(read_content, ' ');
-		free(read_content);
+		ft_free(read_content);
 		ft_count_args(ms, *ms->lexed_list);
 		ft_parser(ms, *ms->lexed_list);
 		if (ft_cmd_args_validation(ms))

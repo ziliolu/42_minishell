@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/12 07:07:13 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 07:44:11 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 			ft_free_array(ms->ms_env_array);
 		}
 	}
-	ft_free(read_content);
-	ft_free(tmp_prompt);
 }
 
 char	*ft_trimmed_read(char *read_, char *tmp_)
