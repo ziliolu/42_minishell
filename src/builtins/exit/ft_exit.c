@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/12 12:57:52 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:14:48 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_exit_local_free(t_ms *ms)
 	free(ms->lexed_list);
 	free(ms->clean);
 	ft_free_env(*ms->vars);
+	free(ms->vars);
 	ft_free_cmds(ms);
 }
 

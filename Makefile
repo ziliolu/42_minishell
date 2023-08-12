@@ -201,7 +201,7 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -L$(LIBDIR) -l:$(LIB) -lreadline -o $(NAME)
 
 $(LIB):
-	@make -s -C $(LIBDIR)
+	@$(MAKE) -s -C $(LIBDIR)
 
 ifeq ($(wildcard $(LIBDIR)$(LIB)),)
 $(LIBDIR)$(LIB):
@@ -213,10 +213,15 @@ endif
 
 clean: 
 	make clean -C $(LIBDIR)
+	$(RM) $(OBJ)
 
 fclean: clean 
 	$(RM) $(NAME) $(OBJ)
 
+fast: fclean
+	$(MAKE) -j
+
+.NOTPARALEL: re
 re: clean all
 
 .PHONY: clean fclean re

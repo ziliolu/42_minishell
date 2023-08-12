@@ -1,0 +1,14 @@
+clean.sh
+includes
+info
+lib
+libreadline.supp
+Makefile
+minishell
+output.txt
+readline.supp
+README.md
+run.sh
+src
+TESTS.md
+txt

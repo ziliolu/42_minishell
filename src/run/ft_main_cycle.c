@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_cycle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/12 13:05:22 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/12 15:35:58 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+void	ft_free_input(char *read_content, char *tmp_prompt)
+{
+	ft_free(read_content);
+	ft_free(tmp_prompt);
+}
 
 void	ft_main_cycle(t_ms *ms, char *read_content, \
 	char *tmp_prompt, char *prompt)
@@ -26,16 +32,18 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 		ms->read_size = ft_strlen(read_content);
 		ft_free(read_content);
 		read_content = ft_broken_cmds(ms, tmp_prompt);
-		ms->clean_read_content = read_content;
 		ft_free(tmp_prompt);
+		ms->clean_read_content = read_content;
 		if (read_content)
 		{
 			ms->ms_env_array = ft_list_to_array(ms);
 			ft_if_readline_is_valid(ms, read_content);
 			ft_wait(ms);
-			ft_free_array(ms->ms_env_array);	
+			ft_free_array(ms->ms_env_array);
 		}
 	}
+	else
+		ft_free_input(read_content, tmp_prompt);
 }
 
 char	*ft_trimmed_read(char *read_, char *tmp_)
