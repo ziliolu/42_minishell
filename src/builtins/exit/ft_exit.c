@@ -6,11 +6,26 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/12 07:01:03 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 07:06:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+void	ft_exit_local_free(t_ms *ms)
+{
+	ft_free_env(ms->ms_env);
+	ft_free_env(ms->export_list);
+	free(ms->vars);
+	ft_free_array(ms->paths);
+	ft_free_array(ms->ms_env_array);
+	ft_free_array(ms->ms_argv);
+	free(ms->count_args);
+	ft_free_elem_list(*ms->lexed_list);
+	free(ms->lexed_list);
+	free(ms->clean);
+	ft_free_cmds(ms);
+}
 
 void	ft_exit(t_ms *ms, t_command *cmd)
 {
@@ -22,17 +37,7 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 		if (ms->n_pipes == 0)
 		{
 			printf("exit\n");
-			ft_free_env(ms->ms_env);
-			ft_free_env(ms->export_list);
-			free(ms->vars);
-			ft_free_array(ms->paths);
-			ft_free_array(ms->ms_env_array);
-			ft_free_array(ms->ms_argv);
-			free(ms->count_args);
-			ft_free_elem_list(*ms->lexed_list);
-			free(ms->lexed_list);
-			free(ms->clean);
-			ft_free_cmds(ms);
+			ft_exit_local_free(ms);
 			exit(status);
 		}
 		else
@@ -41,17 +46,7 @@ void	ft_exit(t_ms *ms, t_command *cmd)
 	else if (!cmd->args[1] && ms->n_pipes == 0)
 	{
 		printf("exit\n");
-		ft_free_env(ms->ms_env);
-		ft_free_env(ms->export_list);
-		free(ms->vars);
-		ft_free_array(ms->paths);
-		ft_free_array(ms->ms_env_array);
-		ft_free_array(ms->ms_argv);
-		free(ms->count_args);
-		ft_free_elem_list(*ms->lexed_list);
-		free(ms->lexed_list);
-		free(ms->clean);
-		ft_free_cmds(ms);
+		ft_exit_local_free(ms);
 		exit (g_exit_status);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_cycle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/11 20:53:02 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 07:07:13 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_trimmed_read(char *read_, char *tmp_)
 	if (ft_strlen(tmp_) > 0)
 		read_ = ft_strtrim(tmp_, " ");
 	else
-		read_ = ft_strdup("");	
+		read_ = ft_strdup("");
 	return (read_);
 }
 
@@ -56,7 +56,7 @@ char	*ft_trimmed_tmp(char *read_, char *tmp_)
 	if (ft_strlen(read_) > 0)
 		tmp_ = ft_strtrim(read_, " ");
 	else
-		tmp_ = ft_strdup("");	
+		tmp_ = ft_strdup("");
 	return (tmp_);
 }
 

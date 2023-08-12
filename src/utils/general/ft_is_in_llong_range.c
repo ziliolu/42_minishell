@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_in_llong_range.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:55:38 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/27 12:57:47 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 07:30:17 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@ int	ft_return_signal(char c, int signal)
 		if (ft_isnegative(c))
 			signal = -1;
 	return (signal);
+}
+
+int	ft_bigger_llong_max(char *nptr)
+{
+	int	size;
+
+	size = ft_strlen(nptr);
+	return (size);
 }
 
 bool	ft_is_in_llong_range(char *nptr)
@@ -44,7 +52,7 @@ bool	ft_is_in_llong_range(char *nptr)
 			return (true);
 		return (false);
 	}
-	if (r > LLONG_MAX)
+	if (r > LLONG_MAX || ft_bigger_llong_max(nptr) > 19)
 		return (false);
 	return (true);
 }
