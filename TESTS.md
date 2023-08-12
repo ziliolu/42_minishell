@@ -11,7 +11,6 @@
 - [x] `echo "$HOME"` # echo the value of the HOME environment variable
 - [x] `echo '$HOME'` # echo the literal string '$HOME'
 - [x] `echo \`date\`` # echo the result of a command substitution
-- [x] `echo *` # echo files in the current directory (wildcard expansion)
 
 ### cd
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/12 07:47:49 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 12:57:52 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_exit_local_free(t_ms *ms)
 {
 	ft_free_env(ms->ms_env);
 	ft_free_env(ms->export_list);
-	free(ms->vars);
 	ft_free_array(ms->paths);
 	ft_free_array(ms->ms_env_array);
 	ft_free_array(ms->ms_argv);
@@ -24,6 +23,7 @@ void	ft_exit_local_free(t_ms *ms)
 	ft_free_elem_list(*ms->lexed_list);
 	free(ms->lexed_list);
 	free(ms->clean);
+	ft_free_env(*ms->vars);
 	ft_free_cmds(ms);
 }
 

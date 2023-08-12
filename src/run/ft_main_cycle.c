@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_cycle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/12 07:44:11 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 13:05:22 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 	read_content = NULL;
 	ft_handle_signals();
 	if (!ft_main_cycle_read(ms, &read_content, prompt))
-		return ;
-	if (!read_content)
 		return ;
 	tmp_prompt = ft_trimmed(read_content);
 	if (ft_strcmp(tmp_prompt, "") != 0)
@@ -35,7 +33,7 @@ void	ft_main_cycle(t_ms *ms, char *read_content, \
 			ms->ms_env_array = ft_list_to_array(ms);
 			ft_if_readline_is_valid(ms, read_content);
 			ft_wait(ms);
-			ft_free_array(ms->ms_env_array);
+			ft_free_array(ms->ms_env_array);	
 		}
 	}
 }
