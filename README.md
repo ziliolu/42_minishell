@@ -113,7 +113,20 @@ For example, consider the following command:
 ls -l | grep ".txt"
 ```
 > In this command, the output of the ls -l command (list files in long format) is piped (|)
-> to the grep ".txt" command.The grep command then filters the lines containing the ".txt" pattern.
+> to the grep ".txt" command. The grep command then filters the lines containing the ".txt" pattern.
+
+##### How Pipes Connect Commands
+
+Command 1 (ls -l) Command 2 (grep ".txt")
+Output (stdout) Input (stdin)
+| |
+v v
++-------------+ +-------------+
+| | Pipe | |
+| Write +-------------->| Read |
+| End | | End |
+| | | |
++-------------+ +-------------+
 
 ## Installation
 
