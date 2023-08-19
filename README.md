@@ -10,7 +10,7 @@
 ## Table of Contents
 
 - [About](#about)
-- [Lexer(#lexer)
+- [Lexer](#lexer)
 - [Parser](#parser)
 - [Pipes](#pipes)
 - [Installation](#installation)
