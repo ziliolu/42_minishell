@@ -110,15 +110,16 @@ Pipes are used to `connect the standard output of one command to the standard in
 
 For example, consider the following command:
 ```bash
-ls -l | grep ".txt"
+cat file1.txt | 
 ```
-> In this command, the output of the ls -l command (list files in long format) is piped (|)
-> to the grep ".txt" command. The grep command then filters the lines containing the ".txt" pattern.
+> In this command, the output of the `cat file1.txt` command is piped (|)
+> as input to `wc` command. The wc command then analyzes this input and
+> provides three counts: the number of lines, words, and characters present in the content.
 
-##### How Pipes Connect Commands
+##### How Pipes Connect Commands: 
 
 <p align="center">
-  <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" width="400" />
+  <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" width="500" />
 </p>
 
 ## Installation
