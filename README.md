@@ -118,7 +118,7 @@ ls -l | grep ".txt"
 ##### How Pipes Connect Commands
 
 <p align="center">
-  <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" />
+  <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" width="400" />
 </p>
 
 ## Installation
