@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/ziliolu/42_push_swap?color=#FFFFFF&style=flat-square" />
-  <img src="https://img.shields.io/badge/score-100%20%2F%20100-success?color=#FFFFFF&style=flat-square" />
+  <img src="https://img.shields.io/badge/score-101%20%2F%20100-success?color=#FFFFFF&style=flat-square" />
   <img src="https://img.shields.io/badge/status-finished-success?color=#FFFFFF&style=flat-square" />
   <img src="https://img.shields.io/github/last-commit/ziliolu/42_push_swap?color=#FFFFFF&style=flat-square" />
 </p>
@@ -25,7 +25,7 @@ This Minishell project was done in collaboration with my colleague [Ivo Marques]
 
 The Minishell project is a minimalistic shell implementation developed as part of the 42 curriculum. It aims to provide a basic shell environment capable of executing commands, handling environment variables, and supporting various shell features. The project is implemented using the C programming language and adheres to POSIX standards.
 
-[Click here](https://github.com/ziliolu/42_push_swap/blob/main/push_swap.pdf) to access the complete subject of this project.
+[Click here](https://github.com/ziliolu/42_minishell/blob/main/minishell.pdf) to access the complete subject of this project.
 
 ## Execution 
 
