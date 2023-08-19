@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_broken_cmds_pipe.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 00:01:54 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/31 13:36:14 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/13 08:04:28 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ft_is_broken_cmds_pipe(t_ms *ms, char *str, t_broken_cmds *b)
 {
 	char	*tmp_readline;
 
+	b->prompt = "> ";
 	while (!b->prompt_tmp || (b->prompt_tmp && \
 		ft_strcmp(b->prompt_tmp, "") == 0))
 	{

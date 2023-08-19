@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:20:30 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/05 21:00:21 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:01:58 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_unset(t_ms *ms, t_command *cmd)
 			cmd->args[i]);
 			g_exit_status = 1;
 		}
-		if (ft_is_valid_env_name(ms, cmd->args[i]))
+		if (ft_is_valid_env_name(ms, cmd->args[i]) && ms->n_pipes == 0)
 		{
 			ft_remove_node_list(&ms->ms_env, cmd->args[i], cmd);
 			ft_remove_node_list(&ms->export_list, cmd->args[i], cmd);

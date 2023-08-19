@@ -6,7 +6,7 @@
 /*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 00:01:50 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/12 12:29:04 by lpicoli-         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:26:44 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	ft_if_readline_is_valid(t_ms *ms, char *read_content)
 		ft_parser(ms, *ms->lexed_list);
 		if (ft_cmd_args_validation(ms))
 		{
-			if (ms->is_print)
-				ft_print_tokens(ms, *ms->lexed_list);
 			if (!ms->dot_comma_flag)
 				ft_run_cmds(ms);
 			else

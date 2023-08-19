@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:28 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/12 07:39:50 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:58:26 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ typedef struct s_ms
 	int			go_out;
 	char		*home_dir;
 	char		*clean_read_content;
+	char		*home_static;
 	t_counters	*clean;
 }	t_ms;
 
@@ -208,6 +209,7 @@ typedef struct s_heredoc
 	int		fd2;
 	char	*read_content;
 	char	*prompt;
+	t_ms	*ms;
 }	t_heredoc;
 
 typedef struct s_trim
@@ -244,10 +246,13 @@ typedef struct s_val_quote
 
 // =============== BUILTINS ===============
 
+void	ft_modify_pwd(t_ms *ms, t_cd *cd);
+void	ft_modify_oldpwd(t_ms *ms, t_cd *cd);
 void	ft_cd_is_chdir(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_cd_while_is_not_pwd(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_cd(t_ms *ms, t_command *cmd);
+bool	ft_cd_home_path(t_ms *ms, t_command *cmd, t_cd *cd);
 void	ft_create_env(t_ms *ms, char **env);
 void	ft_create_exp(t_ms *ms, char **env);
 void	ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo);
@@ -401,7 +406,8 @@ void	ft_handle_signals_loop(void);
 void	ft_handle_signals(void);
 void	ft_handler_loop(int signal);
 void	ft_handler(int signal);
-void	ft_signals_heredoc(void);
+// void	ft_signals_heredoc(void);
+void	ft_signals_heredoc(t_heredoc *ptr);
 void	ft_signals_ignore(void);
 
 // =============== UTILS ===============

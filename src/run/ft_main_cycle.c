@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_main_cycle.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpicoli- <lpicoli-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 23:59:46 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/12 15:35:58 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:24:25 by lpicoli-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*ft_trimmed_read(char *read_, char *tmp_)
 char	*ft_trimmed_tmp(char *read_, char *tmp_)
 {
 	if (ft_strlen(read_) > 0)
-		tmp_ = ft_strtrim(read_, " ");
+		tmp_ = ft_strtrim(read_, "\t");
 	else
 		tmp_ = ft_strdup("");
 	return (tmp_);

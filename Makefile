@@ -133,6 +133,7 @@ SRC = ./src/run/ft_filter_cmd_else.c\
 	./src/builtins/cd/ft_cd.c\
 	./src/builtins/cd/ft_cd_while_is_not_pwd.c\
 	./src/builtins/cd/ft_cd_is_not_pwd.c\
+	./src/builtins/cd/ft_cd_home_path.c\
 	./src/builtins/echo/ft_echo.c\
 	./src/builtins/echo/ft_echo_is_cmd_arg.c\
 	./src/parser/ft_parser_while_dif_null.c\

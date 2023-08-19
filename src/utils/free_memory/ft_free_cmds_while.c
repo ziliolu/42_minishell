@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_cmds_while.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 11:36:32 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/24 21:09:06 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/13 23:24:32 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_free_cmds_while(t_ms *ms, int i, int j, int k)
 {
-	while (ms->cmds[i].type)
+	while (ms->cmds[i].args)
 	{
 		if (ms->cmds[i].redirs)
 		{

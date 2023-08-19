@@ -6,7 +6,7 @@
 /*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 13:05:23 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/08/12 07:40:09 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/13 22:37:38 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ int	ft_count_args_actual_cmd(t_command *cmd)
 	return (i);
 }
 
+bool	ft_is_numeric(char *arg)
+{
+	int	i;
+
+	i = 0;
+	if (arg[0] == '-' || arg[0] == '+')
+		i++;
+	while (arg[i])
+	{
+		if (!(arg[i] >= 48 && arg[i] <= 57))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 bool	ft_exit_validation(t_ms *ms, t_command *cmd)
 {
 	long long int	nbr;
@@ -48,7 +64,8 @@ bool	ft_exit_validation(t_ms *ms, t_command *cmd)
 	nbr = ft_atoll(cmd->args[1]);
 	ft_reset_fd_in_out(ms);
 	if ((nbr == 0 && ft_strcmp(cmd->args[1], "0") != 0)
-		|| !ft_is_in_llong_range(cmd->args[1]))
+		|| !ft_is_in_llong_range(cmd->args[1])
+		|| !ft_is_numeric(cmd->args[1]))
 		return (ft_cmd_has_pipes(ms, cmd));
 	else
 	{
@@ -57,6 +74,7 @@ bool	ft_exit_validation(t_ms *ms, t_command *cmd)
 			if (ms->n_pipes == 0)
 				printf("exit\n");
 			printf("minishell: exit: too many arguments\n");
+			g_exit_status = 1;
 			return (false);
 		}
 	}

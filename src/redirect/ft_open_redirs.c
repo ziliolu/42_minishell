@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_open_redirs.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 10:01:08 by lpicoli-          #+#    #+#             */
-/*   Updated: 2023/07/22 23:45:27 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/12 16:13:10 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ bool	ft_open_redirs(t_ms *ms, t_counters *c)
 			}
 			if (ms->cmds[c->i].redirs[c->k - 1].type == REDIR_OUT)
 				ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k - 1].arg, \
-					O_CREAT | O_TRUNC | O_WRONLY, 0777);
+					O_CREAT | O_TRUNC | O_WRONLY, 0644);
 			else if (ms->cmds[c->i].redirs[c->k - 1].type == D_REDIR_OUT)
 				ms->cmds[c->i].out = open(ms->cmds[c->i].redirs[c->k - 1].arg, \
-					O_CREAT | O_APPEND | O_WRONLY, 0777);
+					O_CREAT | O_APPEND | O_WRONLY, 0644);
 		}
 	}
 	return (true);

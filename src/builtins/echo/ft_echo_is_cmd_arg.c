@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo_is_cmd_arg.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ialves-m <ialves-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ialves-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 21:11:50 by ialves-m          #+#    #+#             */
-/*   Updated: 2023/08/05 21:22:47 by ialves-m         ###   ########.fr       */
+/*   Updated: 2023/08/13 23:24:59 by ialves-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_echo_is_cmd_arg(t_command *cmd, t_echo *echo)
 	j = 0;
 	if (!cmd->args[1])
 		return ;
-	while (cmd->args[j])
+	while (cmd->args[j] && cmd->args[echo->i])
 	{
 		if (echo_is_n(cmd->args[echo->i]))
 			echo->i++;
