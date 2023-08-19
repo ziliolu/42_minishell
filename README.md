@@ -10,7 +10,7 @@
 ## Table of Contents
 
 - [About](#about)
-- [Lexer - Tokenization Overview](#lexer)
+- [Lexer(#lexer)
 - [Parser](#parser)
 - [Pipes](#pipes)
 - [Installation](#installation)
@@ -40,7 +40,7 @@ The Minishell project is a minimalistic shell implementation developed as part o
 
 
 
-### 1. Lexer - Tokenization Overview
+### Lexer
 In Minishell, building a lexer is a powerful strategy that helps break down your input commands into smaller meaningful units called `tokens.` Tokens are like the individual pieces of a puzzle that Minishell uses to understand and execute your commands correctly. Let's go through an example to understand tokenization better:
 
 Example command:
