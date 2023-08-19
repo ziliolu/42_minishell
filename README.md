@@ -10,7 +10,7 @@
 ## Table of Contents
 
 - [About](#about)
-- [Lexer](#lexer)
+- [Lexer - Tokenization Overview](#lexer)
 - [Parser](#parser)
 - [Pipes](#pipes)
 - [Installation](#installation)
@@ -73,7 +73,7 @@ Lexer looks for specific patterns or special characters that help identify diffe
 | `heredoc`     | Represents heredoc symbol                              | '<<'         |
 
 
-### 2. Parser
+### Parser
 Once the input is tokenized, the parser's job is to recognize the boundaries between separate commands. In our example, we have three commands: `ls -l`, `grep Make`, `wc`, and the redirects associated with wc.
 
 The parser identifies each command based on the presence of the `pipe symbol '|'`. It groups the tokens before and after each pipe to form individual commands.
@@ -102,7 +102,7 @@ For each command, the parser creates a data structure to represent it. In our ca
 > with the `wc` command.They are not new commands and will be represented
 > by the structure's array `t_redirs` found inside `t_command`.
 
-### Pipes - Command Chaining and Redirection
+### Pipes
 
 In a shell, `pipes (|)` are a powerful feature that allow you to chain multiple commands together, where the output of one command becomes the input of the next command. This allows for more complex and versatile command executions. In our Minishell project, we've implemented this functionality, and here's how it works:
 
