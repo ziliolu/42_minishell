@@ -1,4 +1,5 @@
 # Minishell
+*As beautiful as Shell!*
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/ziliolu/42_push_swap?color=#FFFFFF&style=flat-square" />
