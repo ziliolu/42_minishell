@@ -19,11 +19,11 @@
 - [Disclaimer](#disclaimer)
 
 ### 🤝 Authorship - Collaborative Work
+> We worked together to develop and enhance this project, sharing knowledge and experiences throughout the process :)
 
-- [Ivo Marques](https://github.com/Pastilhex)
-- [Luiza Zilio](https://github.com/ziliolu)
+- [Ivo Marques](https://github.com/Pastilhex) - **ialves-m**
+- [Luiza Zilio](https://github.com/ziliolu) - **lpicoli-**
 
-We worked together to develop and enhance this project, sharing knowledge and experiences throughout the process
 
 ## About
 
