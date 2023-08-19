@@ -122,26 +122,29 @@ cat file1.txt |
   <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" width="500" />
 </p>
 
-1. Pipe Creation:
-Minishell creates a "pipe" between the commands involved. This pipe consists of two ends: the `write end -> fd[0]` and the `read end -> fd[1]`. The pipe acts as a bridge, connecting the write end to the read end. 
+## How Pipes Connect Commands: An Illustrated Explanation
 
-3. Write End of Pipe:
-- The output of the first command, `cat file1.txt`, is directed to the write end of the pipe.
-- This data travels through the pipe, waiting to be picked up by the next command.
+When using pipes (`|`) to connect commands in Minishell, you create a seamless bridge for data flow. Here's a breakdown of how it works using the command sequence `cat file1.txt | wc`:
 
-3. Read End of Pipe:
-- The second command, `wc`, reads from the read end of the pipe.
-- It treats the data from the read end as if it were entered directly as input.
+1. **Pipe Creation:**
+   Minishell establishes a "pipe" between the commands. This pipe has two ends: the write end (`fd[0]`) and the read end (`fd[1]`).
 
-4. Data Flow:
-- As Command 1 executes and generates output, it flows into the write end of the pipe.
-- Command 2, now armed with the data from the read end, processes it as its input.
+2. **Write End of Pipe:**
+   - The output of the first command, `cat file1.txt`, is directed to the write end of the pipe.
+   - Data flows through the pipe, waiting for the next command.
 
-The `dup2` function is used to manage these connections:
+3. **Read End of Pipe:**
+   - The second command, `wc`, reads from the read end of the pipe.
+   - It treats the incoming data as if it were entered directly as input.
 
-- For Command 1, `dup2(pipe_write_end, STDOUT_FILENO)` duplicates the write end of the pipe to the command's standard output.
-- For Command 2, `dup2(pipe_read_end, STDIN_FILENO)` duplicates the read end of the pipe to the command's standard input.
-  
+4. **Data Flow:**
+   - As Command 1 executes and generates output, it flows into the write end of the pipe.
+   - Command 2 processes this data as input, utilizing the read end of the pipe.
+
+The `dup2` function manages these connections:
+- For Command 1, `dup2(pipe_write_end, STDOUT_FILENO)` duplicates the write end to the command's standard output.
+- For Command 2, `dup2(pipe_read_end, STDIN_FILENO)` duplicates the read end to the command's standard input.
+
 ## Installation
 
 To install and run Minishell, follow these steps:- 
