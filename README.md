@@ -112,7 +112,7 @@ Pipes are used to `connect the standard output of one command to the standard in
 
 For example, consider the following command:
 ```bash
-cat file1.txt | 
+cat file1.txt | wc
 ```
 > In this command, the output of the `cat file1.txt` command is piped (|)
 > as input to `wc` command. The wc command then analyzes this input and
