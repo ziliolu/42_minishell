@@ -101,6 +101,20 @@ For each command, the parser creates a data structure to represent it. In our ca
 > with the `wc` command.They are not new commands and will be represented
 > by the structure's array `t_redirs` found inside `t_command`.
 
+#### 3. Pipes - Command Chaining and Redirection
+
+In a shell, pipes (|) are a powerful feature that allow you to chain multiple commands together, where the output of one command becomes the input of the next command. This allows for more complex and versatile command executions. In your Minishell project, you've implemented this functionality, and here's how it works:
+
+##### How Pipes Work
+Pipes are used to connect the standard output of one command to the standard input of another command. This allows you to create a pipeline of commands where the output of the first command is fed as input to the second command, and so on.
+
+For example, consider the following command:
+```bash
+ls -l | grep ".txt"
+
+> In this command, the output of the ls -l command (list files in long format) is piped (|) to the grep ".txt" command.
+> The grep command then filters the lines containing the ".txt" pattern.
+
 ## Installation
 
 To install and run Minishell, follow these steps:
