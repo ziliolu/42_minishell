@@ -101,11 +101,11 @@ For each command, the parser creates a data structure to represent it. In our ca
 > with the `wc` command.They are not new commands and will be represented
 > by the structure's array `t_redirs` found inside `t_command`.
 
-#### Pipes - Command Chaining and Redirection
+### Pipes - Command Chaining and Redirection
 
 In a shell, `pipes (|)` are a powerful feature that allow you to chain multiple commands together, where the output of one command becomes the input of the next command. This allows for more complex and versatile command executions. In our Minishell project, we've implemented this functionality, and here's how it works:
 
-##### How Pipes Work
+#### How Pipes Work
 Pipes are used to `connect the standard output of one command to the standard input of another command`. This allows you to create a pipeline of commands where the output of the first command is fed as input to the second command, and so on.
 
 For example, consider the following command:
@@ -116,15 +116,35 @@ cat file1.txt |
 > as input to `wc` command. The wc command then analyzes this input and
 > provides three counts: the number of lines, words, and characters present in the content.
 
-##### How Pipes Connect Commands: 
+#### How Pipes Connect Commands
 
 <p align="center">
   <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" width="500" />
 </p>
 
+1. Pipe Creation:
+Minishell creates a "pipe" between the commands involved. This pipe consists of two ends: the `write end -> fd[0]` and the `read end -> fd[1]`. The pipe acts as a bridge, connecting the write end to the read end. 
+
+3. Write End of Pipe:
+- The output of the first command, `cat file1.txt`, is directed to the write end of the pipe.
+- This data travels through the pipe, waiting to be picked up by the next command.
+
+3. Read End of Pipe:
+- The second command, `wc`, reads from the read end of the pipe.
+- It treats the data from the read end as if it were entered directly as input.
+
+4. Data Flow:
+- As Command 1 executes and generates output, it flows into the write end of the pipe.
+- Command 2, now armed with the data from the read end, processes it as its input.
+
+The `dup2` function is used to manage these connections:
+
+- For Command 1, `dup2(pipe_write_end, STDOUT_FILENO)` duplicates the write end of the pipe to the command's standard output.
+- For Command 2, `dup2(pipe_read_end, STDIN_FILENO)` duplicates the read end of the pipe to the command's standard input.
+  
 ## Installation
 
-To install and run Minishell, follow these steps:
+To install and run Minishell, follow these steps:- 
 
 1. Clone the repository:
    ```bash
