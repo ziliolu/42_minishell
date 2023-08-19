@@ -28,7 +28,7 @@
 
 The Minishell project is a minimalistic shell implementation developed as part of the 42 curriculum. It aims to provide a basic shell environment capable of executing commands, handling environment variables, and supporting various shell features. The project is implemented using the C programming language and adheres to POSIX standards.
 
-[Click here](https://github.com/ziliolu/42_minishell/blob/main/minishell.pdf) to access the complete subject of this project.
+[Click here](https://github.com/ziliolu/42_minishell/blob/main/info/minishell.pdf) to access the complete subject of this project.
 
 ## Execution 
 
@@ -169,7 +169,7 @@ To use Minishell, follow these steps:
 
 ## Testers 
 
-1. [Minishell Test List](https://github.com/ziliolu/42_minishell/blob/main/TESTS.md) provides a detailed list for testing the program with different number of commands, quotes, pipes and redirections.
+1. [Minishell Test List](https://github.com/ziliolu/42_minishell/blob/main/info/tests.md) provides a detailed list for testing the program with different number of commands, quotes, pipes and redirections.
 
 ## Disclaimer
 
