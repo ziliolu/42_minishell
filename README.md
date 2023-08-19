@@ -116,18 +116,16 @@ cat file1.txt |
 > as input to `wc` command. The wc command then analyzes this input and
 > provides three counts: the number of lines, words, and characters present in the content.
 
-#### How Pipes Connect Commands
+#### How Pipes Connect Commands: An Illustrated Explanation
 
 <p align="center">
   <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" width="500" />
 </p>
 
-## How Pipes Connect Commands: An Illustrated Explanation
-
 When using pipes (`|`) to connect commands in Minishell, you create a seamless bridge for data flow. Here's a breakdown of how it works using the command sequence `cat file1.txt | wc`:
 
 1. **Pipe Creation:**
-   Minishell establishes a "pipe" between the commands. This pipe has two ends: the write end (`fd[0]`) and the read end (`fd[1]`).
+   Minishell establishes a "pipe" between the commands. This pipe has two ends: the `write end` (fd[0]) and the `read end` (fd[1]).
 
 2. **Write End of Pipe:**
    - The output of the first command, `cat file1.txt`, is directed to the write end of the pipe.
