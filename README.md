@@ -117,16 +117,9 @@ ls -l | grep ".txt"
 
 ##### How Pipes Connect Commands
 
-  Command 1                   Command 2
-  (Output)                     (Input)
-     |                            |
-     v                            v
--------------              -------------
-|           |    Pipe      |           |
-|  Write    +------------->|   Read    |
-|  End      |              |   End     |
-|           |              |           |
-+-----------+              +-----------+
+<p align="center">
+  <img src="https://www.codequoi.com/wp-content/uploads/2022/10/shell_pipe_en.drawio.png" />
+</p>
 
 ## Installation
 
