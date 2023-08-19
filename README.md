@@ -18,8 +18,12 @@
 - [Testers](#testers)
 - [Disclaimer](#disclaimer)
 
-### 🤝 Collaborative Work
-This Minishell project was done in collaboration with my colleague [Ivo Marques](https://github.com/Pastilhex). We worked together to develop and enhance this project, sharing knowledge and experiences throughout the process.
+### 🤝 Authorship - Collaborative Work
+
+- [Ivo Marques](https://github.com/Pastilhex)
+- [Luiza Zilio](https://github.com/ziliolu)
+
+We worked together to develop and enhance this project, sharing knowledge and experiences throughout the process
 
 ## About
 
@@ -37,8 +41,6 @@ The Minishell project is a minimalistic shell implementation developed as part o
 - Redirection and pipes for input/output redirection and command chaining.
 - Background process execution and management.
 - Error handling and graceful error reporting.
-
-
 
 ### Lexer
 In Minishell, building a lexer is a powerful strategy that helps break down your input commands into smaller meaningful units called `tokens.` Tokens are like the individual pieces of a puzzle that Minishell uses to understand and execute your commands correctly. Let's go through an example to understand tokenization better:
