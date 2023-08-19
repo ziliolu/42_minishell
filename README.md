@@ -117,16 +117,16 @@ ls -l | grep ".txt"
 
 ##### How Pipes Connect Commands
 
-Command 1 (ls -l) Command 2 (grep ".txt")
-Output (stdout) Input (stdin)
-| |
-v v
-+-------------+ +-------------+
-| | Pipe | |
-| Write +-------------->| Read |
-| End | | End |
-| | | |
-+-------------+ +-------------+
+  Command 1                   Command 2
+  (Output)                     (Input)
+     |                            |
+     v                            v
++-----------+              +-----------+
+|           |    Pipe
+|  Write    +------------->|   Read    |
+|  End      |              |   End     |
+|           |              |           |
++-----------+              +-----------+
 
 ## Installation
 
