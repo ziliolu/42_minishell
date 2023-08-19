@@ -7,6 +7,12 @@
   <img src="https://img.shields.io/github/last-commit/ziliolu/42_push_swap?color=#FFFFFF&style=flat-square" />
 </p>
 
+### 🤝 Authorship - Collaborative Work
+> We worked together to develop and enhance this project, sharing knowledge and experiences throughout the process :)
+
+- [Ivo Marques](https://github.com/Pastilhex) - **ialves-m**
+- [Luiza Zilio](https://github.com/ziliolu) - **lpicoli-**
+
 ## Table of Contents
 
 - [About](#about)
@@ -17,13 +23,6 @@
 - [Usage](#usage)
 - [Testers](#testers)
 - [Disclaimer](#disclaimer)
-
-### 🤝 Authorship - Collaborative Work
-> We worked together to develop and enhance this project, sharing knowledge and experiences throughout the process :)
-
-- [Ivo Marques](https://github.com/Pastilhex) - **ialves-m**
-- [Luiza Zilio](https://github.com/ziliolu) - **lpicoli-**
-
 
 ## About
 
