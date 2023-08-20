@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/github/last-commit/ziliolu/42_push_swap?color=#FFFFFF&style=flat-square" />
 </p>
 <p align="center">
-  <img src="https://github.com/ziliolu/42_minishell/blob/main/info/V%C3%ADdeo%20sem%20t%C3%ADtulo%20%E2%80%90%20Feito%20com%20o%20Clipchamp%20(1).gif" />
+  <img src="https://github.com/ziliolu/42_minishell/blob/main/info/minishell.gif" />
 </p>
 
 ### 🤝 Authorship - Collaborative Work
