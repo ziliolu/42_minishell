@@ -1,5 +1,6 @@
 # Minishell
 
+<img src="https://github.com/ziliolu/42_minishell/blob/main/info/V%C3%ADdeo%20sem%20t%C3%ADtulo%20%E2%80%90%20Feito%20com%20o%20Clipchamp%20(1).gif" />
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/ziliolu/42_push_swap?color=#FFFFFF&style=flat-square" />
   <img src="https://img.shields.io/badge/score-101%20%2F%20100-success?color=#FFFFFF&style=flat-square" />
